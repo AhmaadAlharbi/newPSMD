@@ -40,13 +40,15 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     //add task
     Route::get('/dashboard/admin/query_section_id=5/add_task',[TransformersController::class,'add_task'])->name('Transformers.addTask');
     //get  all engineer's name
-    Route::get('/Transformers/getEngineer/{area_id}/{shift_id}',[TransformersController::class,'getEngineerName'])->name('Transformers.getEngineer');
+    Route::get('/Transformers/getEngineer/{area_id}/{shift_id}',[BatteryController::class,'getEngineerName'])->name('Transformers.getEngineer');
     //get an engineer's email
-    Route::get('/Transformers/getEngineersEmail/{id}', [TransformersController::class, 'getEngineersEmail']);
+    Route::get('/Transformers/getEngineersEmail/{id}', [BatteryController::class, 'getEngineersEmail']);
     //get an engineer based on shift
     Route::get('/Transformers/getEngineersOnShift/{area_id}/{shift_id}',[TransformersController::class,'getEngineersShift']);
     //get stations
     Route::get('/Transformers/stations/{id}',[TransformersController::class,'getStations']);
+    //get admins ot tr section
+    Route::get('/Transformers/{area}/{section}',[TransformersController::class,'getAdmins']);
 
     ///BACKEND ROUTE
     Route::post('/Transformers/send_task',[TransformersController::class,'store'])->name('Transformers.store');

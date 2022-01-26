@@ -59,7 +59,7 @@
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
                             <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
-                                onchange="getStation(),getEngineer()">
+                                onchange="getStation(),getAdmins()">
                             <datalist id="ssnames">
                                 @foreach($stations as $station)
                                 <option value="{{$station->SSNAME}}">
@@ -69,7 +69,7 @@
                                 class="text-center d-none p-3 form-control" readonly>
                             <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control"
                                 readonly>
-                            <input type="text" id="station_id" name="ssnameID">
+                            <input type="hidden" id="station_id" name="ssnameID">
                         </div>
                         <div class=" col-lg-4">
                             <label>تاريخ ارسال المهمة</label>
@@ -88,78 +88,75 @@
                             <input type="text" class="form-control" name="pm">
                         </div>
                     </div>
-                    <div class="row m-3">
-                        <div class="col-lg-6">
-                            <label for="main_alarm" class="control-label m-3">Main Alarm</label>
-                            <select name="mainAlarm" id="main_alarm" class="form-control">
+                    <div class="row m-3 bg-warning pb-2">
+                        <div class=" col-lg-6">
+                            <label for="main_alarm" class="control-label m-3">Department</label>
+                            <select name="department" id="department" class="form-control "
+                                onChange="checkDepartment() ,getAdmins()">
                                 <!--placeholder-->
-                                <option value="DC Supply Failure">DC Supply Failure</option>
-                                <option value="Main Failure">Main Failure</option>
-                                <option value="Low Voltage">Low Voltage</option>
-                                <option value="High Voltage">High Voltage</option>
-                                <option value="other">other</option>
+                                <option value="1">d</option>
+                                <option value="1">Mechanical</option>
+                                <option value="2">Chemistry</option>
                             </select>
-                            <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text"
-                                class=" invisible form-control" onfocus=this.value=''>
-                        </div>
 
-                    </div>
-                    <div class="row m-3">
-
-                        <div class="col-lg-6">
-                            <label for="equip" class="control-label m-1">Bay Unit</label>
-                            <input id="equip" type="text" name="equip" class="form-control SlectBox">
-                        </div>
-
-                        <div class="col-lg-6">
-                            <label for="problem" class="control-label m-1"> Nature of Fault</label>
-                            <input list="problems" class="form-control" name="problem" id="problem">
-                            <datalist id="problems">
-                            </datalist>
                         </div>
                     </div>
-
-
-
-
                     {{-- 2 --}}
-                    <div class="row m-3">
+                    <!--Work type for Mechinacl-->
+                    <div class="row m-3 d-none " id="workType-MechDiv">
+                        <div class="col border border-warning p-3 flex-wrap">
+                            <h6 class="text-warning">Work Type</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input  checkbox" type="radio" name="work_type"
+                                    id="inlineRadio1" value="TroubleShooting" onClick="checkBoxMech('TroubleShooting')">
+                                <label class="form-check-label  m-2" for="inlineRadio1">TroubleShooting</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio2"
+                                    value="Maintenance" onClick="checkBoxMech('Maintenance')">
+                                <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio3"
+                                    value="Inspection" onClick="checkBoxMech('Inspection')">
+                                <label class="form-check-label m-2" for="inlineRadio3">Inspection</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Work type for chemestry-->
+                    <div class="row m-3 d-none" id="workType-ChemDiv">
                         <div class="col border border-warning p-3 flex-wrap">
                             <h6 class="text-warning">Work Type</h6>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
-                                    value="Inspection">
-                                <label class="form-check-label  m-2" for="inlineRadio1">Inspection</label>
+                                <input class="form-check-input  checkbox" type="radio" name="work_type"
+                                    id="inlineRadio1" value="Emergency" onClick="checkBoxFunc('Emergency')">
+                                <label class="form-check-label  m-2" for="inlineRadio1">Emergency</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
-                                    value="Maintenance">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio2"
+                                    value="Maintenance" onClick="checkBoxFunc('Maintenance')">
                                 <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
-                                    value="Troubleshooting">
-                                <label class="form-check-label m-2" for="inlineRadio3">Troubleshooting</label>
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio3"
+                                    value="Inspection" onClick="checkBoxFunc('Inspection')">
+                                <label class="form-check-label m-2" for="inlineRadio3">Inspection</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
-                                    value="outage">
-                                <label class="form-check-label m-2" for="inlineRadio4">outage</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
-                                    value="Installation">
-                                <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
-                                    value="Other">
-                                <label class="form-check-label m-2" for="inlineRadio6">other</label>
-                            </div>
+
                         </div>
                     </div>
+                    <div class="row m-3  d-none " id="alarm">
+                        <label for="mechanical" id="section-label">Mechanical Alarm</label>
+                        <select name="mechanical" class="form-control d-none" id="MechAlarmSelect">
 
+                        </select>
+
+                        <select name="chemistry" class="form-control d-none" id="chemistryAlarm">
+
+                        </select>
+                    </div>
                     {{-- 3 --}}
 
                     <div class="row m-3">
@@ -175,8 +172,7 @@
 
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">shif</label>
-                            <select name="shift" id="shiftSelect" class="form-control SlectBox"
-                                onchange="getEngineersShift()">
+                            <select name="shift" id="shiftSelect" class="form-control SlectBox" onchange="">
                                 <!--placeholder-->
                                 <option value="0"> صباحاً </option>
                                 <option value="0"> مساءً </option>
@@ -186,8 +182,7 @@
 
                         <div class="col">
                             <label for="inputName" class="control-label">اسم المهندس</label>
-                            <select id="eng_name" name="eng_name" class="form-control engineerSelect"
-                                onchange="getEngineerEmail()">
+                            <select id="eng_name" name="eng_name" class="form-control engineerSelect" onchange="">
                             </select>
                         </div>
                         <div class=" col email">
@@ -248,7 +243,8 @@
 
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal">ارسال البيانات</button>
+                            data-target="#exampleModal">ارسال
+                            البيانات</button>
                     </div>
 
 

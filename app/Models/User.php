@@ -27,6 +27,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Section::class);
     }
+    public function tr()
+    {
+        return $this->hasMany(TR::class,'user_id');
+    }
+    
     /**
      * The attributes that should be hidden for serialization.
      *

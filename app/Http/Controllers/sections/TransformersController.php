@@ -4,11 +4,13 @@ namespace App\Http\Controllers\sections;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Engineer;
+use App\Models\User;
 use App\Models\Station;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
 use App\Models\TaskDetails;
 use App\Models\TaskAttachment;
+use App\Models\TR;
 use Illuminate\Support\Facades\Notification;
 use  App\Notifications\EditTask;
 use  App\Notifications\AddTask;
@@ -66,7 +68,19 @@ class TransformersController extends Controller
         return (string) Station::where("SSNAME",$SSNAME)
         ->first(); 
     }
-    
+    //
+    public function getAdmins($area,$department){
+       return (String) $tr = DB::table('tr')
+        ->where("area",$area)
+        ->where('department',$department)
+        ->orWhere('area',0)->where('department',$department)
+
+        ->join('users','users.id','=','tr.user_id')
+        ->select('users.name','users.id','users.email')
+        ->get();     
+    }   
+
+
     //end of frontend
       ///#####start backend functions
 
