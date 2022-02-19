@@ -102,7 +102,7 @@ const getStation = async()=>{
         engineerSelectValue.innerHTML = data[i].name;
         engineerSelect.appendChild(engineerSelectValue);
         engEmail.value = data[0].email;
-        //console.log(data[i].id, data[i].name)
+        console.log(data[i].id, data[i].name)
     }
     return data;
 
@@ -115,7 +115,7 @@ let eng_id = engineerSelect.value;
         throw new Error('can not fetch the data');
     }
     const data = await response.json();
-    engEmail.value = data.email;
+    engEmail.value = data[0].email;
 
 }
 //get Engineers on shift

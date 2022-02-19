@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\Station;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
 use App\Models\TaskDetails;
@@ -16,6 +17,7 @@ use  App\Notifications\AddTaskWithAttachments;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Gate;
 
 class ProtectionController extends Controller
 {
@@ -23,17 +25,25 @@ class ProtectionController extends Controller
 
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
-            ->where('status', 'pending')
             ->where('fromSection',2)
+            ->where('status', 'pending')
             ->get();
-        $task_details = TaskDetails::orderBy('id', 'desc')
-        ->where('status', 'completed')
-        ->where('fromSection',2)
-        ->whereMonth('created_at', date('m'))
-        ->paginate(4);
+        // $task_details = TaskDetails::orderBy('id', 'desc')
+        // ->where('status', 'completed')
+        // ->whereMonth('created_at', date('m'))
+        // ->paginate(4);
+
+        $task_details = DB::table('task_details')
+        ->join('tasks','tasks.id','=','task_details.task_id')
+        ->where('task_details.status','completed')
+        ->where('tasks.fromSection',2)
+        ->orderBy('tasks.id', 'desc')
+
+        ->get();   
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName'));
+
 
     }
     //// start front END functions
@@ -43,24 +53,30 @@ class ProtectionController extends Controller
     }
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
-        return (string) Engineer::orderBy('name')
-        ->where("section_id",2)
-        ->where('area',$area_id)
-        ->where('shift',$shift_id)
-        ->get();
+        return (String) $engineersTable = DB::table('engineers')
+        ->where("area",$area_id)
+        ->where("shift",$shift_id)
+        ->join('users','users.id','=','engineers.user_id')
+        ->select('users.name','users.id','users.email','users.section_id')
+        ->get();   
     }
     //get Engineer Email
-    public function getEngineersEmail($eng_id){
-        return (string) Engineer::where("section_id",2)
-        ->where('id',$eng_id)
-        ->first();
+    public function getEngineersEmail($user_id){
+        return (String) $engineersTable = DB::table('engineers')
+        ->where("user_id",$user_id)
+        ->join('users','users.id','=','engineers.user_id')
+        ->select('users.name','users.id','users.email','users.section_id')
+        ->get();   
     }
+    
     //get Engineers based on shift
     public function getEngineersShift($area_id,$shift_id){
-        return (string) Engineer::where("section_id",2)
-        ->where('area',$area_id)
-        ->where('shift',$shift_id)
-        ->get();
+        return (String) $engineersTable = DB::table('engineers')
+        ->where("area",$area_id)
+        ->where("shift",$shift_id)
+        ->join('users','users.id','=','engineers.user_id')
+        ->select('users.name','users.id','users.email','users.section_id')
+        ->get();  
     }
 
     //get station
@@ -94,13 +110,12 @@ class ProtectionController extends Controller
         
         TaskDetails::create([
             'task_id'=>$task_id,
-            'fromSection'=>2,
             'eng_id'=>$request->eng_name,
             'status'=>'pending',
         ]);
 
         if ($request->hasfile('pic')) {
-            $task_id = Task::latest()->first()->id;
+            $task_id = $id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
                 $file->move(public_path('Attachments/protection/' . $task_id), $name);
@@ -114,10 +129,10 @@ class ProtectionController extends Controller
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->ssname));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new AddTask($task_id, $request->ssname));
+            ->notify(new AddTask($task_id, $request->station_code));
         }
 
 
@@ -173,8 +188,16 @@ class ProtectionController extends Controller
     }
 
     public function showEngineers(){
-        $engineers = Engineer::where('section_id',2)->get();
-        return view ('protection.admin.engineers.engineersList',compact('engineers'));
+        // $engineers = Engineer::where('section_id',2)->get();
+        // return view ('protection.admin.engineers.engineersList',compact('engineers'));
+
+        $engineers = DB::table('engineers')
+        ->join('users','users.id','=','engineers.user_id')
+        ->select('users.name','users.id','users.email','users.section_id','engineers.area','engineers.shift')
+        ->where('users.section_id',2)
+        ->get();   
+         return view ('protection.admin.engineers.engineersList',compact('engineers'));
+
     }
 
     //get 
@@ -221,10 +244,10 @@ class ProtectionController extends Controller
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->ssname));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new EditTask($task_id, $request->ssname));
+            ->notify(new EditTask($task_id, $request->station_code));
         }
        
         session()->flash('edit', 'تم   التعديل  بنجاح');
@@ -268,20 +291,25 @@ class ProtectionController extends Controller
         ####################### USER CONTROLLER ########################
     
     public function userIndex() {
-        $engineers = Engineer::orderBy('name')->get();
-        $engineers = $engineers->unique('name');
-        $stations = Station::orderBy('SSNAME')->get();
         $tasks = Task::orderBy('id', 'desc')
-        ->where('status', 'pending')
         ->where('fromSection',2)
-        ->where('eng_id',Engineer::where('email',Auth::user()->email)->value('id'))
+        ->where('status', 'pending')
         ->get();
-        $task_details = TaskDetails::orderBy('id', 'desc')
-        ->where('status', 'completed')
-        ->whereMonth('created_at', date('m'))
-        ->paginate(4);
-        $date = Carbon::now();
-        return view('protection.user.dashboard',compact('tasks','task_details','date','engineers','stations'));
+    // $task_details = TaskDetails::orderBy('id', 'desc')
+    // ->where('status', 'completed')
+    // ->whereMonth('created_at', date('m'))
+    // ->paginate(4);
+
+    $task_details = DB::table('task_details')
+    ->join('tasks','tasks.id','=','task_details.task_id')
+    ->where('task_details.status','completed')
+    ->where('tasks.fromSection',2)
+    ->orderBy('tasks.id', 'desc')
+
+    ->get();   
+    $date = Carbon::now();
+    $monthName = $date->format('F');
+    return view('protection.user.dashboard',compact('tasks','task_details','date','monthName'));
     }
 
     public function engineerPageTasks($id){
@@ -314,6 +342,8 @@ class ProtectionController extends Controller
         return view('protection.user.mytasks', compact('tasks'));
     }
     public function engineerReportForm($id){
+
+
         $tasks = Task::where('id',$id)->first();
         return view('protection.user.EngineerReportForm',compact('tasks'));
     }
@@ -321,10 +351,9 @@ class ProtectionController extends Controller
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         echo $engineerEmail = Auth::user()->email ;
-        $eng_id = Engineer::where('email',$engineerEmail)->pluck('id')->first();
+        $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
         TaskDetails::create([
             'task_id' => $id,
-            'fromSection'=>2,
             'report_date' => Carbon::now(),
             'eng_id' =>$eng_id,
             'action_take' => $request->action_take,

@@ -59,7 +59,6 @@ window.onload = function() {
         <div class="card mg-b-20">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-
                 </div>
             </div>
             <div class="card-body">
@@ -74,8 +73,9 @@ window.onload = function() {
                                 <th class="border-bottom-0">الاسم</th>
                                 <th class="border-bottom-0"> البريد الإلكتروني </th>
                                 <th class="border-bottom-0"> هاتف </th>
+                                <th class="border-bottom-0"> القسم </th>
                                 <th class="border-bottom-0"> المنطقة </th>
-                                <th class="border-bottom-0"> shift </th>
+                                {{--<th class="border-bottom-0"> shift </th>--}}
                                 <th class="border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -89,20 +89,28 @@ window.onload = function() {
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$engineer->name}}</td>
-                                <td>{{$engineer->email}}</td>
-                                <td>{{$engineer->mobile}}</td>
-                                @if($engineer->area == 1)
-                                <td>North</td>
+                                <td>{{$engineer->user->name}}</td>
+                                <td>{{$engineer->user->email}}</td>
+                                <td>{{$engineer->user->mobile}}</td>
+                                @if($engineer->department ==1)
+                                <td>Mechanical</td>
+                                @elseif($engineer->department ==2)
+                                <td>Chemistry</td>
                                 @else
-                                <td>south</td>
+                                <td>Electrical</td>
                                 @endif
-                                @if($engineer->shift == 0)
+                                @if($engineer->area == 1)
+                                <td>الشمالية</td>
+                                @elseif($engineer->area ==2)
+                                <td>الجنوبية</td>
+                                @else
+                                <td>الوسطى</td>
+                                @endif
+                                {{-- @if($engineer->shift == 0)
                                 <td>Morning</td>
                                 @else
                                 <td>Evening</td>
-                                @endif
-
+                                @endif--}}
                                 <td>
                                     <div class="dropdown">
                                         <button aria-expanded="false" aria-haspopup="true"

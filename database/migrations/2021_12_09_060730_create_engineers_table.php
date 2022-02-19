@@ -17,12 +17,10 @@ class CreateEngineersTable extends Migration
 
         Schema::create('engineers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->unsignedBigInteger('section_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->string('area');
             $table->boolean('shift');
-            $table->foreign('section_id')->references('id')->on('sections');
+            $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
         });
      }

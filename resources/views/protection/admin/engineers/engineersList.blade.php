@@ -91,7 +91,7 @@ window.onload = function() {
                                 <td>{{$i}}</td>
                                 <td>{{$engineer->name}}</td>
                                 <td>{{$engineer->email}}</td>
-                                <td>{{$engineer->mobile}}</td>
+                                {{--<td>{{$engineer->mobile}}</td>--}}
                                 @if($engineer->area == 1)
                                 <td>North</td>
                                 @else

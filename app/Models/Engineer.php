@@ -9,9 +9,10 @@ class Engineer extends Model
 {
     use HasFactory;
     protected $guarded = [];  
-
     public function sections()
     {
         return $this->hasMany(Section::class);
     }
+
+   
 }

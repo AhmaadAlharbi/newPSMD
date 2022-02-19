@@ -13,7 +13,7 @@ use App\Http\Controllers\sections\TransformersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth','is_Transformers'])->group(function(){
+Route::middleware(['auth','is_transformers'])->group(function(){
   Route::get('/dashboard/user/query_section_id=5',[TransformersController::class,'userIndex']);
   //engineer report form
   Route::get('/dashboard/user/query_section_id=5/Engineer-report-form/{id}',[TransformersController::class,
@@ -25,29 +25,32 @@ Route::middleware(['auth','is_Transformers'])->group(function(){
   Route::get('/dashboard/user/query_section_id=5/{id}',[TransformersController::class,'engineerPageTasks'])->name('Transformers.engineerPageTask');
   Route::get('/dashboard/user/query_section_id=5/{id}/completed',[TransformersController::class,'engineerPageTasksCompleted'])->name('TransformersController.engineerPageTaskCompleted');
   Route::get('/dashboard/user/query_section_id=5/{id}/pending',[TransformersController::class,'engineerPageTasksUnCompleted'])->name('TransformersController.engineerPageTaskUncompleted');
-  Route::get('View_file/{id}/{file_name}', [TransformersController::class, 'open_file'])->name('view_file');
-  Route::get('download/{id}/{file_name}', [TransformersController::class, 'get_file']);
-  Route::get('/dashboard/user/query_section_id=5/print-report/{id}',[TransformersController::class,'viewPrintReport'])->name('TransformersController.user.veiwReport');
+  Route::get('transformers/View_file/{id}/{file_name}', [TransformersController::class, 'open_file'])->name('transformers.view_file');
+  Route::get('/download/{id}/{file_name}', [TransformersController::class, 'get_file']);
+   // VIEW REPORT PRINT PAGE
+
+  Route::get('/dashboard/user/query_section_id=5/print-report/{id}',[TransformersController::class,'viewPrintReport'])->name('Transformers.user.veiwReport');
   Route::get('/dashboard/user/archive/query_section_id=5/',[TransformersController::class,'userArchive'])->name('TransformersController.user.archive');
-  // VIEW REPORT PRINT PAGE
-  Route::get('/dashboard/user/query_section_id=5/task-details/{id}',[TransformersController::class,'taskDetails'])->name('TransformersController.user.taskDetails');
+  Route::get('/dashboard/user/query_section_id=5/task-details/{id}',[TransformersController::class,'usertaskDetails'])->name('Transformers.user.taskDetails');
   
 });
 Route::middleware(['is_admin','is_transformers'])->group(function () {
     //main page
 
     Route::get('/dashboard/admin/query_section_id=5',[TransformersController::class,'index'])->name('dashboard.admin.Transformers');
-    //add task
+    //add task for admins
     Route::get('/dashboard/admin/query_section_id=5/add_task',[TransformersController::class,'add_task'])->name('Transformers.addTask');
     //get  all engineer's name
-    Route::get('/Transformers/getEngineer/{area_id}/{shift_id}',[BatteryController::class,'getEngineerName'])->name('Transformers.getEngineer');
+    Route::get('/Transformers/getEngineer/{area_id}/{department}/{shift_id}',[TransformersController::class,'getEngineerName'])->name('Transformers.getEngineer');
     //get an engineer's email
-    Route::get('/Transformers/getEngineersEmail/{id}', [BatteryController::class, 'getEngineersEmail']);
+    Route::get('/Transformers/getEngineersEmail/{id}', [TransformersController::class, 'getEngineersEmail']);
     //get an engineer based on shift
     Route::get('/Transformers/getEngineersOnShift/{area_id}/{shift_id}',[TransformersController::class,'getEngineersShift']);
     //get stations
     Route::get('/Transformers/stations/{id}',[TransformersController::class,'getStations']);
     //get admins ot tr section
+    Route::get('/Transformers/getAdminEmail/{id}',[TransformersController::class,'getAdminsEmail']);
+
     Route::get('/Transformers/{area}/{section}',[TransformersController::class,'getAdmins']);
 
     ///BACKEND ROUTE

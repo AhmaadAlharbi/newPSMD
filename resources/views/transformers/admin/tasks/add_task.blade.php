@@ -46,7 +46,7 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{route('battery.store')}}" method="post" enctype="multipart/form-data"
+                <form action="{{route('Transformers.store')}}" method="post" enctype="multipart/form-data"
                     autocomplete="off">
                     {{ csrf_field() }}
                     {{-- 1 --}}
@@ -89,17 +89,22 @@
                         </div>
                     </div>
                     <div class="row m-3 bg-warning pb-2">
-                        <div class=" col-lg-6">
-                            <label for="main_alarm" class="control-label m-3">Department</label>
+                        <div class="col-lg-6">
+                            <label for="department" class="control-label m-3">Department</label>
                             <select name="department" id="department" class="form-control "
                                 onChange="checkDepartment() ,getAdmins()">
                                 <!--placeholder-->
-                                <option value="1">d</option>
                                 <option value="1">Mechanical</option>
                                 <option value="2">Chemistry</option>
                             </select>
-
                         </div>
+                        <div class=" col-lg-6 d-none" id="main_alarm">
+                            <label for="main_alarm" class="control-label m-3">Main Alarm</label>
+                            <select name="mainAlarm" class="form-control">
+                                <option value="Fan Trouble alarm">Fan Trouble alarm</option>
+                            </select>
+                        </div>
+
                     </div>
                     {{-- 2 --}}
                     <!--Work type for Mechinacl-->
@@ -128,7 +133,6 @@
                     <div class="row m-3 d-none" id="workType-ChemDiv">
                         <div class="col border border-warning p-3 flex-wrap">
                             <h6 class="text-warning">Work Type</h6>
-
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input  checkbox" type="radio" name="work_type"
                                     id="inlineRadio1" value="Emergency" onClick="checkBoxFunc('Emergency')">
@@ -149,11 +153,10 @@
                     </div>
                     <div class="row m-3  d-none " id="alarm">
                         <label for="mechanical" id="section-label">Mechanical Alarm</label>
-                        <select name="mechanical" class="form-control d-none" id="MechAlarmSelect">
+                        <select name="work_type_description" class="form-control d-none" id="MechAlarmSelect">
 
                         </select>
-
-                        <select name="chemistry" class="form-control d-none" id="chemistryAlarm">
+                        <select name="work_type_description" class="form-control d-none" id="chemistryAlarm">
 
                         </select>
                     </div>
@@ -182,12 +185,12 @@
 
                         <div class="col">
                             <label for="inputName" class="control-label">اسم المهندس</label>
-                            <select id="eng_name" name="eng_name" class="form-control engineerSelect" onchange="">
+                            <select id="eng_name" name="eng_name" class="form-control engineerSelect"
+                                onchange="getEngineerEmail()">
                             </select>
                         </div>
                         <div class=" col email">
                             <label for="inputName" class="control-label"> Email</label>
-
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email">
                         </div>
 

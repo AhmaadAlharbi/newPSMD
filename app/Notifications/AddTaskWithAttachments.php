@@ -55,6 +55,9 @@ class AddTaskWithAttachments extends Notification
             case '3':
                 $section = 'battery';
                 break;
+                case '5':
+                $section = 'transformers';
+                break;
             default:
             $section = 'section';
 

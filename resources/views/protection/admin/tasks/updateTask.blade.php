@@ -258,13 +258,9 @@
                             <label for="shift" class="control-label">shif</label>
                             <select name="shift" id="shiftSelect" class="form-control " onchange="shiftEngineer()">
                                 <!--placeholder-->
-                                @if($tasks->engineers->shift == 0)
-                                <option value="0"> صباحاً </option>
-                                <option value="1"> مساءً </option>
-                                @else
+
                                 <option value="1"> مساءً </option>
                                 <option value="0"> صباحاً </option>
-                                @endif
                             </select>
 
 
@@ -276,14 +272,14 @@
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                 onchange="getEngineerEmail()">
-                                <option value="{{$tasks->engineers->id}}">{{$tasks->engineers->name}}</option>
+                                <option value="{{$tasks->users->id}}">{{$tasks->users->name}}</option>
                             </select>
                         </div>
                         <div class=" col email">
                             <label for="inputName" class="control-label"> Email</label>
 
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email"
-                                value="{{$tasks->engineers->email }}">
+                                value="{{$tasks->users->email }}">
                         </div>
 
 

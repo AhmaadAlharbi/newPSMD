@@ -204,10 +204,10 @@ td {
                             <div class="d-block p-3 mb-2 bg-white text-dark">
                                 <h2>Engineer</h2>
                             </div>
-                            <h4 class="  ml-4 ">{{$task_details->engineers->name}}<br>
+                            <h4 class="  ml-4 ">{{$task_details->users->name}}<br>
 
                             </h4>
-                            <p class="ml-4 lead">{{$task_details->engineers->email}}</p>
+                            <p class="ml-4 lead">{{$task_details->users->email}}</p>
                         </div>
 
                     </div>

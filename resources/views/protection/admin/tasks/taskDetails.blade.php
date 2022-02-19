@@ -144,8 +144,8 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="border-bottom-0 wd-40p">المهندس</th>
-                                                    @if(isset($task->engineers->name))
-                                                    <td>{{$task->engineers->name}}</td>
+                                                    @if(isset($task->users->name))
+                                                    <td>{{$task->users->name}}</td>
                                                     @else
                                                     <td>waiting...</td>
                                                     @endif
@@ -188,11 +188,10 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->refNum}}</td>
-                                                        <td>{{$x->sections->section_name}}</td>
                                                         <td>{{$x->station->SSNAME}}</td>
                                                         <td>{{$x->task_date}}</td>
-                                                        @if(isset($x->engineers->name))
-                                                        <td>{{$x->engineers->name}}</td>
+                                                        @if(isset($x->eng_id))
+                                                        <td>{{$x->users->name}}</td>
                                                         @else
                                                         <td>waiting...</td>
                                                         @endif
@@ -247,8 +246,8 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->report_date}}</td>
-                                                        @if(isset($x->engineers->name))
-                                                        <td>{{$x->engineers->name}}</td>
+                                                        @if(isset($x->users->name))
+                                                        <td>{{$x->users->name}}</td>
                                                         @else
                                                         <td>waiting...</td>
                                                         @endif

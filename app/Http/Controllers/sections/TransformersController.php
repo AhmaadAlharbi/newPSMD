@@ -11,6 +11,7 @@ use App\Models\Task;
 use App\Models\TaskDetails;
 use App\Models\TaskAttachment;
 use App\Models\TR;
+use App\Models\TrTasks;
 use Illuminate\Support\Facades\Notification;
 use  App\Notifications\EditTask;
 use  App\Notifications\AddTask;
@@ -18,41 +19,54 @@ use  App\Notifications\AddTaskWithAttachments;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Gate;
+
 class TransformersController extends Controller
 {
        ###################### ADMIN CONTROLLER ########################
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
-            ->where('status', 'pending')
-            ->where('fromSection',5)
-            ->get();
-            $task_details = TaskDetails::orderBy('id', 'desc')
-            ->where('status', 'completed')
-            ->whereMonth('created_at', date('m'))
-            ->where('fromSection',5)
-           ->paginate(5);
+        ->where('fromSection',5)
+        ->where('status', 'pending')
+        ->get();
+      $task_details = DB::table('task_details')
+            ->join('tasks','tasks.id','=','task_details.task_id')
+            ->where('task_details.status','completed')
+            ->where('tasks.fromSection',5)
+            ->orderBy('tasks.id', 'desc')
+            ->get();  
+        $tr_tasks= DB::table('tr_tasks')
+        ->join('tasks','tasks.id','=','tr_tasks.task_id')
+        ->where('tasks.status','pending')
+        ->get();  
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('transformers.admin.dashboard',compact('tasks','task_details','date','monthName'));
-
+        return view('transformers.admin.dashboard',compact('tasks','task_details','date','monthName','tr_tasks'));
     }
      //// start front END functions
+
+
+     //add tasks to admins
      public function add_task(){
         $stations = Station::all();
         return view ('transformers.admin.tasks.add_task',compact('stations'));
     }
+
        //get all Engineer  JSON
-       public function getEngineerName($area_id,$shift_id){
-        return (string) Engineer::orderBy('name')
-        ->where("section_id",5)
-        ->where('area',$area_id)
-        ->where('shift',$shift_id)
-        ->get();
+       public function getEngineerName($area,$department,$shift){
+        $shift = 1;
+        return (String) $tr = DB::table('tr')
+        ->where("area",$area)
+        ->where('department',$department)
+        ->where('shift',$shift)
+        ->where('admin',0)
+        ->join('users','users.id','=','tr.user_id')
+        ->select('users.name','users.id','users.email')
+        ->get();  
     }
     //get Engineer Email
     public function getEngineersEmail($eng_id){
-        return (string) Engineer::where("section_id",5)
-        ->where('id',$eng_id)
+        return (string) TR::where('id',$eng_id)
         ->first();
     }
     //get Engineers based on shift
@@ -69,17 +83,22 @@ class TransformersController extends Controller
         ->first(); 
     }
     //
+    public function getAdminsEmail($id){
+        return (String) User::where('id',$id)->first();
+    }
+
     public function getAdmins($area,$department){
        return (String) $tr = DB::table('tr')
         ->where("area",$area)
         ->where('department',$department)
+        ->where('is_admin',1)
         ->orWhere('area',0)->where('department',$department)
-
         ->join('users','users.id','=','tr.user_id')
         ->select('users.name','users.id','users.email')
         ->get();     
     }   
 
+   
 
     //end of frontend
       ///#####start backend functions
@@ -87,7 +106,6 @@ class TransformersController extends Controller
       public function store(Request $request){ 
         $validated = $request->validate([
             'ssnameID' => 'required|numeric',
-
         ],
         [
             'ssnameID.required' =>'يرجى اختيار المحطة من القائمة فقط',
@@ -104,7 +122,6 @@ class TransformersController extends Controller
             'equip'=>$request->equip,
             'pm'=>$request->pm,
             'eng_id'=>$request->eng_name,
-            'problem' => $request->problem,
             'notes' => $request->notes,
             'status' => 'pending',
             'user' => (Auth::user()->name),
@@ -113,16 +130,21 @@ class TransformersController extends Controller
         $engineer_email = $request->eng_email;
         TaskDetails::create([
             'task_id'=>$task_id,
-            'fromSection'=>5,
             'eng_id'=>$request->eng_name,
             'status'=>'pending',
         ]);
-
+        TrTasks::create([
+            'task_id'=>$task_id,
+            'work_type'=>$request->work_type,
+            'work_type_description'=>$request->work_type_description,
+            'department'=>$request->department,
+            'area'=>$request->area,
+        ]);
         if ($request->hasfile('pic')) {
             $task_id = Task::latest()->first()->id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/battery/' . $task_id), $name);
+                $file->move(public_path('Attachments/transformers/' . $task_id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();
@@ -133,11 +155,13 @@ class TransformersController extends Controller
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->ssname));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new AddTask($task_id, $request->ssname));
+            ->notify(new AddTask($task_id, $request->station_code));
         }
+ 
+
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
         return back();
 
@@ -145,7 +169,7 @@ class TransformersController extends Controller
     public function showAllTasks(){
         $tasks = Task::where('fromSection',5)->orderBy('id', 'desc')
         ->get();
-        return view('battery.admin.tasks.showTasks',compact('tasks'));
+        return view('transformers.admin.tasks.showTasks',compact('tasks'));
     }
 
     public function showPendingTasks(){
@@ -153,7 +177,7 @@ class TransformersController extends Controller
         ->where('status','pending')
         ->orderBy('id', 'desc')
         ->get();
-        return view('battery.admin.tasks.showTasks',compact('tasks'));  
+        return view('transformers.admin.tasks.showTasks',compact('tasks'));  
     }
 
     public function showCompletedTasks(){
@@ -162,14 +186,14 @@ class TransformersController extends Controller
         ->whereMonth('created_at', date('m'))
         ->orderBy('id', 'desc')
         ->get();
-        return view('battery.admin.tasks.showTasks',compact('tasks'));
+        return view('transformers.admin.tasks.showTasks',compact('tasks'));
     }
     public function showArchive(){
         $tasks = Task::where('fromSection',5)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        return view('battery.admin.tasks.showTasks',compact('tasks'));
+        return view('transformers.admin.tasks.showTasks',compact('tasks'));
     }
 
     public function userArchive(){
@@ -177,55 +201,66 @@ class TransformersController extends Controller
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        return view('battery.user.tasks.showTasks',compact('tasks'));
+        return view('transformers.user.tasks.showTasks',compact('tasks'));
     }
    
     public function taskDetails($id){
         $tasks = Task::where('id',$id)->get();
         $task_details = TaskDetails::where('task_id',$id)->get();
         $task_attachment = TaskAttachment::where('id_task',$id)->get();
-        return view('battery.admin.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
+        return view('transformers.admin.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
     }
 
     public function showEngineers(){
-        $engineers = Engineer::where('section_id',5)->get();
-        return view ('battery.admin.engineers.engineersList',compact('engineers'));
+        // $engineers = Engineer::where('section_id',5)->get();
+        $engineers = TR::all();
+        return view ('transformers.admin.engineers.engineersList',compact('engineers'));
     }
 
     //get 
     public function updateTask($id){
+    
         $tasks = Task::where('id',$id)->first();
         $stations = Station::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
-       
-        return view('battery.admin.tasks.updateTask',compact('tasks','stations','task_attachments'));
+        $tr_task = TrTasks::where('task_id',$id)->first();
+      
+        return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task'));
     }
 
 //post
     public function update(Request $request , $id){
         $tasks = Task::findOrFail($id);
+        $task_Details = TaskDetails::where('task_id',$id);
+        $tr_Tasks = TrTasks::where('task_id',$id);
         $tasks->update([
             'refNum' => $request->refNum,
             'fromSection'=>5,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
-            'voltage_level'=>$request->voltage_level,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
             'equip'=>$request->equip,
+            'pm'=>$request->pm,
             'eng_id'=>$request->eng_name,
-            'problem' => $request->problem,
             'notes' => $request->notes,
-            'status' => 'pending',
             'user' => (Auth::user()->name),
         ]);
-        $task_id = $id;
         $engineer_email = $request->eng_email;
+        $task_Details->update([
+            'eng_id'=>$request->eng_name,
+        ]);
+        $tr_Tasks->update([
+            'work_type'=>$request->work_type,
+            'work_type_description'=>$request->work_type_description,
+            'department'=>$request->department,
+            'area'=>$request->area,
+        ]);
         if ($request->hasfile('pic')) {
-            $task_id = Task::latest()->first()->id;
+            $task_id = $id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/battery/' . $task_id), $name);
+                $file->move(public_path('Attachments/transformers/' . $task_id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();
@@ -253,12 +288,12 @@ class TransformersController extends Controller
         return back();
     }
     public function open_file($id, $file_name){
-        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('battery/'.$id . '/' . $file_name);
+        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('transformers/'.$id . '/' . $file_name);
         return response()->file($files);
     }
     public function get_file($id, $file_name)
     {
-        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('battery/'.$id . '/' . $file_name);
+        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('transformers/'.$id . '/' . $file_name);
         return response()->download($contents);
     }
     public function destroyAttachment(Request $request)
@@ -273,7 +308,7 @@ class TransformersController extends Controller
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
         ->first();
-        return view('battery.admin.tasks.report',compact('task_details'));
+        return view('Transformers.admin.tasks.report',compact('task_details'));
     }
     public function addEngineer(Request $request){
         Engineer::create([
@@ -293,22 +328,25 @@ class TransformersController extends Controller
         ####################### USER CONTROLLER ########################
     
     public function userIndex() {
-        $engineers = Engineer::orderBy('name')->get();
-        $engineers = $engineers->unique('name');
-        $stations = Station::orderBy('SSNAME')->get();
         $tasks = Task::orderBy('id', 'desc')
+        ->where('fromSection',5)
+        ->where('eng_id',Auth::user()->id)
         ->where('status', 'pending')
-        ->where('fromSection',5)
-        ->where('eng_id',Engineer::where('email',Auth::user()->email)->value('id'))
         ->get();
-        $task_details = TaskDetails::orderBy('id', 'desc')
-        ->where('status', 'completed')
-        ->whereMonth('created_at', date('m'))
-        ->where('fromSection',5)
+      $task_details = DB::table('task_details')
+            ->join('tasks','tasks.id','=','task_details.task_id')
+            ->where('task_details.status','completed')
+            ->where('tasks.fromSection',5)
+            ->orderBy('tasks.id', 'desc')
 
-        ->paginate(5);
+            ->get();  
+        $tr_tasks= DB::table('tr_tasks')
+        ->join('tasks','tasks.id','=','tr_tasks.task_id')
+        ->where('tasks.status','pending')
+        ->get();  
         $date = Carbon::now();
-        return view('battery.user.dashboard',compact('tasks','task_details','date','engineers','stations'));
+        $monthName = $date->format('F');
+        return view('transformers.user.dashboard',compact('tasks','task_details','date','monthName','tr_tasks'));
     }
 
     public function engineerPageTasks($id){
@@ -316,13 +354,13 @@ class TransformersController extends Controller
         $tasks = Task::where('eng_id',$engineer)
             ->orderBy('id', 'desc')
             ->get();
-        return view('battery.user.mytasks', compact('tasks'));
+        return view('transformers.user.mytasks', compact('tasks'));
     }
     public function usertaskDetails($id){
-        $tasks = Task::where('id', $id)->first();
+        $tasks = Task::where('id', $id)->get();
         $task_details = TaskDetails::where('task_id', $id)->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
-        return view('battery.user.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
+        return view('transformers.user.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
     }
     public function engineerPageTasksCompleted($id){
         $engineer = Engineer::where('email',$id)->value('id');
@@ -330,7 +368,7 @@ class TransformersController extends Controller
             ->orderBy('id', 'desc')
             ->where('status','completed')
             ->get();
-        return view('battery.user.mytasks', compact('tasks'));
+        return view('transformers.user.mytasks', compact('tasks'));
     }
     public function engineerPageTasksUnCompleted($id){
         $engineer = Engineer::where('email',$id)->value('id');
@@ -338,18 +376,17 @@ class TransformersController extends Controller
             ->orderBy('id', 'desc')
             ->where('status','pending')
             ->get();
-        return view('battery.user.mytasks', compact('tasks'));
+        return view('transformers.user.mytasks', compact('tasks'));
     }
     public function engineerReportForm($id){
         $tasks = Task::where('id',$id)->first();
-        return view('battery.user.EngineerReportForm',compact('tasks'));
+        return view('transformers.user.EngineerReportForm',compact('tasks'));
     }
 
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         TaskDetails::create([
             'task_id' => $id,
-            'fromSection'=>5,
             'report_date' => Carbon::now(),
             'eng_id' =>(Auth::user()->id),
             'action_take' => $request->action_take,

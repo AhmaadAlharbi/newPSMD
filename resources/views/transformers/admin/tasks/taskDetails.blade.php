@@ -144,8 +144,8 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="border-bottom-0 wd-40p">المهندس</th>
-                                                    @if(isset($task->engineers->name))
-                                                    <td>{{$task->engineers->name}}</td>
+                                                    @if(isset($task->users->name))
+                                                    <td>{{$task->users->name}}</td>
                                                     @else
                                                     <td>waiting...</td>
                                                     @endif
@@ -188,11 +188,10 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->refNum}}</td>
-                                                        <td>{{$x->sections->section_name}}</td>
                                                         <td>{{$x->station->SSNAME}}</td>
                                                         <td>{{$x->task_date}}</td>
-                                                        @if(isset($x->engineers->name))
-                                                        <td>{{$x->engineers->name}}</td>
+                                                        @if(!isset($x->users->name))
+                                                        <td>{{$x->users->name}}</td>
                                                         @else
                                                         <td>waiting...</td>
                                                         @endif
@@ -239,8 +238,8 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->report_date}}</td>
-                                                        @if(isset($x->engineers->name))
-                                                        <td>{{$x->engineers->name}}</td>
+                                                        @if(isset($x->users->name))
+                                                        <td>{{$x->users->name}}</td>
                                                         @else
                                                         <td>waiting...</td>
                                                         @endif
@@ -309,8 +308,8 @@
                                                             <td colspan="2">
 
                                                                 <a class="btn btn-outline-success btn-sm"
-                                                                    href="{{ url('View_file') }}/{{ $attachment->id_task }}/{{ $attachment->file_name }}"
-                                                                    role="button"><i class="fas fa-eye"></i>&nbsp;
+                                                                    href="{{route('transformers.view_file',['id'=>$attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                    role=" button"><i class="fas fa-eye"></i>&nbsp;
                                                                     عرض</a>
 
                                                                 <a class="btn btn-outline-info btn-sm"

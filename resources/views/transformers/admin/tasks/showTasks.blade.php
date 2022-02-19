@@ -68,6 +68,7 @@ window.onload = function() {
                                 <th class="border-bottom-0">رقم المهمة</th>
                                 <th class="border-bottom-0">اسم المحطة </th>
                                 <th class="border-bottom-0"> التحكم </th>
+                                <th class="border-bottom-0"> القسم </th>
                                 <th class="border-bottom-0">تاريخ ارسال المهمة</th>
                                 <th class="border-bottom-0">المهندس</th>
                                 <th class="border-bottom-0">الحالة </th>
@@ -81,7 +82,9 @@ window.onload = function() {
                             @endphp
                             @foreach ($tasks as $task)
                             @php
-                            $i++
+                            $i++;
+                            $department =
+                            \App\Models\TrTasks::where(['task_id'=>$task->id])->pluck('department')->first()
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
@@ -103,16 +106,22 @@ window.onload = function() {
                                 <td class="table-success">{{$task->station->control}}
                                 </td>
                                 @else
-                                <td class="table-light">{{$task->station->control}}
+                                <td class="table-light">{{$task->station->control}}</td>
 
-                                    @endif
-
-                                <td>{{$task->task_Date}}</td>
-                                @if(isset($task->engineers->name))
-                                <td>{{$task->engineers->name}}</td>
-                                @else
-                                <td>waiting...</td>
                                 @endif
+
+
+                                @if($department==1)
+                                <td>Mechanical</td>
+                                @elseif($department==2)
+                                <td>Chemistry</td>
+                                @else
+                                <td>Electrical</td>
+                                @endif
+                                <td>{{$task->task_date}}</td>
+                                <td>{{$task->users->name}}</td>
+
+
                                  @if($task->status == 'completed')
                                 <td>
                                     <span class="text-success">{{ $task->status }}</span>

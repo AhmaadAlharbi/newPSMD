@@ -9,13 +9,14 @@ class TaskDetails extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function engineers()
-    {
-        return $this->belongsTo(Engineer::class,'eng_id');
-    }
+
     public function station()
     {
         return $this->belongsTo(Station::class,'station_id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class,'eng_id');
     }
     public function sections()
     {
@@ -25,4 +26,6 @@ class TaskDetails extends Model
     {
         return $this->belongsTo(Task::class,'task_id');
     }
+
+
 }

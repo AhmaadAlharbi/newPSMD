@@ -156,7 +156,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{route('battery.SubmitEngineerReport',['id'=>$tasks->id])}}"
+                        <form action="{{route('Transformers.SubmitEngineerReport',['id'=>$tasks->id])}}"
                             enctype="multipart/form-data" method="post" autocomplete="off"> @csrf
                             @if ($tasks->status == 'completed')
                             <div class="text-center">
@@ -298,10 +298,10 @@
                                                             </tr>
                                                             <tr>
                                                                 <th class="border-bottom-0 wd-40p">Engineer</th>
-                                                                <td colspan="3">{{$tasks->engineers->name}}</td>
+                                                                <td colspan="3">{{$tasks->users->name}}</td>
                                                             </tr>
                                                             <input type="hidden" name="eng_id"
-                                                                value="{{$tasks->engineers->id}}">
+                                                                value="{{$tasks->users->id}}">
                                                             <input class="form-control fc-datepicker" name="report_Date"
                                                                 placeholder="YYYY-MM-DD" type="hidden"
                                                                 value="{{ date('Y-m-d') }}" readonly required>
@@ -444,7 +444,7 @@
                                         placeholder="YYYY-MM-DD" type="hidden" value="{{ date('Y-m-d') }}" readonly
                                         required>
                                     <input type="hidden" class="form-control" name="eng_name" readonly
-                                        value="{{$tasks->engineers->name}}">
+                                        value="{{$tasks->users->name}}">
                                     <textarea type="hidden" style="display:none;" class="form-control"
                                         id="exampleTextarea" name="notes" readonly rows="3">{{$tasks->notes}}</textarea>
                                     <!--END Taking all these hidden value to the form-->

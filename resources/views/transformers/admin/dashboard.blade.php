@@ -36,13 +36,13 @@
     margin: 0 auto;
 }
 </style>
-
 <div class="row row-sm">
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('battery.admin.showAllTasks')}}">عرض
+                    <h6 class="mb-3 tx-16 "><a class="text-white"
+                            href="{{route('Transformers.admin.showAllTasks')}}">عرض
                             كافة
                             مهمات شهر {{$monthName}}</a>
                     </h6>
@@ -52,12 +52,9 @@
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
                                 {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',5)->count()}}
-
-
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -69,7 +66,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('battery.admin.pendingTasks')}}">المهمات الغير
+                            href="{{route('Transformers.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -85,7 +82,6 @@
                             <span class="text-white tx-16 op-7">
                                 @if(\App\Models\Task::count()!==0)
                                 {{round((\App\Models\Task::where('status','pending')->where('fromSection',5)->count()/\App\Models\Task::count())*100)}}%
-
                                 @endif
 
                             </span>
@@ -102,7 +98,7 @@
 
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('battery.admin.completedTasks')}}">المهمات
+                            href="{{route('Transformers.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -134,7 +130,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('battery.admin.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('Transformers.admin.archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -174,53 +170,63 @@
                 <p class="tx-12 mb-0 text-muted"></p>
             </div>
             @foreach($tasks as $task)
-            <div class="card-body p-0 customers mt-1">
+            {{--this below code will detrmine eather depertiment is Mechancal or Chemistry--}}
+            @php
+            $department =
+            \App\Models\TrTasks::where(['task_id'=>$task->id])->pluck('department')->first()
+            @endphp
+            <div class="card-body p-0 customers mt-1 bg-danger">
                 <div class="list-group list-lg-group list-group-flush">
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
-
                             <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
                                 alt="Image description">
-
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
                                         <p class="text-right text-muted"> {{$task->created_at}}</p>
-
                                         @if($task->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
-
                                             {{$task->status}}
                                         </span>
                                         @else
                                         <span class="badge badge-danger ml-2">
-
                                             {{$task->status}}
                                         </span>
                                         @endif
-                                        @if(isset($task->engineers->name))
-                                        <h5 class="m-1 tx-15">{{$task->engineers->name}}</h5>
+                                        @if($department == 1)
+                                        <span class="bg-warning p-1 d-block text-center m-1">Mechanical</span>
+                                        @elseif($department ==2)
+                                        <span class="bg-info p-1 d-block text-center m-1">Chemistry</span>
                                         @else
-                                        <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
+                                        <span class="bg-dark text-white p-1  d-block text-center m-1">Electrical</span>
+                                        @endif
+                                        @if($task->status=="pending")
+                                        <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
+                                        @else
+                                        <h5 class="m-1 tx-15 text-info border  p-2 mb-3">Waiting to be assigned
                                         </h5>
                                         <a href="" class="btn  btn-warning d-block">Assign Engineer</a>
                                         @endif
-
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('battery.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
-
-                                        <a class="text-left btn btn-dark " href=""
-                                            class=" m-2 btn btn-primary btn-sm">Resend Task</a>
+                                        {{-- <a class="text-left btn btn-dark " href=""
+                                            class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
                                         @endif
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
+                                        @if (Gate::allows('update-task', $task)||Auth::user()->name == $task->user)
                                         <a class="text-left btn btn-success "
-                                            href="{{route('battery.updateTask',['id'=>$task->id])}}"
+                                            href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
+
+                                        @endif
+
+
                                     </div>
                                 </div>
                             </div>
@@ -231,11 +237,11 @@
             @endforeach
         </div>
     </div>
+
     <div class="col-xl-8 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
                 <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
-
             </div>
             @foreach($task_details as $task_detail)
             <div class="product-timeline card-body pt-2 mt-1 text-center ">
@@ -243,13 +249,11 @@
                     <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
                         <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
                         <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
-                        @if(isset($task_detail->engineers->name))
-                        <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                            {{$task_detail->engineers->name}}
-                        </p> @else
-                        <h5 class="m-1 tx-15">Waiting...</h5>
-                        @endif
 
+                        <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
+                            {{ \App\Models\User::where(['id'=>$task_detail->eng_id])->pluck('name')->first()}}
+
+                        </p>
                         <p class="  bg-white text-dark text-center  "><ins>Station :
                                 @php
                                 //to get station id
@@ -272,9 +276,9 @@
                         </p>
                         @endif
                         <a class="btn btn-info mt-2 text-center"
-                            href="{{route('battery.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                            href="{{route('Transformers.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('battery.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('Transformers.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
                 </ul>
 
@@ -284,7 +288,7 @@
             <nav aria-label="Page navigation pagination-sm   pagination-lg justify-content-center ">
                 <ul class="pagination">
                     <li class="page-item">
-                        {{$task_details->links()}}
+                        {{--  {{$task_details->links()}}--}}
 
                     </li>
 

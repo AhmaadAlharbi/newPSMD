@@ -198,8 +198,8 @@
                                             {{$task->status}}
                                         </span>
                                         @endif
-                                        @if(isset($task->engineers->name))
-                                        <h5 class="m-1 tx-15">{{$task->engineers->name}}</h5>
+                                        @if($task->status=="pending")
+                                        <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
                                         <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>
@@ -243,12 +243,11 @@
                     <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
                         <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
                         <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
-                        @if(isset($task_detail->engineers->name))
+
                         <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                            {{$task_detail->engineers->name}}
-                        </p> @else
-                        <h5 class="m-1 tx-15">Waiting...</h5>
-                        @endif
+                            {{ \App\Models\User::where(['id'=>$task_detail->eng_id])->pluck('name')->first()}}
+
+                        </p>
 
                         <p class="  bg-white text-dark text-center  "><ins>Station :
                                 @php
@@ -284,7 +283,7 @@
             <nav aria-label="Page navigation pagination-sm   pagination-lg justify-content-center ">
                 <ul class="pagination">
                     <li class="page-item">
-                        {{$task_details->links()}}
+                        {{--  {{$task_details->links()}}--}}
 
                     </li>
 

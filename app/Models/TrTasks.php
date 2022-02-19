@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TR extends Model
+class TrTasks extends Model
 {
     use HasFactory;
-    protected $table = 'tr';
+    protected $table = 'tr_tasks';
     protected $guarded = [];
 
-    /**
-     * 1 => Mechanical
-     * 2 => Chemistry
-     * 3 => Electrical
-     * 
-     */
     public function user()
-   {
-   return $this->belongsTo('App\Models\User');
-   }
+    {
+        return $this->hasMany(User::class);
+    }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
 }

@@ -16,17 +16,20 @@ class Task extends Model
     {
         return $this->belongsTo(Station::class,'station_id');
     }
-    public function engineers()
+ 
+
+    public function users()
     {
-        return $this->belongsTo(Engineer::class,'eng_id');
+        return $this->belongsTo(User::class,'eng_id');
     }
 
-    // public function sections()
-    // {
-    //     return $this->hasMany(Section::class);
-    // }
     public function sections()
     {
-        return $this->belongsTo(Section::class,'fromSection');
+        return $this->hasMany(Section::class);
     }
+    // public function engineers()
+    // {
+    //     return $this->belongsTo(Engineer::class,'eng_id');
+    // }
+  
 }

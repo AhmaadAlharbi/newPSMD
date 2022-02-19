@@ -22,7 +22,8 @@ const WorkTypeChemDiv = document.querySelector("#workType-ChemDiv");
 const alarm = document.querySelector("#alarm");
 const sectionLabel = document.querySelector("#section-label");
 const mainAlarm = document.querySelector("#main_alarm");
-
+const changeAdminButton = document.querySelector("#changeAdminButton");
+const changeEngineerButton = document.querySelector("#changeEngineerButton");
 //choose which section [chemecal or mechiancal]
 const checkDepartment = () => {
     alarm.classList.remove("d-none");
@@ -180,13 +181,14 @@ const checkBoxFunc = (check) => {
     }
 };
 //generate random number
-let randomNumber = Math.floor(Math.random() * 900);
-refNum.value += randomNumber + 1;
 
+if (refNum === "") {
+    let randomNumber = Math.floor(Math.random() * 900);
+    refNum.value += randomNumber + 1;
+}
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");
     let area_select_option2 = document.createElement("option");
-    let area_select_option3 = document.createElement("option");
     switch (value) {
         case "SHUAIBA CONTROL CENTER":
             controlName.classList.add(
@@ -206,8 +208,8 @@ const controlColor = (value) => {
                 "bg-info",
                 "text-light"
             );
-            area_select_option.text = "المنطقة  الوسطى";
-            area_select_option.value = 3;
+            area_select_option.text = "المنطقة الجنوبية";
+            area_select_option.value = 2;
             areaSelect.add(area_select_option);
             break;
         case "JAHRA CONTROL CENTER":
@@ -228,8 +230,8 @@ const controlColor = (value) => {
                 "bg-danger",
                 "text-light"
             );
-            area_select_option.text = "المنطقة  الوسطى";
-            area_select_option.value = 3;
+            area_select_option.text = "المنطقة الشمالية";
+            area_select_option.value = 1;
             areaSelect.add(area_select_option);
             break;
         case "NATIONAL CONTROL CENTER":
@@ -242,22 +244,10 @@ const controlColor = (value) => {
             area_select_option.text = "المنطقة الشمالية";
             area_select_option.value = 1;
             areaSelect.add(area_select_option);
-            area_select_option3.text = "المنطقة  الوسطى";
-            area_select_option3.value = 3;
-            areaSelect.add(area_select_option3);
             area_select_option2.text = "المنطقة الجنوبية";
             area_select_option2.value = 2;
             areaSelect.add(area_select_option2);
-
             break;
-        default:
-            controlName.classList.add(
-                "form-control",
-                "text-center",
-                "bg-dark",
-                "text-danger"
-            );
-            controlName.value = " الرجاء تعديل اسم التحكم من جدول المحطات";
     } //switch end
 };
 //get Station
@@ -331,6 +321,7 @@ const getEngineer = async () => {
     return data;
 };
 //get Engineer's email
+//get Engineer's email
 const getEngineerEmail = async () => {
     let eng_id = engineerSelect.value;
     const response = await fetch("/Transformers/getAdminEmail/" + eng_id);
@@ -365,18 +356,16 @@ const getEngineersShift = async () => {
     }
     return data;
 };
-//to toggle files atthachmant
-
-showAttachment.addEventListener("click", (e) => {
-    e.preventDefault();
-    hideAttachment.classList.toggle("d-none");
-    showAttachment.classList.toggle("d-none");
-    attachmentFile.classList.toggle("d-none");
-});
-hideAttachment.addEventListener("click", (e) => {
-    e.preventDefault();
-    hideAttachment.classList.toggle("d-none");
-    showAttachment.classList.toggle("d-none");
-    attachmentFile.classList.toggle("d-none");
-});
+//to color control based on area
 controlColor(controlName.value);
+
+//to change admins
+changeAdminButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getAdmins();
+});
+//to change Engineers
+changeEngineerButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getEngineer();
+});
