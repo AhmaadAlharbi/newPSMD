@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\sections;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,14 +17,13 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Gate;
-
-class ProtectionController extends Controller
+class SwitchGearController extends Controller
 {
     ####################### ADMIN CONTROLLER ########################
 
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
-            ->where('fromSection',2)
+            ->where('fromSection',6)
             ->where('status', 'pending')
             ->get();
         // $task_details = TaskDetails::orderBy('id', 'desc')
@@ -36,26 +34,33 @@ class ProtectionController extends Controller
         $task_details = DB::table('task_details')
         ->join('tasks','tasks.id','=','task_details.task_id')
         ->where('task_details.status','completed')
-        ->where('tasks.fromSection',2)
+        ->where('tasks.fromSection',6)
         ->orderBy('tasks.id', 'desc')
 
         ->get();   
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName'));
+        return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName'));
 
 
     }
     //// start front END functions
     public function add_task(){
         $stations = Station::all();
-        return view ('protection.admin.tasks.add_task',compact('stations'));
+        return view ('switchgear.admin.tasks.add_task',compact('stations'));
     }
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
+        // return (String) $engineersTable = DB::table('engineers')
+        // ->where("area",$area_id)
+        // ->where("shift",$shift_id)
+        // ->join('users','users.id','=','engineers.user_id')
+        // ->where('users.section_id',6)
+        // ->get();  
         return (String) DB::table('engineers')
         ->Join('users','users.id','=','engineers.user_id')
-        ->where('users.section_id',2)
+        ->where('users.section_id',6)
+
         ->get();
     }
     //get Engineer Email
@@ -89,7 +94,7 @@ class ProtectionController extends Controller
 
         Task::create([
             'refNum' => $request->refNum,
-            'fromSection'=>2,
+            'fromSection'=>6,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
             'voltage_level'=>$request->voltage_level,
@@ -116,7 +121,7 @@ class ProtectionController extends Controller
             $task_id = $id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/protection/' . $task_id), $name);
+                $file->move(public_path('Attachments/switchgear/' . $task_id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();
@@ -141,60 +146,60 @@ class ProtectionController extends Controller
     }
 
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',2)->orderBy('id', 'desc')
+        $tasks = Task::where('fromSection',6)->orderBy('id', 'desc')
         ->get();
-        return view('protection.admin.tasks.showTasks',compact('tasks'));
+        return view('switchgear.admin.tasks.showTasks',compact('tasks'));
     }
 
     public function showPendingTasks(){
-        $tasks = Task::where('fromSection',2)
+        $tasks = Task::where('fromSection',6)
         ->where('status','pending')
         ->orderBy('id', 'desc')
         ->get();
-        return view('protection.admin.tasks.showTasks',compact('tasks'));  
+        return view('switchgear.admin.tasks.showTasks',compact('tasks'));  
     }
 
     public function showCompletedTasks(){
-        $tasks = Task::where('fromSection',2)
+        $tasks = Task::where('fromSection',6)
         ->where('status','completed')
         ->whereMonth('created_at', date('m'))
         ->orderBy('id', 'desc')
         ->get();
-        return view('protection.admin.tasks.showTasks',compact('tasks'));
+        return view('switchgear.admin.tasks.showTasks',compact('tasks'));
     }
     public function showArchive(){
-        $tasks = Task::where('fromSection',2)
+        $tasks = Task::where('fromSection',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        return view('protection.admin.tasks.showTasks',compact('tasks'));
+        return view('switchgear.admin.tasks.showTasks',compact('tasks'));
     }
 
     public function userArchive(){
-        $tasks = Task::where('fromSection',2)
+        $tasks = Task::where('fromSection',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        return view('protection.user.tasks.showTasks',compact('tasks'));
+        return view('switchgear.user.tasks.showTasks',compact('tasks'));
     }
    
     public function taskDetails($id){
         $tasks = Task::where('id',$id)->get();
         $task_details = TaskDetails::where('task_id',$id)->get();
         $task_attachment = TaskAttachment::where('id_task',$id)->get();
-        return view('protection.admin.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
+        return view('switchgear.admin.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
     }
 
     public function showEngineers(){
-        // $engineers = Engineer::where('section_id',2)->get();
-        // return view ('protection.admin.engineers.engineersList',compact('engineers'));
+        // $engineers = Engineer::where('section_id',6)->get();
+        // return view ('switchgear.admin.engineers.engineersList',compact('engineers'));
 
         $engineers = DB::table('engineers')
         ->join('users','users.id','=','engineers.user_id')
         ->select('users.name','users.id','users.email','users.section_id','engineers.area','engineers.shift')
-        ->where('users.section_id',2)
+        ->where('users.section_id',6)
         ->get();   
-         return view ('protection.admin.engineers.engineersList',compact('engineers'));
+         return view ('switchgear.admin.engineers.engineersList',compact('engineers'));
 
     }
 
@@ -204,7 +209,7 @@ class ProtectionController extends Controller
         $stations = Station::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
-        return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments'));
+        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments'));
     }
 
 //post
@@ -212,7 +217,7 @@ class ProtectionController extends Controller
         $tasks = Task::findOrFail($id);
         $tasks->update([
             'refNum' => $request->refNum,
-            'fromSection'=>2,
+            'fromSection'=>6,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
             'voltage_level'=>$request->voltage_level,
@@ -231,7 +236,7 @@ class ProtectionController extends Controller
             $task_id = Task::latest()->first()->id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/protection/' . $task_id), $name);
+                $file->move(public_path('Attachments/switchgear/' . $task_id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();
@@ -261,12 +266,12 @@ class ProtectionController extends Controller
     }
   public function open_file($id, $file_name)
     {
-        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('protection/'.$id . '/' . $file_name);
+        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('switchgear/'.$id . '/' . $file_name);
         return response()->file($files);
     }
     public function get_file($id, $file_name)
     {
-        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('protection/'.$id . '/' . $file_name);
+        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('switchgear/'.$id . '/' . $file_name);
         return response()->download($contents);
     }
     public function destroyAttachment(Request $request)
@@ -281,7 +286,7 @@ class ProtectionController extends Controller
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
         ->first();
-        return view('protection.admin.tasks.report',compact('task_details'));
+        return view('switchgear.admin.tasks.report',compact('task_details'));
     }
     
     ///##### end backend functions
@@ -290,7 +295,7 @@ class ProtectionController extends Controller
     
     public function userIndex() {
         $tasks = Task::orderBy('id', 'desc')
-        ->where('fromSection',2)
+        ->where('fromSection',6)
         ->where('status', 'pending')
         ->get();
     // $task_details = TaskDetails::orderBy('id', 'desc')
@@ -301,13 +306,13 @@ class ProtectionController extends Controller
     $task_details = DB::table('task_details')
     ->join('tasks','tasks.id','=','task_details.task_id')
     ->where('task_details.status','completed')
-    ->where('tasks.fromSection',2)
+    ->where('tasks.fromSection',6)
     ->orderBy('tasks.id', 'desc')
 
     ->get();   
     $date = Carbon::now();
     $monthName = $date->format('F');
-    return view('protection.user.dashboard',compact('tasks','task_details','date','monthName'));
+    return view('switchgear.user.dashboard',compact('tasks','task_details','date','monthName'));
     }
 
     public function engineerPageTasks($id){
@@ -315,13 +320,13 @@ class ProtectionController extends Controller
         $tasks = Task::where('eng_id',$engineer)
             ->orderBy('id', 'desc')
             ->get();
-        return view('protection.user.mytasks', compact('tasks'));
+        return view('switchgear.user.mytasks', compact('tasks'));
     }
     public function usertaskDetails($id){
         $tasks = Task::where('id', $id)->first();
         $task_details = TaskDetails::where('task_id', $id)->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
-        return view('protection.user.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
+        return view('switchgear.user.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
     }
     public function engineerPageTasksCompleted($id){
         $engineer = Engineer::where('email',$id)->value('id');
@@ -329,7 +334,7 @@ class ProtectionController extends Controller
             ->orderBy('id', 'desc')
             ->where('status','completed')
             ->get();
-        return view('protection.user.mytasks', compact('tasks'));
+        return view('switchgear.user.mytasks', compact('tasks'));
     }
     public function engineerPageTasksUnCompleted($id){
         $engineer = Engineer::where('email',$id)->value('id');
@@ -337,13 +342,13 @@ class ProtectionController extends Controller
             ->orderBy('id', 'desc')
             ->where('status','pending')
             ->get();
-        return view('protection.user.mytasks', compact('tasks'));
+        return view('switchgear.user.mytasks', compact('tasks'));
     }
     public function engineerReportForm($id){
 
 
         $tasks = Task::where('id',$id)->first();
-        return view('protection.user.EngineerReportForm',compact('tasks'));
+        return view('switchgear.user.EngineerReportForm',compact('tasks'));
     }
 
     public function SubmitEngineerReport(Request $request,$id){
@@ -363,7 +368,7 @@ class ProtectionController extends Controller
         if ($request->hasfile('pic')) {
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/protection/' . $id), $name);
+                $file->move(public_path('Attachments/switchgear/' . $id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();
@@ -390,7 +395,7 @@ class ProtectionController extends Controller
             ]);
             TaskDetails::create([
                 'task_id'=>$id,
-                'fromSection'=>2,
+                'fromSection'=>6,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,
@@ -403,7 +408,7 @@ class ProtectionController extends Controller
             ]);
             TaskDetails::create([
                 'task_id'=>$id,
-                'fromSection'=>2,
+                'fromSection'=>6,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,
