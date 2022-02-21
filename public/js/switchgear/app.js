@@ -31,7 +31,10 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الجنوبية";
-            area_select_option.value = 2;
+            // area value depends on shift morining or night
+            shiftSelect.value != 0
+                ? (area_select_option.value = 2)
+                : (area_select_option.value = 1);
             areaSelect.add(area_select_option);
             break;
         case "JABRIYA CONTROL CENTER":
@@ -42,7 +45,10 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الوسطى";
-            area_select_option.value = 3;
+            // area value depends on shift morining or night
+            shiftSelect.value != 0
+                ? (area_select_option.value = 3)
+                : (area_select_option.value = 1);
             areaSelect.add(area_select_option);
             break;
         case "JAHRA CONTROL CENTER":
@@ -120,7 +126,7 @@ const getStation = async () => {
 };
 //get Engineer's name
 const getEngineer = async () => {
-    area_id = await getStation();
+    area_id = 1; //1 = morning because in switchgear sections there is no teams bases on control area in morning shift
     shift_id = shiftSelect.value;
     const response = await fetch(
         "/switchgear/getEngineer/" + area_id + "/" + shift_id
@@ -155,9 +161,10 @@ const getEngineersShift = async () => {
     engineerSelect.innerText = null;
     engEmail.value = "";
     let shift_id = shiftSelect.value;
-    let area_id = await getStation();
+    let area_id = shiftSelect.value != 0 ? await getStation() : 1;
+    // let area_id = await getStation();
     const response = await fetch(
-        "/getEngineersOnShift/" + area_id + "/" + shift_id
+        "/switchgear/getEngineersOnShift/" + area_id + "/" + shift_id
     );
     if (response.status !== 200) {
         throw new Error("can not fetch the data");

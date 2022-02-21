@@ -201,7 +201,6 @@
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">المنطقة</label>
                             <select name="area" id="areaSelect" class="form-control areaSelect">
-                                <option value="0"> </option>
 
                                 <!--placeholder-->
                                 <!-- <option value="1"> المنطقة الشمالية</option>

@@ -58,9 +58,10 @@ class SwitchGearController extends Controller
         // ->where('users.section_id',6)
         // ->get();  
         return (String) DB::table('engineers')
+        ->where('area',$area_id)
+        ->where('shift',$shift_id)
         ->Join('users','users.id','=','engineers.user_id')
         ->where('users.section_id',6)
-
         ->get();
     }
     //get Engineer Email
@@ -73,13 +74,13 @@ class SwitchGearController extends Controller
     }
     
     //get Engineers based on shift
-    public function getEngineersShift($area_id,$shift_id){
-        return (String) $engineersTable = DB::table('engineers')
-        ->where("area",$area_id)
-        ->where("shift",$shift_id)
-        ->join('users','users.id','=','engineers.user_id')
-        ->select('users.name','users.id','users.email','users.section_id')
-        ->get();  
+    public function getEngineersShift($area_id,$shift_id){ 
+        return (String) DB::table('engineers')
+        ->where('area',$area_id)
+        ->where('shift',$shift_id)
+        ->Join('users','users.id','=','engineers.user_id')
+        ->where('users.section_id',6)
+        ->get();
     }
 
     //get station
