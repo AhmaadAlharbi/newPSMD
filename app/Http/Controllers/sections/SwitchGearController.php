@@ -92,7 +92,6 @@ class SwitchGearController extends Controller
     ///#####start backend functions
 
     public function store(Request $request){ 
-
         Task::create([
             'refNum' => $request->refNum,
             'fromSection'=>6,
@@ -111,7 +110,6 @@ class SwitchGearController extends Controller
         ]);
         $task_id = Task::latest()->first()->id;
         $engineer_email = $request->eng_email;
-        
         TaskDetails::create([
             'task_id'=>$task_id,
             'eng_id'=>$request->eng_name,
@@ -298,6 +296,7 @@ class SwitchGearController extends Controller
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',6)
         ->where('status', 'pending')
+        ->where('eng_id',Auth::user()->id)
         ->get();
     // $task_details = TaskDetails::orderBy('id', 'desc')
     // ->where('status', 'completed')
@@ -387,8 +386,7 @@ class SwitchGearController extends Controller
 
     public function engineerReportUnCompleted(Request $request,$id){
         $task= Task::findOrFail($id);
-        $engineerEmail = Auth::user()->email ;
-        $eng_id = Engineer::where('email',$engineerEmail)->pluck('id')->first();
+        $eng_id = Auth::user()->id ;
         //if task Completed
         if ($request->reason === 'مسؤولية جهة آخرى' || $request->reason === "تحت الكفالة") {
             $task->update([

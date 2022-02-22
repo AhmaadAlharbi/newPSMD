@@ -53,7 +53,7 @@
             <div class="card-body">
 
 
-                <form action="{{route('protection.update',['id'=>$tasks->id])}}" enctype="multipart/form-data"
+                <form action="{{route('switch.update',['id'=>$tasks->id])}}" enctype="multipart/form-data"
                     method="post">
                     {{ csrf_field() }} {{-- 1 --}}
                     <div class="row m-3">
@@ -256,11 +256,10 @@
 
                         <div class="col-lg-3">
                             <label for="shift" class="control-label">shif</label>
-                            <select name="shift" id="shiftSelect" class="form-control " onchange="shiftEngineer()">
+                            <select name="shift" id="shiftSelect" class="form-control " onchange="getEngineersShift()">
                                 <!--placeholder-->
-
-                                <option value="1"> مساءً </option>
                                 <option value="0"> صباحاً </option>
+                                <option value="1"> مساءً </option>
                             </select>
 
 
@@ -376,6 +375,6 @@ var date = $('.fc-datepicker').datepicker({
 }).val();
 </script>
 
-<script type="text/javascript" src="{{ URL::asset('js/protection/updateTask.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/switchgear/updateTask.js') }}"></script>
 
 @endsection

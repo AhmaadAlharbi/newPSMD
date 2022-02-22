@@ -15,9 +15,9 @@ Route::get('/dashboard/user/query_section_id=6',[SwitchGearController::class,'us
 Route::get('/dashboard/user/query_section_id=6/Engineer-report-form/{id}',[SwitchGearController::class,
 'engineerReportForm'])->name('switch.engineerReportForm');
 Route::post('/switch/Egineer-report/{id}',[SwitchGearController::class,'SubmitEngineerReport'])
-->name('proteciton.SubmitEngineerReport');
+->name('switch.SubmitEngineerReport');
 Route::post('/switch/Egineer-report/uncompleted/{id}',[SwitchGearController::class,'engineerReportUnCompleted'])
-->name('proteciton.engineerReportUnCompleted');
+->name('switch.engineerReportUnCompleted');
 Route::get('/dashboard/user/query_section_id=6/{id}',[SwitchGearController::class,'engineerPageTasks'])->name('switch.engineerPageTask');
 Route::get('/dashboard/user/query_section_id=6/{id}/completed',[SwitchGearController::class,'engineerPageTasksCompleted'])->name('switch.engineerPageTaskCompleted');
 Route::get('/dashboard/user/query_section_id=6/{id}/pending',[SwitchGearController::class,'engineerPageTasksUnCompleted'])->name('switch.engineerPageTaskUncompleted');

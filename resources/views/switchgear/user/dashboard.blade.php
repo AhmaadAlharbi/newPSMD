@@ -42,7 +42,7 @@
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('protection.admin.showAllTasks')}}">عرض
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('switch.admin.showAllTasks')}}">عرض
                             كافة
                             مهمات شهر {{$monthName}}</a>
                     </h6>
@@ -69,7 +69,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                            href="{{route('switch.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -102,7 +102,7 @@
 
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('protection.admin.completedTasks')}}">المهمات
+                            href="{{route('switch.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -134,7 +134,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('protection.admin.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('switch.admin.archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -207,7 +207,7 @@
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('protecion.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('switch.user.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
 
@@ -219,7 +219,7 @@
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
                                         @if (Gate::allows('update-task', $task))
                                         <a class="text-left btn btn-success "
-                                            href="{{route('protection.engineerReportForm',['id'=>$task->id])}}"
+                                            href="{{route('switch.engineerReportForm',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Action Take</a>
 
                                         @endif
@@ -273,9 +273,9 @@
                         </p>
                         @endif
                         <a class="btn btn-info mt-2 text-center"
-                            href="{{route('protection.user.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                            href="{{route('switch.user.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('protection.user.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('switch.user.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
                 </ul>
 

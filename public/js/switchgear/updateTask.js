@@ -1,4 +1,4 @@
-// ### switchgear JS FILE ###//
+// ### PROTECTION JS FILE ###//
 const areaSelect = document.getElementById("areaSelect");
 const engineerSelect = document.querySelector(".engineerSelect");
 const eng_name_email = document.getElementById("eng_name_email");
@@ -10,14 +10,13 @@ const controlName = document.querySelector("#control_name");
 const make = document.querySelector("#make");
 const stationIdInput = document.querySelector("#station_id");
 const refNum = document.querySelector("#refNum");
-const showAttachment = document.getElementById("showAttachment");
-const hideAttachment = document.getElementById("hideAttachment");
-const attachmentFile = document.getElementById("attachmentFile");
+const changeEngineerButton = document.querySelector("#changeEngineerButton");
 //generate random number
 
-let randomNumber = Math.floor(Math.random() * 900);
-refNum.value += randomNumber + 1;
-
+if (refNum === "") {
+    let randomNumber = Math.floor(Math.random() * 900);
+    refNum.value += randomNumber + 1;
+}
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");
     let area_select_option2 = document.createElement("option");
@@ -69,6 +68,7 @@ const controlColor = (value) => {
                 "bg-danger",
                 "text-light"
             );
+            area_select_option.text = "المنطقة الوسطى";
             shiftSelect.value != 0
                 ? (area_select_option.value = 3)
                 : (area_select_option.value = 1);
@@ -143,7 +143,7 @@ const getEngineer = async () => {
         engineerSelectValue.innerHTML = data[i].name;
         engineerSelect.appendChild(engineerSelectValue);
         engEmail.value = data[0].email;
-        console.log(data[i].id, data[i].name);
+        //console.log(data[i].id, data[i].name)
     }
     return data;
 };
@@ -163,6 +163,7 @@ const getEngineersShift = async () => {
     engEmail.value = "";
     let shift_id = shiftSelect.value;
     let area_id = shiftSelect.value != 0 ? await getStation() : 1;
+
     // let area_id = await getStation();
     const response = await fetch(
         "/switchgear/getEngineersOnShift/" + area_id + "/" + shift_id
@@ -182,18 +183,11 @@ const getEngineersShift = async () => {
     }
     return data;
 };
-//to toggle files atthachmant
-
-showAttachment.addEventListener("click", (e) => {
-    e.preventDefault();
-    hideAttachment.classList.toggle("d-none");
-    showAttachment.classList.toggle("d-none");
-    attachmentFile.classList.toggle("d-none");
-});
-hideAttachment.addEventListener("click", (e) => {
-    e.preventDefault();
-    hideAttachment.classList.toggle("d-none");
-    showAttachment.classList.toggle("d-none");
-    attachmentFile.classList.toggle("d-none");
-});
+//to color control based on area
 controlColor(controlName.value);
+
+//to change engineers
+changeEngineerButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getEngineer();
+});

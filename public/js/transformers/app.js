@@ -16,13 +16,20 @@ const attachmentFile = document.getElementById("attachmentFile");
 const checkBox = document.querySelectorAll(".checkbox");
 const chemistryAlarmSelect = document.querySelector("#chemistryAlarm");
 const MechAlarmSelect = document.querySelector("#MechAlarmSelect");
+const electricAlarm = document.querySelector("#electricAlarm");
 const department = document.querySelector("#department");
 const WorkTypeMechDiv = document.querySelector("#workType-MechDiv");
 const WorkTypeChemDiv = document.querySelector("#workType-ChemDiv");
+const WorkTypeElecDiv = document.querySelector("#workType-ElectricalDiv");
 const alarm = document.querySelector("#alarm");
 const sectionLabel = document.querySelector("#section-label");
+//mechanical main alarm
 const mainAlarm = document.querySelector("#main_alarm");
-
+//electrical work type
+const electricDuty = document.querySelector("#electricDuty");
+const electricProgram = document.querySelector("#electricProgram");
+const electricServicing = document.querySelector("#electricServicing");
+const electricPending = document.querySelector("#electricPending");
 //choose which section [chemecal or mechiancal]
 const checkDepartment = () => {
     alarm.classList.remove("d-none");
@@ -37,6 +44,12 @@ const checkDepartment = () => {
                 //hide chemestry section
                 WorkTypeChemDiv.classList.add("d-none");
                 chemistryAlarmSelect.classList.add("d-none");
+                //hide electrical section
+                WorkTypeElecDiv.classList.add("d-none");
+                electricDuty.classList.add("d-none");
+                electricProgram.classList.add("d-none");
+                electricServicing.classList.add("d-none");
+                electricPending.classList.add("d-none");
             }
             break;
         case "2":
@@ -46,10 +59,31 @@ const checkDepartment = () => {
                 WorkTypeMechDiv.classList.add("d-none");
                 MechAlarmSelect.classList.add("d-none");
                 mainAlarm.classList.add("d-none");
-
+                //hide electrical section
+                WorkTypeElecDiv.classList.add("d-none");
+                electricDuty.classList.add("d-none");
+                electricProgram.classList.add("d-none");
+                electricServicing.classList.add("d-none");
+                electricPending.classList.add("d-none");
                 //show chemestry section
                 WorkTypeChemDiv.classList.remove("d-none");
                 chemistryAlarmSelect.classList.remove("d-none");
+            }
+            break;
+        case "3":
+            sectionLabel.innerText = "Electrical";
+            if (WorkTypeChemDiv.classList.contains("d-none")) {
+                //hide mechanical section
+                WorkTypeMechDiv.classList.add("d-none");
+                MechAlarmSelect.classList.add("d-none");
+                mainAlarm.classList.add("d-none");
+
+                //hide chemestry section
+                WorkTypeChemDiv.classList.add("d-none");
+                chemistryAlarmSelect.classList.add("d-none");
+                //show electrical section
+                WorkTypeElecDiv.classList.remove("d-none");
+                electricAlarm.classList.remove("d-none");
             }
             break;
     }
@@ -176,6 +210,31 @@ const checkBoxFunc = (check) => {
             chemistryAlarmSelect.add(chemistryAlarm_select_option2);
             chemistryAlarmSelect.add(chemistryAlarm_select_option3);
             chemistryAlarmSelect.add(chemistryAlarm_select_option4);
+            break;
+    }
+};
+//check Work type for electrical
+const checkBoxElectrical = (check) => {
+    chemistryAlarmSelect.innerText = null;
+    electricDuty.classList.add("d-none");
+    electricProgram.classList.add("d-none");
+    electricServicing.classList.add("d-none");
+    electricPending.classList.add("d-none");
+    switch (check) {
+        case "Duty":
+            electricDuty.classList.remove("d-none");
+            break;
+        case "program":
+            electricProgram.classList.remove("d-none");
+
+            break;
+        case "Servicing":
+            electricServicing.classList.remove("d-none");
+
+            break;
+        case "Pending":
+            electricPending.classList.remove("d-none");
+
             break;
     }
 };

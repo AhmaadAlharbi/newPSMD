@@ -42,7 +42,7 @@
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('protection.admin.showAllTasks')}}">عرض
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('switch.admin.showAllTasks')}}">عرض
                             كافة
                             مهمات شهر {{$monthName}}</a>
                     </h6>
@@ -52,12 +52,9 @@
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
                                 {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',6)->count()}}
-
-
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -69,7 +66,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                            href="{{route('switch.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -85,9 +82,7 @@
                             <span class="text-white tx-16 op-7">
                                 @if(\App\Models\Task::count()!==0)
                                 {{round((\App\Models\Task::where('status','pending')->where('fromSection',6)->count()/\App\Models\Task::count())*100)}}%
-
                                 @endif
-
                             </span>
                         </span>
                     </div>
@@ -102,7 +97,7 @@
 
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('protection.admin.completedTasks')}}">المهمات
+                            href="{{route('switch.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -134,7 +129,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('protection.admin.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('switch.admin.archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -219,7 +214,7 @@
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
                                         <a class="text-left btn btn-success "
-                                            href="{{route('protection.updateTask',['id'=>$task->id])}}"
+                                            href="{{route('switch.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
                                     </div>
                                 </div>
@@ -271,7 +266,7 @@
                         </p>
                         @endif
                         <a class="btn btn-info mt-2 text-center"
-                            href="{{route('protection.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                            href="{{route('switch.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
                             href="{{route('protecion.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
@@ -284,9 +279,7 @@
                 <ul class="pagination">
                     <li class="page-item">
                         {{--  {{$task_details->links()}}--}}
-
                     </li>
-
                 </ul>
             </nav>
         </div>

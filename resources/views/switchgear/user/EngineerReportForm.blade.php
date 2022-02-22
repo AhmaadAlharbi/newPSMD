@@ -156,7 +156,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form action="{{route('proteciton.SubmitEngineerReport',['id'=>$tasks->id])}}"
+                    <form action="{{route('switch.SubmitEngineerReport',['id'=>$tasks->id])}}"
                         enctype="multipart/form-data" method="post" autocomplete="off"> @csrf
                         @if ($tasks->status == 'completed')
                         <div class="text-center">
@@ -407,7 +407,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <form action="{{route('proteciton.engineerReportUnCompleted',['id'=>$tasks->id])}}"
+                            <form action="{{route('switch.engineerReportUnCompleted',['id'=>$tasks->id])}}"
                                 method="post">
                                 {{ csrf_field() }}
                         </div>

@@ -96,6 +96,7 @@
                                 <!--placeholder-->
                                 <option value="1">Mechanical</option>
                                 <option value="2">Chemistry</option>
+                                <option value="3">Electrical</option>
                             </select>
                         </div>
                         <div class=" col-lg-6 d-none" id="main_alarm">
@@ -104,6 +105,7 @@
                                 <option value="Fan Trouble alarm">Fan Trouble alarm</option>
                             </select>
                         </div>
+
 
                     </div>
                     {{-- 2 --}}
@@ -151,6 +153,33 @@
 
                         </div>
                     </div>
+                    <!--Work type for electrical-->
+                    <div class="row m-3 d-none" id="workType-ElectricalDiv">
+                        <div class="col border border-warning p-3 flex-wrap">
+                            <h6 class="text-warning">Work Type</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input  checkbox" type="radio" name="work_type"
+                                    id="inlineRadio1" value="Emergency" onClick="checkBoxElectrical('Duty')">
+                                <label class="form-check-label  m-2" for="inlineRadio1">Duty</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio2"
+                                    value="Maintenance" onClick="checkBoxElectrical('program')">
+                                <label class="form-check-label m-2" for="inlineRadio2">program</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio3"
+                                    value="Inspection" onClick="checkBoxElectrical('Servicing')">
+                                <label class="form-check-label m-2" for="inlineRadio3">Servicing</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio4"
+                                    value="Inspection" onClick="checkBoxElectrical('Pending')">
+                                <label class="form-check-label m-2" for="inlineRadio4">Pending</label>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="row m-3  d-none " id="alarm">
                         <label for="mechanical" id="section-label">Mechanical Alarm</label>
                         <select name="work_type_description" class="form-control d-none" id="MechAlarmSelect">
@@ -158,6 +187,48 @@
                         </select>
                         <select name="work_type_description" class="form-control d-none" id="chemistryAlarm">
 
+                        </select>
+
+                        <select name="work_type_description" class="form-control d-none" id="electricDuty">
+                            <option value="Oil level alarm">Oil level alarm</option>
+                            <option value="Oil temperature alarm">Oil temperature alarm</option>
+                            <option value="Oil temperature trip">Oil temperature trip</option>
+                            <option value="Winding temperature alarm<">Winding temperature alarm</option>
+                            <option value="Winding temperature trip">Winding temperature trip</option>
+                            <option value="Buchloz relay on main tank alarm">Buchloz relay on main tank alarm</option>
+                            <option value="Buchloz relay on main tank trip">Buchloz relay on main tank trip</option>
+                            <option value="Buchloz relay on tap chagner trip">Buchloz relay on tap chagner trip</option>
+                            <option value="Out of step alarm">Out of step alarm</option>
+                            <option value="Pressure relief trip">Pressure relief trip</option>
+                            <option value="Tap changer trouble">Tap changer trouble</option>
+                            <option value="AC supply failure">AC supply failure</option>
+                            <option value="Fuse burnt">Fuse burnt</option>
+                            <option value="Winding temperature for local transformer">Winding temperature for local
+                                transformer</option>
+                        </select>
+                        <select name="work_type_description" class="form-control d-none" id="electricProgram">
+                            <option value="program with cmd for calbles leak">program with cmd for calbles leak</option>
+
+                        </select>
+                        <select name="work_type_description" class="form-control d-none" id="electricServicing">
+                            <option value="Smart breather">Smart breather</option>
+                            <option value="Oil leakage">Oil leakage</option>
+                            <option value="Replace TR">Replace TR</option>
+                            <option value="Spur TR testing">Spur TR testing</option>
+                            <option value="Spur transformer flash LT">Spur transformer flash LT</option>
+                            <option value="Spur transformer flash HT">Spur transformer flash HT</option>
+                            <option value="Spur transformer replacing">Spur transformer replacing</option>
+                            <option value="Fixing spur TR">Fixing spur TR</option>
+                            <option value="oil filling">oil filling</option>
+                            <option value="Summer check">Summer check</option>
+                            <option value="Winter check">Winter check</option>
+                            <option value="Winding temperature for local transformer">Winding temperature for local
+                                transformer</option>
+                        </select>
+
+                        <select name="work_type_description" class="form-control d-none" id="electricPending">
+                            <option value="Change MCB">Change MCB</option>
+                            <option value="Change parts">Change parts</option>
                         </select>
                     </div>
                     {{-- 3 --}}

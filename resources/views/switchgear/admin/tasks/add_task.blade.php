@@ -46,15 +46,14 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{route('protection.store')}}" method="post" enctype="multipart/form-data"
-                    autocomplete="off">
+                <form action="{{route('switch.store')}}" method="post" enctype="multipart/form-data" autocomplete="off">
                     {{ csrf_field() }}
                     {{-- 1 --}}
                     <div class="row m-3">
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>
                             <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
-                                required value="P-{{ date('y-m') }}/" readonly>
+                                required value="SG-{{ date('y-m') }}/" readonly>
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
