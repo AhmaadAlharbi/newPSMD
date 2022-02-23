@@ -380,7 +380,14 @@ class TransformersController extends Controller
     }
     public function engineerReportForm($id){
         $tasks = Task::where('id',$id)->first();
-        return view('transformers.user.EngineerReportForm',compact('tasks'));
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+           if (!Gate::allows('write-report',$tasks)) {
+            abort(403);
+            
+        }
+        $tasks = Task::where('id',$id)->first();
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+        return view('transformers.user.EngineerReportForm',compact('tasks','task_attachments'));
     }
 
     public function SubmitEngineerReport(Request $request,$id){

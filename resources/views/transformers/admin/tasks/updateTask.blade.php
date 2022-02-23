@@ -200,19 +200,21 @@
                             </select>
 
                         </div>
-                        <button id="changeAdminButton" class="btn btn-info btn-sm ml-2">
-                            تحويل إلى مشرف
-                        </button>
-                        <button id="changeEngineerButton" class="btn btn-outline-info btn-sm ml-2">
-                            تحويل إلى مهندس
-                        </button>
+                 
                         <div class="col">
-
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                 onchange="getEngineerEmail()">
                                 <option value="{{$tasks->eng_id}}">{{$tasks->users->name}}</option>
                             </select>
+                        </div>
+                        <div class="col">
+                        <button id="changeAdminButton" class="btn btn-info btn-sm">
+                            تحويل إلى مشرف
+                        </button>
+                        <button id="changeEngineerButton" class="btn btn-outline-info btn-sm mt-2">
+                            تحويل إلى مهندس
+                        </button>
                         </div>
                         <div class=" col email">
                             <label for="inputName" class="control-label"> Email</label>
@@ -234,7 +236,58 @@
 
                     <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                     <h5 class="card-title">المرفقات</h5>
+                    {{--show Attahcments --}}
+                    <div class="table-responsive mt-15">
+                        <table class="table center-aligned-table mb-0  table-hover" style="text-align:center">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">م</th>
+                                    <th scope="col">اسم الملف</th>
+                                    <th scope="col">تاريخ الاضافة</th>
+                                    <th scope="col"> بواسطة</th>
+                                    <th scope="col">العمليات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 0; ?>
+                                @foreach ($task_attachments as $attachment)
+                                <?php $i++; ?>
+                                <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>{{ $attachment->file_name }}</td>
+                                    <td>{{ $attachment->created_at }}</td>
+                                    <td>
+                                        @if($attachment->Created_by =="")
+                                        {{$task->engineers->name}}
+                                        @else
+                                        {{ $attachment->Created_by }}
+                                        @endif
+                                    </td>
+                                    <td colspan="2">
 
+                                        <a class="btn btn-outline-success btn-sm"
+                                            href="{{route('transformers.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                            role="button"><i class="fas fa-eye"></i>&nbsp;
+                                            عرض</a>
+
+                                            <a class="btn btn-outline-info btn-sm"
+                                            href="{{route('transformers.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                            role="button"><i class="fas fa-download"></i>&nbsp;
+                                            تحميل</a>
+
+                                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal"
+                                            data-file_name="{{ $attachment->file_name }}"
+                                            data-invoice_number="{{ $attachment->id_task }}"
+                                            data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
+
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+
+                    </div>
                     <div class="col-sm-12 col-md-12">
                         <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                             data-height="70" />

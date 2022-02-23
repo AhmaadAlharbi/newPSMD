@@ -124,7 +124,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="border-bottom-0">تاريخ ارسال المهمة</th>
-                                                    <td>{{$task->task_Date}}</td>
+                                                    <td>{{$task->task_date}}</td>
 
 
 
@@ -173,7 +173,6 @@
                                                         <th class="border-bottom-0">المهندس</th>
                                                         <th class="border-bottom-0">الحالة </th>
                                                         <th class="border-bottom-0">بواسطة </th>
-
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -188,18 +187,27 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->refNum}}</td>
+                                                        <td>{{$x->sections->section_name}}</td>
                                                         <td>{{$x->station->SSNAME}}</td>
                                                         <td>{{$x->task_date}}</td>
-                                                        @if(!isset($x->users->name))
+                                                        @if(isset($x->eng_id))
                                                         <td>{{$x->users->name}}</td>
                                                         @else
                                                         <td>waiting...</td>
                                                         @endif
 
+                                                        @if($x->status == 'completed')
                                                         <td>
-                                                            <span class="badge badge-pill badge-danger">Pending</span>
+                                                            <span
+                                                                class="badge badge-pill badge-success">{{$x->status}}</span>
+                                                        </td>
+                                                        @else
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-danger">{{$x->status}}</span>
 
                                                         </td>
+                                                        @endif
                                                         <td>{{$x->user}}</td>
 
                                                     </tr>
@@ -275,7 +283,6 @@
 
                                             </div>
                                             <br>
-
                                             <div class="table-responsive mt-15">
                                                 <table class="table center-aligned-table mb-0  table-hover"
                                                     style="text-align:center">
@@ -283,7 +290,6 @@
                                                         <tr class="text-dark">
                                                             <th scope="col">م</th>
                                                             <th scope="col">اسم الملف</th>
-                                                            <th scope="col">قام بالاضافة</th>
                                                             <th scope="col">تاريخ الاضافة</th>
                                                             <th scope="col"> بواسطة</th>
                                                             <th scope="col">العمليات</th>
@@ -296,7 +302,6 @@
                                                         <tr>
                                                             <td>{{ $i }}</td>
                                                             <td>{{ $attachment->file_name }}</td>
-                                                            <td>{{ $attachment->Created_by }}</td>
                                                             <td>{{ $attachment->created_at }}</td>
                                                             <td>
                                                                 @if($attachment->Created_by =="")
@@ -306,24 +311,21 @@
                                                                 @endif
                                                             </td>
                                                             <td colspan="2">
-
                                                                 <a class="btn btn-outline-success btn-sm"
-                                                                    href="{{route('transformers.view_file',['id'=>$attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                                                    role=" button"><i class="fas fa-eye"></i>&nbsp;
+                                                                    href="{{route('transformers.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                    role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                     عرض</a>
 
                                                                 <a class="btn btn-outline-info btn-sm"
-                                                                    href="{{ url('download') }}/{{ $attachment->id_task }}/{{ $attachment->file_name }}"
+                                                                    href="{{route('transformers.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-download"></i>&nbsp;
                                                                     تحميل</a>
-
                                                                 <button class="btn btn-outline-danger btn-sm"
                                                                     data-toggle="modal"
                                                                     data-file_name="{{ $attachment->file_name }}"
                                                                     data-invoice_number="{{ $attachment->id_task }}"
                                                                     data-id_file="{{ $attachment->id }}"
                                                                     data-target="#delete_file">حذف</button>
-
                                                             </td>
                                                         </tr>
                                                         @endforeach

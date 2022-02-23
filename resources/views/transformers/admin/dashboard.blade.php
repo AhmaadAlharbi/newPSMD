@@ -218,15 +218,11 @@
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-
-                                        @if (Gate::allows('update-task', $task)||Auth::user()->name == $task->user)
+                                        @can('write-report',$task)
                                         <a class="text-left btn btn-success "
                                             href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
-
-                                        @endif
-
-
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

@@ -26,7 +26,7 @@ Route::middleware(['auth','is_transformers'])->group(function(){
   Route::get('/dashboard/user/query_section_id=5/{id}/completed',[TransformersController::class,'engineerPageTasksCompleted'])->name('TransformersController.engineerPageTaskCompleted');
   Route::get('/dashboard/user/query_section_id=5/{id}/pending',[TransformersController::class,'engineerPageTasksUnCompleted'])->name('TransformersController.engineerPageTaskUncompleted');
   Route::get('transformers/View_file/{id}/{file_name}', [TransformersController::class, 'open_file'])->name('transformers.view_file');
-  Route::get('/download/{id}/{file_name}', [TransformersController::class, 'get_file']);
+  Route::get('transformers/download/{id}/{file_name}', [TransformersController::class, 'get_file'])->name('transformers.download_file');
    // VIEW REPORT PRINT PAGE
 
   Route::get('/dashboard/user/query_section_id=5/print-report/{id}',[TransformersController::class,'viewPrintReport'])->name('Transformers.user.veiwReport');
