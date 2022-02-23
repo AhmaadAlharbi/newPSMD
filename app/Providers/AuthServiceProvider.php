@@ -6,6 +6,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Task;
+use Illuminate\Auth\Access\Response;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -26,8 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('update-task', function (User $user, Task $task) {
-            return $user->id === $task->eng_id;
+        // Gate::define('update-task', function (User $user, Task $task) {
+        //     return $user->id === $task->eng_id;
+        // });
+
+        Gate::define('write-report', function (User $user, Task $task) {
+            return $user->id === $task->eng_id   ? Response::allow()
+            : Response::deny('You must be an administrator.');
         });
     }
 }

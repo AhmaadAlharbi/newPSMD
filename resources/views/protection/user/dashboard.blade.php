@@ -217,12 +217,11 @@
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-                                        @if (Gate::allows('update-task', $task))
                                         <a class="text-left btn btn-success "
                                             href="{{route('protection.engineerReportForm',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Action Take</a>
 
-                                        @endif
+
                                     </div>
                                 </div>
                             </div>

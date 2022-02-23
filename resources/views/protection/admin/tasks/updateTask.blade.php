@@ -305,7 +305,6 @@
                                 <tr class="text-dark">
                                     <th scope="col">م</th>
                                     <th scope="col">اسم الملف</th>
-                                    <th scope="col">قام بالاضافة</th>
                                     <th scope="col">تاريخ الاضافة</th>
                                     <th scope="col"> بواسطة</th>
                                     <th scope="col">العمليات</th>
@@ -318,7 +317,6 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $attachment->file_name }}</td>
-                                    <td>{{ $attachment->Created_by }}</td>
                                     <td>{{ $attachment->created_at }}</td>
                                     <td>
                                         @if($attachment->Created_by =="")

@@ -77,6 +77,7 @@ class ProtectionController extends Controller
         ->where("shift",$shift_id)
         ->join('users','users.id','=','engineers.user_id')
         ->select('users.name','users.id','users.email','users.section_id')
+        ->where('users.section_id',2)
         ->get();  
     }
 
@@ -116,7 +117,6 @@ class ProtectionController extends Controller
         ]);
 
         if ($request->hasfile('pic')) {
-            $task_id = $id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
                 $file->move(public_path('Attachments/protection/' . $task_id), $name);
@@ -343,12 +343,15 @@ class ProtectionController extends Controller
             ->get();
         return view('protection.user.mytasks', compact('tasks'));
     }
-    public function engineerReportForm($id){
-
-
+    public function engineerReportForm($id,Request $request , Task $task){
+   
+     
         $tasks = Task::where('id',$id)->first();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
-
+           if (!Gate::allows('write-report',$tasks)) {
+            abort(403);
+            
+        }
         return view('protection.user.EngineerReportForm',compact('tasks','task_attachments'));
     }
 

@@ -195,7 +195,6 @@
                                                     <a href="" class="btn btn-secondary">الصفحة
                                                         الرئيسية</a>
 
-
                                                     <table
                                                         class="table table-hover table-invoice table-striped table-border text-md-nowrap mb-0">
                                                         <tr>
