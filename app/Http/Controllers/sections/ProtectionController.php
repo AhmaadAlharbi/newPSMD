@@ -54,10 +54,13 @@ class ProtectionController extends Controller
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
         return (String) DB::table('engineers')
+        ->where('area',$area_id)
+        ->where('shift',$shift_id)
         ->Join('users','users.id','=','engineers.user_id')
         ->where('users.section_id',2)
         ->get();
     }
+    
     //get Engineer Email
     public function getEngineersEmail($user_id){
         return (String) $engineersTable = DB::table('engineers')
@@ -291,6 +294,7 @@ class ProtectionController extends Controller
     public function userIndex() {
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',2)
+        ->where('eng_id',Auth::user()->id)
         ->where('status', 'pending')
         ->get();
     // $task_details = TaskDetails::orderBy('id', 'desc')
@@ -343,7 +347,9 @@ class ProtectionController extends Controller
 
 
         $tasks = Task::where('id',$id)->first();
-        return view('protection.user.EngineerReportForm',compact('tasks'));
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+
+        return view('protection.user.EngineerReportForm',compact('tasks','task_attachments'));
     }
 
     public function SubmitEngineerReport(Request $request,$id){

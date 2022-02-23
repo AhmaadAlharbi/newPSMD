@@ -22,8 +22,8 @@ Route::get('/dashboard/user/query_section_id=2/{id}',[ProtectionController::clas
 Route::get('/dashboard/user/query_section_id=2/{id}/completed',[ProtectionController::class,'engineerPageTasksCompleted'])->name('protection.engineerPageTaskCompleted');
 Route::get('/dashboard/user/query_section_id=2/{id}/pending',[ProtectionController::class,'engineerPageTasksUnCompleted'])->name('protection.engineerPageTaskUncompleted');
 Route::get('/dashboard/user/query_section_id=2/task-details/{id}',[ProtectionController::class,'usertaskDetails'])->name('protecion.user.taskDetails');
-Route::get('View_file/{id}/{file_name}', [ProtectionController::class, 'open_file'])->name('view_file');
-Route::get('download/{id}/{file_name}', [ProtectionController::class, 'get_file']);
+Route::get('/protection/View_file/{id}/{file_name}', [ProtectionController::class, 'open_file'])->name('protection.view_file');
+Route::get('/protection/download/{id}/{file_name}', [ProtectionController::class, 'get_file'])->name('protection.download_file');
 Route::get('/dashboard/user/query_section_id=2/print-report/{id}',[ProtectionController::class,'viewPrintReport'])->name('protection.user.veiwReport');
 Route::get('/dashboard/user/archive/query_section_id=2/',[ProtectionController::class,'userArchive'])->name('protection.user.archive');
 // VIEW REPORT PRINT PAGE
@@ -50,7 +50,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/pending-tasks',[ProtectionController::class,'showPendingTasks'])->name('protection.admin.pendingTasks');
     Route::get('/dashboard/admin/query_section_id=2/completed-tasks',[ProtectionController::class,'showCompletedTasks'])->name('protection.admin.completedTasks');
     Route::get('/dashboard/admin/query_section_id=2/archive',[ProtectionController::class,'showArchive'])->name('protection.admin.archive');
-    Route::get('/dashboard/admin/query_section_id=2/task-details/{id}',[ProtectionController::class,'taskDetails'])->name('protecion.admin.taskDetails');
+    Route::get('/dashboard/admin/query_section_id=2/task-details/{id}',[ProtectionController::class,'taskDetails'])->name('protection.admin.taskDetails');
     Route::get('/dashboard/admin/query_section_id=2/engineers_list',[ProtectionController::class,'showEngineers'])->name('protection.engineers');
     Route::get('/dashboard/admin/query_section_id=2/update-task/{id}',[ProtectionController::class,'updateTask'])->name('protection.updateTask');
     Route::post('/dashboard/admin/query_section_id=2/update-task/{id}',[ProtectionController::class,'update'])->name('protection.update');

@@ -206,11 +206,10 @@
                                         <a href="" class="btn  btn-warning d-block">Assign Engineer</a>
                                         @endif
 
-                                        <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('protecion.admin.taskDetails',['id'=>$task->id])}}"
+                                        <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
+                                        <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
-
                                         {{-- <a class="text-left btn btn-dark " href=""
                                             class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
                                         @endif
@@ -273,7 +272,7 @@
                         <a class="btn btn-info mt-2 text-center"
                             href="{{route('protection.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('protecion.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('protection.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
                 </ul>
 

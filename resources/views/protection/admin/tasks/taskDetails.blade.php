@@ -316,15 +316,14 @@
                                                             <td colspan="2">
 
                                                                 <a class="btn btn-outline-success btn-sm"
-                                                                    href="{{ url('View_file') }}/{{ $attachment->id_task }}/{{ $attachment->file_name }}"
+                                                                    href="{{route('protection.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                     عرض</a>
 
                                                                 <a class="btn btn-outline-info btn-sm"
-                                                                    href="{{ url('download') }}/{{ $attachment->id_task }}/{{ $attachment->file_name }}"
+                                                                    href="{{route('protection.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-download"></i>&nbsp;
                                                                     تحميل</a>
-
                                                                 <button class="btn btn-outline-danger btn-sm"
                                                                     data-toggle="modal"
                                                                     data-file_name="{{ $attachment->file_name }}"
