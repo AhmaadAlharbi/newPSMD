@@ -318,6 +318,58 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title">المرفقات</h5>
+                                                        {{--show Attahcments --}}
+                                                        <div class="table-responsive mt-15">
+                                                            <table class="table center-aligned-table mb-0  table-hover"
+                                                                style="text-align:center">
+                                                                <thead>
+                                                                    <tr class="text-dark">
+                                                                        <th scope="col">م</th>
+                                                                        <th scope="col">اسم الملف</th>
+                                                                        <th scope="col">تاريخ الاضافة</th>
+                                                                        <th scope="col"> بواسطة</th>
+                                                                        <th scope="col">العمليات</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php $i = 0; ?>
+                                                                    @foreach ($task_attachments as $attachment)
+                                                                    <?php $i++; ?>
+                                                                    <tr>
+                                                                        <td>{{ $i }}</td>
+                                                                        <td>{{ $attachment->file_name }}</td>
+                                                                        <td>{{ $attachment->created_at }}</td>
+                                                                        <td>
+                                                                            @if($attachment->Created_by =="")
+                                                                            {{$task->engineers->name}}
+                                                                            @else
+                                                                            {{ $attachment->Created_by }}
+                                                                            @endif
+                                                                        </td>
+                                                                        <td colspan="2">
+
+                                                                            <a class="btn btn-outline-success btn-sm"
+                                                                                href="{{route('switch.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                                role="button"><i
+                                                                                    class="fas fa-eye"></i>&nbsp;
+                                                                                عرض</a>
+
+                                                                            <a class="btn btn-outline-info btn-sm"
+                                                                                href="{{route('switch.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                                role="button"><i
+                                                                                    class="fas fa-download"></i>&nbsp;
+                                                                                تحميل</a>
+
+
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
                                                         <div class="col-sm-12 col-md-12">
                                                             <input type="file" name="pic[]" class="dropify"
                                                                 accept=".pdf,.jpg, .png, image/jpeg, image/png"

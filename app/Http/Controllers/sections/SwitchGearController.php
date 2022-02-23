@@ -117,7 +117,6 @@ class SwitchGearController extends Controller
         ]);
 
         if ($request->hasfile('pic')) {
-            $task_id = $id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
                 $file->move(public_path('Attachments/switchgear/' . $task_id), $name);
@@ -345,10 +344,12 @@ class SwitchGearController extends Controller
         return view('switchgear.user.mytasks', compact('tasks'));
     }
     public function engineerReportForm($id){
-
-
         $tasks = Task::where('id',$id)->first();
-        return view('switchgear.user.EngineerReportForm',compact('tasks'));
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+        if (!Gate::allows('write-report',$tasks)) {
+            abort(403);      
+         }
+        return view('switchgear.user.EngineerReportForm',compact('tasks','task_attachments'));
     }
 
     public function SubmitEngineerReport(Request $request,$id){
