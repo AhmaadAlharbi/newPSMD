@@ -47,8 +47,8 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/getEngineersOnShift/{area_id}/{shift_id}',[ProtectionController::class,'getEngineersShift']);
     //get stations
     Route::get('/stations/{id}',[ProtectionController::class,'getStations']);
-
-    ///BACKEND ROUTE
+    Route::get('/protection/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
+    ///*****BACKEND ROUTE *********
     Route::post('/protection/send_task',[ProtectionController::class,'store'])->name('protection.store');
     Route::get('/dashboard/admin/query_section_id=2/All-tasks',[ProtectionController::class,'showAllTasks'])->name('protection.admin.showAllTasks');
     Route::get('/dashboard/admin/query_section_id=2/pending-tasks',[ProtectionController::class,'showPendingTasks'])->name('protection.admin.pendingTasks');
@@ -56,6 +56,9 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/archive',[ProtectionController::class,'showArchive'])->name('protection.admin.archive');
     Route::get('/dashboard/admin/query_section_id=2/task-details/{id}',[ProtectionController::class,'taskDetails'])->name('protection.admin.taskDetails');
     Route::get('/dashboard/admin/query_section_id=2/engineers_list',[ProtectionController::class,'showEngineers'])->name('protection.engineers');
+     //add engineer
+    Route::post('/dashboard/admin/query_section_id=2/add-engineer',[ProtectionController::class,'addEngineer'])->name('protection.addEngineer');
+
     Route::get('/dashboard/admin/query_section_id=2/update-task/{id}',[ProtectionController::class,'updateTask'])->name('protection.updateTask');
     Route::post('/dashboard/admin/query_section_id=2/update-task/{id}',[ProtectionController::class,'update'])->name('protection.update');
     Route::delete('/dashboard/admin/query_section_id=2/deleteTask',[ProtectionController::class,'destroyTask'])->name('protection.destroyTask');

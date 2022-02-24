@@ -100,8 +100,7 @@ window.onload = function() {
                                 @elseif($task->station->control == "TOWN CONTROL CENTER")
                                 <td class="table-danger">{{$task->station->control}}
                                 </td>
-                                @elseif($task->station->control == "SHUAIBA CONTROL
-                                CENTER")
+                                @elseif($task->station->control == "SHUAIBA CONTROL CENTER")
                                 <td class="table-success">{{$task->station->control}}
                                 </td>
                                 @else

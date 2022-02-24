@@ -60,7 +60,10 @@ class ProtectionController extends Controller
         ->where('users.section_id',2)
         ->get();
     }
-    
+    //get user email
+    public function getUserEmail($user_name){
+        return (String) User::where('name',$user_name)->first();
+    }
     //get Engineer Email
     public function getEngineersEmail($user_id){
         return (String) $engineersTable = DB::table('engineers')
@@ -196,9 +199,20 @@ class ProtectionController extends Controller
         ->join('users','users.id','=','engineers.user_id')
         ->select('users.name','users.id','users.email','users.section_id','engineers.area','engineers.shift')
         ->where('users.section_id',2)
-        ->get();   
-         return view ('protection.admin.engineers.engineersList',compact('engineers'));
+        ->get();
+        $users = User::where('section_id',2)->get();   
+         return view ('protection.admin.engineers.engineersList',compact('engineers','users'));
 
+    }
+    public function addEngineer(Request $request){
+        Engineer::create([
+            'user_id'=>$request->user_id,
+            'section_id'=>2,
+            'area'=>$request->area_id,
+            'shift'=>$request->shift_id,
+        ]);
+        session()->flash('Add','تم الاضافة بنجاح');
+        return back();
     }
 
     //get 

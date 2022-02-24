@@ -73,7 +73,6 @@ window.onload = function() {
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0">الاسم</th>
                                 <th class="border-bottom-0"> البريد الإلكتروني </th>
-                                <th class="border-bottom-0"> هاتف </th>
                                 <th class="border-bottom-0"> المنطقة </th>
                                 <th class="border-bottom-0"> shift </th>
                                 <th class="border-bottom-0">العمليات</th>
@@ -141,15 +140,20 @@ window.onload = function() {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST">
+            <form action="{{route('protection.addEngineer')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label for="eng_name" class="control-label ">اسم المهندس</label>
-                    <input type="text" name="eng_name" class="form-control m-2">
+                    <input list="users" class="form-control" value="" name="user_engineer" id="user_engineer"
+                        onchange="getUserEmail()">
+                    <datalist id="users">
+                        @foreach($users as $user)
+                        <option value="{{$user->name}}">
+                            @endforeach
+                    </datalist>
                     <label for="email" class="control-label ">البريد الإلكتروني</label>
-                    <input type="text" name="email" class="form-control m-2">
-                    <label for="mobile" class="control-label ">الهاتف </label>
-                    <input type="text" name="mobile" class="form-control m-2">
+                    <input type="email" id="user_email" name="email" class="form-control m-2">
+                    <input type="text" id="user_id" name="user_id">
                     <label for="area_id" class="control-label ">المنطقة</label>
                     <select name="area_id" id="area" class="form-control">
                         <!--placeholder-->
@@ -187,7 +191,7 @@ window.onload = function() {
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>
-            <div class="modal-body">
+            <div class=" modal-body">
                 هل انت متاكد من عملية الحذف ؟
                 <input type="hidden" name="invoice_id" id="invoice_id" value="">
             </div>
@@ -234,6 +238,7 @@ window.onload = function() {
 <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
+
 <script>
 $('#delete_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
@@ -254,3 +259,20 @@ $('#Transfer_invoice').on('show.bs.modal', function(event) {
 
 
 @endsection
+
+<script>
+//this function to get user email in order to add user to engineers table
+const getUserEmail = async () => {
+    const user_name = document.querySelector("#user_engineer").value;
+    const user_email = document.querySelector("#user_email");
+    const user_id = document.querySelector("#user_id");
+    const response = await fetch("/protection/getUserEmail/" + user_name);
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    console.log(data);
+    user_email.value = data.email;
+    user_id.value = data.id;
+};
+</script>
