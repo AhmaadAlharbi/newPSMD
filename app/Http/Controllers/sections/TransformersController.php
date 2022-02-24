@@ -378,6 +378,26 @@ class TransformersController extends Controller
             ->get();
         return view('transformers.user.mytasks', compact('tasks'));
     }
+    public function showEngineerTasks($id){
+        $tasks = Task::where('eng_id',$id)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('transformers.user.tasks.engineertasks', compact('tasks'));
+    }
+    public function showEngineerTasksUncompleted($id){
+        $tasks = Task::where('eng_id',$id)
+        ->where('status','pending')
+        ->orderBy('id', 'desc')
+        ->get();
+        return view('transformers.user.tasks.engineertasks', compact('tasks'));
+    }
+    public function showEngineerTasksCompleted($id){
+        $tasks = Task::where('eng_id',$id)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
+        return view('transformers.user.tasks.engineertasks', compact('tasks'));
+    }
     public function engineerReportForm($id){
         $tasks = Task::where('id',$id)->first();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();

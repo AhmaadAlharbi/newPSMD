@@ -42,16 +42,15 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('Transformers.admin.showAllTasks')}}">عرض
+                            href="{{route('transformers.showEngineerTasks',['id'=>Auth::user()->id])}}">عرض
                             كافة
-                            مهمات شهر {{$monthName}}</a>
-                    </h6>
+                            مهمات </a>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',5)->count()}}
+                                {{\App\Models\Task::where('eng_id',Auth::user()->id)->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
@@ -66,14 +65,16 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('Transformers.admin.pendingTasks')}}">المهمات الغير
+                            href="{{route('transformers.showEngineerTasksUncompleted',['id'=>Auth::user()->id])}}">المهمات
+                            الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','pending')->where('fromSection',5)->count()}}
+                                {{\App\Models\Task::where('status','pending')->where('eng_id',Auth::user()->id)->count()}}
+
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات غير منجزة</p>
                         </div>
@@ -81,7 +82,8 @@
                             <i class="fas fa-arrow-circle-down text-white"></i>
                             <span class="text-white tx-16 op-7">
                                 @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','pending')->where('fromSection',5)->count()/\App\Models\Task::count())*100)}}%
+                                {{round((\App\Models\Task::where('status','pending')->where('eng_id',Auth::user()->id)->count()/\App\Models\Task::count())*100)}}%
+
                                 @endif
 
                             </span>
@@ -98,14 +100,14 @@
 
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('Transformers.admin.completedTasks')}}">المهمات
+                            href="{{route('transformers.showEngineerTasksCompleted',['id'=>Auth::user()->id])}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',5)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('eng_id',Auth::user()->id)->whereMonth('created_at', date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
