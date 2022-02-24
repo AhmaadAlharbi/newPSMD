@@ -297,29 +297,47 @@ class ProtectionController extends Controller
         ->where('eng_id',Auth::user()->id)
         ->where('status', 'pending')
         ->get();
-    // $task_details = TaskDetails::orderBy('id', 'desc')
-    // ->where('status', 'completed')
-    // ->whereMonth('created_at', date('m'))
-    // ->paginate(4);
 
-    $task_details = DB::table('task_details')
-    ->join('tasks','tasks.id','=','task_details.task_id')
-    ->where('task_details.status','completed')
-    ->where('tasks.fromSection',2)
-    ->orderBy('tasks.id', 'desc')
 
-    ->get();   
-    $date = Carbon::now();
-    $monthName = $date->format('F');
-    return view('protection.user.dashboard',compact('tasks','task_details','date','monthName'));
+        $task_details = DB::table('task_details')
+        ->join('tasks','tasks.id','=','task_details.task_id')
+        ->where('task_details.status','completed')
+        ->where('tasks.fromSection',2)
+        ->orderBy('tasks.id', 'desc')
+
+        ->get();   
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+        return view('protection.user.dashboard',compact('tasks','task_details','date','monthName'));
     }
 
-    public function engineerPageTasks($id){
-        $engineer = Engineer::where('email',$id)->value('id');
-        $tasks = Task::where('eng_id',$engineer)
+    // public function engineerPageTasks($id){
+    //     $engineer = Engineer::where('email',$id)->value('id');
+    //     $tasks = Task::where('eng_id',$engineer)
+    //         ->orderBy('id', 'desc')
+    //         ->get();
+        
+    //     return view('protection.user.mytasks', compact('tasks'));
+    // }
+    public function showEngineerTasks($id){
+        $tasks = Task::where('eng_id',$id)
             ->orderBy('id', 'desc')
             ->get();
-        return view('protection.user.mytasks', compact('tasks'));
+        return view('protection.user.tasks.engineertasks', compact('tasks'));
+    }
+    public function showEngineerTasksUncompleted($id){
+        $tasks = Task::where('eng_id',$id)
+        ->where('status','pending')
+        ->orderBy('id', 'desc')
+        ->get();
+        return view('protection.user.tasks.engineertasks', compact('tasks'));
+    }
+    public function showEngineerTasksCompleted($id){
+        $tasks = Task::where('eng_id',$id)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
+        return view('protection.user.tasks.engineertasks', compact('tasks'));
     }
     public function usertaskDetails($id){
         $tasks = Task::where('id', $id)->first();
@@ -344,13 +362,10 @@ class ProtectionController extends Controller
         return view('protection.user.mytasks', compact('tasks'));
     }
     public function engineerReportForm($id,Request $request , Task $task){
-   
-     
         $tasks = Task::where('id',$id)->first();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
            if (!Gate::allows('write-report',$tasks)) {
-            abort(403);
-            
+            abort(403);    
         }
         return view('protection.user.EngineerReportForm',compact('tasks','task_attachments'));
     }

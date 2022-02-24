@@ -32,8 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         // });
 
         Gate::define('write-report', function (User $user, Task $task) {
-            return $user->id === $task->eng_id   ? Response::allow()
-            : Response::deny('You must be an administrator.');
+            return $user->id === $task->eng_id;
         });
     }
 }

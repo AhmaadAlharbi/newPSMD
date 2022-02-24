@@ -28,6 +28,10 @@ Route::get('/dashboard/user/query_section_id=2/print-report/{id}',[ProtectionCon
 Route::get('/dashboard/user/archive/query_section_id=2/',[ProtectionController::class,'userArchive'])->name('protection.user.archive');
 // VIEW REPORT PRINT PAGE
 Route::get('/dashboard/user/query_section_id=2/task-details/{id}',[ProtectionController::class,'taskDetails'])->name('protection.user.taskDetails');
+//show user tasks page
+Route::get('/dashboard/user/query_section_id=2/engineer-tasks/{id}',[ProtectionController::class,'showEngineerTasks'])->name('protection.showEngineerTasks');
+Route::get('/dashboard/user/query_section_id=2/engineer-tasks-uncompleted/{id}',[ProtectionController::class,'showEngineerTasksUncompleted'])->name('protection.showEngineerTasksUncompleted');
+Route::get('/dashboard/user/query_section_id=2/engineer-tasks-completed/{id}',[ProtectionController::class,'showEngineerTasksCompleted'])->name('protection.showEngineerTasksCompleted');
 });
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin','is_protection'])->group(function () {
