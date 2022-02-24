@@ -62,7 +62,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-danger-gradient">
-            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+            <div class="pl-3 pt-3 pr-3 pb-2">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
                             href="{{route('transformers.showEngineerTasksUncompleted',['id'=>Auth::user()->id])}}">المهمات
@@ -107,7 +107,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('eng_id',Auth::user()->id)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('eng_id',Auth::user()->id)->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>

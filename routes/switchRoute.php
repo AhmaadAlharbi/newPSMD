@@ -28,7 +28,12 @@ Route::get('/dashboard/user/query_section_id=6/print-report/{id}',[SwitchGearCon
 Route::get('/dashboard/user/archive/query_section_id=6/',[SwitchGearController::class,'userArchive'])->name('switch.user.archive');
 // VIEW REPORT PRINT PAGE
 Route::get('/dashboard/user/query_section_id=6/task-details/{id}',[SwitchGearController::class,'taskDetails'])->name('switch.user.taskDetails');
+//show user tasks page
+Route::get('/dashboard/user/query_section_id=6/engineer-tasks/{id}',[SwitchGearController::class,'showEngineerTasks'])->name('switch.showEngineerTasks');
+Route::get('/dashboard/user/query_section_id=6/engineer-tasks-uncompleted/{id}',[SwitchGearController::class,'showEngineerTasksUncompleted'])->name('switch.showEngineerTasksUncompleted');
+Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}',[SwitchGearController::class,'showEngineerTasksCompleted'])->name('switch.showEngineerTasksCompleted');
 });
+
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin','is_switch'])->group(function () {
     //main page

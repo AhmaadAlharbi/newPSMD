@@ -33,9 +33,9 @@ Route::middleware(['auth','is_transformers'])->group(function(){
   Route::get('/dashboard/user/archive/query_section_id=5/',[TransformersController::class,'userArchive'])->name('TransformersController.user.archive');
   Route::get('/dashboard/user/query_section_id=5/task-details/{id}',[TransformersController::class,'usertaskDetails'])->name('Transformers.user.taskDetails');
   //show user tasks page
-  Route::get('/dashboard/user/query_section_id=2/engineer-tasks/{id}',[TransformersController::class,'showEngineerTasks'])->name('transformers.showEngineerTasks');
-  Route::get('/dashboard/user/query_section_id=2/engineer-tasks-uncompleted/{id}',[TransformersController::class,'showEngineerTasksUncompleted'])->name('transformers.showEngineerTasksUncompleted');
-  Route::get('/dashboard/user/query_section_id=2/engineer-tasks-completed/{id}',[TransformersController::class,'showEngineerTasksCompleted'])->name('transformers.showEngineerTasksCompleted');
+  Route::get('/dashboard/user/query_section_id=5/engineer-tasks/{id}',[TransformersController::class,'showEngineerTasks'])->name('transformers.showEngineerTasks');
+  Route::get('/dashboard/user/query_section_id=5/engineer-tasks-uncompleted/{id}',[TransformersController::class,'showEngineerTasksUncompleted'])->name('transformers.showEngineerTasksUncompleted');
+  Route::get('/dashboard/user/query_section_id=5/engineer-tasks-completed/{id}',[TransformersController::class,'showEngineerTasksCompleted'])->name('transformers.showEngineerTasksCompleted');
   });
 
 Route::middleware(['is_admin','is_transformers'])->group(function () {

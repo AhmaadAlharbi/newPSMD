@@ -110,7 +110,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('eng_id',Auth::user()->id)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('eng_id',Auth::user()->id)->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>

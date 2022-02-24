@@ -321,6 +321,26 @@ class SwitchGearController extends Controller
             ->get();
         return view('switchgear.user.mytasks', compact('tasks'));
     }
+    public function showEngineerTasks($id){
+        $tasks = Task::where('eng_id',$id)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('switchgear.user.tasks.engineertasks', compact('tasks'));
+    }
+    public function showEngineerTasksUncompleted($id){
+        $tasks = Task::where('eng_id',$id)
+        ->where('status','pending')
+        ->orderBy('id', 'desc')
+        ->get();
+        return view('switchgear.user.tasks.engineertasks', compact('tasks'));
+    }
+    public function showEngineerTasksCompleted($id){
+        $tasks = Task::where('eng_id',$id)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
+        return view('switchgear.user.tasks.engineertasks', compact('tasks'));
+    }
     public function usertaskDetails($id){
         $tasks = Task::where('id', $id)->first();
         $task_details = TaskDetails::where('task_id', $id)->get();
