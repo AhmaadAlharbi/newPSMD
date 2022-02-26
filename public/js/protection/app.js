@@ -13,10 +13,9 @@ const refNum = document.querySelector("#refNum");
 const showAttachment = document.getElementById("showAttachment");
 const hideAttachment = document.getElementById("hideAttachment");
 const attachmentFile = document.getElementById("attachmentFile");
-const user_engineer = document.querySelector("#user_engineer");
-// //generate random number
-// let randomNumber = Math.floor(Math.random() * 900);
-// refNum.value += randomNumber + 1;
+//generate random number
+let randomNumber = Math.floor(Math.random() * 900);
+refNum.value += randomNumber + 1;
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");
     let area_select_option2 = document.createElement("option");
@@ -181,15 +180,3 @@ hideAttachment.addEventListener("click", (e) => {
     attachmentFile.classList.toggle("d-none");
 });
 controlColor(controlName.value);
-
-//this function to get user email in order to add user to engineers table
-const getUserEmail = async () => {
-    let user_name = user_engineer.value;
-    const response = await fetch("/protection/getUserEmail/" + user_name);
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
-    }
-    console.log(data);
-};
-
-alert("ted");

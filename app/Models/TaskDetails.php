@@ -24,7 +24,9 @@ class TaskDetails extends Model
     }
     public function tasks()
     {
-        return $this->belongsTo(Task::class,'task_id');
+        // return $this->belongsTo(Task::class,'task_id');
+        return $this->hasMany(Task::class);
+
     }
 
 

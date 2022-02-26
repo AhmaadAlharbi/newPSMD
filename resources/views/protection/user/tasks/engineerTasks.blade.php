@@ -72,10 +72,11 @@ window.onload = function() {
                                 <th class="border-bottom-0">رقم المهمة</th>
                                 <th class="border-bottom-0">اسم المحطة </th>
                                 <th class="border-bottom-0"> التحكم </th>
-
                                 <th class="border-bottom-0">تاريخ ارسال المهمة</th>
                                 <th class="border-bottom-0">المرفقات </th>
                                 <th class="border-bottom-0">Action Take </th>
+                                <th class="border-bottom-0">تعديل التقرير </th>
+
 
                             </tr>
                         </thead>
@@ -109,7 +110,7 @@ window.onload = function() {
                                 @endif
                                 <td>{{$task->task_date}}</td>
                                 <td><a href="{{route('protection.user.taskDetails',['id'=>$task->id])}}"
-                                        class=" btn btn-info">Details</a></td>
+                                        class=" btn btn-outline-info">Details</a></td>
                                 <td>
                                     @if($task->status == 'pending')
                                     <a href="{{route('protection.engineerReportForm',['id'=>$task->id])}}"
@@ -119,11 +120,40 @@ window.onload = function() {
                                 @endif
                                 @if($task->status == 'completed')
                                 <a href="{{route('protection.user.veiwReport',['id'=>$task->id])}}"
-                                    class="btn btn-success">Report</a>
+                                    class="btn btn-outline-success">Report</a>
                                 </td>
-                                @endif
+                                @switch($task->report_status)
+                                @case(1)
+                                <td> <a href="{{route('protection.editReport',['id'=>$task->id])}}"
+                                        class="btn btn-outline-secondary">طلب تعديل</a>
+                                </td>
+                                @break
+                                @case(2)
+                                <td> <button class="btn btn-secondary " disabled> waiting ...
+                                    </button>
+                                    <span class="d-block text-danger">يرجى انتظار موافقة رئيس القسم</span>
+
+                                </td>
+                                @break
+                                @case(0)
+                                <td> <a href="{{route('protection.editReport',['id'=>$task->id])}}"
+                                        class="btn btn-info"> تعديل</a>
+                                </td>
+                                @break
+                                @default
+                                <td> <a href="{{route('protection.editReport',['id'=>$task->id])}}"
+                                        class="btn btn-danger"> erorr</a>
+                                    @endswitch
+
                             </tr>
+                            @else
+                            <td>
+                                <p class="text-secondary">المهمة غير منجزة</p>
+                            </td>
+                            @endif
+
                             @endforeach
+
 
                         </tbody>
                     </table>

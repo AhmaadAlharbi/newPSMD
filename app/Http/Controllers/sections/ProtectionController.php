@@ -337,7 +337,8 @@ class ProtectionController extends Controller
         $tasks = Task::where('eng_id',$id)
             ->orderBy('id', 'desc')
             ->get();
-        return view('protection.user.tasks.engineertasks', compact('tasks'));
+  
+        return view('protection.user.tasks.engineerTasks', compact('tasks'));
     }
     public function showEngineerTasksUncompleted($id){
         $tasks = Task::where('eng_id',$id)
@@ -351,6 +352,9 @@ class ProtectionController extends Controller
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
+        // $tasks_details = TaskDetails::where('eng_id',$id)
+        // ->where('status','completed')
+        // ->get();
         return view('protection.user.tasks.engineertasks', compact('tasks'));
     }
     public function usertaskDetails($id){
@@ -393,6 +397,7 @@ class ProtectionController extends Controller
             'report_date' => Carbon::now(),
             'eng_id' =>$eng_id,
             'action_take' => $request->action_take,
+            'report_status'=>1,
             'status'=>'completed',
         ]);
         $task->update([
@@ -457,6 +462,15 @@ class ProtectionController extends Controller
 
     }
 
+    public function editReport($id){
+        $task = Task::where('id',$id)
+        ->where('status','completed')
+        ->first();
+        $task->update([
+            'report_status'=>2,
+        ]);
+        return back();
+    }
     //this is public route
     public function showStations(){
         $stations = Station::all();

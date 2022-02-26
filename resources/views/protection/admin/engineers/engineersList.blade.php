@@ -153,7 +153,7 @@ window.onload = function() {
                     </datalist>
                     <label for="email" class="control-label ">البريد الإلكتروني</label>
                     <input type="email" id="user_email" name="email" class="form-control m-2">
-                    <input type="text" id="user_id" name="user_id">
+                    <input type="hidden" id="user_id" name="user_id">
                     <label for="area_id" class="control-label ">المنطقة</label>
                     <select name="area_id" id="area" class="form-control">
                         <!--placeholder-->
@@ -164,8 +164,8 @@ window.onload = function() {
                     <label for="shift_id" class="control-label ">shift</label>
                     <select name="shift_id" id="shift" class="form-control">
                         <!--placeholder-->
-                        <option value="1">صباحاً</option>
-                        <option value="2">مساءً</option>
+                        <option value="0">صباحاً</option>
+                        <option value="1">مساءً</option>
                     </select>
                 </div>
                 <div class="modal-footer">
