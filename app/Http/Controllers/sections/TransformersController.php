@@ -180,6 +180,12 @@ class TransformersController extends Controller
         return back();
 
     }
+    public function showEngineersReportRequest(){
+        $tasks = Task::where('report_status',2)
+        ->where('fromSection',5)
+        ->get();
+        return view('transformers.admin.tasks.engineersReportRequest',compact('tasks'));
+    }
     public function showAllTasks(){
         $tasks = Task::where('fromSection',5)->orderBy('id', 'desc')
         ->get();
@@ -482,7 +488,62 @@ class TransformersController extends Controller
        
 
     }
-
+    public function requestEditReport($id){
+        $task = Task::where('id',$id)
+        ->where('status','completed')
+        ->first();
+        $task->update([
+            'report_status'=>2,
+        ]);
+        return back();
+    }
+    public function allowEngineersReportRequest($id){
+        $task = Task::where('id',$id)
+        ->where('status','completed')
+        ->first();
+        $task->update([
+            'report_status'=>0,
+        ]);
+        return back();
+    }
+        //edit report from engineers
+        public function editReport($id){
+            $tasks = Task::where('id',$id)
+            ->where('status','completed')
+            ->first();
+            $tasks_details = TaskDetails::where('task_id',$id)->where('status','completed')->first();
+            $task_attachments =TaskAttachment::where('id_task',$id)->get();
+            return view('transformers.user.tasks.editReport',compact('tasks','tasks_details','task_attachments'));
+        }
+    
+        public function submitEditReport($id,Request $request){
+            $tasks = Task::where('id',$id)->first();
+            $tasks_details = TaskDetails::where('task_id',$id)->where('status','completed')->first();
+    
+            $tasks->update([
+                'report_status'=>1,
+            ]);
+            $tasks_details->update([
+                'action_take'=>$request->action_take,
+            ]);
+            if ($request->hasfile('pic')) {
+                foreach ($request->file('pic') as $file){
+                    $name = $file->getClientOriginalName();
+                    $file->move(public_path('Attachments/transformers/' . $id), $name);
+                    $data[] = $name;
+                    $refNum = $request->refNum;
+                    $attachments = new TaskAttachment();
+                    $attachments->file_name = $name;
+                    $attachments->created_by = Auth::user()->name;
+                    $attachments->id_task = $id;
+                    $attachments->save();
+                }
+            }
+    
+            session()->flash('Add', 'تم التعديل بنجاح');
+            return back();
+    
+        }
     //this is public route
     public function showStations(){
         $stations = Station::all();

@@ -28,9 +28,14 @@ Route::middleware(['auth','is_transformers'])->group(function(){
   Route::get('transformers/View_file/{id}/{file_name}', [TransformersController::class, 'open_file'])->name('transformers.view_file');
   Route::get('transformers/download/{id}/{file_name}', [TransformersController::class, 'get_file'])->name('transformers.download_file');
    // VIEW REPORT PRINT PAGE
-
   Route::get('/dashboard/user/query_section_id=5/print-report/{id}',[TransformersController::class,'viewPrintReport'])->name('Transformers.user.veiwReport');
-  Route::get('/dashboard/user/archive/query_section_id=5/',[TransformersController::class,'userArchive'])->name('TransformersController.user.archive');
+  //request form engineer to edit his report
+Route::get('/dashboard/user/query_section_id=5/request-to-edit-report/{id}',[TransformersController::class,'requestEditReport'])->name('Transformers.requestEditReport');
+//edit report page after allowing it
+Route::get('/dashboard/user/query_section_id=5/edit-report/{id}',[TransformersController::class,'editReport'])->name('Transformers.editReport');
+//submit edit report from engineers
+Route::post('/dashboard/user/query_section_id=5/edit-report/{id}',[TransformersController::class,'submitEditReport'])->name('Transformers.submitEditReport');
+  Route::get('/dashboard/user/archive/query_section_id=5/',[TransformersController::class,'userArchive'])->name('Transformers.user.archive');
   Route::get('/dashboard/user/query_section_id=5/task-details/{id}',[TransformersController::class,'usertaskDetails'])->name('Transformers.user.taskDetails');
   //show user tasks page
   Route::get('/dashboard/user/query_section_id=5/engineer-tasks/{id}',[TransformersController::class,'showEngineerTasks'])->name('transformers.showEngineerTasks');
@@ -42,6 +47,10 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     //main page
 
     Route::get('/dashboard/admin/query_section_id=5',[TransformersController::class,'index'])->name('dashboard.admin.Transformers');
+    //show engineers request to edit reports
+    Route::get('/dashboard/admin/query_section_id=5/engineers-report-request',[TransformersController::class,'showEngineersReportRequest'])->name('Transformers.showEngineersReportRequest');
+    //allow engineers to edit
+    Route::get('/dashboard/admin/query_section_id=5/allow-engineers-report-request/{id}',[TransformersController::class,'allowEngineersReportRequest'])->name('Transformers.allowEngineersReportRequest');
     //add task for admins
     Route::get('/dashboard/admin/query_section_id=5/add_task',[TransformersController::class,'add_task'])->name('Transformers.addTask');
     //get  all engineer's name
