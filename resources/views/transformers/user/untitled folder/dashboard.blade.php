@@ -14,7 +14,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم إدارة مهمات قسم المحولات</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم إدارة مهمات قسم الوقاية</h2>
         </div>
     </div>
 </div>
@@ -36,24 +36,28 @@
     margin: 0 auto;
 }
 </style>
+
 <div class="row row-sm">
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('transformers.showEngineerTasks',['id'=>Auth::user()->id])}}">عرض
+                            href="{{route('protection.showEngineerTasks',['id'=>Auth::user()->id])}}">عرض
                             كافة
                             مهمات </a>
+                    </h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
                                 {{\App\Models\Task::where('eng_id',Auth::user()->id)->count()}}
+
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -62,10 +66,10 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-danger-gradient">
-            <div class="pl-3 pt-3 pr-3 pb-2">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('transformers.showEngineerTasksUncompleted',['id'=>Auth::user()->id])}}">المهمات
+                            href="{{route('protection.showEngineerTasksUncompleted',['id'=>Auth::user()->id])}}">المهمات
                             الغير
                             منجزة</a></h6>
                 </div>
@@ -74,7 +78,6 @@
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
                                 {{\App\Models\Task::where('status','pending')->where('eng_id',Auth::user()->id)->count()}}
-
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات غير منجزة</p>
                         </div>
@@ -100,7 +103,7 @@
 
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('transformers.showEngineerTasksCompleted',['id'=>Auth::user()->id])}}">المهمات
+                            href="{{route('protection.showEngineerTasksCompleted',['id'=>Auth::user()->id])}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -117,7 +120,7 @@
                             <i class="fas fa-arrow-circle-up text-white"></i>
                             <span class="text-white tx-18 op-7">
                                 @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',5)->count()/\App\Models\Task::count())*100)}}%
+                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',2)->count()/\App\Models\Task::count())*100)}}%
                                 @endif
                             </span>
                         </span>
@@ -129,10 +132,10 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-warning-gradient">
-            <div class="pl-3 pt-3 pr-3 pb-2">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('Transformers.admin.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('protection.admin.archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -140,7 +143,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',5)->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('fromSection',2)->count()}}
                             </h4>
                             <p class="mb-0 tx-12 text-white op-7">
                                 تقرير
@@ -172,59 +175,52 @@
                 <p class="tx-12 mb-0 text-muted"></p>
             </div>
             @foreach($tasks as $task)
-            {{--this below code will detrmine eather depertiment is Mechancal or Chemistry--}}
-            @php
-            $department =
-            \App\Models\TrTasks::where(['task_id'=>$task->id])->pluck('department')->first()
-            @endphp
-            <div class="card-body p-0 customers mt-1 bg-danger">
+            <div class="card-body p-0 customers mt-1">
                 <div class="list-group list-lg-group list-group-flush">
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
+
                             <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
                                 alt="Image description">
+
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
                                         <p class="text-right text-muted"> {{$task->created_at}}</p>
+
                                         @if($task->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
+
                                             {{$task->status}}
                                         </span>
                                         @else
                                         <span class="badge badge-danger ml-2">
+
                                             {{$task->status}}
                                         </span>
-                                        @endif
-                                        @if($department == 1)
-                                        <span class="bg-warning p-1 d-block text-center m-1">Mechanical</span>
-                                        @elseif($department ==2)
-                                        <span class="bg-info p-1 d-block text-center m-1">Chemistry</span>
-                                        @else
-                                        <span class="bg-dark text-white p-1  d-block text-center m-1">Electrical</span>
                                         @endif
                                         @if($task->status=="pending")
                                         <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
-                                        <h5 class="m-1 tx-15 text-info border  p-2 mb-3">Waiting to be assigned
+                                        <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>
                                         <a href="" class="btn  btn-warning d-block">Assign Engineer</a>
                                         @endif
+
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('protecion.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
+
                                         {{-- <a class="text-left btn btn-dark " href=""
                                             class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
                                         @endif
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-
                                         <a class="text-left btn btn-success "
-                                            href="{{route('Transformers.engineerReportForm',['id'=>$task->id])}}"
+                                            href="{{route('protection.engineerReportForm',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Action Take</a>
-
 
 
                                     </div>
@@ -237,11 +233,11 @@
             @endforeach
         </div>
     </div>
-
     <div class="col-xl-8 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
                 <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
+
             </div>
             @foreach($task_details as $task_detail)
             <div class="product-timeline card-body pt-2 mt-1 text-center ">
@@ -254,6 +250,7 @@
                             {{ \App\Models\User::where(['id'=>$task_detail->eng_id])->pluck('name')->first()}}
 
                         </p>
+
                         <p class="  bg-white text-dark text-center  "><ins>Station :
                                 @php
                                 //to get station id
@@ -276,9 +273,9 @@
                         </p>
                         @endif
                         <a class="btn btn-info mt-2 text-center"
-                            href="{{route('Transformers.user.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                            href="{{route('protection.user.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('Transformers.user.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('protection.user.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
                 </ul>
 

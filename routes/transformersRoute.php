@@ -56,7 +56,8 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     Route::get('/Transformers/getAdminEmail/{id}',[TransformersController::class,'getAdminsEmail']);
 
     Route::get('/Transformers/{area}/{section}',[TransformersController::class,'getAdmins']);
-
+    //get user in tr secttion
+    Route::get('/Transformers/getUserEmail/{id}',[TransformersController::class,'getUserEmail']);
     ///BACKEND ROUTE
     Route::post('/Transformers/send_task',[TransformersController::class,'store'])->name('Transformers.store');
     Route::get('/dashboard/admin/query_section_id=5/All-tasks',[TransformersController::class,'showAllTasks'])->name('Transformers.admin.showAllTasks');

@@ -149,27 +149,42 @@ window.onload = function() {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('battery.addEngineer')}}" method="POST">
+            <form action="{{route('Transformers.addEngineer')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label for="eng_name" class="control-label ">اسم المهندس</label>
-                    <input type="text" name="eng_name" class="form-control m-2">
+                    <input autocomplete="off" list="users" class="form-control" value="" name="user_engineer"
+                        id="user_engineer" onchange="getUserEmail()">
+                    <datalist id="users">
+                        @foreach($users as $user)
+                        <option value="{{$user->name}}">
+                            @endforeach
+                    </datalist>
                     <label for="email" class="control-label ">البريد الإلكتروني</label>
-                    <input type="text" name="email" class="form-control m-2">
-                    <label for="mobile" class="control-label ">الهاتف </label>
-                    <input type="text" name="mobile" class="form-control m-2">
+                    <input type="email" id="user_email" name="email" class="form-control m-2">
+                    <input type="text" id="user_id" name="user_id">
+
+                    <label for="department" class="control-label ">القسم</label>
+                    <select name="department" id="area" class="form-control">
+                        <!--placeholder-->
+                        <option value="1">Mechanical</option>
+                        <option value="2">Chemistry</option>
+                        <option value="3">Electrical</option>
+                    </select>
+
                     <label for="area_id" class="control-label ">المنطقة</label>
                     <select name="area_id" id="area" class="form-control">
                         <!--placeholder-->
                         <option value="1">المنطقة الشمالية</option>
+                        <option value="3">المنطقة الوسطى</option>
                         <option value="2">المنطقة الجنوبية</option>
                     </select>
 
                     <label for="shift_id" class="control-label ">shift</label>
                     <select name="shift_id" id="shift" class="form-control">
                         <!--placeholder-->
-                        <option value="1">صباحاً</option>
-                        <option value="2">مساءً</option>
+                        <option value="0">صباحاً</option>
+                        <option value="1">مساءً</option>
                     </select>
                 </div>
                 <div class="modal-footer">
@@ -260,5 +275,20 @@ $('#Transfer_invoice').on('show.bs.modal', function(event) {
 })
 </script>
 
-
+<script>
+//this function to get user email in order to add user to engineers table
+const getUserEmail = async () => {
+    const user_name = document.querySelector("#user_engineer").value;
+    const user_email = document.querySelector("#user_email");
+    const user_id = document.querySelector("#user_id");
+    const response = await fetch("/getUserEmail/" + user_name);
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    console.log(data);
+    user_email.value = data.email;
+    user_id.value = data.id;
+};
+</script>
 @endsection

@@ -47,13 +47,27 @@ class TransformersController extends Controller
 
 
      //add tasks to admins
-     public function add_task(){
+    public function add_task(){
         $stations = Station::all();
         return view ('transformers.admin.tasks.add_task',compact('stations'));
     }
 
+        //get user email
+    public function getUserEmail($user_name){
+            return (String) User::where('name',$user_name)->first();
+        }
+    public function addEngineer(Request $request){
+            TR::create([
+                'user_id'=>$request->user_id,
+                'department'=>$request->department,
+                'area'=>$request->area_id,
+                'shift'=>$request->shift_id,
+            ]);
+            session()->flash('Add','تم الاضافة بنجاح');
+            return back();
+        }
        //get all Engineer  JSON
-       public function getEngineerName($area,$department,$shift){
+    public function getEngineerName($area,$department,$shift){
         $shift = 1;
         return (String) $tr = DB::table('tr')
         ->where("area",$area)
@@ -214,7 +228,8 @@ class TransformersController extends Controller
     public function showEngineers(){
         // $engineers = Engineer::where('section_id',5)->get();
         $engineers = TR::all();
-        return view ('transformers.admin.engineers.engineersList',compact('engineers'));
+        $users = User::where('section_id',5)->get();   
+        return view ('transformers.admin.engineers.engineersList',compact('engineers','users'));
     }
 
     //get 
@@ -310,19 +325,7 @@ class TransformersController extends Controller
         ->first();
         return view('Transformers.admin.tasks.report',compact('task_details'));
     }
-    public function addEngineer(Request $request){
-        Engineer::create([
-            'name'=>$request->eng_name,
-            'email'=>$request->email,
-            'mobile'=>$request->mobile,
-            'section_id'=> 5,
-            'area'=>1   ,
-            'shift'=>0,
 
-        ]);
-        session()->flash('Add','تم الاضافة بنجاح');
-        return back();
-    }
      ///##### end backend functions
 
         ####################### USER CONTROLLER ########################

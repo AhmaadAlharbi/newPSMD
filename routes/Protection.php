@@ -58,7 +58,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/getEngineersOnShift/{area_id}/{shift_id}',[ProtectionController::class,'getEngineersShift']);
     //get stations
     Route::get('/stations/{id}',[ProtectionController::class,'getStations']);
-    Route::get('/protection/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
+    // Route::get('/protection/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
     ///*****BACKEND ROUTE *********
     Route::post('/protection/send_task',[ProtectionController::class,'store'])->name('protection.store');
     Route::get('/dashboard/admin/query_section_id=2/All-tasks',[ProtectionController::class,'showAllTasks'])->name('protection.admin.showAllTasks');
@@ -81,6 +81,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     });
     
     Route::get('/dashboard/admin/stations-list',[ProtectionController::class,'showStations'])->name('stationsList')->middleware('auth');
+    Route::get('/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
 
 
 require __DIR__ . '/auth.php';
