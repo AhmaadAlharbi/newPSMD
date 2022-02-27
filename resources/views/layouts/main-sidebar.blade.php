@@ -82,6 +82,10 @@
 
                 </ul>
             </li>
+            <li class="slide">
+                <a href="{{'/dashboard/'.$is_admin.'/query_section_id='.Auth::user()->section_id.'/engineers-report-request'}}"
+                    class="slide-item">متابعة طلبات تعديل التقارير</a>
+            </li>
             {{--<li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg
                 xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">

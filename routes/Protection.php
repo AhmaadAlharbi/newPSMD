@@ -10,7 +10,7 @@ use App\Http\Controllers\sections\ProtectionController;
 // })->middleware(['auth','is_protection'])->name('dashboard.user.protection');
 
 Route::middleware(['auth','is_protection'])->group(function(){
-Route::get('/dashboard/user/query_section_id=2',[ProtectionController::class,'userIndex']);
+Route::get('/dashboard/user/query_section_id=2',[ProtectionController::class,'userIndex'])->name('protection.user.homepage');
 //engineer report form
 Route::get('/dashboard/user/query_section_id=2/Engineer-report-form/{id}',[ProtectionController::class,
 'engineerReportForm'])->name('protection.engineerReportForm');
@@ -29,7 +29,11 @@ Route::get('/dashboard/user/archive/query_section_id=2/',[ProtectionController::
 // VIEW REPORT PRINT PAGE
 Route::get('/dashboard/user/query_section_id=2/task-details/{id}',[ProtectionController::class,'taskDetails'])->name('protection.user.taskDetails');
 //request form engineer to edit his report
-Route::get('/dashboard/user/query_section_id=2/request-to-edit-report/{id}',[ProtectionController::class,'editReport'])->name('protection.editReport');
+Route::get('/dashboard/user/query_section_id=2/request-to-edit-report/{id}',[ProtectionController::class,'requestEditReport'])->name('protection.requestEditReport');
+//edit report page after allowing it
+Route::get('/dashboard/user/query_section_id=2/edit-report/{id}',[ProtectionController::class,'editReport'])->name('protection.editReport');
+//submit edit report from engineers
+Route::post('/dashboard/user/query_section_id=2/edit-report/{id}',[ProtectionController::class,'submitEditReport'])->name('proteciton.submitEditReport');
 //show user tasks page
 Route::get('/dashboard/user/query_section_id=2/engineer-tasks/{id}',[ProtectionController::class,'showEngineerTasks'])->name('protection.showEngineerTasks');
 Route::get('/dashboard/user/query_section_id=2/engineer-tasks-uncompleted/{id}',[ProtectionController::class,'showEngineerTasksUncompleted'])->name('protection.showEngineerTasksUncompleted');
@@ -40,6 +44,10 @@ Route::get('/dashboard/user/query_section_id=2/engineer-tasks-completed/{id}',[P
 Route::middleware(['is_admin','is_protection'])->group(function () {
     //main page
     Route::get('/dashboard/admin/query_section_id=2',[ProtectionController::class,'index'])->name('dashboard.admin.protection');
+    //show engineers request to edit reports
+    Route::get('/dashboard/admin/query_section_id=2/engineers-report-request',[ProtectionController::class,'showEngineersReportRequest'])->name('protection.showEngineersReportRequest');
+    //allow engineers to edit
+    Route::get('/dashboard/admin/query_section_id=2/allow-engineers-report-request/{id}',[ProtectionController::class,'allowEngineersReportRequest'])->name('protection.allowEngineersReportRequest');
     //add task
     Route::get('/dashboard/admin/query_section_id=2/add_task',[ProtectionController::class,'add_task'])->name('protection.addTask');
     //get  all engineer's name
