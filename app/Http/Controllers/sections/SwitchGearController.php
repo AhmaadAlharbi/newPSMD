@@ -49,6 +49,16 @@ class SwitchGearController extends Controller
         $stations = Station::all();
         return view ('switchgear.admin.tasks.add_task',compact('stations'));
     }
+    public function addEngineer(Request $request){
+        Engineer::create([
+            'user_id'=>$request->user_id,
+            'section_id'=>6,
+            'area'=>$request->area_id,
+            'shift'=>$request->shift_id,
+        ]);
+        session()->flash('Add','تم الاضافة بنجاح');
+        return back();
+    }
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
         // return (String) $engineersTable = DB::table('engineers')
@@ -197,7 +207,9 @@ class SwitchGearController extends Controller
         ->select('users.name','users.id','users.email','users.section_id','engineers.area','engineers.shift')
         ->where('users.section_id',6)
         ->get();   
-         return view ('switchgear.admin.engineers.engineersList',compact('engineers'));
+        $users = User::where('section_id',6)->get();   
+
+         return view ('switchgear.admin.engineers.engineersList',compact('engineers','users'));
 
     }
 
