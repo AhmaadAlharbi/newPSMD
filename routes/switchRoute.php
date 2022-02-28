@@ -28,6 +28,11 @@ Route::get('/dashboard/user/query_section_id=6/print-report/{id}',[SwitchGearCon
 Route::get('/dashboard/user/archive/query_section_id=6/',[SwitchGearController::class,'userArchive'])->name('switch.user.archive');
 // VIEW REPORT PRINT PAGE
 Route::get('/dashboard/user/query_section_id=6/task-details/{id}',[SwitchGearController::class,'taskDetails'])->name('switch.user.taskDetails');
+Route::get('/dashboard/user/query_section_id=6/request-to-edit-report/{id}',[SwitchGearController::class,'requestEditReport'])->name('switch.requestEditReport');
+//edit report page after allowing it
+Route::get('/dashboard/user/query_section_id=6/edit-report/{id}',[SwitchGearController::class,'editReport'])->name('switch.editReport');
+//submit edit report from engineers
+Route::post('/dashboard/user/query_section_id=6/edit-report/{id}',[SwitchGearController::class,'submitEditReport'])->name('switch.submitEditReport');
 //show user tasks page
 Route::get('/dashboard/user/query_section_id=6/engineer-tasks/{id}',[SwitchGearController::class,'showEngineerTasks'])->name('switch.showEngineerTasks');
 Route::get('/dashboard/user/query_section_id=6/engineer-tasks-uncompleted/{id}',[SwitchGearController::class,'showEngineerTasksUncompleted'])->name('switch.showEngineerTasksUncompleted');
@@ -38,6 +43,10 @@ Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}',[S
 Route::middleware(['is_admin','is_switch'])->group(function () {
     //main page
     Route::get('/dashboard/admin/query_section_id=6',[SwitchGearController::class,'index'])->name('dashboard.admin.switch');
+    //show engineers request to edit reports
+    Route::get('/dashboard/admin/query_section_id=6/engineers-report-request',[SwitchGearController::class,'showEngineersReportRequest'])->name('switch.showEngineersReportRequest');
+       //allow engineers to edit
+       Route::get('/dashboard/admin/query_section_id=6/allow-engineers-report-request/{id}',[SwitchGearController::class,'allowEngineersReportRequest'])->name('switch.allowEngineersReportRequest');
     //add task
     Route::get('/dashboard/admin/query_section_id=6/add_task',[SwitchGearController::class,'add_task'])->name('switch.addTask');
     //get  all engineer's name
@@ -68,6 +77,8 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
     Route::post('delete_file', [SwitchGearController::class, 'destroyAttachment'])->name('delete_file');
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=6/print-report/{id}',[SwitchGearController::class,'viewPrintReport'])->name('switch.veiwReport');
+
+
 
     });
     
