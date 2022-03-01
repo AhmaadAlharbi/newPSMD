@@ -115,6 +115,11 @@
                             href="{{'/dashboard/'.$is_admin.'/query_section_id='. Auth::user()->section_id.'/engineers_list'}}">
                             إضافة مهندس / جدول المهندسين</a>
                     </li>
+                    <li><a class="slide-item"
+                            href="{{'/dashboard/'.$is_admin.'/query_section_id='. Auth::user()->section_id.'/users_list'}}">
+                            إضافة موطف / جدول الموظفين</a>
+                    </li>
+
                     {{-- <li><a class="slide-item" href="{{ url('/' . $page='darggablecards') }}">Darggablecards</a>
             </li>
             <li><a class="slide-item" href="{{ url('/' . $page='rangeslider') }}">Range-slider</a></li>

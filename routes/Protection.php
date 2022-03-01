@@ -42,6 +42,7 @@ Route::get('/dashboard/user/query_section_id=2/engineer-tasks-completed/{id}',[P
 });
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin','is_protection'])->group(function () {
+  
     //main page
     Route::get('/dashboard/admin/query_section_id=2',[ProtectionController::class,'index'])->name('dashboard.admin.protection');
     //show engineers request to edit reports
@@ -67,6 +68,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/archive',[ProtectionController::class,'showArchive'])->name('protection.admin.archive');
     Route::get('/dashboard/admin/query_section_id=2/task-details/{id}',[ProtectionController::class,'taskDetails'])->name('protection.admin.taskDetails');
     Route::get('/dashboard/admin/query_section_id=2/engineers_list',[ProtectionController::class,'showEngineers'])->name('protection.engineers');
+    Route::get('/dashboard/admin/query_section_id=2/users_list',[ProtectionController::class,'showUsers'])->name('protection.users');
      //add engineer
     Route::post('/dashboard/admin/query_section_id=2/add-engineer',[ProtectionController::class,'addEngineer'])->name('protection.addEngineer');
 
@@ -83,5 +85,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/stations-list',[ProtectionController::class,'showStations'])->name('stationsList')->middleware('auth');
     Route::get('/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
 
-
+  //to register new users to protection
+  Route::get('/register/protection',[ProtectionController::class,'registerPage'])->name('protection.registerPage');
+  Route::post('/register/protection/signup',[ProtectionController::class,'register'])->name('protection.register');
 require __DIR__ . '/auth.php';

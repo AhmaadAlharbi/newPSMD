@@ -18,11 +18,39 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Providers\RouteServiceProvider;
 
 class ProtectionController extends Controller
 {
     ####################### ADMIN CONTROLLER ########################
 
+    //register new  page
+    public function registerPage(){
+        return view('protection.admin.register');
+    }
+    //sign up users
+    public function register(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'section_id'=>2,
+            'password' => Hash::make($request->password),
+            'is_admin'=>0,
+        ]);
+        event(new Registered($user));
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::ProtectionHomeUser);
+
+    }
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',2)
@@ -207,6 +235,10 @@ class ProtectionController extends Controller
         $users = User::where('section_id',2)->get();   
          return view ('protection.admin.engineers.engineersList',compact('engineers','users'));
 
+    }
+    public function showUsers(){
+        $users = User::where('section_id',2)->get();
+        return view('protection.admin.users.usersList',compact('users'));
     }
     public function addEngineer(Request $request){
         Engineer::create([

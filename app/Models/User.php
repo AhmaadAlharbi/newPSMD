@@ -20,7 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'section_id',
         'password',
+        'is_admin',
+
     ];
 
     public function sections()

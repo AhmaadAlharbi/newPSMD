@@ -154,6 +154,8 @@ class TransformersController extends Controller
             'department'=>$request->department,
             'area'=>$request->area,
         ]);
+        $fromSection = 5;
+
         if ($request->hasfile('pic')) {
             $task_id = Task::latest()->first()->id;
             foreach ($request->file('pic') as $file) {
@@ -172,7 +174,7 @@ class TransformersController extends Controller
                 ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new AddTask($task_id, $request->station_code));
+            ->notify(new AddTask($task_id, $request->station_code,$fromSection));
         }
  
 

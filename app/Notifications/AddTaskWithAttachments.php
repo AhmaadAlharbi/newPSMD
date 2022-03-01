@@ -48,6 +48,7 @@ class AddTaskWithAttachments extends Notification
     {
         $user = Auth::user();
         $section = "";
+        $is_admin = Auth::user()->is_admin ? 'admin':'user';
         switch($user->section_id){
             case '2':
                 $section = 'protection';
@@ -63,8 +64,8 @@ class AddTaskWithAttachments extends Notification
 
         }
        if(count($this->pic)== 1){
-        $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
-        // $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
+        // $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
+         $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
         return (new MailMessage)
             ->subject($this->ssname." مهمة جديدة لمحطة")
             ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')

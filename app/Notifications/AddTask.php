@@ -17,12 +17,13 @@ class AddTask extends Notification
      *
      * @return void
      */
-    public function __construct($id,$ssname)
+    public function __construct($id,$ssname,$fromSection)
     {
      
       
         $this->id = $id;
         $this->ssname = strtolower($ssname);
+        $this->fromSection = $fromSection;
     }
 
     /**
@@ -44,7 +45,8 @@ class AddTask extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
+        // $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
+        $url ="http://127.0.0.1:8000/dashboard/user/query_section_id=".$this->fromSection."/Engineer-report-form".'/'.$this->id;
 
         return (new MailMessage)
         ->subject($this->ssname." مهمة جديدة لمحطة")

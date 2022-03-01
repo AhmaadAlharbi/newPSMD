@@ -16,8 +16,6 @@ class Task extends Model
     {
         return $this->belongsTo(Station::class,'station_id');
     }
- 
-
     public function users()
     {
         return $this->belongsTo(User::class,'eng_id');
