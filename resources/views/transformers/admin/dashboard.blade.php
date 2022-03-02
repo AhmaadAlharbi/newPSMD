@@ -201,12 +201,12 @@
                                         @else
                                         <span class="bg-dark text-white p-1  d-block text-center m-1">Electrical</span>
                                         @endif
-                                        @if($task->status=="pending")
+                                        @if(isset($task->eng_id))
                                         <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
                                         <h5 class="m-1 tx-15 text-info border  p-2 mb-3">Waiting to be assigned
                                         </h5>
-                                        <a href="" class="btn  btn-warning d-block">Assign Engineer</a>
+                                        <a href="{{route('Transformers.updateTask',['id'=>$task->id])}}" class="btn  btn-warning d-block">Assign Engineer</a>
                                         @endif
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
                                         <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"

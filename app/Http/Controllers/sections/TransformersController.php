@@ -80,6 +80,11 @@ class TransformersController extends Controller
         return view ('transformers.admin.tasks.add_task',compact('stations'));
     }
 
+     //assign task page
+    public function assign_task(){
+        $stations = Station::all();
+         return view ('transformers.admin.tasks.assign_task',compact('stations'));
+    }
         //get user email
     public function getUserEmail($user_name){
             return (String) User::where('name',$user_name)->first();
@@ -110,6 +115,55 @@ class TransformersController extends Controller
     public function getEngineersEmail($eng_id){
         return (string) TR::where('id',$eng_id)
         ->first();
+    }
+    //store assign task
+    public function storeAssignTask(Request $request){
+        Task::create([
+            'refNum' => $request->refNum,
+            'fromSection'=>5,
+            'station_id'=>$request->ssnameID,
+            'main_alarm'=>$request->mainAlarm,
+            'voltage_level'=>$request->voltage_level,
+            'work_type'=>$request->work_type,
+            'task_date'=>$request->task_Date,
+            'equip'=>$request->equip,
+            'pm'=>$request->pm,
+            'problem' => $request->problem,
+            'notes' => $request->notes,
+            'status' => 'pending',
+            'user' => (Auth::user()->name),
+        ]);
+        $task_id = Task::latest()->first()->id;
+
+        TaskDetails::create([
+            'task_id'=>$task_id,
+            'status'=>'pending',
+        ]);
+        TrTasks::create([
+            'task_id'=>$task_id,
+            'work_type'=>$request->work_type,
+            'work_type_description'=>$request->work_type_description,
+            'department'=>$request->department,
+            'area'=>$request->area,
+        ]);
+
+        if ($request->hasfile('pic')) {
+            foreach ($request->file('pic') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path('Attachments/protection/' . $task_id), $name);
+                $data[] = $name;
+                $refNum = $request->refNum;
+                $attachments = new TaskAttachment();
+                $attachments->file_name = $name;
+                $attachments->created_by = Auth::user()->name;
+                $attachments->id_task = $task_id;
+                $attachments->save();
+            }
+
+        }
+
+        session()->flash('Add', 'تم اضافةالمهمة بنجاح');
+        return back(); 
     }
     //get Engineers based on shift
     public function getEngineersShift($area_id,$shift_id){
@@ -310,8 +364,10 @@ class TransformersController extends Controller
             'department'=>$request->department,
             'area'=>$request->area,
         ]);
+        $task_id = $id;
+        $fromSection = 5;
+
         if ($request->hasfile('pic')) {
-            $task_id = $id;
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
                 $file->move(public_path('Attachments/transformers/' . $task_id), $name);
@@ -325,10 +381,10 @@ class TransformersController extends Controller
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->ssname));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new EditTask($task_id, $request->ssname));
+            ->notify(new AddTask($task_id, $request->station_code,$fromSection));
         }
        
         session()->flash('edit', 'تم   التعديل  بنجاح');

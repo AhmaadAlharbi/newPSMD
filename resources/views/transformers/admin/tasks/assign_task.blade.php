@@ -46,31 +46,30 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{route('Transformers.update',['id'=>$tasks->id])}}" method="post"
-                    enctype="multipart/form-data" autocomplete="off">
+                <form action="{{route('Transformers.store.assign_task')}}" method="post" enctype="multipart/form-data"
+                    autocomplete="off">
                     {{ csrf_field() }}
                     {{-- 1 --}}
                     <div class="row m-3">
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>
-                            <input type="text" class="refNum form-control" id="inputName" name="refNum" title=""
-                                required value="{{$tasks->refNum}}" readonly>
+                            <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
+                                required value="TR-{{ date('y-m') }}/" readonly>
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
-                            <input list="ssnames" class="form-control" name="station_code" id="ssname"
-                                onchange="getStation(),getAdmins()" value="{{$tasks->station->SSNAME}}">
+                            <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
+                                onchange="getStation(),getAdmins()">
                             <datalist id="ssnames">
                                 @foreach($stations as $station)
                                 <option value="{{$station->SSNAME}}">
                                     @endforeach
                             </datalist>
-                            <input type="text" id="station_id" name="ssnameID" value="{{$tasks->station->id}}">
-
                             <input id="staion_full_name" name="staion_full_name"
                                 class="text-center d-none p-3 form-control" readonly>
-                            <input id="control_name" name="control_name" class="text-center   p-3 form-control" readonly
-                                value="{{$tasks->station->control}}">
+                            <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control"
+                                readonly>
+                            <input type="hidden" id="station_id" name="ssnameID">
                         </div>
                         <div class=" col-lg-4">
                             <label>تاريخ ارسال المهمة</label>
@@ -95,32 +94,17 @@
                             <select name="department" id="department" class="form-control "
                                 onChange="checkDepartment() ,getAdmins()">
                                 <!--placeholder-->
-                                @if($tr_task->department == 1)
                                 <option value="1">Mechanical</option>
                                 <option value="2">Chemistry</option>
                                 <option value="3">Electrical</option>
-
-                                @elseif($tr_task->department==2)
-                                <option value="2">Chemistry</option>
-                                <option value="1">Mechanical</option>
-                                <option value="3">Electrical</option>
-
-
-                                @else
-                                <option value="3">Electrical</option>
-                                <option value="1">Mechanical</option>
-                                <option value="2">Chemistry</option>
-                                @endif
                             </select>
                         </div>
-                        @if($tr_task->department == 1)
-                        <div class=" col-lg-6  " id="main_alarm">
+                        <div class=" col-lg-6 d-none" id="main_alarm">
                             <label for="main_alarm" class="control-label m-3">Main Alarm</label>
                             <select name="mainAlarm" class="form-control">
                                 <option value="Fan Trouble alarm">Fan Trouble alarm</option>
                             </select>
                         </div>
-                        @endif
 
 
                     </div>
@@ -169,6 +153,33 @@
 
                         </div>
                     </div>
+                    <!--Work type for electrical-->
+                    <div class="row m-3 d-none" id="workType-ElectricalDiv">
+                        <div class="col border border-warning p-3 flex-wrap">
+                            <h6 class="text-warning">Work Type</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input  checkbox" type="radio" name="work_type"
+                                    id="inlineRadio1" value="Emergency" onClick="checkBoxElectrical('Duty')">
+                                <label class="form-check-label  m-2" for="inlineRadio1">Duty</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio2"
+                                    value="Maintenance" onClick="checkBoxElectrical('program')">
+                                <label class="form-check-label m-2" for="inlineRadio2">program</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio3"
+                                    value="Inspection" onClick="checkBoxElectrical('Servicing')">
+                                <label class="form-check-label m-2" for="inlineRadio3">Servicing</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input checkbox" type="radio" name="work_type" id="inlineRadio4"
+                                    value="Inspection" onClick="checkBoxElectrical('Pending')">
+                                <label class="form-check-label m-2" for="inlineRadio4">Pending</label>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="row m-3  d-none " id="alarm">
                         <label for="mechanical" id="section-label">Mechanical Alarm</label>
                         <select name="work_type_description" class="form-control d-none" id="MechAlarmSelect">
@@ -177,10 +188,52 @@
                         <select name="work_type_description" class="form-control d-none" id="chemistryAlarm">
 
                         </select>
+
+                        <select name="work_type_description" class="form-control d-none" id="electricDuty">
+                            <option value="Oil level alarm">Oil level alarm</option>
+                            <option value="Oil temperature alarm">Oil temperature alarm</option>
+                            <option value="Oil temperature trip">Oil temperature trip</option>
+                            <option value="Winding temperature alarm<">Winding temperature alarm</option>
+                            <option value="Winding temperature trip">Winding temperature trip</option>
+                            <option value="Buchloz relay on main tank alarm">Buchloz relay on main tank alarm</option>
+                            <option value="Buchloz relay on main tank trip">Buchloz relay on main tank trip</option>
+                            <option value="Buchloz relay on tap chagner trip">Buchloz relay on tap chagner trip</option>
+                            <option value="Out of step alarm">Out of step alarm</option>
+                            <option value="Pressure relief trip">Pressure relief trip</option>
+                            <option value="Tap changer trouble">Tap changer trouble</option>
+                            <option value="AC supply failure">AC supply failure</option>
+                            <option value="Fuse burnt">Fuse burnt</option>
+                            <option value="Winding temperature for local transformer">Winding temperature for local
+                                transformer</option>
+                        </select>
+                        <select name="work_type_description" class="form-control d-none" id="electricProgram">
+                            <option value="program with cmd for calbles leak">program with cmd for calbles leak</option>
+
+                        </select>
+                        <select name="work_type_description" class="form-control d-none" id="electricServicing">
+                            <option value="Smart breather">Smart breather</option>
+                            <option value="Oil leakage">Oil leakage</option>
+                            <option value="Replace TR">Replace TR</option>
+                            <option value="Spur TR testing">Spur TR testing</option>
+                            <option value="Spur transformer flash LT">Spur transformer flash LT</option>
+                            <option value="Spur transformer flash HT">Spur transformer flash HT</option>
+                            <option value="Spur transformer replacing">Spur transformer replacing</option>
+                            <option value="Fixing spur TR">Fixing spur TR</option>
+                            <option value="oil filling">oil filling</option>
+                            <option value="Summer check">Summer check</option>
+                            <option value="Winter check">Winter check</option>
+                            <option value="Winding temperature for local transformer">Winding temperature for local
+                                transformer</option>
+                        </select>
+
+                        <select name="work_type_description" class="form-control d-none" id="electricPending">
+                            <option value="Change MCB">Change MCB</option>
+                            <option value="Change parts">Change parts</option>
+                        </select>
                     </div>
                     {{-- 3 --}}
 
-                    <div class="row m-3">
+                    <div class="row m-3 d-none">
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">المنطقة</label>
                             <select name="area" id="areaSelect" class="form-control areaSelect">
@@ -191,7 +244,7 @@
                             </select>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 d-none">
                             <label for="inputName" class="control-label">shif</label>
                             <select name="shift" id="shiftSelect" class="form-control SlectBox" onchange="">
                                 <!--placeholder-->
@@ -200,32 +253,16 @@
                             </select>
 
                         </div>
-                 
-                        <div class="col">
+
+                        <div class="col d-none">
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                 onchange="getEngineerEmail()">
-                                @unless($tasks->eng_id == null)
-                                <option value="{{$tasks->eng_id}}">{{$tasks->users->name}}</option>
-                                @endunless
                             </select>
                         </div>
-                        <div class="col">
-                        <button id="changeAdminButton" class="btn btn-info btn-sm">
-                            تحويل إلى مشرف
-                        </button>
-                        <button id="changeEngineerButton" class="btn btn-outline-info btn-sm mt-2">
-                            تحويل إلى مهندس
-                        </button>
-                        </div>
-                        <div class=" col email">
+                        <div class=" col email d-none">
                             <label for="inputName" class="control-label"> Email</label>
-                            @if($tasks->eng_id == null)
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email">
-                            @else
-                            <input type="text" class="form-control" name="eng_email" id="eng_name_email"
-                                value="{{$tasks->users->email }}">
-                            @endif
                         </div>
 
                     </div>
@@ -242,58 +279,7 @@
 
                     <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                     <h5 class="card-title">المرفقات</h5>
-                    {{--show Attahcments --}}
-                    <div class="table-responsive mt-15">
-                        <table class="table center-aligned-table mb-0  table-hover" style="text-align:center">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">م</th>
-                                    <th scope="col">اسم الملف</th>
-                                    <th scope="col">تاريخ الاضافة</th>
-                                    <th scope="col"> بواسطة</th>
-                                    <th scope="col">العمليات</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 0; ?>
-                                @foreach ($task_attachments as $attachment)
-                                <?php $i++; ?>
-                                <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>{{ $attachment->file_name }}</td>
-                                    <td>{{ $attachment->created_at }}</td>
-                                    <td>
-                                        @if($attachment->Created_by =="")
-                                        {{$task->engineers->name}}
-                                        @else
-                                        {{ $attachment->Created_by }}
-                                        @endif
-                                    </td>
-                                    <td colspan="2">
 
-                                        <a class="btn btn-outline-success btn-sm"
-                                            href="{{route('transformers.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                            role="button"><i class="fas fa-eye"></i>&nbsp;
-                                            عرض</a>
-
-                                            <a class="btn btn-outline-info btn-sm"
-                                            href="{{route('transformers.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                            role="button"><i class="fas fa-download"></i>&nbsp;
-                                            تحميل</a>
-
-                                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal"
-                                            data-file_name="{{ $attachment->file_name }}"
-                                            data-invoice_number="{{ $attachment->id_task }}"
-                                            data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
-
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-
-                        </table>
-
-                    </div>
                     <div class="col-sm-12 col-md-12">
                         <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                             data-height="70" />
@@ -384,7 +370,7 @@ var date = $('.fc-datepicker').datepicker({
 <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
 <!--BATTERY JS fiLE-->
-<script type="text/javascript" src="{{ URL::asset('js/transformers/updateTask.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/transformers/app.js') }}"></script>
 
 
 @endsection

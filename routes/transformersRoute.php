@@ -53,6 +53,8 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=5/allow-engineers-report-request/{id}',[TransformersController::class,'allowEngineersReportRequest'])->name('Transformers.allowEngineersReportRequest');
     //add task for admins
     Route::get('/dashboard/admin/query_section_id=5/add_task',[TransformersController::class,'add_task'])->name('Transformers.addTask');
+        //add task to be assinged
+     Route::get('/dashboard/admin/query_section_id=5/add_task_to_be_assigned',[TransformersController::class,'assign_task'])->name('Transformers.assign_task');
     //get  all engineer's name
     Route::get('/Transformers/getEngineer/{area_id}/{department}/{shift_id}',[TransformersController::class,'getEngineerName'])->name('Transformers.getEngineer');
     //get an engineer's email
@@ -69,6 +71,7 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     Route::get('/Transformers/getUserEmail/{id}',[TransformersController::class,'getUserEmail']);
     ///BACKEND ROUTE
     Route::post('/Transformers/send_task',[TransformersController::class,'store'])->name('Transformers.store');
+    Route::post('/Transformers/assignTasks',[TransformersController::class,'storeAssignTask'])->name('Transformers.store.assign_task');
     Route::get('/dashboard/admin/query_section_id=5/All-tasks',[TransformersController::class,'showAllTasks'])->name('Transformers.admin.showAllTasks');
     Route::get('/dashboard/admin/query_section_id=5/pending-tasks',[TransformersController::class,'showPendingTasks'])->name('Transformers.admin.pendingTasks');
     Route::get('/dashboard/admin/query_section_id=5/completed-tasks',[TransformersController::class,'showCompletedTasks'])->name('Transformers.admin.completedTasks');
