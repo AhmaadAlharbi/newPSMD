@@ -46,7 +46,7 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{route('protection.store')}}" method="post" enctype="multipart/form-data"
+                <form action="{{route('protection.store.assign_task')}}" method="post" enctype="multipart/form-data"
                     autocomplete="off">
                     {{ csrf_field() }}
                     {{-- 1 --}}
@@ -59,7 +59,7 @@
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
                             <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
-                                onchange="getStation(),getEngineer()">
+                                onchange="getStation()">
                             <datalist id="ssnames">
                                 @foreach($stations as $station)
                                 <option value="{{$station->SSNAME}}">
@@ -186,7 +186,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row m-3">
+                        <div class="row m-3">
 
                         <div class="col-lg-12">
                             <label for="equip" class="control-label m-1">Bay Unit</label>
@@ -199,6 +199,7 @@
                      
                         </div>
                     </div>
+
 
 
 
@@ -244,7 +245,7 @@
                     {{-- 3 --}}
 
                     <div class="row m-3">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 d-none">
                             <label for="inputName" class="control-label">المنطقة</label>
                             <select name="area" id="areaSelect" class="form-control areaSelect">
                                 <!--placeholder-->
@@ -254,7 +255,7 @@
                             </select>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 d-none">
                             <label for="inputName" class="control-label">shif</label>
                             <select name="shift" id="shiftSelect" class="form-control SlectBox"
                                 onchange="getEngineersShift()">
@@ -265,13 +266,14 @@
 
                         </div>
 
-                        <div class="col">
+                        <div class="col d-none">
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                 onchange="getEngineerEmail()">
+                                <option value="--">سيتم اختيار اسم المهندس لاحقا</option>
                             </select>
                         </div>
-                        <div class=" col email">
+                        <div class=" col email d-none">
                             <label for="inputName" class="control-label"> Email</label>
 
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email">

@@ -104,7 +104,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',6)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('fromSection',6)->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -268,7 +268,7 @@
                         <a class="btn btn-info mt-2 text-center"
                             href="{{route('switch.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('protecion.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('switch.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
                 </ul>
 

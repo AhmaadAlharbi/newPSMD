@@ -51,6 +51,8 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/allow-engineers-report-request/{id}',[ProtectionController::class,'allowEngineersReportRequest'])->name('protection.allowEngineersReportRequest');
     //add task
     Route::get('/dashboard/admin/query_section_id=2/add_task',[ProtectionController::class,'add_task'])->name('protection.addTask');
+    //add task to be assinged
+    Route::get('/dashboard/admin/query_section_id=2/add_task_to_be_assigned',[ProtectionController::class,'assign_task'])->name('protection.assign_task');
     //get  all engineer's name
     Route::get('/getEngineer/{area_id}/{shift_id}',[ProtectionController::class,'getEngineerName'])->name('protection.getEngineer');
     //get an engineer's email
@@ -62,6 +64,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     // Route::get('/protection/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
     ///*****BACKEND ROUTE *********
     Route::post('/protection/send_task',[ProtectionController::class,'store'])->name('protection.store');
+    Route::post('/protection/assignTasks',[ProtectionController::class,'storeAssignTask'])->name('protection.store.assign_task');
     Route::get('/dashboard/admin/query_section_id=2/All-tasks',[ProtectionController::class,'showAllTasks'])->name('protection.admin.showAllTasks');
     Route::get('/dashboard/admin/query_section_id=2/pending-tasks',[ProtectionController::class,'showPendingTasks'])->name('protection.admin.pendingTasks');
     Route::get('/dashboard/admin/query_section_id=2/completed-tasks',[ProtectionController::class,'showCompletedTasks'])->name('protection.admin.completedTasks');

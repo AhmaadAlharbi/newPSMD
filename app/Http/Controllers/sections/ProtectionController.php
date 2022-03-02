@@ -79,6 +79,11 @@ class ProtectionController extends Controller
         $stations = Station::all();
         return view ('protection.admin.tasks.add_task',compact('stations'));
     }
+    //assign task page
+    public function assign_task(){
+        $stations = Station::all();
+        return view ('protection.admin.tasks.assign_task',compact('stations'));
+    }
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
         return (String) DB::table('engineers')
@@ -172,6 +177,48 @@ class ProtectionController extends Controller
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
         return back();
 
+    }
+    //store assign task
+    public function storeAssignTask(Request $request){
+        Task::create([
+            'refNum' => $request->refNum,
+            'fromSection'=>2,
+            'station_id'=>$request->ssnameID,
+            'main_alarm'=>$request->mainAlarm,
+            'voltage_level'=>$request->voltage_level,
+            'work_type'=>$request->work_type,
+            'task_date'=>$request->task_Date,
+            'equip'=>$request->equip,
+            'pm'=>$request->pm,
+            'problem' => $request->problem,
+            'notes' => $request->notes,
+            'status' => 'pending',
+            'user' => (Auth::user()->name),
+        ]);
+        $task_id = Task::latest()->first()->id;
+        
+        TaskDetails::create([
+            'task_id'=>$task_id,
+            'status'=>'pending',
+        ]);
+
+        if ($request->hasfile('pic')) {
+            foreach ($request->file('pic') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path('Attachments/protection/' . $task_id), $name);
+                $data[] = $name;
+                $refNum = $request->refNum;
+                $attachments = new TaskAttachment();
+                $attachments->file_name = $name;
+                $attachments->created_by = Auth::user()->name;
+                $attachments->id_task = $task_id;
+                $attachments->save();
+            }
+     
+        }
+            
+        session()->flash('Add', 'تم اضافةالمهمة بنجاح');
+        return back(); 
     }
 
     public function showEngineersReportRequest(){

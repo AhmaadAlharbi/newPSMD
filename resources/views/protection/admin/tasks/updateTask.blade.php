@@ -272,14 +272,21 @@
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                 onchange="getEngineerEmail()">
+                                @unless($tasks->eng_id == null)
                                 <option value="{{$tasks->users->id}}">{{$tasks->users->name}}</option>
+                                @endunless
                             </select>
                         </div>
                         <div class=" col email">
                             <label for="inputName" class="control-label"> Email</label>
-
+                            @if($tasks->eng_id == null)
+                            <input type="text" class="form-control" name="eng_email" id="eng_name_email">
+                            @else
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email"
                                 value="{{$tasks->users->email }}">
+                            @endif
+                          
+                        
                         </div>
 
 
