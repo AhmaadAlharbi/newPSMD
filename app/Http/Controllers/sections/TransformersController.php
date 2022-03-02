@@ -20,10 +20,38 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Providers\RouteServiceProvider;
 
 class TransformersController extends Controller
 {
        ###################### ADMIN CONTROLLER ########################
+     //register new  page
+     public function registerPage(){
+        return view('transformers.admin.register');
+    }
+    //sign up users
+    public function register(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'section_id'=>5,
+            'password' => Hash::make($request->password),
+            'is_admin'=>0,
+        ]);
+        event(new Registered($user));
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::TransformersHomeUser);
+
+    }
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',5)
@@ -239,7 +267,10 @@ class TransformersController extends Controller
         $users = User::where('section_id',5)->get();   
         return view ('transformers.admin.engineers.engineersList',compact('engineers','users'));
     }
-
+    public function showUsers(){
+        $users = User::where('section_id',5)->get();
+        return view('transformers.admin.users.usersList',compact('users'));
+    }
     //get 
     public function updateTask($id){
     

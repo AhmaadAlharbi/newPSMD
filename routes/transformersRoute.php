@@ -75,6 +75,7 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=5/archive',[TransformersController::class,'showArchive'])->name('Transformers.admin.archive');
     Route::get('/dashboard/admin/query_section_id=5/task-details/{id}',[TransformersController::class,'taskDetails'])->name('Transformers.admin.taskDetails');
     Route::get('/dashboard/admin/query_section_id=5/engineers_list',[TransformersController::class,'showEngineers'])->name('Transformers.engineers');
+    Route::get('/dashboard/admin/query_section_id=5/users_list',[TransformersController::class,'showUsers'])->name('Transformers.users');
     Route::get('/dashboard/admin/query_section_id=5/update-task/{id}',[TransformersController::class,'updateTask'])->name('Transformers.updateTask');
     Route::post('/dashboard/admin/query_section_id=5/update-task/{id}',[TransformersController::class,'update'])->name('Transformers.update');
     Route::delete('/dashboard/admin/query_section_id=5/deleteTask',[TransformersController::class,'destroyTask'])->name('Transformers.destroyTask');
@@ -86,3 +87,6 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
 
 
     });
+     //to register new users to protection
+  Route::get('/register/transformers',[TransformersController::class,'registerPage'])->name('Transformers.registerPage');
+  Route::post('/register/transformers/signup',[TransformersController::class,'register'])->name('Transformers.register');

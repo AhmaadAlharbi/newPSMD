@@ -65,10 +65,10 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=6/pending-tasks',[SwitchGearController::class,'showPendingTasks'])->name('switch.admin.pendingTasks');
     Route::get('/dashboard/admin/query_section_id=6/completed-tasks',[SwitchGearController::class,'showCompletedTasks'])->name('switch.admin.completedTasks');
     Route::get('/dashboard/admin/query_section_id=6/archive',[SwitchGearController::class,'showArchive'])->name('switch.admin.archive');
-    Route::get('/dashboard/admin/query_section_id=6/task-details/{id}',[SwitchGearController::class,'taskDetails'])->name('protecion.admin.taskDetails');
+    Route::get('/dashboard/admin/query_section_id=6/task-details/{id}',[SwitchGearController::class,'taskDetails'])->name('switch.admin.taskDetails');
     Route::get('/dashboard/admin/query_section_id=6/engineers_list',[SwitchGearController::class,'showEngineers'])->name('switch.engineers');
      //add engineer
-     Route::post('/dashboard/admin/query_section_id=6/add-engineer',[SwitchGearController::class,'addEngineer'])->name('protection.addEngineer');
+     Route::post('/dashboard/admin/query_section_id=6/add-engineer',[SwitchGearController::class,'addEngineer'])->name('switch.addEngineer');
 
     Route::get('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'updateTask'])->name('switch.updateTask');
     Route::post('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'update'])->name('switch.update');
