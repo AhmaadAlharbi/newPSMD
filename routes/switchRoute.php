@@ -69,7 +69,7 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=6/engineers_list',[SwitchGearController::class,'showEngineers'])->name('switch.engineers');
      //add engineer
      Route::post('/dashboard/admin/query_section_id=6/add-engineer',[SwitchGearController::class,'addEngineer'])->name('switch.addEngineer');
-
+     Route::get('/dashboard/admin/query_section_id=6/users_list',[SwitchGearController::class,'showUsers'])->name('switch.users');
     Route::get('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'updateTask'])->name('switch.updateTask');
     Route::post('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'update'])->name('switch.update');
     Route::delete('/dashboard/admin/query_section_id=6/deleteTask',[SwitchGearController::class,'destroyTask'])->name('switch.destroyTask');
@@ -84,5 +84,7 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
     
     Route::get('/dashboard/admin/stations-list',[SwitchGearController::class,'showStations'])->name('stationsList')->middleware('auth');
 
-
+     //to register new users to protection
+     Route::get('/register/switchgear',[SwitchGearController::class,'registerPage'])->name('switch.registerPage');
+     Route::post('/register/switchgear/signup',[SwitchGearController::class,'register'])->name('switch.register');
 require __DIR__ . '/auth.php';

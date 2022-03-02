@@ -64,17 +64,15 @@ window.onload = function() {
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <button type="button" class="btn btn-success m-3" data-toggle="modal" data-target="#exampleModal">
-                        اضافة مهندس
-                    </button>
+                    <a href="{{route('switch.registerPage')}}" class="btn btn-secondary m-3">
+                        اضافة موظف
+                    </a>
                     <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='10'>
                         <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0">الاسم</th>
                                 <th class="border-bottom-0"> البريد الإلكتروني </th>
-                                <th class="border-bottom-0"> المنطقة </th>
-                                <th class="border-bottom-0"> shift </th>
                                 <th class="border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -82,25 +80,15 @@ window.onload = function() {
                             @php
                             $i = 0;
                             @endphp
-                            @foreach ($engineers as $engineer)
+                            @foreach ($users as $user)
                             @php
                             $i++
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$engineer->name}}</td>
-                                <td>{{$engineer->email}}</td>
-                                {{--<td>{{$engineer->mobile}}</td>--}}
-                                @if($engineer->area == 1)
-                                <td>North</td>
-                                @else
-                                <td>south</td>
-                                @endif
-                                @if($engineer->shift == 0)
-                                <td>Morning</td>
-                                @else
-                                <td>Evening</td>
-                                @endif
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+
 
                                 <td>
                                     <div class="dropdown">
@@ -129,53 +117,7 @@ window.onload = function() {
     <!--/div-->
 </div>
 
-<!-- اضافة  المحطة -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">اضافة مهندس</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{route('switch.addEngineer')}}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <label for="eng_name" class="control-label ">اسم المهندس</label>
-                    <input autocomplete="off" list="users" class="form-control" value="" name="user_engineer"
-                        id="user_engineer" onchange="getUserEmail()">
-                    <datalist id="users">
-                        @foreach($users as $user)
-                        <option value="{{$user->name}}">
-                            @endforeach
-                    </datalist>
-                    <label for="email" class="control-label ">البريد الإلكتروني</label>
-                    <input type="email" id="user_email" name="email" class="form-control m-2">
-                    <input type="hidden" id="user_id" name="user_id">
-                    <label for="area_id" class="control-label ">المنطقة</label>
-                    <select name="area_id" id="area" class="form-control">
-                        <!--placeholder-->
-                        <option value="1">المنطقة الشمالية</option>
-                        <option value="2">المنطقة الجنوبية</option>
-                    </select>
 
-                    <label for="shift_id" class="control-label ">shift</label>
-                    <select name="shift_id" id="shift" class="form-control">
-                        <!--placeholder-->
-                        <option value="0">صباحاً</option>
-                        <option value="1">مساءً</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">تراجع</button>
-                    <button type="submit" class="btn btn-danger">تاكيد</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- حذف  المحطة -->
 <div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -259,20 +201,3 @@ $('#Transfer_invoice').on('show.bs.modal', function(event) {
 
 
 @endsection
-
-<script>
-//this function to get user email in order to add user to engineers table
-const getUserEmail = async () => {
-    const user_name = document.querySelector("#user_engineer").value;
-    const user_email = document.querySelector("#user_email");
-    const user_id = document.querySelector("#user_id");
-    const response = await fetch("/getUserEmail/" + user_name);
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
-    }
-    const data = await response.json();
-    console.log(data);
-    user_email.value = data.email;
-    user_id.value = data.id;
-};
-</script>
