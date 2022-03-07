@@ -11,32 +11,19 @@
 <!--Internal  TelephoneInput css-->
 <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 @endsection
-@section('title')
-تعديل فاتورة
-@stop
-
 @section('page-header')
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
             <h4 class="content-title mb-0 my-auto">المهمات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                تعديل مهمة</span>
+                -اضافة مهمة - قسم الوقاية</span>
         </div>
     </div>
 </div>
-<!-- breadcrumb -->
 @endsection
 @section('content')
 
-@if (session()->has('edit'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ session()->get('edit') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-@endif
 @if (session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{ session()->get('Add') }}</strong>
@@ -45,69 +32,68 @@
     </button>
 </div>
 @endif
+@if ($errors->any())
+<div class="alert alert-solid-danger mg-b-0">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <!-- row -->
 <div class="row">
-
     <div class="col-lg-12 col-md-12">
-        <div class="card">
+        <div class="card border border-primary">
             <div class="card-body">
-
-
-                <form action="{{route('switch.update',['id'=>$tasks->id])}}" enctype="multipart/form-data"
-                    method="post">
-                    {{ csrf_field() }} {{-- 1 --}}
+                <form action="{{route('switch.store.assign_task')}}" method="post" enctype="multipart/form-data"
+                    autocomplete="off">
+                    {{ csrf_field() }}
+                    {{-- 1 --}}
                     <div class="row m-3">
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>
-                            <input type="text" class="refNum form-control" id="inputName" name="refNum" title=""
-                                required value="{{$tasks->refNum}}" readonly>
+                            <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
+                                required value="P-{{ date('y-m') }}/" readonly>
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
-                            <input list="ssnames" class="form-control" name="station_code" id="ssname"
-                                onchange="getStation(),getEngineer()" value="{{$tasks->station->SSNAME}}">
-
-
+                            <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
+                                onchange="getStation()">
                             <datalist id="ssnames">
                                 @foreach($stations as $station)
                                 <option value="{{$station->SSNAME}}">
                                     @endforeach
                             </datalist>
-
-
-                            <input type="text" id="station_id" name="ssnameID" value="{{$tasks->station->id}}">
-
-                            <input id="staion_full_name" name="staion_full_name" class="text-center p-3 form-control"
-                                readonly value="{{$tasks->station->fullName}}">
-
-                            <input id="control_name" name="control_name" class="text-center   p-3 form-control" readonly
-                                value="{{$tasks->station->control}}">
+                            <input id="staion_full_name" name="staion_full_name"
+                                class="text-center d-none p-3 form-control" readonly>
+                            <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control"
+                                readonly>
+                            <input type="text" id="station_id" name="ssnameID">
                         </div>
-
                         <div class=" col-lg-4">
                             <label>تاريخ ارسال المهمة</label>
                             <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
-                                type="text" value="{{$tasks->task_date}}" readonly>
-                        </div>
-                        <div class="row m-3">
-                            <div class="col-lg-6">
-                                <label for="" class="control-label">Make</label>
-                                <input id="make" type="text" class="form-control" name="make">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="" class="control-label">Last P.M</label>
-                                <input type="text" class="form-control" name="pm">
-                            </div>
+                                type="text" value="{{ date('Y-m-d') }}" required>
                         </div>
                     </div>
 
                     <div class="row m-3">
                         <div class="col-lg-6">
-                            <label for="mainAlarm" class="control-label m-3">Main Alarm</label>
+                            <label for="" class="control-label">Make</label>
+                            <input id="make" type="text" class="form-control" name="make">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="" class="control-label">Last P.M</label>
+                            <input type="text" class="form-control" name="pm">
+                        </div>
+                    </div>
+
+                    <div class="row m-3">
+                        <div class="col-lg-6">
+                            <label for="main_alarm" class="control-label m-3">Main Alarm</label>
                             <select name="mainAlarm" id="main_alarm" class="form-control">
                                 <!--placeholder-->
-                                <option value="{{$tasks->main_alarm}}">{{$tasks->main_alarm}}</option>
-
                                 <option value="Auto reclosure">Auto reclosure</option>
                                 <option value="Flag Relay Replacement">Flag Relay Replacement </option>
                                 <option value="Protection Clearance feeder">Protection Clearance feeder</option>
@@ -151,74 +137,22 @@
                             <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text"
                                 class=" invisible form-control" onfocus=this.value=''>
                         </div>
-                        <div class="col-lg-6">
-                            <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage Level</label>
-                            <select name="Voltage_Level" id="voltageLevel" class="form-control">
-                                <!--placeholder-->
-                                @if(!$tasks->main_alarm == "Transformer Clearance" || "Shunt Reactor Clearance")
-                                <option value="{{$tasks->Voltage_level}}">{{$tasks->Voltage_level}}</option>
-                                @endif
-                                <option value="400KV">400KV</option>
-                                <option value="300KV">300KV</option>
-                                <option value="132KV">132KV</option>
-                                <option value="33KV">33KV</option>
-                                <option value="11KV">11KV</option>
 
-                            </select>
-                            <select id="transformerVoltage" class="d-none form-control">
-                                <!--placeholder-->
-                                @if($tasks->main_alarm == "Transformer Clearance")
-                                <option value="{{$tasks->Voltage_level}}">{{$tasks->Voltage_level}}</option>
-                                @endif
-                                <option value="750MVA">750MVA</option>
-                                <option value="300MVA">300MVA</option>
-                                <option value="75MVA">75MVA</option>
-                                <option value="45MVA">45MVA</option>
-                                <option value="30MVA">30MVA</option>
-                                <option value="20MVA">20MVA</option>
-                                <option value="15MVA">15MVA</option>
-                                <option value="10MVA">10MVA</option>
-                                <option value="7.5MVA">7.5MVA</option>
-                                <option value="5MVA">5MVA</option>
-
-                            </select>
-                            <select id="shuntVoltage" class="d-none form-control">
-                                <!--Placeholder-->
-                                @if($tasks->main_alarm == "Shunt Reactor Clearance")
-                                <option value="{{$tasks->Voltage_level}}">{{$tasks->Voltage_level}}</option>
-                                @endif
-                                <option value="250MVAR">250MVAR</option>
-                                <option value="125MVAR">125MVAR</option>
-                                <option value="50MVAR">50MVAR</option>
-                                <option value="45MVAR">45MVAR</option>
-                                <option value="30MVAR">30MVAR</option>
-                            </select>
-
-                            <select id="dist" class="d-none form-control">
-                                <!--placeholder-->
-                                <option value="400KV">400KV</option>
-                                <option value="300KV">300KV</option>
-                            </select>
-                        </div>
                     </div>
                     <div class="row m-3">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <label for="equip" class="control-label m-1">Bay Unit</label>
-                            <input type="text" name="equip" class="form-control SlectBox" value="{{$tasks->equip}}">
-
+                            <input id="equip" type="text" name="equip" class="form-control SlectBox">
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <label for="problem" class="control-label m-1"> Nature of Fault</label>
-                            <input list="problems" class="form-control" name="problem" id="problem"
-                                value="{{$tasks->problem}}">
+                            <textarea list="problems" class="form-control" name="problem" id="problem"></textarea>
 
-                            <datalist id="problems">
-
-                            </datalist>
                         </div>
                     </div>
+
 
 
 
@@ -227,66 +161,76 @@
                     <div class="row m-3">
                         <div class="col border border-warning p-3 flex-wrap">
                             <h6 class="text-warning">Work Type</h6>
-                            <select id="Work_type" class="form-control">
-                                <!--Placeholder-->
-                                <option value="{{$tasks->Work_type}}">{{$tasks->Work_type}}</option>
-                                <option value="Inspection">Inspection</option>
-                                <option value="Maintenance">Maintenance</option>
-                                <option value="Troubleshooting">Troubleshooting</option>
-                                <option value="outage">Installation</option>
-                                <option value="other">other</option>
-                            </select>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
+                                    value="Inspection">
+                                <label class="form-check-label  m-2" for="inlineRadio1">Inspection</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
+                                    value="Maintenance">
+                                <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
+                                    value="Troubleshooting">
+                                <label class="form-check-label m-2" for="inlineRadio3">Troubleshooting</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
+                                    value="outage">
+                                <label class="form-check-label m-2" for="inlineRadio4">outage</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
+                                    value="Installation">
+                                <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
+                                    value="Other">
+                                <label class="form-check-label m-2" for="inlineRadio6">other</label>
+                            </div>
                         </div>
                     </div>
 
                     {{-- 3 --}}
 
                     <div class="row m-3">
-                        <div class="col-lg-3">
-                            <label for="area" class="control-label">area</label>
-                            <select name="area" id="areaSelect" class="form-control areaSelect"
-                                onchange="getEngineer()">
-
-
-
+                        <div class="col-lg-3 d-none">
+                            <label for="inputName" class="control-label">المنطقة</label>
+                            <select name="area" id="areaSelect" class="form-control areaSelect">
+                                <!--placeholder-->
+                                <!-- <option value="1"> المنطقة الشمالية</option>
+                                <option value="2"> المنطقة الجنوبية</option> -->
 
                             </select>
                         </div>
 
-
-                        <div class="col-lg-3">
-                            <label for="shift" class="control-label">shif</label>
-                            <select name="shift" id="shiftSelect" class="form-control " onchange="getEngineersShift()">
+                        <div class="col-lg-3 d-none">
+                            <label for="inputName" class="control-label">shif</label>
+                            <select name="shift" id="shiftSelect" class="form-control SlectBox"
+                                onchange="getEngineersShift()">
                                 <!--placeholder-->
                                 <option value="0"> صباحاً </option>
                                 <option value="1"> مساءً </option>
                             </select>
 
-
                         </div>
 
-                        <div class="col">
-                            <button id="changeEngineerButton" class="btn btn-outline-info btn-sm ml-2">تغيير اسم
-                                المهندس</button>
+                        <div class="col d-none">
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                 onchange="getEngineerEmail()">
-                                @unless($tasks->eng_id == null)
-                                <option value="{{$tasks->users->id}}">{{$tasks->users->name}}</option>
-                                @endunless
+                                <option value="--">سيتم اختيار اسم المهندس لاحقا</option>
                             </select>
                         </div>
-                        <div class=" col email">
+                        <div class=" col email d-none">
                             <label for="inputName" class="control-label"> Email</label>
 
-                            @if($tasks->eng_id == null)
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email">
-                            @else
-                            <input type="text" class="form-control" name="eng_email" id="eng_name_email"
-                                value="{{$tasks->users->email }}">
-                            @endif
                         </div>
-
 
                     </div>
 
@@ -296,76 +240,24 @@
                     <div class="row m-3">
                         <div class="col">
                             <label for="exampleTextarea">ملاحظات</label>
-                            <textarea class="form-control" id="exampleTextarea" name="notes"
-                                rows="3">{{$tasks->notes}}</textarea>
+                            <textarea class="form-control" id="exampleTextarea" name="notes" rows="3"></textarea>
                         </div>
                     </div><br>
 
                     <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                     <h5 class="card-title">المرفقات</h5>
-                    {{--show Attahcments --}}
-                    <div class="table-responsive mt-15">
-                        <table class="table center-aligned-table mb-0  table-hover" style="text-align:center">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">م</th>
-                                    <th scope="col">اسم الملف</th>
-                                    <th scope="col">تاريخ الاضافة</th>
-                                    <th scope="col"> بواسطة</th>
-                                    <th scope="col">العمليات</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 0; ?>
-                                @foreach ($task_attachments as $attachment)
-                                <?php $i++; ?>
-                                <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>{{ $attachment->file_name }}</td>
-                                    <td>{{ $attachment->created_at }}</td>
-                                    <td>
-                                        @if($attachment->Created_by =="")
-                                        {{$task->engineers->name}}
-                                        @else
-                                        {{ $attachment->Created_by }}
-                                        @endif
-                                    </td>
-                                    <td colspan="2">
 
-                                        <a class="btn btn-outline-success btn-sm"
-                                            href="{{route('switch.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                            role="button"><i class="fas fa-eye"></i>&nbsp;
-                                            عرض</a>
-
-                                        <a class="btn btn-outline-info btn-sm"
-                                            href="{{route('switch.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                            role="button"><i class="fas fa-download"></i>&nbsp;
-                                            تحميل</a>
-
-                                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal"
-                                            data-file_name="{{ $attachment->file_name }}"
-                                            data-invoice_number="{{ $attachment->id_task }}"
-                                            data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
-
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    @foreach($task_attachments as $x)
                     <div class="col-sm-12 col-md-12">
                         <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                             data-height="70" />
                     </div><br>
-                    @endforeach
-                    {{--<div class="col-sm-12 col-md-12">
+
+                    <div class="col-sm-12 col-md-12">
                         <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                             data-height="70" />
 
                     </div><br>
+                    <br>
                      <div class="text-center mb-3">
                         <button id="showAttachment" class="btn btn-outline-info">اضغط لإضافة المزيد من
                             المرفقات</button>
@@ -386,21 +278,38 @@
                             <input type="file" name="pic[]" class="dropify"
                                 accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
                         </div><br>
-                    </div>--}}
+                    </div>
+
+
+
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModal">ارسال البيانات</button>
                     </div>
 
+
+
+
                 </form>
             </div>
+
         </div>
     </div>
 </div>
-
+<!-- row closed -->
+</div>
+<!-- Container closed -->
+</div>
 <!-- main-content closed -->
+
 @endsection
 @section('js')
+<script>
+var date = $('.fc-datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
+}).val();
+</script>
+
 <!-- Internal Select2 js-->
 <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 <!--Internal Fileuploads js-->
@@ -426,12 +335,8 @@
 <!-- Internal form-elements js -->
 <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
-<script>
-var date = $('.fc-datepicker').datepicker({
-    dateFormat: 'yy-mm-dd'
-}).val();
-</script>
+<!--PROTECTION JS fiLE-->
+<script type="text/javascript" src="{{ URL::asset('js/switchgear/app.js') }}"></script>
 
-<script type="text/javascript" src="{{ URL::asset('js/switchgear/updateTask.js') }}"></script>
 
 @endsection

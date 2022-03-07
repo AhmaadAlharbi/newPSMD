@@ -49,6 +49,8 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
        Route::get('/dashboard/admin/query_section_id=6/allow-engineers-report-request/{id}',[SwitchGearController::class,'allowEngineersReportRequest'])->name('switch.allowEngineersReportRequest');
     //add task
     Route::get('/dashboard/admin/query_section_id=6/add_task',[SwitchGearController::class,'add_task'])->name('switch.addTask');
+    //add task to be assinged
+    Route::get('/dashboard/admin/query_section_id=6/add_task_to_be_assigned',[SwitchGearController::class,'assign_task'])->name('switch.assign_task');
     //get  all engineer's name
     Route::get('/switchgear/getEngineer/{area_id}/{shift_id}',[SwitchGearController::class,'getEngineerName'])->name('switch.getEngineer');
 
@@ -61,6 +63,7 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
 
     ///BACKEND ROUTE
     Route::post('/switch/send_task',[SwitchGearController::class,'store'])->name('switch.store');
+    Route::post('/switch/assignTasks',[SwitchGearController::class,'storeAssignTask'])->name('switch.store.assign_task');
     Route::get('/dashboard/admin/query_section_id=6/All-tasks',[SwitchGearController::class,'showAllTasks'])->name('switch.admin.showAllTasks');
     Route::get('/dashboard/admin/query_section_id=6/pending-tasks',[SwitchGearController::class,'showPendingTasks'])->name('switch.admin.pendingTasks');
     Route::get('/dashboard/admin/query_section_id=6/completed-tasks',[SwitchGearController::class,'showCompletedTasks'])->name('switch.admin.completedTasks');

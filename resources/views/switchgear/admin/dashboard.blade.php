@@ -193,16 +193,15 @@
                                             {{$task->status}}
                                         </span>
                                         @endif
-                                        @if($task->status=="pending")
+                                        @if(isset($task->eng_id))
                                         <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
                                         <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>
-                                        <a href="" class="btn  btn-warning d-block">Assign Engineer</a>
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('protecion.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('switch.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
 
