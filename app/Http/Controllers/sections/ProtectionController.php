@@ -52,6 +52,7 @@ class ProtectionController extends Controller
 
     }
     public function index(){
+        
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',2)
             ->where('status', 'pending')
@@ -76,8 +77,10 @@ class ProtectionController extends Controller
     }
     //// start front END functions
     public function add_task(){
+        $task_id = Task::latest()->first()->id;
+        $task_id++;
         $stations = Station::all();
-        return view ('protection.admin.tasks.add_task',compact('stations'));
+        return view ('protection.admin.tasks.add_task',compact('stations','task_id'));
     }
     //assign task page
     public function assign_task(){
@@ -126,9 +129,14 @@ class ProtectionController extends Controller
     ///#####start backend functions
 
     public function store(Request $request){ 
-
+         $task_id_count = Task::where('id',$request->task_id)->count();
+         $refNum =   $request->refNum;
+        if(!$task_id_count == 0){
+          $refNum = $request->refNum = $request->refNum .-1;
+        }
+      
         Task::create([
-            'refNum' => $request->refNum,
+            'refNum' => $refNum,
             'fromSection'=>2,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
@@ -152,6 +160,7 @@ class ProtectionController extends Controller
             'status'=>'pending',
         ]);
 
+        $fromSection =2;
         if ($request->hasfile('pic')) {
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
@@ -166,10 +175,10 @@ class ProtectionController extends Controller
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code,$fromSection));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new AddTask($task_id, $request->station_code));
+            ->notify(new AddTask($task_id, $request->station_code,$fromSection));
         }
 
 
