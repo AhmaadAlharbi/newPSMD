@@ -77,15 +77,25 @@ class ProtectionController extends Controller
     }
     //// start front END functions
     public function add_task(){
-        $task_id = Task::latest()->first()->id;
-        $task_id++;
+        if(isset(Task::latest()->first()->id)){
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        }else{
+            $task_id = 1;
+        }
         $stations = Station::all();
         return view ('protection.admin.tasks.add_task',compact('stations','task_id'));
     }
     //assign task page
     public function assign_task(){
+        if(isset(Task::latest()->first()->id)){
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        }else{
+            $task_id = 1;
+        }
         $stations = Station::all();
-        return view ('protection.admin.tasks.assign_task',compact('stations'));
+        return view ('protection.admin.tasks.assign_task',compact('stations','task_id'));
     }
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
@@ -189,8 +199,13 @@ class ProtectionController extends Controller
     }
     //store assign task
     public function storeAssignTask(Request $request){
+        $task_id_count = Task::where('id',$request->task_id)->count();
+        $refNum =   $request->refNum;
+       if(!$task_id_count == 0){
+         $refNum = $request->refNum = $request->refNum .-1;
+       }
         Task::create([
-            'refNum' => $request->refNum,
+            'refNum' => $refNum,
             'fromSection'=>2,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,

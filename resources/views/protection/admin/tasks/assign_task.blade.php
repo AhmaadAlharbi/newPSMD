@@ -54,7 +54,8 @@
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>
                             <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
-                                required value="P-{{ date('y-m') }}/" readonly>
+                                required value="{{ date('y-m') }}/{{$task_id}}" readonly>
+                            <input type="hidden" name="task_id" value="{{$task_id}}">
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
@@ -69,7 +70,7 @@
                                 class="text-center d-none p-3 form-control" readonly>
                             <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control"
                                 readonly>
-                            <input type="text" id="station_id" name="ssnameID">
+                            <input type="hidden" id="station_id" name="ssnameID">
                         </div>
                         <div class=" col-lg-4">
                             <label>تاريخ ارسال المهمة</label>
@@ -186,7 +187,7 @@
                             </select>
                         </div>
                     </div>
-                        <div class="row m-3">
+                    <div class="row m-3">
 
                         <div class="col-lg-12">
                             <label for="equip" class="control-label m-1">Bay Unit</label>
@@ -196,7 +197,7 @@
                         <div class="col-lg-12">
                             <label for="problem" class="control-label m-1"> Nature of Fault</label>
                             <textarea list="problems" class="form-control" name="problem" id="problem"></textarea>
-                     
+
                         </div>
                     </div>
 

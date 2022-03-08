@@ -50,7 +50,6 @@
                     autocomplete="off">
                     {{ csrf_field() }}
                     {{-- 1 --}}
-                    <h1>{{$task_id}}</h1>
                     <div class="row m-3">
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>

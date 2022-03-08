@@ -26,10 +26,11 @@
                 @endif
             </div>
         </div>
+        @auth
         @php
         $is_admin = Auth::user()->is_admin ? 'admin':'user';
         @endphp
-
+        @endauth
         <ul class="side-menu">
             <li class="side-item side-item-category">Main</li>
             <li class="slide">
@@ -44,6 +45,7 @@
                 </a>
 
             </li>
+            @auth
             @if($is_admin =='admin')
             <li class="side-item side-item-category">متابعة الأعطال</li>
             <li class="slide">
@@ -375,7 +377,7 @@
             </ul>
         </li>--}}
         @endif
-
+        @endauth
         </ul>
     </div>
 </aside>

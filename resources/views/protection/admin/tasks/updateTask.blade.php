@@ -75,7 +75,7 @@
                             </datalist>
 
 
-                            <input type="text" id="station_id" name="ssnameID" value="{{$tasks->station->id}}">
+                            <input type="hidden" id="station_id" name="ssnameID" value="{{$tasks->station->id}}">
 
                             <input id="staion_full_name" name="staion_full_name" class="text-center p-3 form-control"
                                 readonly value="{{$tasks->station->fullName}}">
@@ -89,13 +89,13 @@
                             <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
                                 type="text" value="{{$tasks->task_date}}" readonly>
                         </div>
-                        <div class="row m-3">
+                        <div class="row m-3 d-none">
                             <div class="col-lg-6">
-                                <label for="" class="control-label">Make</label>
+                                <label for="" class="control-label ">Make</label>
                                 <input id="make" type="text" class="form-control" name="make">
                             </div>
                             <div class="col-lg-6">
-                                <label for="" class="control-label">Last P.M</label>
+                                <label for="" class="control-label ">Last P.M</label>
                                 <input type="text" class="form-control" name="pm">
                             </div>
                         </div>
@@ -227,9 +227,9 @@
                     <div class="row m-3">
                         <div class="col border border-warning p-3 flex-wrap">
                             <h6 class="text-warning">Work Type</h6>
-                            <select id="Work_type" class="form-control">
+                            <select id="Work_type" name="work_type" class="form-control">
                                 <!--Placeholder-->
-                                <option value="{{$tasks->Work_type}}">{{$tasks->Work_type}}</option>
+                                <option value="{{$tasks->work_type}}">{{$tasks->work_type}}</option>
                                 <option value="Inspection">Inspection</option>
                                 <option value="Maintenance">Maintenance</option>
                                 <option value="Troubleshooting">Troubleshooting</option>
@@ -285,8 +285,8 @@
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email"
                                 value="{{$tasks->users->email }}">
                             @endif
-                          
-                        
+
+
                         </div>
 
 
