@@ -73,8 +73,14 @@ public function register(Request $request){
     }
     //// start front END functions
     public function add_task(){
+        if(isset(Task::latest()->first()->id)){
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        }else{
+            $task_id = 1;
+        }
         $stations = Station::all();
-        return view ('switchgear.admin.tasks.add_task',compact('stations'));
+        return view ('switchgear.admin.tasks.add_task',compact('stations','task_id'));
     }
     public function addEngineer(Request $request){
         Engineer::create([
@@ -88,8 +94,14 @@ public function register(Request $request){
     }
         //assign task page
         public function assign_task(){
+            if(isset(Task::latest()->first()->id)){
+                $task_id = Task::latest()->first()->id;
+                $task_id++;
+            }else{
+                $task_id = 1;
+            }
             $stations = Station::all();
-            return view ('switchgear.admin.tasks.assign_task',compact('stations'));
+            return view ('switchgear.admin.tasks.assign_task',compact('stations','task_id'));
         }
     //get all Engineer  JSON
     public function getEngineerName($area_id,$shift_id){
@@ -108,8 +120,13 @@ public function register(Request $request){
     }
     //store assign task
     public function storeAssignTask(Request $request){
+        $task_id_count = Task::where('id',$request->task_id)->count();
+        $refNum =   $request->refNum;
+       if(!$task_id_count == 0){
+         $refNum = $request->refNum = $request->refNum .-1;
+       }
         Task::create([
-            'refNum' => $request->refNum,
+            'refNum' => $refNum,
             'fromSection'=>6,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
@@ -176,8 +193,21 @@ public function register(Request $request){
     ///#####start backend functions
 
     public function store(Request $request){ 
+        $validated = $request->validate([
+            'ssnameID' => 'required|numeric',
+        ],
+        [
+            'ssnameID.required' =>'يرجى اختيار المحطة من القائمة فقط',
+            'ssnameID.numeric'=>'يرجى اختيار المحطة من القائمة فقط'
+
+        ]);
+        $task_id_count = Task::where('id',$request->task_id)->count();
+        $refNum =   $request->refNum;
+       if(!$task_id_count == 0){
+         $refNum =$request->refNum .-1;
+       }
         Task::create([
-            'refNum' => $request->refNum,
+            'refNum' =>$refNum,
             'fromSection'=>6,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,

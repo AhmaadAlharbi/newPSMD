@@ -53,7 +53,8 @@
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>
                             <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
-                                required value="SG-{{ date('y-m') }}/" readonly>
+                            required value="{{ date('y-m') }}/{{$task_id}}" readonly>
+                            <input type="hidden" name="task_id" value="{{$task_id}}">
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>

@@ -119,7 +119,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="border-bottom-0">Work Type</th>
-                                                    <td colspan="4">{{$task->Work_type}}</td>
+                                                    <td colspan="4">{{$task->work_type}}</td>
 
                                                 </tr>
                                                 <tr>

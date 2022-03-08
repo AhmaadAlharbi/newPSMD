@@ -15,8 +15,8 @@ const hideAttachment = document.getElementById("hideAttachment");
 const attachmentFile = document.getElementById("attachmentFile");
 //generate random number
 
-let randomNumber = Math.floor(Math.random() * 900);
-refNum.value += randomNumber + 1;
+// let randomNumber = Math.floor(Math.random() * 900);
+// refNum.value += randomNumber + 1;
 
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");

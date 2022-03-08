@@ -227,9 +227,9 @@
                     <div class="row m-3">
                         <div class="col border border-warning p-3 flex-wrap">
                             <h6 class="text-warning">Work Type</h6>
-                            <select id="Work_type" class="form-control">
+                            <select id="Work_type" name="work_type" class="form-control">
                                 <!--Placeholder-->
-                                <option value="{{$tasks->Work_type}}">{{$tasks->Work_type}}</option>
+                                <option value="{{$tasks->work_type}}">{{$tasks->work_type}}</option>
                                 <option value="Inspection">Inspection</option>
                                 <option value="Maintenance">Maintenance</option>
                                 <option value="Troubleshooting">Troubleshooting</option>

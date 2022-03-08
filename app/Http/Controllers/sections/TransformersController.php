@@ -76,14 +76,26 @@ class TransformersController extends Controller
 
      //add tasks to admins
     public function add_task(){
+        if(isset(Task::latest()->first()->id)){
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        }else{
+            $task_id = 1;
+        }
         $stations = Station::all();
-        return view ('transformers.admin.tasks.add_task',compact('stations'));
+        return view ('transformers.admin.tasks.add_task',compact('stations','task_id'));
     }
 
      //assign task page
     public function assign_task(){
+        if(isset(Task::latest()->first()->id)){
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        }else{
+            $task_id = 1;
+        }
         $stations = Station::all();
-         return view ('transformers.admin.tasks.assign_task',compact('stations'));
+         return view ('transformers.admin.tasks.assign_task',compact('stations','task_id'));
     }
         //get user email
     public function getUserEmail($user_name){
@@ -118,8 +130,13 @@ class TransformersController extends Controller
     }
     //store assign task
     public function storeAssignTask(Request $request){
+        $task_id_count = Task::where('id',$request->task_id)->count();
+        $refNum =   $request->refNum;
+       if(!$task_id_count == 0){
+         $refNum = $request->refNum = $request->refNum .-1;
+       }
         Task::create([
-            'refNum' => $request->refNum,
+            'refNum' => $refNum,
             'fromSection'=>5,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
@@ -208,8 +225,13 @@ class TransformersController extends Controller
             'ssnameID.numeric'=>'يرجى اختيار المحطة من القائمة فقط'
 
         ]);
+        $task_id_count = Task::where('id',$request->task_id)->count();
+        $refNum =   $request->refNum;
+       if(!$task_id_count == 0){
+         $refNum =$request->refNum .-1;
+       }
         Task::create([
-            'refNum' => $request->refNum,
+            'refNum' => $refNum,
             'fromSection'=>5,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,

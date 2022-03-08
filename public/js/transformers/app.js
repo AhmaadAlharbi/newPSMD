@@ -239,8 +239,8 @@ const checkBoxElectrical = (check) => {
     }
 };
 //generate random number
-let randomNumber = Math.floor(Math.random() * 900);
-refNum.value += randomNumber + 1;
+// let randomNumber = Math.floor(Math.random() * 900);
+// refNum.value += randomNumber + 1;
 
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");
