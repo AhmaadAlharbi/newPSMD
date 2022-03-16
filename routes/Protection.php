@@ -63,6 +63,8 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/stations/{id}',[ProtectionController::class,'getStations']);
     // Route::get('/protection/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
     ///*****BACKEND ROUTE *********
+    //change task section
+    Route::get('/protection/change-section/{id}',[ProtectionController::class,'changeSection'])->name('protection.changeSection');
     Route::post('/protection/send_task',[ProtectionController::class,'store'])->name('protection.store');
     Route::post('/protection/assignTasks',[ProtectionController::class,'storeAssignTask'])->name('protection.store.assign_task');
     Route::get('/dashboard/admin/query_section_id=2/All-tasks',[ProtectionController::class,'showAllTasks'])->name('protection.admin.showAllTasks');
@@ -82,6 +84,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::post('delete_file', [ProtectionController::class, 'destroyAttachment'])->name('delete_file');
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=2/print-report/{id}',[ProtectionController::class,'viewPrintReport'])->name('protection.veiwReport');
+    Route::get('/dashboard/admin/query_section_id=2/print-common-report/{id}/{section_id}',[ProtectionController::class,'viewCommonReport'])->name('protection.viewCommonReport');
 
     });
     

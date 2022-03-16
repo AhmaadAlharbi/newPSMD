@@ -18,14 +18,17 @@ class TaskDetails extends Model
     {
         return $this->belongsTo(User::class,'eng_id');
     }
+
     public function sections()
     {
-        return $this->hasMany(Section::class);
+        return $this->belongsTo(Section::class,'fromSection');
     }
     public function tasks()
     {
         // return $this->belongsTo(Task::class,'task_id');
-        return $this->hasMany(Task::class);
+        // return $this->hasMany(Task::class);
+        return $this->belongsTo(Task::class,'task_id');
+
 
     }
 

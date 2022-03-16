@@ -71,4 +71,3 @@
 @endsection
 @section('js')
 @endsection
-© 2022 GitHub, Inc.

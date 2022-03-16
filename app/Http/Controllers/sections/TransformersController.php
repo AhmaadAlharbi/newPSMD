@@ -154,7 +154,9 @@ class TransformersController extends Controller
 
         TaskDetails::create([
             'task_id'=>$task_id,
+            'fromSection'=>5,
             'status'=>'pending',
+
         ]);
         TrTasks::create([
             'task_id'=>$task_id,
@@ -249,6 +251,7 @@ class TransformersController extends Controller
         TaskDetails::create([
             'task_id'=>$task_id,
             'eng_id'=>$request->eng_name,
+            'fromSection'=> 5,
             'status'=>'pending',
         ]);
         TrTasks::create([
@@ -363,6 +366,7 @@ class TransformersController extends Controller
         $tasks = Task::findOrFail($id);
         $task_Details = TaskDetails::where('task_id',$id);
         $tr_Tasks = TrTasks::where('task_id',$id);
+        $date = Carbon::now();
         $tasks->update([
             'refNum' => $request->refNum,
             'fromSection'=>5,
@@ -377,15 +381,31 @@ class TransformersController extends Controller
             'user' => (Auth::user()->name),
         ]);
         $engineer_email = $request->eng_email;
-        $task_Details->update([
+        TaskDetails::create([
+            'task_id'=>$id,
             'eng_id'=>$request->eng_name,
+            'report_date'=> $date,
+            'fromSection'=> 5, 
+            'status'=>'pending',
         ]);
-        $tr_Tasks->update([
-            'work_type'=>$request->work_type,
-            'work_type_description'=>$request->work_type_description,
-            'department'=>$request->department,
-            'area'=>$request->area,
-        ]);
+        
+        //check if tasks is added in task Tr table or not (tasks comes from another sections)
+        if(!isset($tr_task)){
+            TrTasks::create([
+                'task_id'=>$id,
+                'work_type'=>$request->work_type,
+                'work_type_description'=>$request->work_type_description,
+                'department'=>$request->department,
+                'area'=>$request->area,
+            ]);
+        }else{
+            $tr_Tasks->update([
+                'work_type'=>$request->work_type,
+                'work_type_description'=>$request->work_type_description,
+                'department'=>$request->department,
+                'area'=>$request->area,
+            ]);
+        }
         $task_id = $id;
         $fromSection = 5;
 

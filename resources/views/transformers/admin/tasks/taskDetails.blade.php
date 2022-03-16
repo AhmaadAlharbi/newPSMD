@@ -119,7 +119,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="border-bottom-0">Work Type</th>
-                                                    <td colspan="4">{{$task->Work_type}}</td>
+                                                    <td colspan="4">{{$task->work_type}}</td>
 
                                                 </tr>
                                                 <tr>
@@ -226,6 +226,7 @@
                                                     <tr class="text-dark">
                                                         <th>#</th>
                                                         <th class="border-bottom-0"> التاريخ</th>
+                                                        <th class="border-bottom-0"> القسم</th>
                                                         <th class="border-bottom-0"> المهندس</th>
                                                         <th class="border-bottom-0"> ملاحظات المهندس</th>
                                                         <th class="border-bottom-0">action take</th>
@@ -246,6 +247,8 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->report_date}}</td>
+                                                        <td>{{$x->sections->section_name}}</td>
+
                                                         @if(isset($x->users->name))
                                                         <td>{{$x->users->name}}</td>
                                                         @else
@@ -258,10 +261,16 @@
                                                             <span
                                                                 class="badge badge-pill badge-success">{{$x->status}}</span>
                                                         </td>
-                                                        @else
+                                                        @elseif($x->status=='pending')
                                                         <td>
                                                             <span
                                                                 class="badge badge-pill badge-danger">{{$x->status}}</span>
+
+                                                        </td>
+                                                        @else
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-warning">{{$x->status}}</span>
 
                                                         </td>
                                                         @endif
@@ -312,12 +321,12 @@
                                                             </td>
                                                             <td colspan="2">
                                                                 <a class="btn btn-outline-success btn-sm"
-                                                                    href="{{route('transformers.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                    href="{{route('protection.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                     عرض</a>
 
                                                                 <a class="btn btn-outline-info btn-sm"
-                                                                    href="{{route('transformers.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                    href="{{route('protection.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-download"></i>&nbsp;
                                                                     تحميل</a>
                                                                 <button class="btn btn-outline-danger btn-sm"

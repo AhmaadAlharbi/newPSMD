@@ -65,7 +65,7 @@
                                 <option value="{{$station->SSNAME}}">
                                     @endforeach
                             </datalist>
-                            <input type="text" id="station_id" name="ssnameID" value="{{$tasks->station->id}}">
+                            <input type="hidden" id="station_id" name="ssnameID" value="{{$tasks->station->id}}">
 
                             <input id="staion_full_name" name="staion_full_name"
                                 class="text-center d-none p-3 form-control" readonly>
@@ -95,25 +95,29 @@
                             <select name="department" id="department" class="form-control "
                                 onChange="checkDepartment() ,getAdmins()">
                                 <!--placeholder-->
+                                @isset($tr_tasks)
                                 @if($tr_task->department == 1)
                                 <option value="1">Mechanical</option>
                                 <option value="2">Chemistry</option>
                                 <option value="3">Electrical</option>
-
                                 @elseif($tr_task->department==2)
                                 <option value="2">Chemistry</option>
                                 <option value="1">Mechanical</option>
                                 <option value="3">Electrical</option>
-
-
                                 @else
                                 <option value="3">Electrical</option>
                                 <option value="1">Mechanical</option>
                                 <option value="2">Chemistry</option>
                                 @endif
+                                @endisset
+                                @empty($tr_task)
+                                <option value="1">Mechanical</option>
+                                <option value="2">Chemistry</option>
+                                <option value="3">Electrical</option>
+                                @endempty
                             </select>
                         </div>
-                        @if($tr_task->department == 1)
+                        @if($tr_task === null || $tr_task->department == 1)
                         <div class=" col-lg-6  " id="main_alarm">
                             <label for="main_alarm" class="control-label m-3">Main Alarm</label>
                             <select name="mainAlarm" class="form-control">
@@ -121,8 +125,6 @@
                             </select>
                         </div>
                         @endif
-
-
                     </div>
                     {{-- 2 --}}
                     <!--Work type for Mechinacl-->
@@ -200,7 +202,7 @@
                             </select>
 
                         </div>
-                 
+
                         <div class="col">
                             <label for="inputName" class="control-label">اسم المهندس</label>
                             <select id="eng_name" name="eng_name" class="form-control engineerSelect"
@@ -210,15 +212,15 @@
                                 @endunless
                             </select>
                         </div>
-                        <div class="col">
-                        <button id="changeAdminButton" class="btn btn-info btn-sm">
-                            تحويل إلى مشرف
-                        </button>
-                        <button id="changeEngineerButton" class="btn btn-outline-info btn-sm mt-2">
-                            تحويل إلى مهندس
-                        </button>
+                        <div class="col mt-3">
+                            <button id="changeAdminButton" class="btn btn-info btn-sm">
+                                تحويل إلى مشرف
+                            </button>
+                            <button id="changeEngineerButton" class="btn btn-outline-info btn-sm mt-2">
+                                تحويل إلى مهندس
+                            </button>
                         </div>
-                        <div class=" col email">
+                        <div class=" col email d-none ">
                             <label for="inputName" class="control-label"> Email</label>
                             @if($tasks->eng_id == null)
                             <input type="text" class="form-control" name="eng_email" id="eng_name_email">
@@ -276,7 +278,7 @@
                                             role="button"><i class="fas fa-eye"></i>&nbsp;
                                             عرض</a>
 
-                                            <a class="btn btn-outline-info btn-sm"
+                                        <a class="btn btn-outline-info btn-sm"
                                             href="{{route('transformers.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                             role="button"><i class="fas fa-download"></i>&nbsp;
                                             تحميل</a>

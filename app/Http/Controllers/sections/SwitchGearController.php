@@ -144,6 +144,7 @@ public function register(Request $request){
 
         TaskDetails::create([
             'task_id'=>$task_id,
+            'fromSection'=>6,
             'status'=>'pending',
         ]);
 
@@ -227,6 +228,7 @@ public function register(Request $request){
         TaskDetails::create([
             'task_id'=>$task_id,
             'eng_id'=>$request->eng_name,
+            'fromSection'=> 6,
             'status'=>'pending',
         ]);
 

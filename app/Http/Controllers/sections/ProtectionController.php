@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\Station;
+use App\Models\Section;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
@@ -38,6 +39,7 @@ class ProtectionController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -65,9 +67,8 @@ class ProtectionController extends Controller
         $task_details = DB::table('task_details')
         ->join('tasks','tasks.id','=','task_details.task_id')
         ->where('task_details.status','completed')
-        ->where('tasks.fromSection',2)
         ->orderBy('tasks.id', 'desc')
-
+        ->where('task_details.fromSection',2)
         ->get();   
         $date = Carbon::now();
         $monthName = $date->format('F');
@@ -139,12 +140,12 @@ class ProtectionController extends Controller
     ///#####start backend functions
 
     public function store(Request $request){ 
+        //chekc if ref Num in database or not
          $task_id_count = Task::where('id',$request->task_id)->count();
          $refNum =   $request->refNum;
         if(!$task_id_count == 0){
           $refNum = $request->refNum = $request->refNum .-1;
         }
-      
         Task::create([
             'refNum' => $refNum,
             'fromSection'=>2,
@@ -167,6 +168,8 @@ class ProtectionController extends Controller
         TaskDetails::create([
             'task_id'=>$task_id,
             'eng_id'=>$request->eng_name,
+            'report_date'=>$request->task_Date,
+            'fromSection'=>2,
             'status'=>'pending',
         ]);
 
@@ -220,9 +223,10 @@ class ProtectionController extends Controller
             'user' => (Auth::user()->name),
         ]);
         $task_id = Task::latest()->first()->id;
-        
         TaskDetails::create([
             'task_id'=>$task_id,
+            'report_date'=> $request->task_Date,
+            'fromSection'=> 2,
             'status'=>'pending',
         ]);
 
@@ -321,18 +325,38 @@ class ProtectionController extends Controller
         session()->flash('Add','تم الاضافة بنجاح');
         return back();
     }
+    //change section
+    public function changeSection($id,Request $request){
+        $tasks = Task::where('id',$id)->first();
+        $tasks_details = TaskDetails::where('task_id',$id)->first();
+        $date = Carbon::now();
+        $tasks->update([
+            'fromSection'=>$request->section_id,
+            'eng_id'=>null,
+        ]);
+        $tasks_details->create([
+            'task_id'=> $id,
+            'fromSection'=>$request->section_id,
+            'eng_id'=>null,
+            'report_date'=>$date,
+            'status' => 'change',
 
+        ]);
+        return back();
+    }
     //get 
     public function updateTask($id){
         $tasks = Task::where('id',$id)->first();
         $stations = Station::all();
+        $sections = Section::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
-        return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments'));
+        return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments','sections'));
     }
 
 //post
     public function update(Request $request , $id){
+        $date = Carbon::now();
         $tasks = Task::findOrFail($id);
         $tasks->update([
             'refNum' => $request->refNum,
@@ -404,8 +428,25 @@ class ProtectionController extends Controller
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('fromSection',2)
         ->first();
-        return view('protection.admin.tasks.report',compact('task_details'));
+        $commonTasks = TaskDetails::where('task_id',$id)
+        ->where('fromSection','!=',2)
+        ->where('status','completed')
+        ->get();
+        return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
+    }
+    public function viewCommonReport($id,$section_id){
+        $task_details = TaskDetails::where('task_id',$id)
+        ->where('status','completed')
+        ->where('fromSection',$section_id)
+
+        ->first();
+        $commonTasks = TaskDetails::where('task_id',$id)
+        ->where('status','completed')
+        ->get();
+        return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
+
     }
     
     ///##### end backend functions

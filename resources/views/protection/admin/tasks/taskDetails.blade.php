@@ -226,6 +226,7 @@
                                                     <tr class="text-dark">
                                                         <th>#</th>
                                                         <th class="border-bottom-0"> التاريخ</th>
+                                                        <th class="border-bottom-0"> القسم</th>
                                                         <th class="border-bottom-0"> المهندس</th>
                                                         <th class="border-bottom-0"> ملاحظات المهندس</th>
                                                         <th class="border-bottom-0">action take</th>
@@ -246,6 +247,8 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->report_date}}</td>
+                                                        <td>{{$x->sections->section_name}}</td>
+
                                                         @if(isset($x->users->name))
                                                         <td>{{$x->users->name}}</td>
                                                         @else
