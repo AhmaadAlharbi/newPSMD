@@ -372,7 +372,7 @@ class TransformersController extends Controller
             'fromSection'=>$request->section_id,
             'eng_id'=>null,
             'report_date'=>$date,
-            'status' => 'change',
+            'status' => 'pending',
 
         ]);
         //check if tasks is added in task Tr table or not (tasks comes from another sections)
