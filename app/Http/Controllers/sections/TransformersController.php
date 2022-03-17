@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\User;
 use App\Models\Station;
+use App\Models\Section;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
 use App\Models\TaskDetails;
@@ -60,7 +61,7 @@ class TransformersController extends Controller
       $task_details = DB::table('task_details')
             ->join('tasks','tasks.id','=','task_details.task_id')
             ->where('task_details.status','completed')
-            ->where('tasks.fromSection',5)
+            ->where('task_details.fromSection',5)
             ->orderBy('tasks.id', 'desc')
             ->get();  
         $tr_tasks= DB::table('tr_tasks')
@@ -253,6 +254,7 @@ class TransformersController extends Controller
             'eng_id'=>$request->eng_name,
             'fromSection'=> 5,
             'status'=>'pending',
+            'report_date'=>$request->task_Date,
         ]);
         TrTasks::create([
             'task_id'=>$task_id,
@@ -350,19 +352,48 @@ class TransformersController extends Controller
         $users = User::where('section_id',5)->get();
         return view('transformers.admin.users.usersList',compact('users'));
     }
+     //change section
+     public function changeSection($id,Request $request){
+        $tasks = Task::where('id',$id)->first();
+        $tasks_details = TaskDetails::where('task_id',$id)->first();
+        $tr_Tasks = TrTasks::where('task_id',$id);
+        $date = Carbon::now();
+        $tasks->update([
+            'fromSection'=>$request->section_id,
+            'eng_id'=>null,
+        ]);
+        $tasks_details->create([
+            'task_id'=> $id,
+            'fromSection'=>$request->section_id,
+            'eng_id'=>null,
+            'report_date'=>$date,
+            'status' => 'change',
+
+        ]);
+        //check if tasks is added in task Tr table or not (tasks comes from another sections)
+        if(!isset($tr_task)){
+            TrTasks::create([
+                'task_id'=>$id,
+                'department'=>1,
+                'area'=>1,
+            ]);
+        }
+        return back();
+    }
     //get 
     public function updateTask($id){
-    
+        $sections = Section::all();
         $tasks = Task::where('id',$id)->first();
         $stations = Station::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
         $tr_task = TrTasks::where('task_id',$id)->first();
       
-        return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task'));
+        return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task','sections'));
     }
 
 //post
     public function update(Request $request , $id){
+        $date = Carbon::now();
         $tasks = Task::findOrFail($id);
         $task_Details = TaskDetails::where('task_id',$id);
         $tr_Tasks = TrTasks::where('task_id',$id);
@@ -460,9 +491,24 @@ class TransformersController extends Controller
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
         ->first();
-        return view('Transformers.admin.tasks.report',compact('task_details'));
+        $commonTasks = TaskDetails::where('task_id',$id)
+        ->where('fromSection','!=',2)
+        ->where('status','completed')
+        ->get();
+        return view('Transformers.admin.tasks.report',compact('task_details','commonTasks'));
     }
+    public function viewCommonReport($id,$section_id){
+        $task_details = TaskDetails::where('task_id',$id)
+        ->where('status','completed')
+        ->where('fromSection',$section_id)
 
+        ->first();
+        $commonTasks = TaskDetails::where('task_id',$id)
+        ->where('status','completed')
+        ->get();
+        return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
+
+    }
      ///##### end backend functions
 
         ####################### USER CONTROLLER ########################

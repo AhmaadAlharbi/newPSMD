@@ -70,6 +70,8 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     //get user in tr secttion
     Route::get('/Transformers/getUserEmail/{id}',[TransformersController::class,'getUserEmail']);
     ///BACKEND ROUTE
+       //change task section
+    Route::get('/Trasnformers/change-section/{id}',[TransformersController::class,'changeSection'])->name('transformers.changeSection');
     Route::post('/Transformers/send_task',[TransformersController::class,'store'])->name('Transformers.store');
     Route::post('/Transformers/assignTasks',[TransformersController::class,'storeAssignTask'])->name('Transformers.store.assign_task');
     Route::get('/dashboard/admin/query_section_id=5/All-tasks',[TransformersController::class,'showAllTasks'])->name('Transformers.admin.showAllTasks');
@@ -88,6 +90,7 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=5/print-report/{id}',[TransformersController::class,'viewPrintReport'])->name('Transformers.veiwReport');
 
+    Route::get('/dashboard/admin/query_section_id=5/print-common-report/{id}/{section_id}',[TransformersController::class,'viewCommonReport'])->name('Transformers.viewCommonReport');
 
     });
      //to register new users to protection

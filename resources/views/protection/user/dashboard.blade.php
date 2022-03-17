@@ -208,7 +208,7 @@
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('protecion.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('protection.user.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
 

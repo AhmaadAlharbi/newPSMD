@@ -544,6 +544,7 @@ class ProtectionController extends Controller
             'task_id' => $id,
             'report_date' => Carbon::now(),
             'eng_id' =>$eng_id,
+            'fromSection'=>2,
             'action_take' => $request->action_take,
             'report_status'=>1,
             'status'=>'completed',

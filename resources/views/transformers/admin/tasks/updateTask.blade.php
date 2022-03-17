@@ -46,6 +46,38 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
+            {{-- Button trigger modal to change section --}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#change_section">
+                تحويل إلى قسم آخر
+            </button>
+            {{--change section modal --}}
+         <form action="{{route('transformers.changeSection',['id'=>$tasks->id])}}">
+             @csrf
+         <div class="modal fade" id="change_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">تحويل المهمة لقسم آخر</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <select name="section_id" class="form-control" id="">
+                                @foreach($sections as $section)
+                                <option value="{{$section->id}}">{{$section->section_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                            <button type="submit" class="btn btn-primary">إرسال</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+         </form>
+                {{--end change section modal --}}
                 <form action="{{route('Transformers.update',['id'=>$tasks->id])}}" method="post"
                     enctype="multipart/form-data" autocomplete="off">
                     {{ csrf_field() }}
@@ -95,7 +127,12 @@
                             <select name="department" id="department" class="form-control "
                                 onChange="checkDepartment() ,getAdmins()">
                                 <!--placeholder-->
-                                @isset($tr_tasks)
+                                @empty($tr_task)
+                                <option value="1">Mechanical</option>
+                                <option value="2">Chemistry</option>
+                                <option value="3">Electrical</option>
+                                @endempty
+                              @isset($tr_task)
                                 @if($tr_task->department == 1)
                                 <option value="1">Mechanical</option>
                                 <option value="2">Chemistry</option>
@@ -110,11 +147,7 @@
                                 <option value="2">Chemistry</option>
                                 @endif
                                 @endisset
-                                @empty($tr_task)
-                                <option value="1">Mechanical</option>
-                                <option value="2">Chemistry</option>
-                                <option value="3">Electrical</option>
-                                @endempty
+                              
                             </select>
                         </div>
                         @if($tr_task === null || $tr_task->department == 1)
