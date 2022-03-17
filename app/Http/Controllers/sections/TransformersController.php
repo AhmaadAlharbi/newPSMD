@@ -58,12 +58,17 @@ class TransformersController extends Controller
         ->where('fromSection',5)
         ->where('status', 'pending')
         ->get();
-      $task_details = DB::table('task_details')
-            ->join('tasks','tasks.id','=','task_details.task_id')
-            ->where('task_details.status','completed')
-            ->where('task_details.fromSection',5)
-            ->orderBy('tasks.id', 'desc')
-            ->get();  
+    //  return (String) $task_details = DB::table('task_details')
+    //         ->where('task_details.fromSection',5)
+    //         ->where('task_details.status','completed')
+    //         ->join('tasks','tasks.id','=','task_details.task_id')
+    //         ->where('tasks.fromSection')
+    //         ->orderBy('tasks.id', 'desc')
+    //         ->get();  
+    $task_details= TaskDetails::where('fromSection',5)
+                  ->where('status','completed')
+                  ->orderBy('id', 'desc')
+                  ->get();
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
@@ -492,7 +497,7 @@ class TransformersController extends Controller
         ->where('status','completed')
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
-        ->where('fromSection','!=',2)
+        ->where('fromSection','!=',5)
         ->where('status','completed')
         ->get();
         return view('Transformers.admin.tasks.report',compact('task_details','commonTasks'));
@@ -506,7 +511,7 @@ class TransformersController extends Controller
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')
         ->get();
-        return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
+        return view('transformers.admin.tasks.report',compact('task_details','commonTasks'));
 
     }
      ///##### end backend functions

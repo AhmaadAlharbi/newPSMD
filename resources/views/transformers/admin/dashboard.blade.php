@@ -247,8 +247,7 @@
                         <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
 
                         <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                            {{ \App\Models\User::where(['id'=>$task_detail->eng_id])->pluck('name')->first()}}
-
+                        {{$task_detail->users->name}}
                         </p>
                         <p class="  bg-white text-dark text-center  "><ins>Station :
                                 @php
