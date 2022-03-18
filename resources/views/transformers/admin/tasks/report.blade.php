@@ -229,6 +229,7 @@ td {
                                 <th class="border-bottom-0">رقم المهمة</th>
                                 <th class="border-bottom-0">اسم المحطة </th>
                                 <th class="border-bottom-0"> القسم </th>
+                                <th class="border-bottom-0"> المهندس </th>
                                 <th class="border-bottom-0"> التقرير </th>
                      
                             </tr>
@@ -248,6 +249,8 @@ td {
                                 </td>
                                 <td>{{$task->tasks->station->SSNAME}}</td>
                                 <td>{{$task->sections->section_name}}</td>
+                                <td>{{$task->users->name}}</td>
+
                                 <td><a href="{{route('Transformers.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sections->id])}}" class="btn btn-outline-success">التقرير</a></td>
 
                             </tr>

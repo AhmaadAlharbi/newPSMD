@@ -213,11 +213,62 @@ td {
                     </div>
 
                     <hr class=" mg-b-40">
+                    @isset($commonTasks)
+                <!-- row -->
+<div class="row">
+    <!--div-->
+    <div class="col-xl-12">
+        <div class="card mg-b-20">
 
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
+                        <thead>
+                            <tr>
+                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">رقم المهمة</th>
+                                <th class="border-bottom-0">اسم المحطة </th>
+                                <th class="border-bottom-0"> القسم </th>
+                                <th class="border-bottom-0"> المهندس </th>
+                                <th class="border-bottom-0"> التقرير </th>
+                     
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $i = 0;
+                            @endphp
+                            @foreach ($commonTasks as $task)
+                            @php
+                            $i++
+                            @endphp
+                            <tr>
+                                <td>{{$i}}</td>
+                                <td><a
+                                        href="{{route('switch.admin.taskDetails',['id'=>$task->id])}}">{{$task->tasks->refNum}}</a>
+                                </td>
+                                <td>{{$task->tasks->station->SSNAME}}</td>
+                                <td>{{$task->sections->section_name}}</td>
+                                <td>{{$task->users->name}}</td>
+                                <td><a href="{{route('switch.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sections->id])}}" class="btn btn-outline-success">التقرير</a></td>
+
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/div-->
+</div>
+                @endisset
                     <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
                             class="mdi mdi-printer ml-1"></i>طباعة</button>
 
                 </div>
+
             </div>
         </div>
     </div><!-- COL-END -->

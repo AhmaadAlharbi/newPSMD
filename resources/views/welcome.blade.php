@@ -8,11 +8,10 @@
 <div class="container-fluid">
     <div class="row no-gutter">
         <!-- The image half -->
-        <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
+        <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-dark">
             <div class="row wd-100p mx-auto text-center">
                 <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                    <img src="{{asset('image/engineers.svg')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto"
-                        alt="logo">
+                  
                 </div>
             </div>
         </div>
@@ -31,9 +30,9 @@
                             </div>
                             <div class="card-sigin">
                                 <div class="main-signup-header">
-                                    <h2>Welcome back!</h2>
+                                    <h2 class="text-dark">Welcome back!</h2>
                                     <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                    <form action="#">
+                                    <form action="{{ route('login') }}">
                                         <div class="form-group">
                                             <label>Email</label> <input class="form-control"
                                                 placeholder="Enter your email" type="text">
@@ -41,17 +40,8 @@
                                         <div class="form-group">
                                             <label>Password</label> <input class="form-control"
                                                 placeholder="Enter your password" type="password">
-                                        </div><button class="btn btn-main-primary btn-block">Sign In</button>
-                                        <div class="row row-xs">
-                                            <div class="col-sm-6">
-                                                <button class="btn btn-block"><i class="fab fa-facebook-f"></i>
-                                                    Signup with Facebook</button>
-                                            </div>
-                                            <div class="col-sm-6 mg-t-10 mg-sm-t-0">
-                                                <button class="btn btn-info btn-block"><i class="fab fa-twitter"></i>
-                                                    Signup with Twitter</button>
-                                            </div>
-                                        </div>
+                                        </div><button class="btn btn-dark btn-block">Sign In</button>
+                                 
                                     </form>
                                     <div class="main-signin-footer mt-5">
                                         <p><a href="">Forgot password?</a></p>

@@ -373,7 +373,6 @@ class TransformersController extends Controller
             'eng_id'=>null,
             'report_date'=>$date,
             'status' => 'pending',
-
         ]);
         //check if tasks is added in task Tr table or not (tasks comes from another sections)
         if(!isset($tr_task)){
@@ -495,6 +494,7 @@ class TransformersController extends Controller
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('fromSection',5)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('fromSection','!=',5)

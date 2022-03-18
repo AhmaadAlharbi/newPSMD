@@ -64,12 +64,16 @@ class ProtectionController extends Controller
         // ->whereMonth('created_at', date('m'))
         // ->paginate(4);
 
-        $task_details = DB::table('task_details')
-        ->join('tasks','tasks.id','=','task_details.task_id')
-        ->where('task_details.status','completed')
-        ->orderBy('tasks.id', 'desc')
-        ->where('task_details.fromSection',2)
-        ->get();   
+        // $task_details = DB::table('task_details')
+        // ->join('tasks','tasks.id','=','task_details.task_id')
+        // ->where('task_details.status','completed')
+        // ->orderBy('tasks.id', 'desc')
+        // ->where('task_details.fromSection',2)
+        // ->get();   
+        $task_details= TaskDetails::where('fromSection',2)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName'));
@@ -250,7 +254,9 @@ class ProtectionController extends Controller
     }
 
     public function showEngineersReportRequest(){
-        $tasks = Task::where('report_status',2)->get();
+        $tasks = Task::where('report_status',2)
+        ->where('fromSection',2)
+        ->get();
         return view('protection.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
@@ -333,6 +339,7 @@ class ProtectionController extends Controller
         $tasks->update([
             'fromSection'=>$request->section_id,
             'eng_id'=>null,
+            'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,

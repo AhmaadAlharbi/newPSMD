@@ -40,7 +40,11 @@ Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}',[S
 });
 
 // /#########ADMIN ROUTES ##################
-Route::middleware(['is_admin','is_switch'])->group(function () {
+
+  Route::middleware(['is_admin','is_switch'])->group(function () {
+        //change task section
+
+  Route::get('/switch/change-section/{id}',[SwitchGearController::class,'changeSection'])->name('switch.changeSection');
     //main page
     Route::get('/dashboard/admin/query_section_id=6',[SwitchGearController::class,'index'])->name('dashboard.admin.switch');
     //show engineers request to edit reports
@@ -80,6 +84,7 @@ Route::middleware(['is_admin','is_switch'])->group(function () {
     Route::post('delete_file', [SwitchGearController::class, 'destroyAttachment'])->name('delete_file');
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=6/print-report/{id}',[SwitchGearController::class,'viewPrintReport'])->name('switch.veiwReport');
+    Route::get('/dashboard/admin/query_section_id=6/print-common-report/{id}/{section_id}',[SwitchGearController::class,'viewCommonReport'])->name('switch.viewCommonReport');
 
 
 

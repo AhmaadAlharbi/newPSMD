@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\Station;
+use App\Models\Section;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
@@ -58,13 +59,16 @@ public function register(Request $request){
         // ->whereMonth('created_at', date('m'))
         // ->paginate(4);
 
-        $task_details = DB::table('task_details')
-        ->join('tasks','tasks.id','=','task_details.task_id')
-        ->where('task_details.status','completed')
-        ->where('tasks.fromSection',6)
-        ->orderBy('tasks.id', 'desc')
-
-        ->get();   
+        // $task_details = DB::table('task_details')
+        // ->join('tasks','tasks.id','=','task_details.task_id')
+        // ->where('task_details.status','completed')
+        // ->where('tasks.fromSection',6)
+        // ->orderBy('tasks.id', 'desc')
+        $task_details= TaskDetails::where('fromSection',6)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
+  
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName'));
@@ -90,6 +94,27 @@ public function register(Request $request){
             'shift'=>$request->shift_id,
         ]);
         session()->flash('Add','تم الاضافة بنجاح');
+        return back();
+    }
+
+    //change section
+    public function changeSection($id,Request $request){
+        $tasks = Task::where('id',$id)->first();
+        $tasks_details = TaskDetails::where('task_id',$id)->first();
+        $date = Carbon::now();
+        $tasks->update([
+            'fromSection'=>$request->section_id,
+            'eng_id'=>null,
+            'status'=>'pending',
+        ]);
+        $tasks_details->create([
+            'task_id'=> $id,
+            'fromSection'=>$request->section_id,
+            'eng_id'=>null,
+            'report_date'=>$date,
+            'status' => 'change',
+
+        ]);
         return back();
     }
         //assign task page
@@ -144,7 +169,8 @@ public function register(Request $request){
 
         TaskDetails::create([
             'task_id'=>$task_id,
-            'fromSection'=>6,
+            'report_date'=> $request->task_Date,
+            'fromSection'=> 6,
             'status'=>'pending',
         ]);
 
@@ -228,10 +254,11 @@ public function register(Request $request){
         TaskDetails::create([
             'task_id'=>$task_id,
             'eng_id'=>$request->eng_name,
-            'fromSection'=> 6,
+            'report_date'=>$request->task_Date,
+            'fromSection'=>6,
             'status'=>'pending',
         ]);
-
+        $fromSection =6;
         if ($request->hasfile('pic')) {
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
@@ -246,10 +273,10 @@ public function register(Request $request){
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code,$fromSection));
         }else{
             Notification::route('mail', $engineer_email)
-            ->notify(new AddTask($task_id, $request->station_code));
+            ->notify(new AddTask($task_id, $request->station_code,$fromSection));
         }
 
 
@@ -332,9 +359,10 @@ public function register(Request $request){
     public function updateTask($id){
         $tasks = Task::where('id',$id)->first();
         $stations = Station::all();
+        $sections = Section::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
-        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments'));
+        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments','stations','sections'));
     }
 
 //post
@@ -410,10 +438,27 @@ public function register(Request $request){
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('fromSection',6)
         ->first();
-        return view('switchgear.admin.tasks.report',compact('task_details'));
+        $commonTasks = TaskDetails::where('task_id',$id)
+        ->where('fromSection','!=',6)
+        ->where('status','completed')
+        ->get();
+        return view('switchgear.admin.tasks.report',compact('task_details','commonTasks'));
     }
     
+    public function viewCommonReport($id,$section_id){
+        $task_details = TaskDetails::where('task_id',$id)
+        ->where('status','completed')
+        ->where('fromSection',$section_id)
+
+        ->first();
+        $commonTasks = TaskDetails::where('task_id',$id)
+        ->where('status','completed')
+        ->get();
+        return view('switchgear.admin.tasks.report',compact('task_details','commonTasks'));
+
+    }
     ///##### end backend functions
 
         ####################### USER CONTROLLER ########################
