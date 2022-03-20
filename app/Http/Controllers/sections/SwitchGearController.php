@@ -394,6 +394,14 @@ public function register(Request $request){
             'status' => 'pending',
             'user' => (Auth::user()->name),
         ]);
+        TaskDetails::create([
+            'task_id'=> $id,
+            'fromSection'=> 6,
+            'eng_id'=>$request->eng_name,
+            'report_date'=>$request->task_Date,
+            'status' => 'change',
+
+        ]);
         $task_id = $id;
         $engineer_email = $request->eng_email;
         if ($request->hasfile('pic')) {
@@ -563,6 +571,7 @@ public function register(Request $request){
             'task_id' => $id,
             'report_date' => Carbon::now(),
             'eng_id' =>$eng_id,
+            'fromSection'=>6,
             'action_take' => $request->action_take,
             'status'=>'completed',
         ]);

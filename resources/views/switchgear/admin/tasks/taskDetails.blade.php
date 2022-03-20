@@ -258,10 +258,16 @@
                                                             <span
                                                                 class="badge badge-pill badge-success">{{$x->status}}</span>
                                                         </td>
-                                                        @else
+                                                        @elseif($x->status == 'pending')
                                                         <td>
                                                             <span
                                                                 class="badge badge-pill badge-danger">{{$x->status}}</span>
+
+                                                        </td>
+                                                        @else
+                                                        <td>
+                                                            <span
+                                                                class="badge badge-pill badge-warning">{{$x->status}}</span>
 
                                                         </td>
                                                         @endif

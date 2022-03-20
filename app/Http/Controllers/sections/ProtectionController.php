@@ -391,6 +391,14 @@ class ProtectionController extends Controller
             'status' => 'pending',
             'user' => (Auth::user()->name),
         ]);
+        TaskDetails::create([
+            'task_id'=> $id,
+            'fromSection'=> 2,
+            'eng_id'=>$request->eng_name,
+            'report_date'=>$request->task_Date,
+            'status' => 'change',
+
+        ]);
         $task_id = $id;
         $engineer_email = $request->eng_email;
         if ($request->hasfile('pic')) {
