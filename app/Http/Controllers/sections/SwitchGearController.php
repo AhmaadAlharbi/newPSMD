@@ -97,6 +97,17 @@ public function register(Request $request){
         return back();
     }
 
+     //change section view
+     public function changeSectionView($id){
+        $tasks = Task::where('id',$id)->first();
+        $stations = Station::all();
+        $sections = Section::all();
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+
+        return view('switchgear.admin.tasks.changeSection',compact('tasks','stations','task_attachments','sections'));
+
+    }
+
     //change section
     public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();

@@ -357,6 +357,16 @@ class TransformersController extends Controller
         $users = User::where('section_id',5)->get();
         return view('transformers.admin.users.usersList',compact('users'));
     }
+     //change section view
+     public function changeSectionView($id){
+        $tasks = Task::where('id',$id)->first();
+        $stations = Station::all();
+        $sections = Section::all();
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+
+        return view('transformers.admin.tasks.changeSection',compact('tasks','stations','task_attachments','sections'));
+
+    }
      //change section
      public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();

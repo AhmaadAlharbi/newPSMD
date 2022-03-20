@@ -70,7 +70,9 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     //get user in tr secttion
     Route::get('/Transformers/getUserEmail/{id}',[TransformersController::class,'getUserEmail']);
     ///BACKEND ROUTE
-       //change task section
+     //change section page
+     Route::get('/dashboard/admin/query_section_id=5/change-section-page/{id}',[TransformersController::class,'changeSectionView'])->name('Transformers.changeSectionView');
+   //change task section
     Route::get('/Trasnformers/change-section/{id}',[TransformersController::class,'changeSection'])->name('transformers.changeSection');
     Route::post('/Transformers/send_task',[TransformersController::class,'store'])->name('Transformers.store');
     Route::post('/Transformers/assignTasks',[TransformersController::class,'storeAssignTask'])->name('Transformers.store.assign_task');

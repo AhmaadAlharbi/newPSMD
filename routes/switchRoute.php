@@ -42,8 +42,9 @@ Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}',[S
 // /#########ADMIN ROUTES ##################
 
   Route::middleware(['is_admin','is_switch'])->group(function () {
-        //change task section
-
+      //change section page
+      Route::get('/dashboard/admin/query_section_id=6/change-section-page/{id}',[SwitchGearController::class,'changeSectionView'])->name('switch.changeSectionView');   
+    //change task section
   Route::get('/switch/change-section/{id}',[SwitchGearController::class,'changeSection'])->name('switch.changeSection');
     //main page
     Route::get('/dashboard/admin/query_section_id=6',[SwitchGearController::class,'index'])->name('dashboard.admin.switch');

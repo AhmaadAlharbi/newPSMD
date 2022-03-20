@@ -140,10 +140,15 @@ window.onload = function() {
                                             class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                             type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-
+                                        <a class="dropdown-item"
+                                                href="{{route('Transformers.changeSectionView',['id'=>$task->id])}}"><i
+                                                    class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                                تحويل لقسم آخر
+                                            </a>
                                             @if($task->status ==="completed")
+                                     
                                             <a class="dropdown-item"
-                                                href="{{route('protection.veiwReport',['id'=>$task->id])}}"><i
+                                                href="{{route('Transformers.veiwReport',['id'=>$task->id])}}"><i
                                                     class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                  التقرير
                                             </a>
