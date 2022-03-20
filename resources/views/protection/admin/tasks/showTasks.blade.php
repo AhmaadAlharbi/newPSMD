@@ -55,10 +55,10 @@ window.onload = function() {
 
 <!-- row -->
 <div class="row">
+</div>
     <!--div-->
     <div class="col-xl-12">
         <div class="card mg-b-20">
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
@@ -135,10 +135,16 @@ window.onload = function() {
 
                                             @if($task->status ==="completed")
                                             <a class="dropdown-item"
+                                                href="{{route('protection.changeSectionView',['id'=>$task->id])}}"><i
+                                                    class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                                تحويل لقسم آخر
+                                            </a>
+                                            <a class="dropdown-item"
                                                 href="{{route('protection.veiwReport',['id'=>$task->id])}}"><i
                                                     class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                  التقرير
                                             </a>
+
                                             {{--  <a class=" dropdown-item btn btn-outline-info "
                                                 href="{{url('generate-pdf')}}/{{$task->id}}">
                                             <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل

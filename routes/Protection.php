@@ -65,6 +65,9 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     ///*****BACKEND ROUTE *********
     //change task section
     Route::get('/protection/change-section/{id}',[ProtectionController::class,'changeSection'])->name('protection.changeSection');
+    //change section page
+    Route::get('/dashboard/admin/query_section_id=2/change-section-page/{id}',[ProtectionController::class,'changeSectionView'])->name('protection.changeSectionView');
+
     Route::post('/protection/send_task',[ProtectionController::class,'store'])->name('protection.store');
     Route::post('/protection/assignTasks',[ProtectionController::class,'storeAssignTask'])->name('protection.store.assign_task');
     Route::get('/dashboard/admin/query_section_id=2/All-tasks',[ProtectionController::class,'showAllTasks'])->name('protection.admin.showAllTasks');

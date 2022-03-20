@@ -262,7 +262,8 @@ class ProtectionController extends Controller
     public function showAllTasks(){
         $tasks = Task::where('fromSection',2)->orderBy('id', 'desc')
         ->get();
-        return view('protection.admin.tasks.showTasks',compact('tasks'));
+        $sections = Section::all();
+        return view('protection.admin.tasks.showTasks',compact('tasks','sections'));
     }
 
     public function showPendingTasks(){
@@ -330,6 +331,16 @@ class ProtectionController extends Controller
         ]);
         session()->flash('Add','تم الاضافة بنجاح');
         return back();
+    }
+    //change section view
+    public function changeSectionView($id){
+        $tasks = Task::where('id',$id)->first();
+        $stations = Station::all();
+        $sections = Section::all();
+        $task_attachments = TaskAttachment::where('id_task',$id)->get();
+
+        return view('protection.admin.tasks.changeSection',compact('tasks','stations','task_attachments','sections'));
+
     }
     //change section
     public function changeSection($id,Request $request){

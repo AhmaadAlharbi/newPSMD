@@ -26,25 +26,25 @@
                             <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img
                                         src="{{URL::asset('assets/img/brand/favicon.png')}}" class="sign-favicon ht-40"
                                         alt="logo"></a>
-                                <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1>
+                                <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">إدارة صيانة محطات التحويل الرئيسية</h1>
                             </div>
                             <div class="card-sigin">
                                 <div class="main-signup-header">
-                                    <h2 class="text-dark">Welcome back!</h2>
-                                    <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
+                                    <h2 class="text-dark">مرحبا بك</h2>
+                                    <h5 class="font-weight-semibold mb-4">تسجيل الدخول</h5>
                                     <form action="{{ route('login') }}">
                                         <div class="form-group">
-                                            <label>Email</label> <input class="form-control"
+                                            <label>البريد الالكتروني</label> <input class="form-control"
                                                 placeholder="Enter your email" type="text">
                                         </div>
                                         <div class="form-group">
-                                            <label>Password</label> <input class="form-control"
+                                            <label>كلمة المرور</label> <input class="form-control"
                                                 placeholder="Enter your password" type="password">
                                         </div><button class="btn btn-dark btn-block">Sign In</button>
                                  
                                     </form>
                                     <div class="main-signin-footer mt-5">
-                                        <p><a href="">Forgot password?</a></p>
+                                        <p><a href="">نسيت كلمة المرور؟</a></p>
                                         <p>Don't have an account? <a href="{{ url('/' . $page='signup') }}">Create
                                                 an Account</a></p>
                                     </div>
