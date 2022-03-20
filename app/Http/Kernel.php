@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'is_switch' => \App\Http\Middleware\isSwitch::class,
         'is_transformers' => \App\Http\Middleware\isTransformers::class,
         'is_fireFighting' => \App\Http\Middleware\isFireFighting::class,
+        'is_edara' => \App\Http\Middleware\isEdara::class,
 
 
 
