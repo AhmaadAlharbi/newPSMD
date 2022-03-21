@@ -3,9 +3,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sections\EdaraController; 
 
 
-Route::middleware(['is_admin','is_protection'])->group(function () {
+Route::middleware(['is_admin','is_edara'])->group(function () {
     //main page
     Route::get('/dashboard/admin/query_section_id=1',[EdaraController::class,'index'])->name('dashboard.admin.edara');
+    //add task
+     //add task
+     Route::get('/dashboard/admin/query_section_id=1/add_task',[EdaraController::class,'add_task'])->name('edara.addTask');
+     Route::post('/edara/send_task',[EdaraController::class,'store'])->name('edara.store');
     //add task to be assinged
     Route::get('/dashboard/admin/query_section_id=1/add_task_to_be_assigned',[EdaraController::class,'assign_task'])->name('edara.assign_task');
     Route::post('/edara/assignTasks',[EdaraController::class,'storeAssignTask'])->name('edara.store.assign_task');

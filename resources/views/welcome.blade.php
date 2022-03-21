@@ -7,16 +7,8 @@
 @section('content')
 <div class="container-fluid">
     <div class="row no-gutter">
-        <!-- The image half -->
-        <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-dark">
-            <div class="row wd-100p mx-auto text-center">
-                <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                  
-                </div>
-            </div>
-        </div>
-        <!-- The content half -->
-        <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
+                <!-- The content half -->
+                <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
             <div class="login d-flex align-items-center py-2">
                 <!-- Demo content-->
                 <div class="container p-0">
@@ -55,6 +47,15 @@
                 </div>
             </div><!-- End -->
         </div>
+        <!-- The image half -->
+        <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-dark">
+            <div class="row wd-100p mx-auto text-center">
+                <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
+                  
+                </div>
+            </div>
+        </div>
+
     </div><!-- End -->
 </div>
 </div>

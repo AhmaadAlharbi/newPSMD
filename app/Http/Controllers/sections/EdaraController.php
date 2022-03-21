@@ -1,9 +1,27 @@
 <?php
-
 namespace App\Http\Controllers\sections;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Engineer;
+use App\Models\Station;
+use App\Models\Section;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Task;
+use App\Models\TaskDetails;
+use App\Models\TaskAttachment;
+use Illuminate\Support\Facades\Notification;
+use  App\Notifications\EditTask;
+use  App\Notifications\AddTask;
+use  App\Notifications\AddTaskWithAttachments;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use DB;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Providers\RouteServiceProvider;
 
 class EdaraController extends Controller
 {
@@ -48,7 +66,16 @@ class EdaraController extends Controller
         $monthName = $date->format('F');
         return view('edara.admin.dashboard',compact('tasks','task_details','date','monthName'));
     }
-
+    public function add_task(){
+        if(isset(Task::latest()->first()->id)){
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        }else{
+            $task_id = 1;
+        }
+        $stations = Station::all();
+        return view ('edara.admin.tasks.add_task',compact('stations','task_id'));
+    }
      //assign task page
     public function assign_task(){
         if(isset(Task::latest()->first()->id)){
@@ -61,6 +88,58 @@ class EdaraController extends Controller
         return view ('edara.admin.tasks.assign_task',compact('stations','task_id'));
     }
 
+    public function store(Request $request){ 
+        //chekc if ref Num in database or not
+         $task_id_count = Task::where('id',$request->task_id)->count();
+         $refNum =   $request->refNum;
+        if(!$task_id_count == 0){
+          $refNum = $request->refNum = $request->refNum .-1;
+        }
+        Task::create([
+            'refNum' => $refNum,
+            'fromSection'=>1,
+            'station_id'=>$request->ssnameID,
+            'main_alarm'=>$request->mainAlarm,
+            'voltage_level'=>$request->voltage_level,
+            'work_type'=>$request->work_type,
+            'task_date'=>$request->task_Date,
+            'equip'=>$request->equip,
+            'pm'=>$request->pm,
+            'eng_id'=>$request->eng_name,
+            'problem' => $request->problem,
+            'notes' => $request->notes,
+            'status' => 'pending',
+            'user' => (Auth::user()->name),
+        ]);
+        $task_id = Task::latest()->first()->id;
+        $engineer_email = $request->eng_email;
+        
+        TaskDetails::create([
+            'task_id'=>$task_id,
+            'eng_id'=>$request->eng_name,
+            'report_date'=>$request->task_Date,
+            'fromSection'=>1,
+            'status'=>'pending',
+        ]);
+
+        $fromSection =1;
+        if ($request->hasfile('pic')) {
+            foreach ($request->file('pic') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path('Attachments/protection/' . $task_id), $name);
+                $data[] = $name;
+                $refNum = $request->refNum;
+                $attachments = new TaskAttachment();
+                $attachments->file_name = $name;
+                $attachments->created_by = Auth::user()->name;
+                $attachments->id_task = $task_id;
+                $attachments->save();
+            }
+           
+        }      
+        session()->flash('Add', 'تم اضافةالمهمة بنجاح');
+        return back();
+    }
     //store assign task
     public function storeAssignTask(Request $request){
         $task_id_count = Task::where('id',$request->task_id)->count();
