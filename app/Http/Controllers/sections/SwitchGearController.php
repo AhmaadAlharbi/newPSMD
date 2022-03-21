@@ -52,18 +52,10 @@ public function register(Request $request){
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',6)
+            ->orWhere('toSection',6)
             ->where('status', 'pending')
             ->get();
-        // $task_details = TaskDetails::orderBy('id', 'desc')
-        // ->where('status', 'completed')
-        // ->whereMonth('created_at', date('m'))
-        // ->paginate(4);
 
-        // $task_details = DB::table('task_details')
-        // ->join('tasks','tasks.id','=','task_details.task_id')
-        // ->where('task_details.status','completed')
-        // ->where('tasks.fromSection',6)
-        // ->orderBy('tasks.id', 'desc')
         $task_details= TaskDetails::where('fromSection',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
@@ -379,9 +371,18 @@ public function register(Request $request){
 //post
     public function update(Request $request , $id){
         $tasks = Task::findOrFail($id);
+        $fromSection = $tasks->fromSection;
+        //check if two sections in this task
+        if($tasks->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 6;
+        }
         $tasks->update([
             'refNum' => $request->refNum,
-            'fromSection'=>6,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
             'voltage_level'=>$request->voltage_level,

@@ -42,7 +42,7 @@
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('protection.admin.showAllTasks')}}">عرض
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('edara.admin.showAllTasks')}}">عرض
                             كافة
                             مهمات شهر {{$monthName}}</a>
                     </h6>
@@ -69,7 +69,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                            href="{{route('edara.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -101,8 +101,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('protection.admin.completedTasks')}}">المهمات
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('edara.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -134,7 +133,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('protection.admin.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('edara.admin.archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -206,7 +205,7 @@
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
-                                        <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('edara.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
                                         {{-- <a class="text-left btn btn-dark " href=""
@@ -217,7 +216,7 @@
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
                                         <a class="text-left btn btn-success "
-                                            href="{{route('protection.updateTask',['id'=>$task->id])}}"
+                                            href="{{route('edara.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
                                     </div>
                                 </div>
@@ -243,7 +242,7 @@
                         <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
 
                         <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                        {{$task_detail->users->name}}
+                            {{$task_detail->users->name}}
                         </p>
 
                         <p class="  bg-white text-dark text-center  "><ins>Station :
@@ -268,9 +267,9 @@
                         </p>
                         @endif
                         <a class="btn btn-info mt-2 text-center"
-                            href="{{route('protection.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                            href="{{route('edara.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('protection.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('edara.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                     </li>
                 </ul>
 

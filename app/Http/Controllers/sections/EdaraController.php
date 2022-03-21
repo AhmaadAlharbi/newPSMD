@@ -53,11 +53,10 @@ class EdaraController extends Controller
 
     //home  page
     public function index(){
-        
         $tasks = Task::orderBy('id', 'desc')
-            ->where('fromSection',1)
-            ->where('status', 'pending')
-            ->get();
+        ->where('fromSection',1)
+        ->where('status', 'pending')
+        ->get();
         $task_details= TaskDetails::where('fromSection',1)
         ->where('status','completed')
         ->orderBy('id', 'desc')
@@ -74,7 +73,8 @@ class EdaraController extends Controller
             $task_id = 1;
         }
         $stations = Station::all();
-        return view ('edara.admin.tasks.add_task',compact('stations','task_id'));
+        $sections = Section::all();
+        return view ('edara.admin.tasks.add_task',compact('stations','task_id','sections'));
     }
      //assign task page
     public function assign_task(){
@@ -98,14 +98,12 @@ class EdaraController extends Controller
         Task::create([
             'refNum' => $refNum,
             'fromSection'=>1,
+            'toSection'=>$request->section,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
-            'voltage_level'=>$request->voltage_level,
-            'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
             'equip'=>$request->equip,
             'pm'=>$request->pm,
-            'eng_id'=>$request->eng_name,
             'problem' => $request->problem,
             'notes' => $request->notes,
             'status' => 'pending',
@@ -376,5 +374,10 @@ class EdaraController extends Controller
 
     }
 
+        //get station
+        public function getStations($SSNAME){
+            return (string) Station::where("SSNAME",$SSNAME)
+            ->first(); 
+        }
 
 }

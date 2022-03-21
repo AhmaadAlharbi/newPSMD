@@ -56,6 +56,7 @@ class TransformersController extends Controller
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',5)
+        ->orWhere('toSection',5)
         ->where('status', 'pending')
         ->get();
     //  return (String) $task_details = DB::table('task_details')
@@ -412,10 +413,18 @@ class TransformersController extends Controller
         $task_Details = TaskDetails::where('task_id',$id);
         $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
+        $fromSection = $tasks->fromSection;
+        //check if two sections in this task
+        if($tasks->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 5;
+        }
         $tasks->update([
             'refNum' => $request->refNum,
-            'fromSection'=>5,
-            'station_id'=>$request->ssnameID,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'main_alarm'=>$request->mainAlarm,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,

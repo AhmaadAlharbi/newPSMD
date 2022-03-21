@@ -57,6 +57,7 @@ class ProtectionController extends Controller
         
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',2)
+            ->orWhere('toSection',2)
             ->where('status', 'pending')
             ->get();
         // $task_details = TaskDetails::orderBy('id', 'desc')
@@ -372,13 +373,22 @@ class ProtectionController extends Controller
         return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments','sections'));
     }
 
-//post
+    //post
     public function update(Request $request , $id){
         $date = Carbon::now();
         $tasks = Task::findOrFail($id);
+        $fromSection = $tasks->fromSection;
+        //check if two sections in this task
+        if($tasks->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 2;
+        }
         $tasks->update([
             'refNum' => $request->refNum,
-            'fromSection'=>2,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'station_id'=>$request->ssnameID,
             'main_alarm'=>$request->mainAlarm,
             'voltage_level'=>$request->voltage_level,
