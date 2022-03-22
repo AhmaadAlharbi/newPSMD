@@ -51,12 +51,14 @@ public function register(Request $request){
 }
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
-            ->where('fromSection',6)
-            ->orWhere('toSection',6)
-            ->where('status', 'pending')
-            ->get();
-
+        ->where('fromSection',6)
+        ->where('status', 'pending')
+        ->orWhere('toSection',6)
+        ->where('status', 'pending')
+        ->get();
         $task_details= TaskDetails::where('fromSection',6)
+        ->where('status','completed')
+        ->orWhere('toSection',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
@@ -461,7 +463,8 @@ public function register(Request $request){
         ->where('fromSection',6)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
-        ->where('fromSection','!=',6)
+        ->where('fromSection','!=',5)
+        ->where('toSection','!=',5)
         ->where('status','completed')
         ->get();
         return view('switchgear.admin.tasks.report',compact('task_details','commonTasks'));
@@ -566,13 +569,22 @@ public function register(Request $request){
 
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
+        $fromSection = $task->fromSection;
+        //check if two sections in this task
+        if($task->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 6;
+        }
         echo $engineerEmail = Auth::user()->email ;
         $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
             'eng_id' =>$eng_id,
-            'fromSection'=>6,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'action_take' => $request->action_take,
             'status'=>'completed',
         ]);

@@ -57,6 +57,7 @@ class ProtectionController extends Controller
         
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',2)
+            ->where('status', 'pending')
             ->orWhere('toSection',2)
             ->where('status', 'pending')
             ->get();
@@ -72,9 +73,11 @@ class ProtectionController extends Controller
         // ->where('task_details.fromSection',2)
         // ->get();   
         $task_details= TaskDetails::where('fromSection',2)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
-        ->get();
+                  ->where('status','completed')
+                  ->orWhere('toSection',2)
+                  ->where('status','completed')
+                  ->orderBy('id', 'desc')
+                  ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName'));
@@ -465,9 +468,11 @@ class ProtectionController extends Controller
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
         ->where('fromSection',2)
+        ->orWhere('toSection',2)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('fromSection','!=',2)
+        ->where('toSection','!=',2)
         ->where('status','completed')
         ->get();
         return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
@@ -492,6 +497,9 @@ class ProtectionController extends Controller
     public function userIndex() {
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',2)
+        ->where('eng_id',Auth::user()->id)
+        ->where('status', 'pending')
+        ->orWhere('toSection',2)
         ->where('eng_id',Auth::user()->id)
         ->where('status', 'pending')
         ->get();
@@ -574,13 +582,22 @@ class ProtectionController extends Controller
 
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
+        $fromSection = $task->fromSection;
+        //check if two sections in this task
+        if($task->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 2;
+        }
         echo $engineerEmail = Auth::user()->email ;
         $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
             'eng_id' =>$eng_id,
-            'fromSection'=>2,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'action_take' => $request->action_take,
             'report_status'=>1,
             'status'=>'completed',

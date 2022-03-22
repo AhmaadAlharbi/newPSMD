@@ -55,21 +55,19 @@ class TransformersController extends Controller
     }
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
-        ->where('fromSection',5)
-        ->orWhere('toSection',5)
-        ->where('status', 'pending')
-        ->get();
-    //  return (String) $task_details = DB::table('task_details')
-    //         ->where('task_details.fromSection',5)
-    //         ->where('task_details.status','completed')
-    //         ->join('tasks','tasks.id','=','task_details.task_id')
-    //         ->where('tasks.fromSection')
-    //         ->orderBy('tasks.id', 'desc')
-    //         ->get();  
+                ->where('fromSection',5)
+                ->where('status', 'pending')
+                ->orWhere('toSection',5)
+                ->where('status', 'pending')
+                ->get(); 
+
     $task_details= TaskDetails::where('fromSection',5)
-                  ->where('status','completed')
-                  ->orderBy('id', 'desc')
-                  ->get();
+                ->where('status','completed')
+                ->orWhere('toSection',5)
+                ->where('status','completed')
+                ->orderBy('id', 'desc')
+                ->get();
+
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
@@ -440,7 +438,7 @@ class TransformersController extends Controller
             'eng_id'=>$request->eng_name,
             'report_date'=> $date,
             'fromSection'=> 5, 
-            'status'=>'pending',
+            'status'=>'change',
         ]);
         
         //check if tasks is added in task Tr table or not (tasks comes from another sections)
@@ -514,11 +512,13 @@ class TransformersController extends Controller
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
         ->where('fromSection',5)
+        ->orWhere('toSection',5)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('fromSection','!=',5)
+        ->where('toSection','!=',5)
         ->where('status','completed')
-        ->get();
+        ->get();;
         return view('Transformers.admin.tasks.report',compact('task_details','commonTasks'));
     }
     public function viewCommonReport($id,$section_id){
@@ -622,10 +622,20 @@ class TransformersController extends Controller
 
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
+        $fromSection = $task->fromSection;
+        //check if two sections in this task
+        if($task->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 5;
+        }
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
             'eng_id' =>(Auth::user()->id),
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'action_take' => $request->action_take,
             'status'=>'completed',
         ]);

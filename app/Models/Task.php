@@ -26,6 +26,10 @@ class Task extends Model
         return $this->belongsTo(Section::class,'fromSection');
     }
 
+    public function toSections()
+    {
+        return $this->belongsTo(Section::class,'toSection');
+    }
     
 
     // public function engineers()

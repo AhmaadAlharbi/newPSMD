@@ -185,7 +185,6 @@
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
                                         <p class="text-right text-muted"> {{$task->created_at}}</p>
-
                                         @if($task->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
 
@@ -197,6 +196,8 @@
                                             {{$task->status}}
                                         </span>
                                         @endif
+                                        <p class="text-right bg-light py-2 my-2 text-center">قسم {{$task->toSections->section_name}} </p>
+
                                         @if(isset($task->eng_id))
                                         <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
@@ -240,6 +241,7 @@
                     <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
                         <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
                         <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
+                        <p class="text-right bg-light py-2 my-2 text-center text-success font-weight-bold">قسم {{$task_detail->tasks->toSections->section_name}} </p>
 
                         <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
                             {{$task_detail->users->name}}
