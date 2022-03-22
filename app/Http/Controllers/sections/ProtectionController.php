@@ -264,7 +264,7 @@ class ProtectionController extends Controller
         return view('protection.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',2)->orderBy('id', 'desc')
+        $tasks = Task::where('fromSection',2)->orWhere('toSection','2')->orderBy('id', 'desc')
         ->get();
         $sections = Section::all();
         return view('protection.admin.tasks.showTasks',compact('tasks','sections'));
@@ -272,6 +272,8 @@ class ProtectionController extends Controller
 
     public function showPendingTasks(){
         $tasks = Task::where('fromSection',2)
+        ->where('status','pending')
+        ->orWhere('toSection',2)
         ->where('status','pending')
         ->orderBy('id', 'desc')
         ->get();
@@ -350,9 +352,18 @@ class ProtectionController extends Controller
     public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
+        $fromSection = $tasks->fromSection;
+        //check if two sections in this task
+        if($tasks->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 2;
+        }
         $date = Carbon::now();
         $tasks->update([
-            'fromSection'=>$request->section_id,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'eng_id'=>null,
             'status'=>'pending',
         ]);

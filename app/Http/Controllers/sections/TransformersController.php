@@ -302,13 +302,15 @@ class TransformersController extends Controller
         return view('transformers.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',5)->orderBy('id', 'desc')
+        $tasks = Task::where('fromSection',5)->orWhere('toSection','5')->orderBy('id', 'desc')
         ->get();
         return view('transformers.admin.tasks.showTasks',compact('tasks'));
     }
 
     public function showPendingTasks(){
         $tasks = Task::where('fromSection',5)
+        ->where('status','pending')
+        ->orWhere('toSection',5)
         ->where('status','pending')
         ->orderBy('id', 'desc')
         ->get();
@@ -372,16 +374,27 @@ class TransformersController extends Controller
         $tasks_details = TaskDetails::where('task_id',$id)->first();
         $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
+        $fromSection = $tasks->fromSection;
+        //check if two sections in this task
+        if($tasks->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 5;
+        }
         $tasks->update([
-            'fromSection'=>$request->section_id,
-            'eng_id'=>null,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
+            'eng_id'=> null,
+            'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,
-            'fromSection'=>$request->section_id,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'eng_id'=>null,
             'report_date'=>$date,
-            'status' => 'pending',
+            'status' => 'change',
         ]);
         //check if tasks is added in task Tr table or not (tasks comes from another sections)
         if(!isset($tr_task)){
@@ -400,7 +413,6 @@ class TransformersController extends Controller
         $stations = Station::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
         $tr_task = TrTasks::where('task_id',$id)->first();
-      
         return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task','sections'));
     }
 

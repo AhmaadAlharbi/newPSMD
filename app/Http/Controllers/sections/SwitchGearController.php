@@ -107,14 +107,24 @@ public function register(Request $request){
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
         $date = Carbon::now();
+        $fromSection = $tasks->fromSection;
+        //check if two sections in this task
+        if($tasks->toSection === null){
+            $toSection = null;
+
+        }else{
+            $toSection = 6;
+        }
         $tasks->update([
-            'fromSection'=>$request->section_id,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'eng_id'=>null,
             'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,
-            'fromSection'=>$request->section_id,
+            'fromSection'=>$fromSection,
+            'toSection'=>$toSection,
             'eng_id'=>null,
             'report_date'=>$date,
             'status' => 'change',
@@ -298,13 +308,15 @@ public function register(Request $request){
         return view('switchgear.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',6)->orderBy('id', 'desc')
+        $tasks = Task::where('fromSection',6)->orWhere('toSection','6')->orderBy('id', 'desc')
         ->get();
         return view('switchgear.admin.tasks.showTasks',compact('tasks'));
     }
 
     public function showPendingTasks(){
         $tasks = Task::where('fromSection',6)
+        ->where('status','pending')
+        ->orWhere('toSection',6)
         ->where('status','pending')
         ->orderBy('id', 'desc')
         ->get();
