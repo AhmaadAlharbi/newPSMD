@@ -62,10 +62,13 @@ public function register(Request $request){
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-  
+        $common_tasks_details = TaskDetails::where('fromSection',6)
+        ->whereNotNull('toSection')
+        ->orWhere('toSection',6)
+        ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName'));
+        return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details'));
 
 
     }
@@ -106,29 +109,25 @@ public function register(Request $request){
     public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
+        $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
         $fromSection = $tasks->fromSection;
-        //check if two sections in this task
-        if($tasks->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 6;
+        if($fromSection !== 1){
+            $fromSection =null;
         }
         $tasks->update([
             'fromSection'=>$fromSection,
-            'toSection'=>$toSection,
-            'eng_id'=>null,
+            'toSection'=> $request->section_id,
+            'eng_id'=> null,
             'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,
-            'fromSection'=>$fromSection,
-            'toSection'=>$toSection,
+            'fromSection'=>6,
+            'toSection'=>$request->section_id,
             'eng_id'=>null,
             'report_date'=>$date,
             'status' => 'change',
-
         ]);
         return back();
     }

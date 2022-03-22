@@ -67,14 +67,18 @@ class TransformersController extends Controller
                 ->where('status','completed')
                 ->orderBy('id', 'desc')
                 ->get();
-
+       //to track mutal tasks in diffrent sections  
+       $common_tasks_details = TaskDetails::where('fromSection',2)
+        ->whereNotNull('toSection')
+        ->orWhere('toSection',2)
+        ->get();
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
         ->get();  
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('transformers.admin.dashboard',compact('tasks','task_details','date','monthName','tr_tasks'));
+        return view('transformers.admin.dashboard',compact('tasks','task_details','date','monthName','tr_tasks','common_tasks_details'));
     }
      //// start front END functions
 
@@ -375,23 +379,19 @@ class TransformersController extends Controller
         $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
         $fromSection = $tasks->fromSection;
-        //check if two sections in this task
-        if($tasks->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 5;
+        if($fromSection !== 1){
+            $fromSection =null;
         }
         $tasks->update([
             'fromSection'=>$fromSection,
-            'toSection'=>$toSection,
+            'toSection'=> $request->section_id,
             'eng_id'=> null,
             'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,
-            'fromSection'=>$fromSection,
-            'toSection'=>$toSection,
+            'fromSection'=>5,
+            'toSection'=>$request->section_id,
             'eng_id'=>null,
             'report_date'=>$date,
             'status' => 'change',

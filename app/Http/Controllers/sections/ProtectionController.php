@@ -61,18 +61,13 @@ class ProtectionController extends Controller
             ->orWhere('toSection',2)
             ->where('status', 'pending')
             ->get();
-        // $task_details = TaskDetails::orderBy('id', 'desc')
-        // ->where('status', 'completed')
-        // ->whereMonth('created_at', date('m'))
-        // ->paginate(4);
-
-        // $task_details = DB::table('task_details')
-        // ->join('tasks','tasks.id','=','task_details.task_id')
-        // ->where('task_details.status','completed')
-        // ->orderBy('tasks.id', 'desc')
-        // ->where('task_details.fromSection',2)
-        // ->get();   
-        $task_details= TaskDetails::where('fromSection',2)
+        //to track mutal tasks in diffrent sections  
+       $common_tasks_details = TaskDetails::where('fromSection',2)
+        ->whereNotNull('toSection')
+        ->orWhere('toSection',2)
+        ->get();
+        //to show reports in admin dashboard
+          $task_details= TaskDetails::where('fromSection',2)
                   ->where('status','completed')
                   ->orWhere('toSection',2)
                   ->where('status','completed')
@@ -80,7 +75,7 @@ class ProtectionController extends Controller
                   ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName'));
+        return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details'));
 
 
     }
@@ -353,23 +348,27 @@ class ProtectionController extends Controller
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
         $fromSection = $tasks->fromSection;
-        //check if two sections in this task
-        if($tasks->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 2;
+        //check if task send by Edara , it should not change fromSection value
+        if($fromSection !== 1){
+            $fromSection =null;
         }
+        //check if two sections in this task
+        // if($tasks->toSection === null){
+        //     $toSection = null;
+        // }else{
+        //     $toSection = $request->section_id;
+        // }
         $date = Carbon::now();
         $tasks->update([
             'fromSection'=>$fromSection,
-            'toSection'=>$toSection,
+            'toSection'=> $request->section_id,
             'eng_id'=>null,
             'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,
-            'fromSection'=>$request->section_id,
+            'fromSection'=>2,
+            'toSection'=>$request->section_id,
             'eng_id'=>null,
             'report_date'=>$date,
             'status' => 'change',
