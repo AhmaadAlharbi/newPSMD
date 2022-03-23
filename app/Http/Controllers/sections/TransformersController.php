@@ -55,22 +55,22 @@ class TransformersController extends Controller
     }
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
-                ->where('fromSection',5)
-                ->where('status', 'pending')
-                ->orWhere('toSection',5)
-                ->where('status', 'pending')
-                ->get(); 
-
-    $task_details= TaskDetails::where('fromSection',5)
-                ->where('status','completed')
-                ->orWhere('toSection',5)
-                ->where('status','completed')
-                ->orderBy('id', 'desc')
-                ->get();
+        ->where('fromSection',5)
+        ->where('status', 'pending')
+        ->get(); 
+        $incomingTasks = Task::Where('toSection',5)
+        ->where('status', 'pending')
+        ->get();
+        $task_details= TaskDetails::where('fromSection',5)
+        ->where('status','completed')
+        ->orWhere('toSection',5)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
        //to track mutal tasks in diffrent sections  
-       $common_tasks_details = TaskDetails::where('fromSection',2)
+       $common_tasks_details = TaskDetails::where('fromSection',5)
         ->whereNotNull('toSection')
-        ->orWhere('toSection',2)
+        ->orWhere('toSection',5)
         ->get();
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
@@ -78,7 +78,7 @@ class TransformersController extends Controller
         ->get();  
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('transformers.admin.dashboard',compact('tasks','task_details','date','monthName','tr_tasks','common_tasks_details'));
+        return view('transformers.admin.dashboard',compact('tasks','task_details','date','monthName','tr_tasks','incomingTasks','common_tasks_details'));
     }
      //// start front END functions
 
@@ -380,7 +380,7 @@ class TransformersController extends Controller
         $date = Carbon::now();
         $fromSection = $tasks->fromSection;
         if($fromSection !== 1){
-            $fromSection =null;
+            $fromSection =5;
         }
         $tasks->update([
             'fromSection'=>$fromSection,
@@ -523,8 +523,6 @@ class TransformersController extends Controller
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('fromSection',5)
-        ->orWhere('toSection',5)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('fromSection','!=',5)

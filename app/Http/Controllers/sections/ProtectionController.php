@@ -57,14 +57,13 @@ class ProtectionController extends Controller
         
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',2)
-            ->where('status', 'pending')
-            ->orWhere('toSection',2)
-            ->where('status', 'pending')
-            ->get();
+            ->where('status', 'pending')->get();
+        $incomingTasks = Task::Where('toSection',2)
+        ->where('status', 'pending')
+        ->get();
         //to track mutal tasks in diffrent sections  
        $common_tasks_details = TaskDetails::where('fromSection',2)
         ->whereNotNull('toSection')
-        ->orWhere('toSection',2)
         ->get();
         //to show reports in admin dashboard
           $task_details= TaskDetails::where('fromSection',2)
@@ -75,7 +74,8 @@ class ProtectionController extends Controller
                   ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details'));
+        return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName','incomingTasks','common_tasks_details'));
+    
 
 
     }
@@ -347,17 +347,11 @@ class ProtectionController extends Controller
     public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
-        $fromSection = $tasks->fromSection;
+       $fromSection = $tasks->fromSection;
         //check if task send by Edara , it should not change fromSection value
         if($fromSection !== 1){
-            $fromSection =null;
+            $fromSection =2;
         }
-        //check if two sections in this task
-        // if($tasks->toSection === null){
-        //     $toSection = null;
-        // }else{
-        //     $toSection = $request->section_id;
-        // }
         $date = Carbon::now();
         $tasks->update([
             'fromSection'=>$fromSection,
@@ -477,8 +471,6 @@ class ProtectionController extends Controller
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('fromSection',2)
-        ->orWhere('toSection',2)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('fromSection','!=',2)

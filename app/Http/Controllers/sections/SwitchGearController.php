@@ -52,8 +52,9 @@ public function register(Request $request){
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',6)
-        ->where('status', 'pending')
-        ->orWhere('toSection',6)
+        ->where('status', 'pending')->get();
+        
+        $incomingTasks = Task::Where('toSection',6)
         ->where('status', 'pending')
         ->get();
         $task_details= TaskDetails::where('fromSection',6)
@@ -64,11 +65,10 @@ public function register(Request $request){
         ->get();
         $common_tasks_details = TaskDetails::where('fromSection',6)
         ->whereNotNull('toSection')
-        ->orWhere('toSection',6)
         ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details'));
+        return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details','incomingTasks'));
 
 
     }
@@ -109,11 +109,10 @@ public function register(Request $request){
     public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
-        $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
         $fromSection = $tasks->fromSection;
         if($fromSection !== 1){
-            $fromSection =null;
+            $fromSection =6;
         }
         $tasks->update([
             'fromSection'=>$fromSection,
@@ -471,7 +470,6 @@ public function register(Request $request){
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('fromSection',6)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('fromSection','!=',5)
