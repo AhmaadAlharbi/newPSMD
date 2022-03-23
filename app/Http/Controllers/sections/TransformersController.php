@@ -69,9 +69,8 @@ class TransformersController extends Controller
         ->get();
        //to track mutal tasks in diffrent sections  
        $common_tasks_details = TaskDetails::where('fromSection',5)
-        ->whereNotNull('toSection')
-        ->orWhere('toSection',5)
-        ->get();
+       ->whereNotNull('toSection')
+       ->get();
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
