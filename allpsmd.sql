@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2022 at 10:06 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Mar 24, 2022 at 01:05 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -977,8 +977,7 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `refNum`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
-(121, '22-03/1', 6, 2, 1, 'Auto reclosure', NULL, NULL, NULL, '2022-03-24', NULL, 19, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-24 05:06:03', '2022-03-24 05:10:08'),
-(122, '22-03/122', 2, 6, 443, 'Auto reclosure', NULL, NULL, NULL, '2022-03-24', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-03-24 05:54:05', '2022-03-24 05:54:31');
+(123, '22-03/1', 2, 6, 121, 'Auto reclosure', NULL, NULL, NULL, '2022-03-24', NULL, 16, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-03-24 08:01:20', '2022-03-24 08:14:02');
 
 -- --------------------------------------------------------
 
@@ -1024,16 +1023,10 @@ CREATE TABLE `task_details` (
 --
 
 INSERT INTO `task_details` (`id`, `task_id`, `report_date`, `reasonOfUncompleted`, `eng_id`, `fromSection`, `toSection`, `section_id`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(234, 121, '2022-03-24', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-24 05:06:03', '2022-03-24 05:06:03'),
-(235, 121, '2022-03-24', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-24 05:06:16', '2022-03-24 05:06:16'),
-(236, 121, '2022-03-24', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-24 05:06:31', '2022-03-24 05:06:31'),
-(237, 121, '2022-03-24', NULL, 16, 2, 6, 6, NULL, 'done by switchgear', 'completed', '0', '2022-03-24 05:07:02', '2022-03-24 05:07:02'),
-(238, 121, '2022-03-24', NULL, NULL, 6, 2, NULL, NULL, NULL, 'change', '0', '2022-03-24 05:08:59', '2022-03-24 05:08:59'),
-(239, 121, '2022-03-24', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-24 05:09:22', '2022-03-24 05:09:22'),
-(240, 121, '2022-03-24', NULL, 19, 6, 2, 2, NULL, 'done by protection', 'completed', '1', '2022-03-24 05:10:08', '2022-03-24 05:10:08'),
-(241, 122, '2022-03-24', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-24 05:54:05', '2022-03-24 05:54:05'),
-(242, 122, '2022-03-24', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-24 05:54:19', '2022-03-24 05:54:19'),
-(243, 122, '2022-03-24', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-24 05:54:31', '2022-03-24 05:54:31');
+(244, 123, '2022-03-24', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-24 08:01:20', '2022-03-24 08:01:20'),
+(245, 123, '2022-03-24', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-24 08:01:29', '2022-03-24 08:01:29'),
+(246, 123, '2022-03-24', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-24 08:02:18', '2022-03-24 08:02:18'),
+(247, 123, '2022-03-24', NULL, 16, 2, 6, 6, NULL, 'done by switchgear', 'completed', '0', '2022-03-24 08:14:02', '2022-03-24 08:14:02');
 
 -- --------------------------------------------------------
 
@@ -1308,7 +1301,7 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
@@ -1320,7 +1313,7 @@ ALTER TABLE `task_attachments`
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `tr`
