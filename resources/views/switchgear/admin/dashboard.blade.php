@@ -315,10 +315,15 @@
 
                                             {{$task->tasks->status}}
                                         </span>
-                                        @else
+                                        @elseif($task->tasks->status == 'pending')
                                         <span class="badge badge-danger ml-2">
 
-                                            {{$task->status}}
+                                            {{$task->tasks->status}}
+                                        </span>
+                                        @else
+                                        <span class="badge badge-success ml-2">
+
+                                        {{$task->tasks->status}}
                                         </span>
                                         @endif
                                         @if(isset($task->tasks->eng_id))
@@ -339,9 +344,10 @@
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
-                                        <a class="text-left btn btn-success "
-                                            href="{{route('switch.updateTask',['id'=>$task->task_id])}}"
-                                            class=" m-2 btn btn-primary btn-sm">Edit</a>
+                                        @if($task->tasks->status === 'completed')
+                                        <a class="btn btn-info mt-0 text-center"
+                                            href="{{route('switch.veiwReport',['id'=>$task->task_id])}}">Report</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

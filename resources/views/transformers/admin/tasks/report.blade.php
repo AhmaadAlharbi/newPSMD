@@ -248,7 +248,7 @@ td {
                                         href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}">{{$task->tasks->refNum}}</a>
                                 </td>
                                 <td>{{$task->tasks->station->SSNAME}}</td>
-                                <td>{{$task->sections->section_name}}</td>
+                                <td>{{$task->sectionID->section_name}}</td>
                                 <td>{{$task->users->name}}</td>
 
                                 <td><a href="{{route('Transformers.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sections->id])}}" class="btn btn-outline-success">التقرير</a></td>

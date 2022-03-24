@@ -56,6 +56,7 @@ class TransformersController extends Controller
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',5)
+        ->whereNull('toSection')
         ->where('status', 'pending')
         ->get(); 
         $incomingTasks = Task::Where('toSection',5)

@@ -23,6 +23,10 @@ class TaskDetails extends Model
     {
         return $this->belongsTo(Section::class,'fromSection');
     }
+    public function sectionID()
+    {
+        return $this->belongsTo(Section::class,'section_id');
+    }
     public function tasks()
     {
         // return $this->belongsTo(Task::class,'task_id');

@@ -285,7 +285,7 @@
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-
+                                  
                                         <a class="text-left btn btn-success "
                                             href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
@@ -323,15 +323,21 @@
 
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                             قسم {{$task->tasks->sections->section_name}} </p>
-                                        @if($task->tasks->status == 'waiting')
+                                       
+                                            @if($task->tasks->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
 
                                             {{$task->tasks->status}}
                                         </span>
-                                        @else
+                                        @elseif($task->tasks->status == 'pending')
                                         <span class="badge badge-danger ml-2">
 
-                                            {{$task->status}}
+                                            {{$task->tasks->status}}
+                                        </span>
+                                        @else
+                                        <span class="badge badge-success ml-2">
+
+                                        {{$task->tasks->status}}
                                         </span>
                                         @endif
                                         @if(isset($task->tasks->eng_id))
@@ -342,7 +348,7 @@
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->tasks->station->SSNAME}}</p>
-                                        <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
                                         {{-- <a class="text-left btn btn-dark " href=""
@@ -352,9 +358,10 @@
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
-                                        <a class="text-left btn btn-success "
-                                            href="{{route('protection.updateTask',['id'=>$task->id])}}"
-                                            class=" m-2 btn btn-primary btn-sm">Edit</a>
+                                        @if($task->tasks->status === 'completed')
+                                        <a class="btn btn-info mt-0 text-center"
+                                            href="{{route('Transformers.veiwReport',['id'=>$task->task_id])}}">Report</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

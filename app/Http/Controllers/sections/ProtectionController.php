@@ -57,6 +57,7 @@ class ProtectionController extends Controller
         
         $tasks = Task::orderBy('id', 'desc')
             ->where('fromSection',2)
+            ->whereNull('toSection')
             ->where('status', 'pending')->get();
         $incomingTasks = Task::Where('toSection',2)
         ->where('status', 'pending')
@@ -66,12 +67,10 @@ class ProtectionController extends Controller
         ->whereNotNull('toSection')
         ->get();
         //to show reports in admin dashboard
-          $task_details= TaskDetails::where('fromSection',2)
-                  ->where('status','completed')
-                  ->orWhere('toSection',2)
-                  ->where('status','completed')
-                  ->orderBy('id', 'desc')
-                  ->get();
+        $task_details= TaskDetails::where('section_id',2)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName','incomingTasks','common_tasks_details'));
@@ -470,20 +469,18 @@ class ProtectionController extends Controller
     }
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
+        ->where('section_id',2)
         ->where('status','completed')
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
-        ->where('fromSection','!=',2)
-        ->where('toSection','!=',2)
         ->where('status','completed')
         ->get();
         return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
     }
     public function viewCommonReport($id,$section_id){
-        $task_details = TaskDetails::where('task_id',$id)
+       $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('fromSection',$section_id)
-
+        ->where('section_id',$section_id)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')
@@ -600,6 +597,7 @@ class ProtectionController extends Controller
             'eng_id' =>$eng_id,
             'fromSection'=>$fromSection,
             'toSection'=>$toSection,
+            'section_id'=> 2,
             'action_take' => $request->action_take,
             'report_status'=>1,
             'status'=>'completed',

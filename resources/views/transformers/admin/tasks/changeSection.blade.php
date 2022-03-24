@@ -57,7 +57,7 @@
                 تحويل إلى قسم آخر
             </button>
             {{--change section modal --}}
-         <form action="{{route('protection.changeSection',['id'=>$tasks->id])}}">
+         <form action="{{route('transformers.changeSection',['id'=>$tasks->id])}}">
              @csrf
          <div class="modal fade" id="change_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

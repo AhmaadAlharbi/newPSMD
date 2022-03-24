@@ -52,14 +52,13 @@ public function register(Request $request){
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',6)
+        ->whereNull('toSection')
         ->where('status', 'pending')->get();
         
         $incomingTasks = Task::Where('toSection',6)
         ->where('status', 'pending')
         ->get();
-        $task_details= TaskDetails::where('fromSection',6)
-        ->where('status','completed')
-        ->orWhere('toSection',6)
+        $task_details= TaskDetails::where('section_id',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
@@ -469,12 +468,13 @@ public function register(Request $request){
     }
     public function viewPrintReport($id){
         $task_details = TaskDetails::where('task_id',$id)
+        ->where('section_id',6)
         ->where('status','completed')
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
-        ->where('fromSection','!=',5)
-        ->where('toSection','!=',5)
         ->where('status','completed')
+        ->where('section_id','!=',6)
+
         ->get();
         return view('switchgear.admin.tasks.report',compact('task_details','commonTasks'));
     }
@@ -594,6 +594,7 @@ public function register(Request $request){
             'eng_id' =>$eng_id,
             'fromSection'=>$fromSection,
             'toSection'=>$toSection,
+            'section_id'=> 6,
             'action_take' => $request->action_take,
             'status'=>'completed',
         ]);
