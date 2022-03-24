@@ -250,7 +250,7 @@ td {
                                 <td>{{$task->tasks->station->SSNAME}}</td>
                                 <td>{{$task->sectionID->section_name}}</td>
                                 <td>{{$task->users->name}}</td>
-                                <td><a href="{{route('protection.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sections->id])}}" class="btn btn-outline-success">التقرير</a></td>
+                                <td><a href="{{route('protection.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sectionID->id])}}" class="btn btn-outline-success">التقرير</a></td>
 
                             </tr>
                             @endforeach

@@ -314,9 +314,15 @@ common_tasks_details
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
                                         <p class="text-right text-muted"> {{$task->tasks->created_at}}</p>
+                                        @if($task->tasks->status == "completed")
+                                        @isset($task->sectionID->section_name)
+                                        <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
+                                            قسم {{$task->sectionID->section_name}} </p>
+                                        @endisset
+                                        @else
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                             قسم {{$task->tasks->toSections->section_name}} </p>
-
+                                        @endif
                                         @if($task->tasks->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
 
@@ -333,8 +339,8 @@ common_tasks_details
                                             {{$task->tasks->status}}
                                         </span>
                                         @endif
-                                        @if(isset($task->tasks->eng_id))
-                                        <h5 class="m-1 tx-15">{{$task->tasks->users->name}}</h5>
+                                        @if(isset($task->eng_id))
+                                        <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
                                         <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>

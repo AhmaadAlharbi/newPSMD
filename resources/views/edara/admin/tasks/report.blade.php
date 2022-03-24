@@ -158,12 +158,10 @@ td {
                                             <tr>
                                                 <td>{{$task_details->tasks->station->COMPANY_MAKE}}</td>
                                                 <td>{{$task_details->tasks->station->Contract_No}}</td>
-
                                             </tr>
                                         </tbody>
                                         <tr>
                                             <thead class="thead-light">
-
                                                 <th scope="col">COMMISIONING DATE</th>
                                                 <th scope="col">Previous maintenance</th>
                                             </thead>
@@ -172,12 +170,10 @@ td {
                                             <tr>
                                                 <td>{{$task_details->tasks->station->COMMISIONING_DATE}}</td>
                                                 {{-- <td>{{$task->pm}}</td>--}}
-
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
 
                             <div class="d-block p-3 mb-2 bg-white text-dark">
@@ -219,7 +215,6 @@ td {
     <!--div-->
     <div class="col-xl-12">
         <div class="card mg-b-20">
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
@@ -250,8 +245,7 @@ td {
                                 <td>{{$task->tasks->station->SSNAME}}</td>
                                 <td>{{$task->sectionID->section_name}}</td>
                                 <td>{{$task->users->name}}</td>
-                                <td><a href="{{route('edara.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sections->id])}}" class="btn btn-outline-success">التقرير</a></td>
-
+                                <td><a href="{{route('edara.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sectionID->id])}}" class="btn btn-outline-success">التقرير</a></td>
                             </tr>
                             @endforeach
 
