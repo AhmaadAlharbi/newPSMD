@@ -63,7 +63,7 @@ class ProtectionController extends Controller
         ->where('status', 'pending')
         ->get();
         //to track mutal tasks in diffrent sections  
-     return (string)  $common_tasks_details = TaskDetails::where('fromSection',2)
+      $common_tasks_details = TaskDetails::where('fromSection',2)
         ->whereNotNull('toSection')
         ->get();
         //to show reports in admin dashboard
