@@ -410,7 +410,6 @@ class TransformersController extends Controller
     public function updateTask($id){
         $sections = Section::all();
         $tasks = Task::where('id',$id)->first();
-        $tasks = Task::where('id',$id)->first();
         $fromSection = $tasks->fromSection;
         switch($fromSection){
             case 1:
@@ -556,8 +555,7 @@ class TransformersController extends Controller
     public function viewCommonReport($id,$section_id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('fromSection',$section_id)
-
+        ->where('section_id',$section_id)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')

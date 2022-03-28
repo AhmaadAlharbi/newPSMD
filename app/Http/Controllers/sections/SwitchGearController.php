@@ -378,12 +378,18 @@ public function register(Request $request){
             case 1:
                 $section = Section::where('id',1)->pluck('section_name')->first();
                 break;
-                case 2:
+            case 2:
                 $section = Section::where('id',2)->pluck('section_name')->first();
                 break;
             case 3:
-            $section = Section::where('id',3)->pluck('section_name')->first();
-                break; 
+                 $section = Section::where('id',3)->pluck('section_name')->first();
+                break;
+            case 4 :
+                 $section = Section::where('id',4)->pluck('section_name')->first();
+                break;
+            case 5 :    
+                $section = Section::where('id',5)->pluck('section_name')->first();
+                break;       
             default:
             $section = null;           
         }
@@ -488,8 +494,6 @@ public function register(Request $request){
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('section_id','!=',6)
-
         ->get();
         return view('switchgear.admin.tasks.report',compact('task_details','commonTasks'));
     }
@@ -497,8 +501,7 @@ public function register(Request $request){
     public function viewCommonReport($id,$section_id){
         $task_details = TaskDetails::where('task_id',$id)
         ->where('status','completed')
-        ->where('fromSection',$section_id)
-
+        ->where('section_id',$section_id)
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')
@@ -593,8 +596,8 @@ public function register(Request $request){
 
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
-        $fromSection = $tasks->fromSection;
-        $toSection = $tasks->toSection;
+        $fromSection = $task->fromSection;
+        $toSection = $task->toSection;
         echo $engineerEmail = Auth::user()->email ;
         $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
         TaskDetails::create([

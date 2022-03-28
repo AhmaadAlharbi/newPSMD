@@ -30,7 +30,14 @@ class Task extends Model
     {
         return $this->belongsTo(Section::class,'toSection');
     }
-    
+    public function tasksDetail()
+    {
+        // return $this->belongsTo(Task::class,'task_id');
+        // return $this->hasMany(Task::class);
+        return $this->belongsTo(TaskDetails::class,'id');
+
+
+    }
 
     // public function engineers()
     // {

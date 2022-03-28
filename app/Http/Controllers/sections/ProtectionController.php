@@ -415,13 +415,9 @@ class ProtectionController extends Controller
         $date = Carbon::now();
         $tasks = Task::findOrFail($id);
         $fromSection = $tasks->fromSection;
+        $toSection = $tasks->toSection;
         //check if two sections in this task
-        if($tasks->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 2;
-        }
+      
         $tasks->update([
             'refNum' => $request->refNum,
             'fromSection'=>$fromSection,

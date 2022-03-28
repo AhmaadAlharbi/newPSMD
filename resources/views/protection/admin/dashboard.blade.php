@@ -344,16 +344,10 @@ common_tasks_details
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
                                         <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
-                                        @if(isset($task->engineers->name))
-                                        {{-- <a class="text-left btn btn-dark " href=""
-                                            class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
-                                        @endif
-                                        {{--  <a class="text-left btn btn-danger "
-                                            href=""
-                                        class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
+                               
                                         @if($task->status === 'completed')
                                         <a class="btn btn-info mt-0 text-center"
-                                            href="{{route('protection.veiwReport',['id'=>$task->id])}}">Report</a>
+                                            href="{{route('protection.viewCommonReport',['id'=>$task->id,'section_id'=>$task->toSections->id])}}">Report</a>
                                         <a class="text-left btn btn-success "
                                             href="{{route('protection.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
