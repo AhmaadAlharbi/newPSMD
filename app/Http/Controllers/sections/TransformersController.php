@@ -68,10 +68,10 @@ class TransformersController extends Controller
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-       //to track mutal tasks in diffrent sections  
-       $common_tasks_details = TaskDetails::where('fromSection',5)
-       ->whereNotNull('toSection')
-       ->get();
+      //to track mutal tasks in diffrent sections  
+      $common_tasks_details = Task::where('fromSection',5)
+      ->whereNotNull('toSection')
+      ->get();
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
@@ -410,10 +410,32 @@ class TransformersController extends Controller
     public function updateTask($id){
         $sections = Section::all();
         $tasks = Task::where('id',$id)->first();
+        $tasks = Task::where('id',$id)->first();
+        $fromSection = $tasks->fromSection;
+        switch($fromSection){
+            case 1:
+                $section = Section::where('id',1)->pluck('section_name')->first();
+                break;
+            case 2:
+                $section = Section::where('id',2)->pluck('section_name')->first();
+                break;
+            case 3:
+                 $section = Section::where('id',3)->pluck('section_name')->first();
+                break;
+            case 4 :
+                 $section = Section::where('id',4)->pluck('section_name')->first();
+                break;
+            case 6 :    
+                $section = Section::where('id',6)->pluck('section_name')->first();
+                break;         
+                            
+            default:
+            $section = null;           
+        }
         $stations = Station::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
         $tr_task = TrTasks::where('task_id',$id)->first();
-        return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task','sections'));
+        return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task','sections','section'));
     }
 
 //post

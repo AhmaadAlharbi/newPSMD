@@ -63,9 +63,12 @@ class ProtectionController extends Controller
         ->where('status', 'pending')
         ->get();
         //to track mutal tasks in diffrent sections  
-      $common_tasks_details = TaskDetails::where('fromSection',2)
+        $common_tasks_details = Task::where('fromSection',2)
         ->whereNotNull('toSection')
         ->get();
+    //   $common_tasks_details = TaskDetails::where('fromSection',2)
+    //     ->whereNotNull('toSection')
+    //     ->get();
         //to show reports in admin dashboard
         $task_details= TaskDetails::where('section_id',2)
         ->where('status','completed')
@@ -335,33 +338,41 @@ class ProtectionController extends Controller
     //change section view
     public function changeSectionView($id){
         $tasks = Task::where('id',$id)->first();
+        if($tasks->fromSection === 1){
+            $section = Section::where('id',1)->first();
+        }else{
+            $section = null;
+        }
         $stations = Station::all();
         $sections = Section::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
-
-        return view('protection.admin.tasks.changeSection',compact('tasks','stations','task_attachments','sections'));
+        return view('protection.admin.tasks.changeSection',compact('tasks','stations','task_attachments','sections','section'));
 
     }
     //change section
     public function changeSection($id,Request $request){
         $tasks = Task::where('id',$id)->first();
         $tasks_details = TaskDetails::where('task_id',$id)->first();
-       $fromSection = $tasks->fromSection;
+         $fromSection = $tasks->fromSection;
+         $toSection = $request->section_id;
         //check if task send by Edara , it should not change fromSection value
         if($fromSection !== 1){
-            $fromSection =2;
+            $fromSection = 2;
+        }else{
+            $toSection = 1;
         }
+        //allow to change section only one time
         $date = Carbon::now();
         $tasks->update([
             'fromSection'=>$fromSection,
-            'toSection'=> $request->section_id,
+            'toSection'=> $toSection,
             'eng_id'=>null,
             'status'=>'pending',
         ]);
         $tasks_details->create([
             'task_id'=> $id,
             'fromSection'=>2,
-            'toSection'=>$request->section_id,
+            'toSection'=>$toSection,
             'eng_id'=>null,
             'report_date'=>$date,
             'status' => 'change',
@@ -372,11 +383,31 @@ class ProtectionController extends Controller
     //get 
     public function updateTask($id){
         $tasks = Task::where('id',$id)->first();
+        $fromSection = $tasks->fromSection;
+        switch($fromSection){
+            case 1:
+                $section = Section::where('id',1)->pluck('section_name')->first();
+                break;
+            case 3:
+                 $section = Section::where('id',3)->pluck('section_name')->first();
+                break;
+            case 4 :
+                 $section = Section::where('id',4)->pluck('section_name')->first();
+                break;
+            case 5 :    
+                $section = Section::where('id',5)->pluck('section_name')->first();
+                break; 
+            case 6:
+                $section = Section::where('id',6)->pluck('section_name')->first();
+                break;       
+            default:
+            $section = null;           
+        }
         $stations = Station::all();
         $sections = Section::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
-        return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments','sections'));
+        return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments','sections','section'));
     }
 
     //post

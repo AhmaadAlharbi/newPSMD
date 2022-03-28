@@ -62,9 +62,10 @@ public function register(Request $request){
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        $common_tasks_details = TaskDetails::where('fromSection',6)
-        ->whereNotNull('toSection')
-        ->get();
+     //to track mutal tasks in diffrent sections  
+     $common_tasks_details = Task::where('fromSection',6)
+     ->whereNotNull('toSection')
+     ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details','incomingTasks'));
@@ -372,11 +373,25 @@ public function register(Request $request){
     //get 
     public function updateTask($id){
         $tasks = Task::where('id',$id)->first();
+        $fromSection = $tasks->fromSection;
+        switch($fromSection){
+            case 1:
+                $section = Section::where('id',1)->pluck('section_name')->first();
+                break;
+                case 2:
+                $section = Section::where('id',2)->pluck('section_name')->first();
+                break;
+            case 3:
+            $section = Section::where('id',3)->pluck('section_name')->first();
+                break; 
+            default:
+            $section = null;           
+        }
         $stations = Station::all();
         $sections = Section::all();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
-        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments','stations','sections'));
+        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments','stations','section'));
     }
 
 //post
@@ -578,14 +593,8 @@ public function register(Request $request){
 
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
-        $fromSection = $task->fromSection;
-        //check if two sections in this task
-        if($task->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 6;
-        }
+        $fromSection = $tasks->fromSection;
+        $toSection = $tasks->toSection;
         echo $engineerEmail = Auth::user()->email ;
         $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
         TaskDetails::create([
@@ -690,7 +699,6 @@ public function register(Request $request){
         public function submitEditReport($id,Request $request){
             $tasks = Task::where('id',$id)->first();
             $tasks_details = TaskDetails::where('task_id',$id)->where('status','completed')->first();
-
             $tasks->update([
                 'report_status'=>1,
             ]);

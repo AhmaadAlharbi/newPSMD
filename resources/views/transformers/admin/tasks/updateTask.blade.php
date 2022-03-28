@@ -64,9 +64,17 @@
                         </div>
                         <div class="modal-body">
                             <select name="section_id" class="form-control" id="">
-                                @foreach($sections as $section)
-                                <option value="{{$section->id}}">{{$section->section_name}}</option>
-                                @endforeach
+                                @if(isset($section))
+                                <select name="section_id" class="form-control" id="">
+                                    <option value="{{$section}}">{{$section}}</option>
+                                </select>
+                                @else
+                                <select name="section_id" class="form-control" id="">
+                                    @foreach($sections as $section)
+                                    <option value="{{$section->id}}">{{$section->section_name}}</option>
+                                    @endforeach
+                                </select>
+                                @endif
                             </select>
                         </div>
                         <div class="modal-footer">
