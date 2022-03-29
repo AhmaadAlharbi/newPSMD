@@ -494,6 +494,7 @@ public function register(Request $request){
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id','!=',6)
         ->get();
         return view('switchgear.admin.tasks.report',compact('task_details','commonTasks'));
     }

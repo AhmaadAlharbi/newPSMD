@@ -501,6 +501,7 @@ class ProtectionController extends Controller
         ->first();
         $commonTasks = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id','!=',2)
         ->get();
         return view('protection.admin.tasks.report',compact('task_details','commonTasks'));
     }

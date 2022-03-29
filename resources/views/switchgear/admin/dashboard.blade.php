@@ -297,6 +297,7 @@
                 <p class="tx-12 mb-0 text-muted"></p>
             </div>
             @foreach($common_tasks_details as $task)
+            @if($task->fromSection !== $task->toSection)
             <div class="card-body p-0 customers mt-1">
                 <div class="list-group list-lg-group list-group-flush">
                     <div class="list-group-item list-group-item-action" href="#">
@@ -357,6 +358,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
