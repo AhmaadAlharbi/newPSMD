@@ -350,6 +350,8 @@
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->tasks->station->SSNAME}}</p>
                                         <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
+                                            <a href="{{route('Transformers.cancelTaskTraking',['id'=>$task->id])}}" 
+                                                class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
                                         @if(isset($task->engineers->name))
                                         {{-- <a class="text-left btn btn-dark " href=""
                                             class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}

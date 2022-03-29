@@ -86,7 +86,8 @@ Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}',[S
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=6/print-report/{id}',[SwitchGearController::class,'viewPrintReport'])->name('switch.veiwReport');
     Route::get('/dashboard/admin/query_section_id=6/print-common-report/{id}/{section_id}',[SwitchGearController::class,'viewCommonReport'])->name('switch.viewCommonReport');
-
+      //cancel track task that send to others sections
+      Route::get('/dashboard/admin/query_section_id=6/cancel-task-traking/{id}',[SwitchGearController::class,'cancelTaskTraking'])->name('switch.cancelTaskTraking');
 
 
     });

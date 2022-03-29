@@ -88,7 +88,8 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=2/print-report/{id}',[ProtectionController::class,'viewPrintReport'])->name('protection.veiwReport');
     Route::get('/dashboard/admin/query_section_id=2/print-common-report/{id}/{section_id}',[ProtectionController::class,'viewCommonReport'])->name('protection.viewCommonReport');
-
+    //cancel track task that send to others sections
+    Route::get('/dashboard/admin/query_section_id=2/cancel-task-traking/{id}',[ProtectionController::class,'cancelTaskTraking'])->name('protection.cancelTaskTraking');
     });
     
     Route::get('/dashboard/admin/stations-list',[ProtectionController::class,'showStations'])->name('stationsList')->middleware('auth');

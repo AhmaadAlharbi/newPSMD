@@ -66,7 +66,7 @@
                             <select name="section_id" class="form-control" id="">
                                 @if(isset($section))
                                 <select name="section_id" class="form-control" id="">
-                                    <option value="{{$section}}">{{$section}}</option>
+                                    <option value="{{$section->id}}">{{$section->section_name}}</option>
                                 </select>
                                 @else
                                 <select name="section_id" class="form-control" id="">

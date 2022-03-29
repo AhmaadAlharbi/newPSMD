@@ -130,6 +130,15 @@ public function register(Request $request){
         ]);
         return back();
     }
+
+        //cancel task tracking
+        public function cancelTaskTraking($id){
+            $tasks = Task::findOrFail($id);
+            $tasks->update([
+                'fromSection'=> null,
+            ]);
+            return back();
+        }
         //assign task page
         public function assign_task(){
             if(isset(Task::latest()->first()->id)){
@@ -376,19 +385,19 @@ public function register(Request $request){
         $fromSection = $tasks->fromSection;
         switch($fromSection){
             case 1:
-                $section = Section::where('id',1)->pluck('section_name')->first();
+                $section = Section::where('id',1)->first();
                 break;
             case 2:
-                $section = Section::where('id',2)->pluck('section_name')->first();
+                $section = Section::where('id',2)->first();
                 break;
             case 3:
-                 $section = Section::where('id',3)->pluck('section_name')->first();
+                 $section = Section::where('id',3)->first();
                 break;
             case 4 :
-                 $section = Section::where('id',4)->pluck('section_name')->first();
+                 $section = Section::where('id',4)->first();
                 break;
             case 5 :    
-                $section = Section::where('id',5)->pluck('section_name')->first();
+                $section = Section::where('id',5)->first();
                 break;       
             default:
             $section = null;           

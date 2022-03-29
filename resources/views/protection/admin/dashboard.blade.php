@@ -162,7 +162,6 @@
 </div>
 <!-- row closed -->
 
-common_tasks_details
 <!-- row closed -->
 
 <!-- row opened -->
@@ -344,7 +343,8 @@ common_tasks_details
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
                                         <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
-                               
+                                            <a href="{{route('protection.cancelTaskTraking',['id'=>$task->id])}}" class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+
                                         @if($task->status === 'completed')
                                         <a class="btn btn-info mt-0 text-center"
                                             href="{{route('protection.viewCommonReport',['id'=>$task->id,'section_id'=>$task->toSections->id])}}">Report</a>
