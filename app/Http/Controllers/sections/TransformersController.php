@@ -306,7 +306,9 @@ class TransformersController extends Controller
         return view('transformers.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',5)->orWhere('toSection','5')->orderBy('id', 'desc')
+        $tasks = Task::where('fromSection',5)
+        ->orWhere('toSection','5')
+        ->orderBy('id', 'desc')
         ->get();
         return view('transformers.admin.tasks.showTasks',compact('tasks'));
     }
@@ -325,6 +327,10 @@ class TransformersController extends Controller
         $tasks = Task::where('fromSection',5)
         ->where('status','completed')
         ->whereMonth('created_at', date('m'))
+        ->orWhere('toSection',5)
+        ->where('status','completed')
+        ->whereMonth('created_at', date('m'))
+        ->orderBy('id', 'desc')
         ->orderBy('id', 'desc')
         ->get();
         return view('transformers.admin.tasks.showTasks',compact('tasks'));
@@ -661,21 +667,16 @@ class TransformersController extends Controller
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
-        //check if two sections in this task
-        if($task->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 5;
-        }
+        $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
-            'eng_id' =>(Auth::user()->id),
+            'eng_id' =>$eng_id,
             'fromSection'=>$fromSection,
             'toSection'=>$toSection,
             'action_take' => $request->action_take,
             'status'=>'completed',
+            'report_status'=>1,
         ]);
         $task->update([
             'status'=>'completed',

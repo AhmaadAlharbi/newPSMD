@@ -334,6 +334,10 @@ public function register(Request $request){
         $tasks = Task::where('fromSection',6)
         ->where('status','completed')
         ->whereMonth('created_at', date('m'))
+        ->orWhere('toSection',6)
+        ->where('status','completed')
+        ->whereMonth('created_at', date('m'))
+        ->orderBy('id', 'desc')
         ->orderBy('id', 'desc')
         ->get();
         return view('switchgear.admin.tasks.showTasks',compact('tasks'));
@@ -608,8 +612,7 @@ public function register(Request $request){
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
-        echo $engineerEmail = Auth::user()->email ;
-        $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
+        $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
@@ -619,6 +622,7 @@ public function register(Request $request){
             'section_id'=> 6,
             'action_take' => $request->action_take,
             'status'=>'completed',
+            'report_status'=>1,
         ]);
         $task->update([
             'status'=>'completed',

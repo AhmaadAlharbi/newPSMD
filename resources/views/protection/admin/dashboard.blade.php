@@ -51,7 +51,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',2)->count()}}
+                                {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',2)->orWhere('toSection',2)->count()}}
 
 
                             </h4>
@@ -76,7 +76,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','pending')->where('fromSection',2)->count()}}
+                                {{\App\Models\Task::where('status','pending')->where('fromSection',2)->orWhere('toSection',2)->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات غير منجزة</p>
                         </div>
@@ -84,7 +84,7 @@
                             <i class="fas fa-arrow-circle-down text-white"></i>
                             <span class="text-white tx-16 op-7">
                                 @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','pending')->where('fromSection',2)->count()/\App\Models\Task::count())*100)}}%
+                                {{round((\App\Models\Task::where('status','pending')->where('fromSection',2)->orWhere('toSection',2)->count()/\App\Models\Task::count())*100)}}%
 
                                 @endif
 
@@ -109,7 +109,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',2)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('fromSection',2)->whereMonth('created_at', date('m'))->orWhere('toSection',2)->whereMonth('created_at', date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -119,7 +119,7 @@
                             <i class="fas fa-arrow-circle-up text-white"></i>
                             <span class="text-white tx-18 op-7">
                                 @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',2)->count()/\App\Models\Task::count())*100)}}%
+                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',2)->orWhere('toSection',2)->count()/\App\Models\Task::count())*100)}}%
                                 @endif
                             </span>
                         </span>
@@ -142,7 +142,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',2)->count()}}
+                                {{\App\Models\Task::where('status','completed')->where('fromSection',2)->orWhere('toSection',2)->count()}}
                             </h4>
                             <p class="mb-0 tx-12 text-white op-7">
                                 تقرير

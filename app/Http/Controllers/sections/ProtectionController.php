@@ -261,7 +261,9 @@ class ProtectionController extends Controller
         return view('protection.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',2)->orWhere('toSection','2')->orderBy('id', 'desc')
+        $tasks = Task::where('fromSection',2)
+        ->orWhere('toSection','2')->
+        orderBy('id', 'desc')
         ->get();
         $sections = Section::all();
         return view('protection.admin.tasks.showTasks',compact('tasks','sections'));
@@ -279,6 +281,9 @@ class ProtectionController extends Controller
 
     public function showCompletedTasks(){
         $tasks = Task::where('fromSection',2)
+        ->where('status','completed')
+        ->whereMonth('created_at', date('m'))
+        ->orWhere('toSection',2)
         ->where('status','completed')
         ->whereMonth('created_at', date('m'))
         ->orderBy('id', 'desc')
@@ -616,13 +621,6 @@ class ProtectionController extends Controller
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
-        //check if two sections in this task
-        if($task->toSection === null){
-            $toSection = null;
-
-        }else{
-            $toSection = 2;
-        }
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
@@ -634,6 +632,7 @@ class ProtectionController extends Controller
             'action_take' => $request->action_take,
             'report_status'=>1,
             'status'=>'completed',
+            'report_status'=>1,
         ]);
         $task->update([
             'status'=>'completed',
