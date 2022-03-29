@@ -249,8 +249,10 @@
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
                                         <p class="text-right text-muted"> {{$task->created_at}}</p>
+                                        @if($task->fromSection !== $task->toSection)
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">قسم
                                             {{$task->sections->section_name}} </p>
+                                        @endif    
                                         @if($task->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
 
@@ -315,6 +317,8 @@
                                     <div class="mt-0">
                                         {{$task->id}}
                                         <p class="text-right text-muted"> {{$task->created_at}}</p>
+
+                                        
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                             قسم {{$task->toSections->section_name}} </p>
                                         @if($task->status == 'waiting')
@@ -339,11 +343,11 @@
                                         <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>
                                         @endif
-
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
                                         <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
-                                            <a href="{{route('protection.cancelTaskTraking',['id'=>$task->id])}}" class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+                                            <a href="{{route('protection.cancelTaskTraking',['id'=>$task->id])}}" 
+                                                class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
 
                                         @if($task->status === 'completed')
                                         <a class="btn btn-info mt-0 text-center"

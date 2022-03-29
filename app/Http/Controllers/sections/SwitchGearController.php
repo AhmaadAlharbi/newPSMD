@@ -653,6 +653,7 @@ public function register(Request $request){
             TaskDetails::create([
                 'task_id'=>$id,
                 'fromSection'=>6,
+                'section_id'=>6,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,
@@ -666,6 +667,7 @@ public function register(Request $request){
             TaskDetails::create([
                 'task_id'=>$id,
                 'fromSection'=>6,
+                'section_id'=>2,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,

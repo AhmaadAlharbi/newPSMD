@@ -700,8 +700,7 @@ class TransformersController extends Controller
 
     public function engineerReportUnCompleted(Request $request,$id){
         $task= Task::findOrFail($id);
-        $engineerEmail = Auth::user()->email ;
-        $eng_id = Engineer::where('email',$engineerEmail)->pluck('id')->first();
+        $eng_id = Auth::user()->id;
         //if task Completed
         if ($request->reason === 'مسؤولية جهة آخرى' || $request->reason === "تحت الكفالة") {
             $task->update([
@@ -710,6 +709,7 @@ class TransformersController extends Controller
             TaskDetails::create([
                 'task_id'=>$id,
                 'fromSection'=>5,
+                'section_id'=>5,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,
@@ -723,6 +723,7 @@ class TransformersController extends Controller
             TaskDetails::create([
                 'task_id'=>$id,
                 'fromSection'=>5,
+                'section_id'=>5,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,

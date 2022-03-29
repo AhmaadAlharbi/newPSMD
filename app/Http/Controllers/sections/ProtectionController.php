@@ -412,7 +412,7 @@ class ProtectionController extends Controller
             $section = null;           
         }
         $stations = Station::all();
-        $sections = Section::all();
+        $sections = Section::where('id','!=',2)->get();
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
         return view('protection.admin.tasks.updateTask',compact('tasks','stations','task_attachments','sections','section'));
@@ -423,9 +423,7 @@ class ProtectionController extends Controller
         $date = Carbon::now();
         $tasks = Task::findOrFail($id);
         $fromSection = $tasks->fromSection;
-        $toSection = $tasks->toSection;
-        //check if two sections in this task
-      
+        $toSection = $tasks->toSection;      
         $tasks->update([
             'refNum' => $request->refNum,
             'fromSection'=>$fromSection,
@@ -625,8 +623,7 @@ class ProtectionController extends Controller
         }else{
             $toSection = 2;
         }
-        echo $engineerEmail = Auth::user()->email ;
-        $eng_id = User::where('email',$engineerEmail)->pluck('id')->first();
+        $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
@@ -662,8 +659,7 @@ class ProtectionController extends Controller
 
     public function engineerReportUnCompleted(Request $request,$id){
         $task= Task::findOrFail($id);
-        $engineerEmail = Auth::user()->email ;
-        $eng_id = Engineer::where('email',$engineerEmail)->pluck('id')->first();
+        $eng_id = Auth::user()->id;
         //if task Completed
         if ($request->reason === 'مسؤولية جهة آخرى' || $request->reason === "تحت الكفالة") {
             $task->update([
@@ -672,6 +668,7 @@ class ProtectionController extends Controller
             TaskDetails::create([
                 'task_id'=>$id,
                 'fromSection'=>2,
+                'section_id'=>2,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,
@@ -685,6 +682,7 @@ class ProtectionController extends Controller
             TaskDetails::create([
                 'task_id'=>$id,
                 'fromSection'=>2,
+                'section_id'=>2,
                 'report_date'=>Carbon::now(),
                 'reasonOfUncompleted'=>$request->reason,
                 'eng_id' =>$eng_id,

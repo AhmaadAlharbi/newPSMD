@@ -244,8 +244,10 @@
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
-                                        <p class="text-right text-muted"> {{$task->created_at}}</p>
-                                        قسم {{$task->sections->section_name}} </p>
+                                        @if($task->fromSection !== $task->toSection)
+                                        <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">قسم
+                                            {{$task->sections->section_name}} </p>
+                                        @endif  
 
                                         @if($task->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
