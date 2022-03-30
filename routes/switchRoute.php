@@ -21,13 +21,12 @@ Route::post('/switch/Egineer-report/uncompleted/{id}',[SwitchGearController::cla
 Route::get('/dashboard/user/query_section_id=6/{id}',[SwitchGearController::class,'engineerPageTasks'])->name('switch.engineerPageTask');
 Route::get('/dashboard/user/query_section_id=6/{id}/completed',[SwitchGearController::class,'engineerPageTasksCompleted'])->name('switch.engineerPageTaskCompleted');
 Route::get('/dashboard/user/query_section_id=6/{id}/pending',[SwitchGearController::class,'engineerPageTasksUnCompleted'])->name('switch.engineerPageTaskUncompleted');
-Route::get('/dashboard/user/query_section_id=6/task-details/{id}',[SwitchGearController::class,'usertaskDetails'])->name('protecion.user.taskDetails');
+Route::get('/dashboard/user/query_section_id=6/task-details/{id}',[SwitchGearController::class,'usertaskDetails'])->name('switch.user.taskDetails');
 Route::get('switchgear/View_file/{id}/{file_name}', [SwitchGearController::class, 'open_file'])->name('switch.view_file');
 Route::get('switchgear/download/{id}/{file_name}', [SwitchGearController::class, 'get_file'])->name('switch.download_file');
 Route::get('/dashboard/user/query_section_id=6/print-report/{id}',[SwitchGearController::class,'viewPrintReport'])->name('switch.user.veiwReport');
 Route::get('/dashboard/user/archive/query_section_id=6/',[SwitchGearController::class,'userArchive'])->name('switch.user.archive');
 // VIEW REPORT PRINT PAGE
-Route::get('/dashboard/user/query_section_id=6/task-details/{id}',[SwitchGearController::class,'taskDetails'])->name('switch.user.taskDetails');
 Route::get('/dashboard/user/query_section_id=6/request-to-edit-report/{id}',[SwitchGearController::class,'requestEditReport'])->name('switch.requestEditReport');
 //edit report page after allowing it
 Route::get('/dashboard/user/query_section_id=6/edit-report/{id}',[SwitchGearController::class,'editReport'])->name('switch.editReport');

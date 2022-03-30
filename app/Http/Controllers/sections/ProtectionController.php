@@ -570,17 +570,17 @@ class ProtectionController extends Controller
         return view('protection.user.tasks.engineertasks', compact('tasks'));
     }
     public function showEngineerTasksCompleted($id){
-        $tasks = Task::where('eng_id',$id)
-        ->where('status','completed')
+        $tasks = TaskDetails::where('eng_id',$id)
+        ->where('section_id',2)
         ->orderBy('id', 'desc')
         ->get();
         // $tasks_details = TaskDetails::where('eng_id',$id)
         // ->where('status','completed')
         // ->get();
-        return view('protection.user.tasks.engineertasks', compact('tasks'));
+        return view('protection.user.tasks.taskCompleted', compact('tasks'));
     }
     public function usertaskDetails($id){
-        $tasks = Task::where('id', $id)->first();
+        $tasks = Task::where('id', $id)->get();
         $task_details = TaskDetails::where('task_id', $id)->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
         return view('protection.user.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
@@ -685,8 +685,6 @@ class ProtectionController extends Controller
         }
         session()->flash('Add', 'تم اضافة التقرير بنجاح');
         return back();
-       
-
     }
 
     public function requestEditReport($id){

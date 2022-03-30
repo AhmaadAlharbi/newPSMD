@@ -586,6 +586,11 @@ class TransformersController extends Controller
         ->where('eng_id',Auth::user()->id)
         ->where('status','pending')
         ->get();
+
+        $taskCount = TaskDetails::where('eng_id',Auth::user()->id)->get();
+        foreach($taskCount as $count){
+            return (String) $count;
+        }
         $task_details= TaskDetails::where('section_id',5)
         ->where('status','completed')
         ->orderBy('id', 'desc')

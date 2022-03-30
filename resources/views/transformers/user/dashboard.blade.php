@@ -50,7 +50,8 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('eng_id',Auth::user()->id)->count()}}
+                                {{--\App\Models\Task::where('eng_id',Auth::user()->id)->count()--}}
+                                {{Auth::user()->name}} 
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>

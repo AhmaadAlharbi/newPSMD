@@ -532,14 +532,13 @@ public function register(Request $request){
         ->where('eng_id',Auth::user()->id)
         ->where('status','pending')
         ->get();
-
-        $task_details= TaskDetails::where('section_id',6)
+        $task_details = TaskDetails::where('section_id',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get(); 
-    $date = Carbon::now();
-    $monthName = $date->format('F');
-    return view('switchgear.user.dashboard',compact('tasks','task_details','date','monthName'));
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+        return view('switchgear.user.dashboard',compact('tasks','task_details','date','monthName'));
     }
 
     public function engineerPageTasks($id){
@@ -563,14 +562,14 @@ public function register(Request $request){
         return view('switchgear.user.tasks.engineertasks', compact('tasks'));
     }
     public function showEngineerTasksCompleted($id){
-        $tasks = Task::where('eng_id',$id)
-        ->where('status','completed')
+        $tasks = TaskDetails::where('eng_id',$id)
+        ->where('section_id',6)
         ->orderBy('id', 'desc')
         ->get();
-        return view('switchgear.user.tasks.engineertasks', compact('tasks'));
+        return view('switchgear.user.tasks.taskCompleted', compact('tasks'));
     }
     public function usertaskDetails($id){
-        $tasks = Task::where('id', $id)->first();
+        $tasks = Task::where('id', $id)->get();
         $task_details = TaskDetails::where('task_id', $id)->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
         return view('switchgear.user.tasks.taskDetails',compact('tasks','task_details','task_attachment'));
