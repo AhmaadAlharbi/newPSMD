@@ -533,22 +533,14 @@ class ProtectionController extends Controller
         ####################### USER CONTROLLER ########################
     
     public function userIndex() {
-        $tasks = Task::orderBy('id', 'desc')
-        ->where('fromSection',2)
+        $tasks = Task::orderBy('id','desc')
         ->where('eng_id',Auth::user()->id)
-        ->where('status', 'pending')
-        ->orWhere('toSection',2)
-        ->where('eng_id',Auth::user()->id)
-        ->where('status', 'pending')
+        ->where('status','pending')
         ->get();
 
-
-        $task_details = DB::table('task_details')
-        ->join('tasks','tasks.id','=','task_details.task_id')
-        ->where('task_details.status','completed')
-        ->where('tasks.fromSection',2)
-        ->orderBy('tasks.id', 'desc')
-
+        $task_details= TaskDetails::where('section_id',2)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
         ->get();   
         $date = Carbon::now();
         $monthName = $date->format('F');

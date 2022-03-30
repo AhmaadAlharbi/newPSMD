@@ -582,18 +582,14 @@ class TransformersController extends Controller
         ####################### USER CONTROLLER ########################
     
     public function userIndex() {
-        $tasks = Task::orderBy('id', 'desc')
-        ->where('fromSection',5)
+        $tasks = Task::orderBy('id','desc')
         ->where('eng_id',Auth::user()->id)
-        ->where('status', 'pending')
+        ->where('status','pending')
         ->get();
-      $task_details = DB::table('task_details')
-            ->join('tasks','tasks.id','=','task_details.task_id')
-            ->where('task_details.status','completed')
-            ->where('tasks.fromSection',5)
-            ->orderBy('tasks.id', 'desc')
-
-            ->get();  
+        $task_details= TaskDetails::where('section_id',5)
+        ->where('status','completed')
+        ->orderBy('id', 'desc')
+        ->get(); 
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
