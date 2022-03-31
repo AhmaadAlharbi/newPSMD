@@ -244,7 +244,7 @@
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
-                                        @if($task->fromSection !== $task->toSection)
+                                        @if($task->fromSection !== $task->toSection && isset($task->fromSection))
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">قسم
                                             {{$task->sections->section_name}} </p>
                                         @endif  

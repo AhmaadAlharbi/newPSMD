@@ -58,16 +58,19 @@ class TransformersController extends Controller
         ->where('fromSection',5)
         ->whereNull('toSection')
         ->where('status', 'pending')
-        ->get(); 
-        $incomingTasks = Task::Where('toSection',5)
+        ->orWhere('toSection',5)
+        ->whereNull('fromSection')
         ->where('status', 'pending')
         ->get();
-        $task_details= TaskDetails::where('fromSection',5)
-        ->where('status','completed')
-        ->orWhere('toSection',5)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
+        $incomingTasks = Task::Where('toSection',5)
+        ->whereNotNull('fromSection')
+        ->where('status', 'pending')
         ->get();
+         //to show reports in admin dashboard
+         $task_details= TaskDetails::where('section_id',5)
+         ->where('status','completed')
+         ->orderBy('id', 'desc')
+         ->get();
       //to track mutal tasks in diffrent sections  
       $common_tasks_details = Task::where('fromSection',5)
       ->whereNotNull('toSection')
@@ -385,6 +388,7 @@ class TransformersController extends Controller
         $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
         $fromSection = $tasks->fromSection;
+        $toSection = $request->section_id;
         if($fromSection !== 1){
             $fromSection =5;
         }
@@ -422,7 +426,6 @@ class TransformersController extends Controller
         }
     //get 
     public function updateTask($id){
-        $sections = Section::all();
         $tasks = Task::where('id',$id)->first();
         $fromSection = $tasks->fromSection;
         switch($fromSection){
@@ -446,6 +449,8 @@ class TransformersController extends Controller
             $section = null;           
         }
         $stations = Station::all();
+        $sections = Section::where('id','!=',5)->get();
+
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
         $tr_task = TrTasks::where('task_id',$id)->first();
         return view('transformers.admin.tasks.updateTask',compact('tasks','stations','task_attachments','tr_task','sections','section'));
@@ -586,15 +591,14 @@ class TransformersController extends Controller
         ->where('eng_id',Auth::user()->id)
         ->where('status','pending')
         ->get();
-
-        $taskCount = TaskDetails::where('eng_id',Auth::user()->id)->get();
-        foreach($taskCount as $count){
-            return (String) $count;
-        }
         $task_details= TaskDetails::where('section_id',5)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get(); 
+
+ 
+
+
         $tr_tasks= DB::table('tr_tasks')
         ->join('tasks','tasks.id','=','tr_tasks.task_id')
         ->where('tasks.status','pending')
@@ -668,6 +672,7 @@ class TransformersController extends Controller
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
+        $toSection = $task->toSection;
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
@@ -675,6 +680,7 @@ class TransformersController extends Controller
             'eng_id' =>$eng_id,
             'fromSection'=>$fromSection,
             'toSection'=>$toSection,
+            'section_id'=> 5,
             'action_take' => $request->action_take,
             'status'=>'completed',
             'report_status'=>1,

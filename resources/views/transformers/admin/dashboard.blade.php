@@ -253,8 +253,7 @@
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
-                                        <p class="text-right text-muted"> {{$task->created_at}}</p>
-                                        @if($task->fromSection !== $task->toSection)
+                                        @if($task->fromSection !== $task->toSection && isset($task->fromSection))
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">قسم
                                             {{$task->sections->section_name}} </p>
                                         @endif  
@@ -278,7 +277,7 @@
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
-                                        <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"
+                                        <a href="{{route('switch.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
                                         {{-- <a class="text-left btn btn-dark " href=""
@@ -287,9 +286,9 @@
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-                                  
+
                                         <a class="text-left btn btn-success "
-                                            href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
+                                            href="{{route('switch.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
                                     </div>
                                 </div>
@@ -301,6 +300,7 @@
             @endforeach
         </div>
     </div>
+    {{-- المهمات المشتركة --}}
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
@@ -308,6 +308,7 @@
                 <p class="tx-12 mb-0 text-muted"></p>
             </div>
             @foreach($common_tasks_details as $task)
+            @if($task->fromSection !== $task->toSection)
             <div class="card-body p-0 customers mt-1">
                 <div class="list-group list-lg-group list-group-flush">
                     <div class="list-group-item list-group-item-action" href="#">
@@ -319,41 +320,39 @@
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">
-                                        <p class="text-right text-muted"> {{$task->tasks->created_at}}</p>
+                                        {{$task->id}}
+                                        <p class="text-right text-muted"> {{$task->created_at}}</p>
                                         <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
-                                            قسم {{$task->tasks->toSections->section_name}} </p>
-
-                                        <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
-                                            قسم {{$task->tasks->sections->section_name}} </p>
-                                       
-                                            @if($task->tasks->status == 'waiting')
+                                            قسم {{$task->toSections->section_name}} </p>
+                                        @if($task->status == 'waiting')
                                         <span class="badge badge-warning text-white ml-2">
 
-                                            {{$task->tasks->status}}
+                                            {{$task->status}}
                                         </span>
-                                        @elseif($task->tasks->status == 'pending')
+                                        @elseif($task->status == 'pending')
                                         <span class="badge badge-danger ml-2">
 
-                                            {{$task->tasks->status}}
+                                            {{$task->status}}
                                         </span>
                                         @else
                                         <span class="badge badge-success ml-2">
 
-                                        {{$task->tasks->status}}
+                                            {{$task->status}}
                                         </span>
                                         @endif
-                                        @if(isset($task->tasks->eng_id))
-                                        <h5 class="m-1 tx-15">{{$task->tasks->users->name}}</h5>
+                                        @if(isset($task->eng_id))
+                                        <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                         @else
                                         <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>
                                         @endif
 
-                                        <p class="mb-0 tx-13 text-dark">ssname: {{$task->tasks->station->SSNAME}}</p>
-                                        <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"
+                                        <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
+                                        <a href="{{route('switch.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
-                                            <a href="{{route('Transformers.cancelTaskTraking',['id'=>$task->id])}}" 
+                                            <a href="{{route('switch.cancelTaskTraking',['id'=>$task->id])}}" 
                                                 class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+
                                         @if(isset($task->engineers->name))
                                         {{-- <a class="text-left btn btn-dark " href=""
                                             class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
@@ -361,11 +360,11 @@
                                         {{--  <a class="text-left btn btn-danger "
                                             href=""
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-
-                                        @if($task->tasks->status === 'completed')
+                                        @if($task->status === 'completed')
                                         <a class="btn btn-info mt-0 text-center"
-                                            href="{{route('Transformers.veiwReport',['id'=>$task->task_id])}}">Report</a>
+                                            href="{{route('switch.veiwReport',['id'=>$task->id])}}">Report</a>
                                         @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -373,10 +372,11 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
-    <div class="col-xl-8 col-md-12 col-lg-6">
+    <div class="col-xl-12 col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header pb-1">
                 <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>

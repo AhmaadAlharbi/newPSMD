@@ -53,37 +53,36 @@
             {{--change section modal --}}
          <form action="{{route('transformers.changeSection',['id'=>$tasks->id])}}">
              @csrf
-         <div class="modal fade" id="change_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">تحويل المهمة لقسم آخر</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <select name="section_id" class="form-control" id="">
-                                @if(isset($section))
-                                <select name="section_id" class="form-control" id="">
-                                    <option value="{{$section->id}}">{{$section->section_name}}</option>
-                                </select>
-                                @else
-                                <select name="section_id" class="form-control" id="">
-                                    @foreach($sections as $section)
-                                    <option value="{{$section->id}}">{{$section->section_name}}</option>
-                                    @endforeach
-                                </select>
-                                @endif
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                            <button type="submit" class="btn btn-primary">إرسال</button>
-                        </div>
+             <div class="modal fade" id="change_section" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">تحويل المهمة لقسم آخر</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @if(isset($section))
+                                    <select name="section_id" class="form-control" id="">
+                                        <option value="{{$section->id}}">{{$section->section_name}}</option>
+                                    </select>
+                                    @else
+                                    <select name="section_id" class="form-control" id="">
+                                        @foreach($sections as $section)
+                                        <option value="{{$section->id}}">{{$section->section_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                    <button type="submit" class="btn btn-primary">إرسال</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
          </form>
                 {{--end change section modal --}}
                 <form action="{{route('Transformers.update',['id'=>$tasks->id])}}" method="post"

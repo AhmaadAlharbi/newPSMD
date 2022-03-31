@@ -56,10 +56,15 @@ class ProtectionController extends Controller
     public function index(){
         
         $tasks = Task::orderBy('id', 'desc')
-            ->where('fromSection',2)
-            ->whereNull('toSection')
-            ->where('status', 'pending')->get();
+        ->where('fromSection',2)
+        ->whereNull('toSection')
+        ->where('status', 'pending')
+        ->orWhere('toSection',2)
+        ->whereNull('fromSection')
+        ->where('status', 'pending')
+        ->get();
         $incomingTasks = Task::Where('toSection',2)
+        ->whereNotNull('fromSection')
         ->where('status', 'pending')
         ->get();
         //to track mutal tasks in diffrent sections  
@@ -613,6 +618,7 @@ class ProtectionController extends Controller
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
+        $$toSection = $task->toSection;
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,

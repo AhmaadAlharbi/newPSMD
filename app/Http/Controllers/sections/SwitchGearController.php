@@ -53,9 +53,14 @@ public function register(Request $request){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',6)
         ->whereNull('toSection')
-        ->where('status', 'pending')->get();
+        ->where('status', 'pending')
+        ->orWhere('toSection',6)
+        ->whereNull('fromSection')
+        ->where('status', 'pending')
+        ->get();
         
         $incomingTasks = Task::Where('toSection',6)
+        ->whereNotNull('fromSection')
         ->where('status', 'pending')
         ->get();
         $task_details= TaskDetails::where('section_id',6)
