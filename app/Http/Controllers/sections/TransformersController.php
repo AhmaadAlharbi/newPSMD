@@ -464,12 +464,9 @@ class TransformersController extends Controller
         $tr_Tasks = TrTasks::where('task_id',$id);
         $date = Carbon::now();
         $fromSection = $tasks->fromSection;
-        //check if two sections in this task
-        if($tasks->toSection === null){
+        $toSection = $tasks->toSection;  
+        if($fromSection === 5){
             $toSection = null;
-
-        }else{
-            $toSection = 5;
         }
         $tasks->update([
             'refNum' => $request->refNum,
@@ -482,15 +479,16 @@ class TransformersController extends Controller
             'pm'=>$request->pm,
             'eng_id'=>$request->eng_name,
             'notes' => $request->notes,
+            'status' => 'pending',
             'user' => (Auth::user()->name),
         ]);
         $engineer_email = $request->eng_email;
         TaskDetails::create([
-            'task_id'=>$id,
+            'task_id'=> $id,
+            'fromSection'=> 5,
             'eng_id'=>$request->eng_name,
-            'report_date'=> $date,
-            'fromSection'=> 5, 
-            'status'=>'change',
+            'report_date'=>$request->task_Date,
+            'status' => 'change',
         ]);
         
         //check if tasks is added in task Tr table or not (tasks comes from another sections)

@@ -433,7 +433,10 @@ class ProtectionController extends Controller
         $date = Carbon::now();
         $tasks = Task::findOrFail($id);
         $fromSection = $tasks->fromSection;
-        $toSection = $tasks->toSection;      
+        $toSection = $tasks->toSection;
+        if($fromSection === 2){
+            $toSection = null;
+        }      
         $tasks->update([
             'refNum' => $request->refNum,
             'fromSection'=>$fromSection,

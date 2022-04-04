@@ -422,12 +422,8 @@ public function register(Request $request){
     public function update(Request $request , $id){
         $tasks = Task::findOrFail($id);
         $fromSection = $tasks->fromSection;
-        //check if two sections in this task
-        if($tasks->toSection === null){
+        if($fromSection === 6){
             $toSection = null;
-
-        }else{
-            $toSection = 6;
         }
         $tasks->update([
             'refNum' => $request->refNum,

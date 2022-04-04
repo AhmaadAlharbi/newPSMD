@@ -51,7 +51,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',6)->count()}}
+                                {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',6)->orWhere('toSection',6)->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>

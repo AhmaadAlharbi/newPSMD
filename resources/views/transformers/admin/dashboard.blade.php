@@ -350,7 +350,7 @@
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
                                         <a href="{{route('switch.admin.taskDetails',['id'=>$task->id])}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
-                                            <a href="{{route('switch.cancelTaskTraking',['id'=>$task->id])}}" 
+                                            <a href="{{route('Transformers.cancelTaskTraking',['id'=>$task->id])}}" 
                                                 class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
 
                                         @if(isset($task->engineers->name))
@@ -362,7 +362,10 @@
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
                                         @if($task->status === 'completed')
                                         <a class="btn btn-info mt-0 text-center"
-                                            href="{{route('switch.veiwReport',['id'=>$task->id])}}">Report</a>
+                                            href="{{route('Transformers.veiwReport',['id'=>$task->id])}}">Report</a>
+                                            <a class="text-left btn btn-success "
+                                            href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
+                                            class=" m-2 btn btn-primary btn-sm">Edit</a>
                                         @endif
 
                                     </div>
