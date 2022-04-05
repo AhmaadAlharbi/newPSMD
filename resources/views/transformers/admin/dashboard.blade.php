@@ -105,7 +105,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',5)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\TaskDetails::where('section_id',5)->whereMonth('created_at', date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -113,11 +113,7 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-up text-white"></i>
-                            <span class="text-white tx-18 op-7">
-                                @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',5)->count()/\App\Models\Task::count())*100)}}%
-                                @endif
-                            </span>
+                    
                         </span>
                     </div>
                 </div>
@@ -138,7 +134,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',5)->count()}}
+                                {{\App\Models\TaskDetails::where('section_id',5)->count()}}
                             </h4>
                             <p class="mb-0 tx-12 text-white op-7">
                                 تقرير
@@ -248,10 +244,8 @@
                 <div class="list-group list-lg-group list-group-flush">
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
-
                             <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
                                 alt="Image description">
-
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <div class="mt-0">

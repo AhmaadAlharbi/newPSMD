@@ -104,7 +104,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',6)->count()}}
+                                {{\App\Models\TaskDetails::where('section_id',6)->whereMonth('created_at', date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -112,11 +112,7 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-up text-white"></i>
-                            <span class="text-white tx-18 op-7">
-                                @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',6)->count()/\App\Models\Task::count())*100)}}%
-                                @endif
-                            </span>
+
                         </span>
                     </div>
                 </div>
@@ -137,7 +133,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',6)->count()}}
+                                {{\App\Models\TaskDetails::where('section_id',6)->count()}}
                             </h4>
                             <p class="mb-0 tx-12 text-white op-7">
                                 تقرير

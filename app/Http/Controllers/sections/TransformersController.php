@@ -331,11 +331,8 @@ class TransformersController extends Controller
         return view('transformers.admin.tasks.completedTasks',compact('tasks'));
     }
     public function showArchive(){
-        $tasks = Task::where('fromSection',5)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('transformers.admin.tasks.showTasks',compact('tasks'));
+        $tasks = TaskDetails::where('section_id',5)->get();
+        return view('transformers.admin.tasks.completedTasks',compact('tasks'));
     }
 
     public function userArchive(){
