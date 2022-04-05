@@ -70,7 +70,6 @@ window.onload = function() {
                                 <th class="border-bottom-0"> التحكم </th>
                                 <th class="border-bottom-0">تاريخ ارسال المهمة</th>
                                 <th class="border-bottom-0">المهندس</th>
-                                <th class="border-bottom-0">بواسطة</th>
                                 <th class="border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -108,13 +107,12 @@ window.onload = function() {
                                     @endif
 
                                 <td>{{$task->tasks->task_date}}</td>
-                                @if(isset($task->tasks->users->name))
-                                <td>{{$task->tasks->users->name}}</td>
+                                @if(isset($task->users->name))
+                                <td>{{$task->users->name}}</td>
                                 @else
                                 <td>waiting...</td>
                                 @endif
               
-                                <td>{{$task->tasks->user}}</td>
 
                                 <td>
                                     <div class="dropdown">
