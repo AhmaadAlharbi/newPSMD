@@ -327,16 +327,8 @@ class TransformersController extends Controller
     }
 
     public function showCompletedTasks(){
-        $tasks = Task::where('fromSection',5)
-        ->where('status','completed')
-        ->whereMonth('created_at', date('m'))
-        ->orWhere('toSection',5)
-        ->where('status','completed')
-        ->whereMonth('created_at', date('m'))
-        ->orderBy('id', 'desc')
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('transformers.admin.tasks.showTasks',compact('tasks'));
+        $tasks = TaskDetails::where('section_id',5)->whereMonth('created_at',date('m'))->get();
+        return view('transformers.admin.tasks.completedTasks',compact('tasks'));
     }
     public function showArchive(){
         $tasks = Task::where('fromSection',5)

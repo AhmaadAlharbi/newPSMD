@@ -198,8 +198,10 @@
                                         <span class="bg-warning p-1 d-block text-center m-1">Mechanical</span>
                                         @elseif($department ==2)
                                         <span class="bg-info p-1 d-block text-center m-1">Chemistry</span>
-                                        @else
+                                        @elseif($department == 3)
                                         <span class="bg-dark text-white p-1  d-block text-center m-1">Electrical</span>
+                                        @else
+                                        <span class="bg-dark text-white p-1  d-block text-center m-1">غير مصنف</span>
                                         @endif
                                         @if(isset($task->eng_id))
                                         <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
@@ -288,7 +290,7 @@
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
                                         <a class="text-left btn btn-success "
-                                            href="{{route('switch.updateTask',['id'=>$task->id])}}"
+                                            href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Edit</a>
                                     </div>
                                 </div>

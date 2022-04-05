@@ -285,15 +285,10 @@ class ProtectionController extends Controller
     }
 
     public function showCompletedTasks(){
-        $tasks = Task::where('fromSection',2)
-        ->where('status','completed')
-        ->whereMonth('created_at', date('m'))
-        ->orWhere('toSection',2)
-        ->where('status','completed')
-        ->whereMonth('created_at', date('m'))
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('protection.admin.tasks.showTasks',compact('tasks'));
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+        $tasks = TaskDetails::where('section_id',2)->whereMonth('created_at',date('m'))->get();
+        return view('protection.admin.tasks.completedTasks',compact('tasks'));
     }
     public function showArchive(){
         $tasks = Task::where('fromSection',2)
@@ -621,7 +616,7 @@ class ProtectionController extends Controller
     public function SubmitEngineerReport(Request $request,$id){
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
-        $$toSection = $task->toSection;
+        $toSection = $task->toSection;
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
@@ -730,7 +725,7 @@ class ProtectionController extends Controller
         $tasks_details = TaskDetails::where('task_id',$id)->where('status','completed')->first();
 
         $tasks->update([
-            'report_status'=>1,
+            'report_status'=> 1,
         ]);
         $tasks_details->update([
             'action_take'=>$request->action_take,

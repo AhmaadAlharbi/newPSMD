@@ -305,9 +305,6 @@ public function register(Request $request){
             Notification::route('mail', $engineer_email)
             ->notify(new AddTask($task_id, $request->station_code,$fromSection));
         }
-
-
-            
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
         return back();
 
@@ -336,16 +333,9 @@ public function register(Request $request){
     }
 
     public function showCompletedTasks(){
-        $tasks = Task::where('fromSection',6)
-        ->where('status','completed')
-        ->whereMonth('created_at', date('m'))
-        ->orWhere('toSection',6)
-        ->where('status','completed')
-        ->whereMonth('created_at', date('m'))
-        ->orderBy('id', 'desc')
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('switchgear.admin.tasks.showTasks',compact('tasks'));
+        $tasks = TaskDetails::where('section_id',6)->whereMonth('created_at',date('m'))->get();
+
+        return view('switchgear.admin.tasks.completedTasks',compact('tasks'));
     }
     public function showArchive(){
         $tasks = Task::where('fromSection',6)
