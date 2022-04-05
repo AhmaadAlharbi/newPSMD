@@ -336,11 +336,8 @@ class TransformersController extends Controller
     }
 
     public function userArchive(){
-        $tasks = Task::where('fromSection',5)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('transformers.user.tasks.showTasks',compact('tasks'));
+        $tasks = TaskDetails::where('section_id',5)->get();
+        return view('transformers.users.tasks.completedTasks',compact('tasks'));
     }
    
     public function taskDetails($id){

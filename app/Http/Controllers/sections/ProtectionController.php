@@ -296,11 +296,8 @@ class ProtectionController extends Controller
     }
 
     public function userArchive(){
-        $tasks = Task::where('fromSection',2)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('protection.user.tasks.showTasks',compact('tasks'));
+        $tasks = TaskDetails::where('section_id',2)->get();
+        return view('protection.user.tasks.completedTasks',compact('tasks'));
     }
    
     public function taskDetails($id){

@@ -334,7 +334,6 @@ public function register(Request $request){
 
     public function showCompletedTasks(){
         $tasks = TaskDetails::where('section_id',6)->whereMonth('created_at',date('m'))->get();
-
         return view('switchgear.admin.tasks.completedTasks',compact('tasks'));
     }
     public function showArchive(){
@@ -343,11 +342,8 @@ public function register(Request $request){
     }
 
     public function userArchive(){
-        $tasks = Task::where('fromSection',6)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('switchgear.user.tasks.showTasks',compact('tasks'));
+     $tasks = TaskDetails::where('section_id',6)->get();
+        return view('switchgear.user.tasks.completedTasks',compact('tasks'));
     }
    
     public function taskDetails($id){

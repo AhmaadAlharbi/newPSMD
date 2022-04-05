@@ -83,13 +83,7 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-down text-white"></i>
-                            <span class="text-white tx-16 op-7">
-                                @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','pending')->where('eng_id',Auth::user()->id)->count()/\App\Models\Task::count())*100)}}%
-
-                                @endif
-
-                            </span>
+      
                         </span>
                     </div>
                 </div>
@@ -118,11 +112,7 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-up text-white"></i>
-                            <span class="text-white tx-18 op-7">
-                                @if(\App\Models\Task::count()!==0)
-                                {{round((\App\Models\Task::where('status','completed')->where('fromSection',2)->count()/\App\Models\Task::count())*100)}}%
-                                @endif
-                            </span>
+              
                         </span>
                     </div>
                 </div>
@@ -135,7 +125,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('protection.admin.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('protection.user.archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -143,7 +133,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('fromSection',2)->count()}}
+                                {{\App\Models\TaskDetails::where('section_id','2')->count()}}
                             </h4>
                             <p class="mb-0 tx-12 text-white op-7">
                                 تقرير
