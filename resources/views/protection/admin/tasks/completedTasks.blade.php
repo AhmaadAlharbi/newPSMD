@@ -106,7 +106,7 @@ window.onload = function() {
 
                                     @endif
 
-                                <td>{{$task->task_date}}</td>
+                                <td>{{$task->tasks->task_date}}</td>
                                 @if(isset($task->users->name))
                                 <td>{{$task->users->name}}</td>
                                 @else
