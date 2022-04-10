@@ -36,6 +36,9 @@ Route::post('/dashboard/user/query_section_id=6/edit-report/{id}',[SwitchGearCon
 Route::get('/dashboard/user/query_section_id=6/engineer-tasks/{id}',[SwitchGearController::class,'showEngineerTasks'])->name('switch.showEngineerTasks');
 Route::get('/dashboard/user/query_section_id=6/engineer-tasks-uncompleted/{id}',[SwitchGearController::class,'showEngineerTasksUncompleted'])->name('switch.showEngineerTasksUncompleted');
 Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}',[SwitchGearController::class,'showEngineerTasksCompleted'])->name('switch.showEngineerTasksCompleted');
+//add a new user from dashboard
+Route::post('/dashboard/admin/query_section_id=6/add-new-user',[SwitchGearController::class,'newuser'])->name('switch.admin.newUser');  
+  
 });
 
 // /#########ADMIN ROUTES ##################

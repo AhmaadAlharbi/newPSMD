@@ -49,6 +49,26 @@ public function register(Request $request){
     return redirect(RouteServiceProvider::SwitchGearHomeUser);
 
 }
+
+//sign up a new user from admin dashboard
+public function newuser(Request $request){
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    ]);
+    
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'section_id'=>6,
+        'password' => Hash::make($request->password),
+        'is_admin'=>0,
+    ]);
+    session()->flash('Add', 'تم اضافة الموظف بنجاح');
+    $users = User::all();
+    return view('switchgear.admin.users.usersList',compact('users'));
+}
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',6)
@@ -405,6 +425,7 @@ public function register(Request $request){
     public function update(Request $request , $id){
         $tasks = Task::findOrFail($id);
         $fromSection = $tasks->fromSection;
+        $toSection = $tasks->toSection;
         if($fromSection === 6){
             $toSection = null;
         }

@@ -10,7 +10,13 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        @auth
+        <form method="POST" action="{{route('switch.admin.newUser')}}">
+
+        @endauth
+        @guest
         <form method="POST" action="{{route('switch.register')}}">
+        @endguest    
             @csrf
 
             <!-- Name -->

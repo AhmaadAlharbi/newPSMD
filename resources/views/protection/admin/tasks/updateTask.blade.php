@@ -294,7 +294,7 @@
 
                         <div class="col-lg-3">
                             <label for="shift" class="control-label">shif</label>
-                            <select name="shift" id="shiftSelect" class="form-control " onchange="shiftEngineer()">
+                            <select name="shift" id="shiftSelect" class="form-control " onchange="getEngineersShift()">
                                 <!--placeholder-->
 
                                 <option value="1"> مساءً </option>

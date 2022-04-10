@@ -10,7 +10,13 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        @auth
+        <form method="POST" action="{{route('protection.admin.newUser')}}">
+
+        @endauth
+        @guest
         <form method="POST" action="{{route('protection.register')}}">
+        @endguest    
             @csrf
 
             <!-- Name -->

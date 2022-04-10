@@ -90,7 +90,10 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/print-common-report/{id}/{section_id}',[ProtectionController::class,'viewCommonReport'])->name('protection.viewCommonReport');
     //cancel track task that send to others sections
     Route::get('/dashboard/admin/query_section_id=2/cancel-task-traking/{id}',[ProtectionController::class,'cancelTaskTraking'])->name('protection.cancelTaskTraking');
-    });
+  //add a new user from dashboard
+  Route::post('/dashboard/admin/query_section_id=2/add-new-user',[ProtectionController::class,'newuser'])->name('protection.admin.newUser');  
+  
+  });
     
     Route::get('/dashboard/admin/stations-list',[ProtectionController::class,'showStations'])->name('stationsList')->middleware('auth');
     Route::get('/getUserEmail/{id}',[ProtectionController::class,'getUserEmail']);
@@ -98,4 +101,5 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
   //to register new users to protection
   Route::get('/register/protection',[ProtectionController::class,'registerPage'])->name('protection.registerPage');
   Route::post('/register/protection/signup',[ProtectionController::class,'register'])->name('protection.register');
+
 require __DIR__ . '/auth.php';

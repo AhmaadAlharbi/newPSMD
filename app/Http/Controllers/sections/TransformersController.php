@@ -53,6 +53,25 @@ class TransformersController extends Controller
         return redirect(RouteServiceProvider::TransformersHomeUser);
 
     }
+
+    //sign up a new user from admin dashboard
+    public function newuser(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'section_id'=>5,
+            'password' => Hash::make($request->password),
+            'is_admin'=>0,
+        ]);
+        session()->flash('Add', 'تم اضافة الموظف بنجاح');
+        $users = User::all();
+        return view('transformers.admin.users.usersList',compact('users'));
+    }
     public function index(){
         $tasks = Task::orderBy('id', 'desc')
         ->where('fromSection',5)
