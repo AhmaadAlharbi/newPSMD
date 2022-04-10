@@ -84,7 +84,7 @@ window.onload = function() {
                             <tr>
                                 <td>{{$i}}</td>
                                 <td><a
-                                        href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}">{{$task->tasks->refNum}}</a>
+                                        href="{{route('protection.admin.taskDetails',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
                                 </td>
                                 <td>{{$task->tasks->station->SSNAME}}</td>
 
