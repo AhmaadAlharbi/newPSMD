@@ -393,7 +393,7 @@
 
                             </ins></p>
                         <p class=" bg-white text-secondary font-weight-bold text-center">Nature of fault :
-                            {{$task_detail->problem}}</p>
+                            {{$task_detail->tasks->problem}}</p>
                         @if(is_null($task_detail->action_take))
                         <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
                             {{$task_detail->reasonOfUncompleted}}
