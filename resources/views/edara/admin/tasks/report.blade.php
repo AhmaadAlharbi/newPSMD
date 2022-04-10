@@ -194,7 +194,12 @@ td {
                             </div>
                             <div class="  d-md-none border border-dark print-title  px-3  p-1 mt-4 mb-2  text-dark">
                                 <h2>Action Take</h2>
-                                <h4 class=" ml-4 w-auto h-auto">{{$task_details->action_take}}</h4>
+                                @if(isset($task_details->action_take))
+                                <h4 class=" ml-4 w-auto h-25 ">{{$task_details->action_take}}</h4>
+                                @else
+                                <h4 class=" ml-4 w-auto h-25 ">{{$task_details->reasonOfUncompleted}}</h4>
+                                <h5 class=" ml-4 w-auto h-25 ">{{$task_details->engineer_notes}}</h5>
+                                @endif
                             </div>
 
                             <div class="d-block p-3 mb-2 bg-white text-dark">
