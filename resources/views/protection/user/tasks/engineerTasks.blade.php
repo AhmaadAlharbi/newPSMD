@@ -74,7 +74,7 @@ window.onload = function() {
                                 <th class="border-bottom-0">تاريخ ارسال المهمة</th>
                                 <th class="border-bottom-0">المرفقات </th>
                                 <th class="border-bottom-0">Action Take </th>
-                                <th class="border-bottom-0">تعديل التقرير </th>
+                    
                             </tr>
                         </thead>
                         <tbody>
@@ -87,7 +87,7 @@ window.onload = function() {
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td><a href="">{{$task->refNum}}</a>
+                                <td><a href="{{route('protection.user.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
                                 </td>
                                 <td>{{$task->station->SSNAME}}</td>
                                 @if($task->station->control == 'JAHRA CONTROL CENTER')
@@ -119,28 +119,7 @@ window.onload = function() {
                                 <a href="{{route('protection.user.veiwReport',['id'=>$task->id])}}"
                                     class="btn btn-outline-success">Report</a>
                                 </td>
-                                @switch($task->report_status)
-                                @case(1)
-                                <td> <a href="{{route('protection.requestEditReport',['id'=>$task->id])}}"
-                                        class="btn btn-outline-secondary">طلب تعديل</a>
-                                </td>
-                                @break
-                                @case(2)
-                                <td> <button class="btn btn-secondary " disabled> waiting ...
-                                    </button>
-                                    <span class="d-block text-danger">يرجى انتظار موافقة رئيس القسم</span>
-
-                                </td>
-                                @break
-                                @case(0)
-                                <td> <a href="{{route('protection.editReport',['id'=>$task->id])}}"
-                                        class="btn btn-info"> تعديل</a>
-                                </td>
-                                @break
-                                @default
-                                <td> <a href="{{route('protection.requestEditReport',['id'=>$task->id])}}"
-                                        class="btn btn-danger"> erorr</a>
-                                    @endswitch
+                               
 
                             </tr>
                             @else

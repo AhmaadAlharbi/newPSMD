@@ -322,8 +322,9 @@ class TransformersController extends Controller
 
     }
     public function showEngineersReportRequest(){
-        $tasks = Task::where('report_status',2)
-        ->where('fromSection',5)
+        $tasks = TaskDetails::where('report_status',2)
+        ->where('section_id',5)
+        ->where('status','completed')
         ->get();
         return view('transformers.admin.tasks.engineersReportRequest',compact('tasks'));
     }
@@ -654,11 +655,12 @@ class TransformersController extends Controller
         return view('transformers.user.tasks.engineertasks', compact('tasks'));
     }
     public function showEngineerTasksCompleted($id){
-        $tasks = Task::where('eng_id',$id)
+        $tasks = TaskDetails::where('eng_id',$id)
+        ->where('section_id',5)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        return view('transformers.user.tasks.engineertasks', compact('tasks'));
+        return view('transformers.user.tasks.taskCompleted', compact('tasks'));
     }
     public function engineerReportForm($id){
         $tasks = Task::where('id',$id)->first();
@@ -750,8 +752,10 @@ class TransformersController extends Controller
 
     }
     public function requestEditReport($id){
-        $task = Task::where('id',$id)
+        $task = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id',5)
+        ->where('eng_id',Auth::user()->id)
         ->first();
         $task->update([
             'report_status'=>2,
@@ -759,8 +763,9 @@ class TransformersController extends Controller
         return back();
     }
     public function allowEngineersReportRequest($id){
-        $task = Task::where('id',$id)
+        $task = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id',5)
         ->first();
         $task->update([
             'report_status'=>0,

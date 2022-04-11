@@ -331,8 +331,9 @@ public function newuser(Request $request){
     }
 
     public function showEngineersReportRequest(){
-        $tasks = Task::where('report_status',2)
-        ->where('fromSection',6)
+        $tasks = TaskDetails::where('report_status',2)
+        ->where('section_id',6)
+        ->where('status','completed')
         ->get();
         return view('switchgear.admin.tasks.engineersReportRequest',compact('tasks'));
     }
@@ -569,6 +570,7 @@ public function newuser(Request $request){
     public function showEngineerTasksCompleted($id){
         $tasks = TaskDetails::where('eng_id',$id)
         ->where('section_id',6)
+        ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
         return view('switchgear.user.tasks.taskCompleted', compact('tasks'));
@@ -684,8 +686,10 @@ public function newuser(Request $request){
     }
 
     public function requestEditReport($id){
-        $task = Task::where('id',$id)
+     $task = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id',6)
+        ->where('eng_id',Auth::user()->id)
         ->first();
         $task->update([
             'report_status'=>2,
@@ -693,8 +697,9 @@ public function newuser(Request $request){
         return back();
     }
     public function allowEngineersReportRequest($id){
-        $task = Task::where('id',$id)
+        $task = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id',6)
         ->first();
         $task->update([
             'report_status'=>0,

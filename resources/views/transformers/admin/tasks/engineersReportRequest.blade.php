@@ -86,28 +86,28 @@ window.onload = function() {
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td><a href="">{{$task->refNum}}</a>
+                                <td><a href="">{{$task->tasks->refNum}}</a>
                                 </td>
-                                <td>{{$task->station->SSNAME}}</td>
-                                @if($task->station->control == 'JAHRA CONTROL CENTER')
-                                <td class="table-warning">{{$task->station->control}}
+                                <td>{{$task->tasks->station->SSNAME}}</td>
+                                @if($task->tasks->station->control == 'JAHRA CONTROL CENTER')
+                                <td class="table-warning">{{$task->tasks->station->control}}
                                 </td>
-                                @elseif($task->station->control == 'JABRIYA CONTROL CENTER')
-                                <td class="table-info">{{$task->station->control}}
+                                @elseif($task->tasks->station->control == 'JABRIYA CONTROL CENTER')
+                                <td class="table-info">{{$task->tasks->station->control}}
                                 </td>
-                                @elseif($task->station->control == 'TOWN CONTROL CENTER')
-                                <td class="table-danger">{{$task->station->control}}
+                                @elseif($task->tasks->station->control == 'TOWN CONTROL CENTER')
+                                <td class="table-danger">{{$task->tasks->station->control}}
                                 </td>
-                                @elseif($task->station->control == 'SHUAIBA CONTROL CENTER')
-                                <td class="table-success">{{$task->station->control}}
+                                @elseif($task->tasks->station->control == 'SHUAIBA CONTROL CENTER')
+                                <td class="table-success">{{$task->tasks->station->control}}
                                 </td>
                                 @else
-                                <td class="table-light">{{$task->station->control}}</td>
+                                <td class="table-light">{{$task->tasks->station->control}}</td>
                                 @endif
-                                <td>{{$task->users->name}}</td>
-                                <td>{{$task->task_date}}</td>
+                                <td>{{$task->tasks->users->name}}</td>
+                                <td>{{$task->tasks->task_date}}</td>
 
-                                <td> <a href="{{route('Transformers.allowEngineersReportRequest',['id'=>$task->id])}}"
+                                <td> <a href="{{route('Transformers.allowEngineersReportRequest',['id'=>$task->task_id])}}"
                                         class="btn btn-success "> موافقة على التعديل
                                     </a>
 

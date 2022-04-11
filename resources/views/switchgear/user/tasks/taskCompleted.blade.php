@@ -76,6 +76,8 @@ window.onload = function() {
                                 <th class="border-bottom-0">تاريخ ارسال المهمة</th>
                                 <th class="border-bottom-0">المرفقات </th>
                                 <th class="border-bottom-0">Action Take </th>
+                                <th class="border-bottom-0">تعديل</th>
+
 
                             </tr>
                         </thead>
@@ -89,7 +91,9 @@ window.onload = function() {
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td><a href="">{{$task->tasks->refNum}}</a>
+                                <td>
+                                   <a href="{{route('switch.user.veiwReport',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
+
                                 </td>
                                 <td>{{$task->tasks->station->SSNAME}}</td>
                                 @if($task->tasks->station->control == 'JAHRA CONTROL CENTER')
@@ -111,16 +115,38 @@ window.onload = function() {
                                 <td><a href="{{route('switch.user.taskDetails',['id'=>$task->tasks->id])}}"
                                         class=" btn btn-info">Details</a></td>
                                 <td>
-                                    @if($task->tasks->status == 'pending')
+                                    @if($task->status == 'pending')
                                     <a href="{{route('switch.engineerReportForm',['id'=>$task->tasks->id])}}"
                                         class="btn btn-danger">Action
                                         Take</a>
                                 </td>
                                 @endif
-                                @if($task->tasks->status == 'completed')
-                                <a href="{{route('switch.user.veiwReport',['id'=>$task->tasks->id])}}"
+                                @if($task->status == 'completed')
+                                <a href="{{route('switch.user.veiwReport',['id'=>$task->task_id])}}"
                                     class="btn btn-success">Report</a>
                                 </td>
+                                @switch($task->report_status)
+                                @case(1)
+                                <td> <a href="{{route('switch.requestEditReport',['id'=>$task->task_id])}}"
+                                        class="btn btn-outline-secondary">طلب تعديل</a>
+                                </td>
+                                @break
+                                @case(2)
+                                <td> <button class="btn btn-secondary " disabled> waiting ...
+                                    </button>
+                                    <span class="d-block text-danger">يرجى انتظار موافقة رئيس القسم</span>
+
+                                </td>
+                                @break
+                                @case(0)
+                                <td> <a href="{{route('switch.editReport',['id'=>$task->task_id])}}"
+                                        class="btn btn-info"> تعديل</a>
+                                </td>
+                                @break
+                                @default
+                                <td> <a href="{{route('switch.requestEditReport',['id'=>$task->id])}}"
+                                        class="btn btn-danger"> erorr</a>
+                                    @endswitch
                                 @endif
                             </tr>
                             @endforeach

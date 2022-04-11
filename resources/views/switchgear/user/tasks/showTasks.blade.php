@@ -145,9 +145,7 @@ window.onload = function() {
                                             @else
 
                                             <a class="dropdown-item"
-                                                href="{{route('protection.updateTask',['id'=>$task->id])}}">
-                                                تعديل
-                                            </a>
+                                            href="{{route('protection.editReport',['id'=>$task->id])}}">                                          تعديل
 
                                             @endif
                                             <a class="dropdown-item" href="#" data-invoice_id="{{ $task->id }}"

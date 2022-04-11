@@ -279,8 +279,9 @@ class ProtectionController extends Controller
     }
 
     public function showEngineersReportRequest(){
-        $tasks = Task::where('report_status',2)
-        ->where('fromSection',2)
+        $tasks = TaskDetails::where('report_status',2)
+        ->where('section_id',2)
+        ->where('status','completed')
         ->get();
         return view('protection.admin.tasks.engineersReportRequest',compact('tasks'));
     }
@@ -316,7 +317,7 @@ class ProtectionController extends Controller
 
     public function userArchive(){
         $tasks = TaskDetails::where('section_id',2)->get();
-        return view('protection.user.tasks.completedTasks',compact('tasks'));
+        return view('protection.user.tasks.archive',compact('tasks'));
     }
    
     public function taskDetails($id){
@@ -575,7 +576,6 @@ class ProtectionController extends Controller
         $tasks = Task::where('eng_id',$id)
             ->orderBy('id', 'desc')
             ->get();
-  
         return view('protection.user.tasks.engineerTasks', compact('tasks'));
     }
     public function showEngineerTasksUncompleted($id){
@@ -588,11 +588,9 @@ class ProtectionController extends Controller
     public function showEngineerTasksCompleted($id){
         $tasks = TaskDetails::where('eng_id',$id)
         ->where('section_id',2)
+        ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
-        // $tasks_details = TaskDetails::where('eng_id',$id)
-        // ->where('status','completed')
-        // ->get();
         return view('protection.user.tasks.taskCompleted', compact('tasks'));
     }
     public function usertaskDetails($id){
@@ -705,18 +703,22 @@ class ProtectionController extends Controller
     }
 
     public function requestEditReport($id){
-        $task = Task::where('id',$id)
+        $task = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id',2)
+        ->where('eng_id',Auth::user()->id)
         ->first();
         $task->update([
             'report_status'=>2,
         ]);
         return back();
+        
     }
 
     public function allowEngineersReportRequest($id){
-        $task = Task::where('id',$id)
+         $task = TaskDetails::where('task_id',$id)
         ->where('status','completed')
+        ->where('section_id',2)
         ->first();
         $task->update([
             'report_status'=>0,

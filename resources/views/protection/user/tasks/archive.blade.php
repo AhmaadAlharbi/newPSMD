@@ -101,7 +101,7 @@ window.onload = function() {
                                 <td class="table-success">{{$task->tasks->station->control}}
                                 </td>
                                 @else
-                                <td class="table-light">{{$task->ttasks->station->control}}
+                                <td class="table-light">{{$task->tasks->station->control}}
 
                                     @endif
 
