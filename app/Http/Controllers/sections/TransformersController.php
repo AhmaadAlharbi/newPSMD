@@ -708,7 +708,8 @@ class TransformersController extends Controller
           
         }
         session()->flash('Add', 'تم اضافة التقرير بنجاح');
-        return back();
+        return redirect()->route('transformers.user.homepage');
+
     }
 
     public function engineerReportUnCompleted(Request $request,$id){

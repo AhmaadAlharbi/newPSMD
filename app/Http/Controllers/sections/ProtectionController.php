@@ -658,8 +658,10 @@ class ProtectionController extends Controller
             }
           
         }
+      
         session()->flash('Add', 'تم اضافة التقرير بنجاح');
-        return back();
+        return redirect()->route('protection.user.homepage');
+        // return view('protection.user.dashboard',compact('tasks','task_details','date','monthName'));
         
     }
 

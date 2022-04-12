@@ -10,7 +10,7 @@ use App\Http\Controllers\sections\SwitchGearController;
 // })->middleware(['auth','is_switch'])->name('dashboard.user.switch');
 
 Route::middleware(['auth','is_switch'])->group(function(){
-Route::get('/dashboard/user/query_section_id=6',[SwitchGearController::class,'userIndex']);
+Route::get('/dashboard/user/query_section_id=6',[SwitchGearController::class,'userIndex'])->name('switch.user.homepage');
 //engineer report form
 Route::get('/dashboard/user/query_section_id=6/Engineer-report-form/{id}',[SwitchGearController::class,
 'engineerReportForm'])->name('switch.engineerReportForm');
