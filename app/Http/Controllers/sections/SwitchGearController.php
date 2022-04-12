@@ -416,10 +416,11 @@ public function newuser(Request $request){
             $section = null;           
         }
         $stations = Station::all();
-        $sections = Section::all();
+        $sections = Section::where('id','!=',6)->get();
+
         $task_attachments = TaskAttachment::where('id_task',$id)->get();
        
-        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments','stations','section'));
+        return view('switchgear.admin.tasks.updateTask',compact('tasks','stations','task_attachments','stations','sections'));
     }
 
 //post
@@ -427,6 +428,8 @@ public function newuser(Request $request){
         $tasks = Task::findOrFail($id);
         $fromSection = $tasks->fromSection;
         $toSection = $tasks->toSection;
+        $sections = Section::all();
+
         if($fromSection === 6){
             $toSection = null;
         }

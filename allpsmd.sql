@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 24, 2022 at 01:05 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Host: localhost
+-- Generation Time: Apr 12, 2022 at 02:23 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `allpsmd`
+-- Database: `allPSMD`
 --
 
 -- --------------------------------------------------------
@@ -71,7 +71,8 @@ INSERT INTO `engineers` (`id`, `user_id`, `section_id`, `area`, `shift`, `create
 (11, 22, 6, '2', 1, '2022-02-28 05:06:12', '2022-02-28 05:06:12'),
 (12, 22, 6, '2', 1, '2022-02-28 05:06:12', '2022-02-28 05:06:12'),
 (13, 31, 2, '1', 0, '2022-03-02 06:42:53', '2022-03-02 06:42:53'),
-(14, 34, 6, '1', 0, '2022-03-02 10:13:41', '2022-03-02 10:13:41');
+(14, 34, 6, '1', 0, '2022-03-02 10:13:41', '2022-03-02 10:13:41'),
+(15, 36, 2, '1', 0, '2022-04-10 10:07:11', '2022-04-10 10:07:11');
 
 -- --------------------------------------------------------
 
@@ -977,7 +978,26 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `refNum`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
-(123, '22-03/1', 2, 6, 121, 'Auto reclosure', NULL, NULL, NULL, '2022-03-24', NULL, 16, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-03-24 08:01:20', '2022-03-24 08:14:02');
+(136, '22-03/1', 2, 2, 409, 'Auto reclosure', NULL, NULL, NULL, '2022-03-28', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 03:24:35', '2022-03-28 03:40:37'),
+(137, '22-03/137', 1, 2, 1, NULL, NULL, NULL, NULL, '2022-03-28', NULL, 19, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 03:43:04', '2022-03-28 07:38:59'),
+(138, '22-03/138', 2, 2, 684, 'Auto reclosure', NULL, NULL, NULL, '2022-03-28', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 04:53:44', '2022-03-29 05:09:57'),
+(139, '22-03/139', NULL, 6, 84, 'Auto reclosure', NULL, NULL, NULL, '2022-03-28', NULL, 16, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-03-28 05:36:45', '2022-03-29 03:08:56'),
+(141, '22-03/140', 2, NULL, 150, 'Auto reclosure', NULL, NULL, NULL, '2022-03-28', NULL, 19, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 07:43:03', '2022-03-28 07:57:49'),
+(142, '22-03/142', 1, 2, 84, NULL, NULL, NULL, NULL, '2022-03-28', NULL, 19, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 10:43:52', '2022-03-28 11:12:29'),
+(143, '22-03/143', NULL, 2, 82, 'Auto reclosure', NULL, NULL, NULL, '2022-03-28', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 11:39:28', '2022-03-29 03:20:25'),
+(144, '22-04/144', 5, NULL, 7, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-04', NULL, 4, NULL, NULL, 'completed', '0', NULL, 'admin TR', '2022-04-03 05:01:08', '2022-04-11 18:43:59'),
+(145, '22-04/145', NULL, 5, 1, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-04', NULL, 5, NULL, NULL, 'pending', '0', NULL, 'admin TR', '2022-04-04 14:48:59', '2022-04-04 15:27:19'),
+(146, '22-04/146', 2, NULL, 23, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-04', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-04-04 15:30:11', '2022-04-04 15:30:59'),
+(147, '22-04/147', 2, NULL, 1, 'Auto reclosure', '400KV', '11/11/2011', 'Maintenance', '2022-04-10', 'wad', 36, 'dddd', NULL, 'completed', '0', NULL, 'admin protection', '2022-04-10 10:07:48', '2022-04-10 10:10:16'),
+(149, '22-04/148', 2, NULL, 84, 'Auto reclosure', '400KV', NULL, 'Troubleshooting', '2022-04-10', 'da', 36, 'awddwad', NULL, 'completed', '0', NULL, 'admin protection', '2022-04-10 10:14:13', '2022-04-10 10:16:12'),
+(150, '22-04/150', NULL, 6, 240, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-10', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-10 10:17:52', '2022-04-10 10:44:46'),
+(151, '22-04/151', 2, NULL, 3, 'Auto reclosure', NULL, NULL, NULL, '2022-04-10', NULL, 36, NULL, NULL, 'completed', '2', NULL, 'admin protection', '2022-04-10 10:46:29', '2022-04-10 19:18:24'),
+(152, '22-04/152', 1, 6, 1, NULL, NULL, NULL, NULL, '2022-04-11', NULL, 16, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-04-11 19:42:41', '2022-04-11 19:43:35'),
+(153, '22-04/153', 1, 2, 592, NULL, NULL, NULL, NULL, '2022-04-11', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin edara', '2022-04-11 19:44:14', '2022-04-11 19:44:14'),
+(154, '22-04/154', 5, 2, 84, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin switch', '2022-04-11 19:44:47', '2022-04-11 19:49:37'),
+(155, '22-04/155', 2, NULL, 8, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-04-11 19:50:18', '2022-04-11 19:53:10'),
+(156, '22-04/156', 2, 6, 1, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, 16, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-04-11 19:53:46', '2022-04-11 19:57:41'),
+(157, '22-04/157', 2, NULL, 685, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-11', NULL, 18, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-11 19:58:08', '2022-04-11 19:58:08');
 
 -- --------------------------------------------------------
 
@@ -994,6 +1014,14 @@ CREATE TABLE `task_attachments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `task_attachments`
+--
+
+INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_task`, `created_at`, `updated_at`) VALUES
+(25, 'civil-pdf-compressed.pdf', NULL, 'admin protection', 149, '2022-04-10 10:14:13', '2022-04-10 10:14:13'),
+(26, 'favicon-32x32.png', NULL, 'ahmad', 149, '2022-04-10 10:16:12', '2022-04-10 10:16:12');
 
 -- --------------------------------------------------------
 
@@ -1023,10 +1051,91 @@ CREATE TABLE `task_details` (
 --
 
 INSERT INTO `task_details` (`id`, `task_id`, `report_date`, `reasonOfUncompleted`, `eng_id`, `fromSection`, `toSection`, `section_id`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(244, 123, '2022-03-24', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-24 08:01:20', '2022-03-24 08:01:20'),
-(245, 123, '2022-03-24', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-24 08:01:29', '2022-03-24 08:01:29'),
-(246, 123, '2022-03-24', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-24 08:02:18', '2022-03-24 08:02:18'),
-(247, 123, '2022-03-24', NULL, 16, 2, 6, 6, NULL, 'done by switchgear', 'completed', '0', '2022-03-24 08:14:02', '2022-03-24 08:14:02');
+(314, 136, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 03:24:35', '2022-03-28 03:24:35'),
+(315, 136, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:24:51', '2022-03-28 03:24:51'),
+(316, 136, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:25:38', '2022-03-28 03:25:38'),
+(317, 136, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'done by Switchgear', 'completed', '0', '2022-03-28 03:30:10', '2022-03-28 03:30:10'),
+(318, 136, '2022-03-28', NULL, NULL, 2, 2, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:39:04', '2022-03-28 03:39:04'),
+(319, 136, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:39:21', '2022-03-28 03:39:21'),
+(320, 136, '2022-03-28', NULL, 18, 2, 2, 2, NULL, 'done protection', 'completed', '1', '2022-03-28 03:40:37', '2022-03-28 03:40:37'),
+(321, 137, '2022-03-28', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 03:43:04', '2022-03-28 03:43:04'),
+(322, 137, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:43:40', '2022-03-28 03:43:40'),
+(323, 138, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 04:53:44', '2022-03-28 04:53:44'),
+(324, 138, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 05:15:00', '2022-03-28 05:15:00'),
+(325, 139, '2022-03-28', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 05:36:45', '2022-03-28 05:36:45'),
+(326, 138, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:28:57', '2022-03-28 07:28:57'),
+(327, 138, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'switch =)))', 'completed', '0', '2022-03-28 07:31:13', '2022-03-28 07:31:13'),
+(328, 138, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:35:45', '2022-03-28 07:35:45'),
+(329, 137, '2022-03-28', NULL, 19, 1, 2, 2, NULL, 'done', 'completed', '1', '2022-03-28 07:38:59', '2022-03-28 07:38:59'),
+(330, 141, '2022-03-28', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 07:43:03', '2022-03-28 07:43:03'),
+(331, 141, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:43:20', '2022-03-28 07:43:20'),
+(332, 141, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:44:05', '2022-03-28 07:44:05'),
+(333, 141, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'done by switch gear for FRDS', 'completed', '0', '2022-03-28 07:45:16', '2022-03-28 07:45:16'),
+(334, 141, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:56:43', '2022-03-28 07:56:43'),
+(335, 141, '2022-03-28', NULL, 19, 2, NULL, 2, NULL, 'done by protection for FRDS', 'completed', '1', '2022-03-28 07:57:49', '2022-03-28 07:57:49'),
+(336, 142, '2022-03-28', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 10:43:52', '2022-03-28 10:43:52'),
+(337, 142, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:11:41', '2022-03-28 11:11:41'),
+(338, 142, '2022-03-28', NULL, 19, 1, 2, 2, NULL, 'done', 'completed', '1', '2022-03-28 11:12:29', '2022-03-28 11:12:29'),
+(339, 139, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:15:59', '2022-03-28 11:15:59'),
+(340, 139, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:17:35', '2022-03-28 11:17:35'),
+(341, 139, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'switch', 'completed', '0', '2022-03-28 11:18:32', '2022-03-28 11:18:32'),
+(342, 143, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 11:39:28', '2022-03-28 11:39:28'),
+(343, 143, '2022-03-28', NULL, NULL, 6, 2, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:41:17', '2022-03-28 11:41:17'),
+(344, 143, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:41:40', '2022-03-28 11:41:40'),
+(345, 143, '2022-03-28', NULL, 18, 6, 2, 2, NULL, 'done protection', 'completed', '1', '2022-03-28 11:42:20', '2022-03-28 11:42:20'),
+(346, 138, '2022-03-29', 'قطع غيار غير متوفرة', 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-29 05:08:02', '2022-03-29 05:08:02'),
+(347, 138, '2022-03-29', 'مسؤولية جهة آخرى', 18, 2, NULL, 2, 'ok', NULL, 'completed', '0', '2022-03-29 05:09:57', '2022-03-29 05:09:57'),
+(348, 144, '2022-04-03', NULL, 4, 5, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-03 05:01:08', '2022-04-03 05:01:08'),
+(349, 144, '2022-04-03', NULL, NULL, 5, 6, NULL, NULL, NULL, 'change', '0', '2022-04-03 05:01:23', '2022-04-03 05:01:23'),
+(350, 144, '2022-04-03', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 05:02:36', '2022-04-03 05:02:36'),
+(351, 144, '2022-04-03', NULL, 16, 5, 6, 6, NULL, 'switchgear is done and now it up to you transformers', 'completed', '2', '2022-04-03 05:03:56', '2022-04-11 18:39:05'),
+(352, 144, '2022-04-03', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 06:59:37', '2022-04-03 06:59:37'),
+(353, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:42:32', '2022-04-04 14:42:32'),
+(354, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:43:20', '2022-04-04 14:43:20'),
+(355, 145, '2022-04-04', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-04 14:48:59', '2022-04-04 14:48:59'),
+(356, 145, '2022-04-04', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:49:09', '2022-04-04 14:49:09'),
+(357, 145, '2022-04-04', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:49:57', '2022-04-04 14:49:57'),
+(358, 145, '2022-04-04', NULL, 16, 2, 6, 6, NULL, 'done', 'completed', '0', '2022-04-04 14:50:24', '2022-04-11 18:38:42'),
+(359, 145, '2022-04-04', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:51:29', '2022-04-04 14:51:29'),
+(360, 145, '2022-04-04', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:54:41', '2022-04-04 14:54:41'),
+(361, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:56:13', '2022-04-04 14:56:13'),
+(362, 145, '2022-04-04', NULL, NULL, 2, 5, NULL, NULL, NULL, 'change', '0', '2022-04-04 15:09:48', '2022-04-04 15:09:48'),
+(363, 145, '2022-04-04', NULL, 5, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 15:16:21', '2022-04-04 15:16:21'),
+(364, 146, '2022-04-04', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-04 15:30:11', '2022-04-04 15:30:11'),
+(365, 146, '2022-04-04', NULL, 18, 2, NULL, 2, NULL, 'dq', 'completed', '1', '2022-04-04 15:30:59', '2022-04-04 15:30:59'),
+(366, 147, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:07:48', '2022-04-10 10:07:48'),
+(367, 147, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, 'done by ahmad', 'completed', '1', '2022-04-10 10:10:16', '2022-04-10 10:10:16'),
+(369, 149, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:14:13', '2022-04-10 10:14:13'),
+(370, 149, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, 'done and add image', 'completed', '1', '2022-04-10 10:16:12', '2022-04-10 10:16:12'),
+(371, 150, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:17:52', '2022-04-10 10:17:52'),
+(373, 150, '2022-04-10', 'مسؤولية جهة آخرى', 36, 2, NULL, 2, 'switchgear', NULL, 'completed', '1', '2022-04-10 10:28:05', '2022-04-10 10:28:05'),
+(374, 150, '2022-04-10', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:43:45', '2022-04-10 10:43:45'),
+(375, 151, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:46:29', '2022-04-10 10:46:29'),
+(376, 151, '2022-04-10', 'بإنتظار إصلاحات', 36, 2, NULL, 2, NULL, NULL, 'pending', '0', '2022-04-10 10:46:59', '2022-04-10 10:46:59'),
+(377, 151, '2022-04-10', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:47:30', '2022-04-10 10:47:30'),
+(378, 151, '2022-04-10', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:51:54', '2022-04-10 10:51:54'),
+(379, 151, '2022-04-10', NULL, 16, 2, 6, 6, NULL, 'done and now to protection', 'completed', '0', '2022-04-10 10:56:10', '2022-04-11 18:38:45'),
+(380, 151, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 11:00:15', '2022-04-10 11:00:15'),
+(381, 151, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, 'done', 'completed', '0', '2022-04-10 11:00:41', '2022-04-11 18:31:00'),
+(382, 144, '2022-04-11', NULL, 4, 5, NULL, 5, NULL, 'done', 'completed', '0', '2022-04-11 18:43:59', '2022-04-11 18:48:23'),
+(383, 152, '2022-04-11', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:42:41', '2022-04-11 19:42:41'),
+(384, 152, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:43:02', '2022-04-11 19:43:02'),
+(385, 152, '2022-04-11', NULL, 16, 1, 6, 6, NULL, 'done', 'completed', '1', '2022-04-11 19:43:35', '2022-04-11 19:43:35'),
+(386, 153, '2022-04-11', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:44:14', '2022-04-11 19:44:14'),
+(387, 154, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:44:47', '2022-04-11 19:44:47'),
+(388, 154, '2022-04-11', NULL, NULL, 6, 2, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:49:37', '2022-04-11 19:49:37'),
+(389, 155, '2022-04-11', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:50:18', '2022-04-11 19:50:18'),
+(390, 155, '2022-04-11', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:50:30', '2022-04-11 19:50:30'),
+(391, 155, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:51:08', '2022-04-11 19:51:08'),
+(392, 155, '2022-04-11', NULL, 16, 2, 6, 6, NULL, 'done and convert it to protection section', 'completed', '1', '2022-04-11 19:51:38', '2022-04-11 19:51:38'),
+(393, 155, '2022-04-11', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:52:43', '2022-04-11 19:52:43'),
+(394, 155, '2022-04-11', NULL, 18, 2, NULL, 2, NULL, 'it has done', 'completed', '1', '2022-04-11 19:53:10', '2022-04-11 19:53:10'),
+(395, 156, '2022-04-11', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:53:46', '2022-04-11 19:53:46'),
+(396, 156, '2022-04-11', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:54:03', '2022-04-11 19:54:03'),
+(397, 156, '2022-04-11', NULL, 13, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:54:31', '2022-04-11 19:54:31'),
+(398, 156, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:57:18', '2022-04-11 19:57:18'),
+(399, 156, '2022-04-11', NULL, 16, 2, 6, 6, NULL, 'done', 'completed', '1', '2022-04-11 19:57:41', '2022-04-11 19:57:41'),
+(400, 157, '2022-04-11', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:58:08', '2022-04-11 19:58:08');
 
 -- --------------------------------------------------------
 
@@ -1078,6 +1187,19 @@ CREATE TABLE `tr_tasks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tr_tasks`
+--
+
+INSERT INTO `tr_tasks` (`id`, `task_id`, `work_type`, `work_type_description`, `department`, `area`, `created_at`, `updated_at`) VALUES
+(63, 144, NULL, 'Change MCB', '1', '2', '2022-04-03 05:01:08', '2022-04-03 05:01:08'),
+(64, 144, NULL, NULL, '1', '1', '2022-04-03 05:01:23', '2022-04-03 05:01:23'),
+(65, 144, NULL, NULL, '1', '2', '2022-04-03 06:59:37', '2022-04-03 06:59:37'),
+(66, 144, NULL, NULL, '1', '2', '2022-04-04 14:42:32', '2022-04-04 14:42:32'),
+(67, 144, NULL, NULL, '1', '2', '2022-04-04 14:43:20', '2022-04-04 14:43:20'),
+(68, 144, NULL, NULL, '1', '2', '2022-04-04 14:56:13', '2022-04-04 14:56:13'),
+(69, 145, NULL, NULL, '1', '1', '2022-04-04 15:16:21', '2022-04-04 15:16:21');
+
 -- --------------------------------------------------------
 
 --
@@ -1106,7 +1228,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `
 (1, 'admin protection', 'admin@protection.com', NULL, 2, '$2y$10$clYMjvrE4JUsogR0f.omd.L8IIuJFPmFATkcFcFk/Hg0bMpnwB6ou', 1, NULL, NULL, '2022-02-07 16:00:35', '2022-02-07 16:00:35'),
 (2, 'engineer protection', 'engineer@protection.com', NULL, 2, '$2y$10$clYMjvrE4JUsogR0f.omd.L8IIuJFPmFATkcFcFk/Hg0bMpnwB6ou', 0, NULL, NULL, '2022-02-07 16:00:35', '2022-02-07 16:00:35'),
 (3, 'admin TR', 'admin@transformers.com', NULL, 5, '$2y$10$SE4HI3bOG1z7jF/OrAqJDOgF6YR0d0xhYOXfRC.OkTtNkiHUsja5u', 1, NULL, NULL, '2022-02-08 06:24:46', '2022-02-08 06:24:46'),
-(4, 'admin 1 Mech', 'lostq8@hotmail.com', NULL, 5, '$2y$10$SE4HI3bOG1z7jF/OrAqJDOgF6YR0d0xhYOXfRC.OkTtNkiHUsja5u', 1, NULL, NULL, '2022-02-08 06:24:46', '2022-02-08 06:24:46'),
+(4, 'admin 1 Mech', 'admin1@mech.com', NULL, 5, '$2y$10$SE4HI3bOG1z7jF/OrAqJDOgF6YR0d0xhYOXfRC.OkTtNkiHUsja5u', 1, NULL, NULL, '2022-02-08 06:24:46', '2022-02-08 06:24:46'),
 (5, 'admin 2 Mech', 'admin2@Mech.com', NULL, 5, '$2y$10$SE4HI3bOG1z7jF/OrAqJDOgF6YR0d0xhYOXfRC.OkTtNkiHUsja5u', 1, NULL, NULL, '2022-02-08 06:24:46', '2022-02-08 06:24:46'),
 (6, 'admin 3 Mech', 'admin3@Mech.com', NULL, 5, '$2y$10$SE4HI3bOG1z7jF/OrAqJDOgF6YR0d0xhYOXfRC.OkTtNkiHUsja5u', 1, NULL, NULL, '2022-02-08 06:24:46', '2022-02-08 06:24:46'),
 (7, 'admin 4 Mech', 'admin4@Mech.com', NULL, 5, '$2y$10$SE4HI3bOG1z7jF/OrAqJDOgF6YR0d0xhYOXfRC.OkTtNkiHUsja5u', 1, NULL, NULL, '2022-02-08 06:24:46', '2022-02-08 06:24:46'),
@@ -1128,7 +1250,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `
 (31, 'ddddddd', 'ddvvv2dmdm@kdd.com', NULL, 2, '$2y$10$wKxPN5PHF7hmk21cICUugOekM71znuOUl2cusshkTfuSMwCalKZcS', 0, NULL, NULL, '2022-03-02 06:40:41', '2022-03-02 06:40:41'),
 (33, 'Waleed', 'w@s.com', NULL, 5, '$2y$10$QHFFNyJLl/gX.hx/.eITTudUDEUoZr7CB.kypEcjRwywF07n8FV06', 0, NULL, NULL, '2022-03-02 07:00:56', '2022-03-02 07:00:56'),
 (34, 'swwwww', 'ddddmmdmdmdm@jdjdj.com', NULL, 6, '$2y$10$MIj7/rUgbNU48fQLyCwm/uQ287HT4NSyo133YTrZcpQ/6q.46YtWa', 0, NULL, NULL, '2022-03-02 10:12:21', '2022-03-02 10:12:21'),
-(35, 'admin edara', 'admin@edara.com', NULL, 1, '$2y$10$clYMjvrE4JUsogR0f.omd.L8IIuJFPmFATkcFcFk/Hg0bMpnwB6ou', 1, NULL, NULL, '2022-02-07 16:00:35', '2022-02-07 16:00:35');
+(35, 'admin edara', 'admin@edara.com', NULL, 1, '$2y$10$clYMjvrE4JUsogR0f.omd.L8IIuJFPmFATkcFcFk/Hg0bMpnwB6ou', 1, NULL, NULL, '2022-02-07 16:00:35', '2022-02-07 16:00:35'),
+(36, 'ahmad', 'lostq8@hotmail.com', NULL, 2, '$2y$10$0vJErXZIu9UVoMPBHd69tOucs7BrNvIsciQCfiB8OULZsSJfjkiFS', 0, NULL, NULL, '2022-04-10 10:06:32', '2022-04-10 10:06:32'),
+(41, 'yousef', 'yousef@yousef.com', NULL, 2, '$2y$10$iLhd8swc6EjwsDN58Y8ID.EbF0IV1shl7EWK7S1ZaObB1aV2O7.uu', 0, NULL, NULL, '2022-04-10 17:32:26', '2022-04-10 17:32:26'),
+(42, 'yousef1', 'yousef1@yousef.com', NULL, 2, '$2y$10$q9aXehArJpWTSKqRwSvps.IgS7PDthB1ddtCJi2Kp6m8r8Yinq9.u', 0, NULL, NULL, '2022-04-10 17:32:50', '2022-04-10 17:32:50'),
+(43, 'yousef2', 'yousef2@yousef.com', NULL, 2, '$2y$10$VXIUKkgfXFuBAJmFzYqtNuOFuPuzMzcxBsMiP3dUbmCxfmkWUhI06', 0, NULL, NULL, '2022-04-10 17:33:49', '2022-04-10 17:33:49'),
+(44, 'new user for switch', 'newswitch@switch.com', NULL, 6, '$2y$10$c0P.ciaag5u/Ws/Ef2Nkuu5aBHpK5Ez3SEG5uyzIV.Ux2KFMmIkH.', 0, NULL, NULL, '2022-04-10 17:41:28', '2022-04-10 17:41:28');
 
 --
 -- Indexes for dumped tables
@@ -1259,7 +1386,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `engineers`
 --
 ALTER TABLE `engineers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1301,19 +1428,19 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=401;
 
 --
 -- AUTO_INCREMENT for table `tr`
@@ -1325,13 +1452,13 @@ ALTER TABLE `tr`
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Constraints for dumped tables
