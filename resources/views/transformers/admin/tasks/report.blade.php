@@ -188,7 +188,7 @@ td {
                                 <h2>Nature of Fault</h2>
 
 
-                                <h4 class="  ml-4 ">{{$task_details->tasks->problem}}</h4>
+                                <h4 class="  ml-4 ">{{$task_details->problem}}</h4>
                             </div>
 
                             <div

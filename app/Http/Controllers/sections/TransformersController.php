@@ -678,6 +678,8 @@ class TransformersController extends Controller
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
+        $main_alarm = $task->main_alarm;
+        $problem = $task->problem;
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
@@ -686,6 +688,8 @@ class TransformersController extends Controller
             'fromSection'=>$fromSection,
             'toSection'=>$toSection,
             'section_id'=> 5,
+            'main_alarm'=>$main_alarm,
+            'problem'=>$problem,
             'action_take' => $request->action_take,
             'status'=>'completed',
             'report_status'=>1,

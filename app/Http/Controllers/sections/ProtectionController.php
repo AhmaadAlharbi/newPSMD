@@ -628,7 +628,10 @@ class ProtectionController extends Controller
         $task= Task::findOrFail($id);
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
+        $main_alarm = $task->main_alarm;
+        $problem = $task->problem;
         $eng_id = Auth::user()->id;
+      
         TaskDetails::create([
             'task_id' => $id,
             'report_date' => Carbon::now(),
@@ -636,6 +639,8 @@ class ProtectionController extends Controller
             'fromSection'=>$fromSection,
             'toSection'=>$toSection,
             'section_id'=> 2,
+            'main_alarm'=>$main_alarm,
+            'problem'=>$problem,
             'action_take' => $request->action_take,
             'report_status'=>1,
             'status'=>'completed',
