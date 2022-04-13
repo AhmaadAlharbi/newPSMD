@@ -161,8 +161,8 @@
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
-                <h3 class="card-title mb-2">آخر المهمات</h3>
-                <p class="tx-12 mb-0 text-muted"></p>
+                <h5 class="border-bottom py-3">المهمات المنشئة</h6>
+               
             </div>
             @foreach($tasks as $task)
             <div class="card-body p-0 customers mt-1">
@@ -170,8 +170,8 @@
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
 
-                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
-                                alt="Image description">
+                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/alert.png')}}"
+                            alt="Image description">
 
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
@@ -225,8 +225,7 @@
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
-                <h3 class="card-title mb-2"> المهمات الواررة </h3>
-                <p class="tx-12 mb-0 text-muted"></p>
+                <h5 class="border-bottom py-3">المهمات الواررة</h6>
             </div>
             @foreach($incomingTasks as $task)
             <div class="card-body p-0 customers mt-1">
@@ -234,8 +233,8 @@
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
 
-                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
-                                alt="Image description">
+                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/exclamation.png')}}"
+                            alt="Image description">
 
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
@@ -291,8 +290,7 @@
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
-                <h3 class="card-title mb-2"> مهمات ذات صلة</h3>
-                <p class="tx-12 mb-0 text-muted"></p>
+                <h5 class="border-bottom py-3">المهمات الصادرة</h6>
             </div>
             @foreach($common_tasks_details as $task)
             @if($task->fromSection !== $task->toSection)
@@ -301,8 +299,8 @@
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
 
-                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
-                                alt="Image description">
+                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/exchange.png')}}"
+                            alt="Image description">
 
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
@@ -364,7 +362,8 @@
         </div>
     </div>
 
-    <div class="col-xl-8 col-md-12 col-lg-6">
+        <div class="col-xl-12 col-md-12 col-lg-12">
+
         <div class="card">
             <div class="card-header pb-1">
                 <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
