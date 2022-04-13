@@ -167,7 +167,6 @@
             <livewire:local-tasks /> 
         </div>
     </div>
-    {{-- المهمات الواررة --}}
      {{-- المهمات الواررة --}}
      <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
@@ -188,68 +187,20 @@
         </div>
     </div>
 
+        {{-- التقارير  --}}
         <div class="col-xl-12 col-md-12 col-lg-12">
-
-        <div class="card">
-            <div class="card-header pb-1">
-                <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
-
+            <div class="card">
+                <div class="card-header pb-1">
+                    <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
+    
+                </div>
+               <livewire:show-reports/>
+       
             </div>
-            @foreach($task_details as $task_detail)
-            <div class="product-timeline card-body pt-2 mt-1 text-center ">
-                <ul class="timeline-1 mb-0 ">
-                    <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
-                        <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
-                        <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
-
-                        <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                            {{ \App\Models\User::where(['id'=>$task_detail->eng_id])->pluck('name')->first()}}
-
-                        </p>
-
-                        <p class="  bg-white text-dark text-center  "><ins>Station :
-                                @php
-                                //to get station id
-                                $station_id =
-                                \App\Models\Task::where(['id'=>$task_detail->task_id])->pluck('station_id')->first();
-                                @endphp
-                                {{-- To get sation SSNAME--}}
-                                {{\App\Models\Station::where(['id'=>$station_id])->pluck('SSNAME')->first()}}
-
-                            </ins></p>
-                        <p class=" bg-white text-secondary font-weight-bold text-center">Nature of fault :
-                            {{$task_detail->tasks->problem}}</p>
-                        @if(is_null($task_detail->action_take))
-                        <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
-                            {{$task_detail->reasonOfUncompleted}}
-                        </p>
-                        @else
-                        <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
-                            {{$task_detail->action_take}}
-                        </p>
-                        @endif
-                        <a class="btn btn-info mt-2 text-center"
-                            href="{{route('switch.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-                        <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('switch.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
-                    </li>
-                </ul>
-
-            </div>
-            <hr class="my-4 bg-info">
-            @endforeach
-            <nav aria-label="Page navigation pagination-sm   pagination-lg justify-content-center ">
-                <ul class="pagination">
-                    <li class="page-item">
-                        {{--  {{$task_details->links()}}--}}
-                    </li>
-                </ul>
-            </nav>
+    
+    
+    
         </div>
-
-
-
-    </div>
 
 </div>
 <!-- row close -->

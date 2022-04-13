@@ -1,5 +1,9 @@
 <div>
     @foreach($tasks as $task)
+    @php
+    $department =
+    \App\Models\TrTasks::where(['task_id'=>$task->id])->pluck('department')->first()
+    @endphp
     <div class="card-body p-0 customers mt-1">
         <div class="list-group list-lg-group list-group-flush">
             <div class="list-group-item list-group-item-action" href="#">
@@ -23,6 +27,15 @@
 
                                     {{$task->status}}
                                 </span>
+                                @endif
+                                @if($department == 1)
+                                <span class="bg-warning p-1 d-block text-center m-1">Mechanical</span>
+                                @elseif($department ==2)
+                                <span class="bg-info p-1 d-block text-center m-1">Chemistry</span>
+                                @elseif($department == 3)
+                                <span class="bg-dark text-white p-1  d-block text-center m-1">Electrical</span>
+                                @else
+                                <span class="bg-dark text-white p-1  d-block text-center m-1">غير مصنف</span>
                                 @endif
                                 @if(isset($task->eng_id))
                                 <h5 class="m-1 tx-15">{{$task->users->name}}</h5>

@@ -73,14 +73,10 @@ class ProtectionController extends Controller
         return view('protection.admin.users.usersList',compact('users'));
     }
     public function index(){
-        //to show reports in admin dashboard
-        $task_details= TaskDetails::where('section_id',2)
-        ->where('status','completed')
-        ->orderBy('id', 'desc')
-        ->get();
+   
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('protection.admin.dashboard',compact('task_details','date','monthName'));
+        return view('protection.admin.dashboard',compact('date','monthName'));
     
 
 
