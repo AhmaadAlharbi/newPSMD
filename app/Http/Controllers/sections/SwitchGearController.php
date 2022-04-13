@@ -70,30 +70,16 @@ public function newuser(Request $request){
     return view('switchgear.admin.users.usersList',compact('users'));
 }
     public function index(){
-        $tasks = Task::orderBy('id', 'desc')
-        ->where('fromSection',6)
-        ->whereNull('toSection')
-        ->where('status', 'pending')
-        ->orWhere('toSection',6)
-        ->whereNull('fromSection')
-        ->where('status', 'pending')
-        ->get();
-        
-        $incomingTasks = Task::Where('toSection',6)
-        ->whereNotNull('fromSection')
-        ->where('status', 'pending')
-        ->get();
+       
         $task_details= TaskDetails::where('section_id',6)
         ->where('status','completed')
         ->orderBy('id', 'desc')
         ->get();
      //to track mutal tasks in diffrent sections  
-     $common_tasks_details = Task::where('fromSection',6)
-     ->whereNotNull('toSection')
-     ->get();
+
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('switchgear.admin.dashboard',compact('tasks','task_details','date','monthName','common_tasks_details','incomingTasks'));
+        return view('switchgear.admin.dashboard',compact('task_details','date','monthName'));
 
 
     }

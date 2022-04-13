@@ -73,19 +73,6 @@ class ProtectionController extends Controller
         return view('protection.admin.users.usersList',compact('users'));
     }
     public function index(){
-        
-       
-        $incomingTasks = Task::Where('toSection',2)
-        ->whereNotNull('fromSection')
-        ->where('status', 'pending')
-        ->get();
-        //to track mutal tasks in diffrent sections  
-        $common_tasks_details = Task::where('fromSection',2)
-        ->whereNotNull('toSection')
-        ->get();
-    //   $common_tasks_details = TaskDetails::where('fromSection',2)
-    //     ->whereNotNull('toSection')
-    //     ->get();
         //to show reports in admin dashboard
         $task_details= TaskDetails::where('section_id',2)
         ->where('status','completed')
@@ -93,7 +80,7 @@ class ProtectionController extends Controller
         ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('protection.admin.dashboard',compact('task_details','date','monthName','incomingTasks','common_tasks_details'));
+        return view('protection.admin.dashboard',compact('task_details','date','monthName'));
     
 
 
