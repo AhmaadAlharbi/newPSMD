@@ -643,7 +643,7 @@ public function newuser(Request $request){
           
         }
         session()->flash('Add', 'تم اضافة التقرير بنجاح');
-        return back();
+        return redirect()->route('switch.user.homepage');
         
     }
 

@@ -143,14 +143,7 @@
 
         <!-- row -->
         <div class="row">
-            @if (session()->has('Add'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ session()->get('Add') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            @endif
+
 
             <div class="col-lg-12 col-md-12">
                 <div class="card">
@@ -158,19 +151,7 @@
 
                         <form action="{{route('Transformers.SubmitEngineerReport',['id'=>$tasks->id])}}"
                             enctype="multipart/form-data" method="post" autocomplete="off"> @csrf
-                            @if ($tasks->status == 'completed')
-                            <div class="text-center">
-                                <h2 class="text-info text-center">The Report is completed </h2>
-                                <div class="p-4 mb-2 bg-info text-white">
-                                    <h2> لرؤية تقاريرك والتعديل عليها يرجى التسجيل في الموقع بالايميل الوزاري
-                                    </h2>
-                                </div>
-                                <a class="btn btn-success btn-lg p-3" href="" role="button">Register</a>
-
-                                <a class="btn btn-outline-info btn p-3" href="" role="button">Home
-                                    page</a>
-                            </div>
-                            @else
+                         
                             {{-- 1 --}}
                             <div class="row">
                                 <div class="col-md-12 col-xl-12">
@@ -454,7 +435,6 @@
                             </div>
                         </form>
                     </div>
-                    @endif
                 </div>
 
 
