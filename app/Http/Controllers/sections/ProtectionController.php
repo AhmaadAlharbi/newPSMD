@@ -74,14 +74,7 @@ class ProtectionController extends Controller
     }
     public function index(){
         
-        $tasks = Task::orderBy('id', 'desc')
-        ->where('fromSection',2)
-        ->whereNull('toSection')
-        ->where('status', 'pending')
-        ->orWhere('toSection',2)
-        ->whereNull('fromSection')
-        ->where('status', 'pending')
-        ->get();
+       
         $incomingTasks = Task::Where('toSection',2)
         ->whereNotNull('fromSection')
         ->where('status', 'pending')
@@ -100,7 +93,7 @@ class ProtectionController extends Controller
         ->get();
         $date = Carbon::now();
         $monthName = $date->format('F');
-        return view('protection.admin.dashboard',compact('tasks','task_details','date','monthName','incomingTasks','common_tasks_details'));
+        return view('protection.admin.dashboard',compact('task_details','date','monthName','incomingTasks','common_tasks_details'));
     
 
 
