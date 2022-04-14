@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2022 at 02:23 AM
+-- Generation Time: Apr 14, 2022 at 12:48 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.1.2
 
@@ -986,7 +986,7 @@ INSERT INTO `tasks` (`id`, `refNum`, `fromSection`, `toSection`, `station_id`, `
 (142, '22-03/142', 1, 2, 84, NULL, NULL, NULL, NULL, '2022-03-28', NULL, 19, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 10:43:52', '2022-03-28 11:12:29'),
 (143, '22-03/143', NULL, 2, 82, 'Auto reclosure', NULL, NULL, NULL, '2022-03-28', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-03-28 11:39:28', '2022-03-29 03:20:25'),
 (144, '22-04/144', 5, NULL, 7, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-04', NULL, 4, NULL, NULL, 'completed', '0', NULL, 'admin TR', '2022-04-03 05:01:08', '2022-04-11 18:43:59'),
-(145, '22-04/145', NULL, 5, 1, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-04', NULL, 5, NULL, NULL, 'pending', '0', NULL, 'admin TR', '2022-04-04 14:48:59', '2022-04-04 15:27:19'),
+(145, '22-04/145', 5, 2, 1, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-04', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin TR', '2022-04-04 14:48:59', '2022-04-13 19:00:50'),
 (146, '22-04/146', 2, NULL, 23, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-04', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-04-04 15:30:11', '2022-04-04 15:30:59'),
 (147, '22-04/147', 2, NULL, 1, 'Auto reclosure', '400KV', '11/11/2011', 'Maintenance', '2022-04-10', 'wad', 36, 'dddd', NULL, 'completed', '0', NULL, 'admin protection', '2022-04-10 10:07:48', '2022-04-10 10:10:16'),
 (149, '22-04/148', 2, NULL, 84, 'Auto reclosure', '400KV', NULL, 'Troubleshooting', '2022-04-10', 'da', 36, 'awddwad', NULL, 'completed', '0', NULL, 'admin protection', '2022-04-10 10:14:13', '2022-04-10 10:16:12'),
@@ -996,8 +996,16 @@ INSERT INTO `tasks` (`id`, `refNum`, `fromSection`, `toSection`, `station_id`, `
 (153, '22-04/153', 1, 2, 592, NULL, NULL, NULL, NULL, '2022-04-11', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin edara', '2022-04-11 19:44:14', '2022-04-11 19:44:14'),
 (154, '22-04/154', 5, 2, 84, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin switch', '2022-04-11 19:44:47', '2022-04-11 19:49:37'),
 (155, '22-04/155', 2, NULL, 8, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, 18, NULL, NULL, 'completed', '0', NULL, 'admin protection', '2022-04-11 19:50:18', '2022-04-11 19:53:10'),
-(156, '22-04/156', 2, 6, 1, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, 16, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-04-11 19:53:46', '2022-04-11 19:57:41'),
-(157, '22-04/157', 2, NULL, 685, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-11', NULL, 18, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-11 19:58:08', '2022-04-11 19:58:08');
+(156, '22-04/156', 2, 6, 1, 'Auto reclosure', NULL, NULL, NULL, '2022-04-11', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-11 19:53:46', '2022-04-12 05:04:06'),
+(157, '22-04/157', 2, NULL, 685, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-11', NULL, 18, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-11 19:58:08', '2022-04-11 19:58:08'),
+(158, '22-04/158', 2, NULL, 1, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-13', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-13 10:38:27', '2022-04-13 10:38:27'),
+(159, '22-04/159', 2, NULL, 84, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-13', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-13 10:47:48', '2022-04-13 10:47:48'),
+(160, '22-04/160', 6, 2, 2, 'Auto reclosure', NULL, NULL, NULL, '2022-04-13', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin switch', '2022-04-13 11:07:00', '2022-04-13 17:54:52'),
+(161, '22-04/161', 2, 6, 2, 'Auto reclosure', '400KV', NULL, NULL, '2022-04-13', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin protection', '2022-04-13 17:23:13', '2022-04-13 17:23:24'),
+(162, '22-04/162', 6, NULL, 3, 'Auto reclosure', NULL, NULL, NULL, '2022-04-13', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin switch', '2022-04-13 17:54:31', '2022-04-13 17:54:31'),
+(163, '22-04/163', 6, 5, 4, 'Auto reclosure', NULL, NULL, NULL, '2022-04-13', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin switch', '2022-04-13 17:55:11', '2022-04-13 17:55:27'),
+(164, '22-04/164', 5, NULL, 3, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-13', NULL, 4, NULL, NULL, 'pending', '0', NULL, 'admin TR', '2022-04-13 19:00:11', '2022-04-13 19:00:11'),
+(165, '22-04/165', 5, NULL, 3, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-04-13', NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'admin TR', '2022-04-13 19:00:29', '2022-04-13 19:00:29');
 
 -- --------------------------------------------------------
 
@@ -1038,6 +1046,8 @@ CREATE TABLE `task_details` (
   `fromSection` bigint(20) UNSIGNED DEFAULT NULL,
   `toSection` bigint(20) UNSIGNED DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `engineer_notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `action_take` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1050,92 +1060,106 @@ CREATE TABLE `task_details` (
 -- Dumping data for table `task_details`
 --
 
-INSERT INTO `task_details` (`id`, `task_id`, `report_date`, `reasonOfUncompleted`, `eng_id`, `fromSection`, `toSection`, `section_id`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(314, 136, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 03:24:35', '2022-03-28 03:24:35'),
-(315, 136, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:24:51', '2022-03-28 03:24:51'),
-(316, 136, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:25:38', '2022-03-28 03:25:38'),
-(317, 136, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'done by Switchgear', 'completed', '0', '2022-03-28 03:30:10', '2022-03-28 03:30:10'),
-(318, 136, '2022-03-28', NULL, NULL, 2, 2, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:39:04', '2022-03-28 03:39:04'),
-(319, 136, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:39:21', '2022-03-28 03:39:21'),
-(320, 136, '2022-03-28', NULL, 18, 2, 2, 2, NULL, 'done protection', 'completed', '1', '2022-03-28 03:40:37', '2022-03-28 03:40:37'),
-(321, 137, '2022-03-28', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 03:43:04', '2022-03-28 03:43:04'),
-(322, 137, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:43:40', '2022-03-28 03:43:40'),
-(323, 138, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 04:53:44', '2022-03-28 04:53:44'),
-(324, 138, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 05:15:00', '2022-03-28 05:15:00'),
-(325, 139, '2022-03-28', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 05:36:45', '2022-03-28 05:36:45'),
-(326, 138, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:28:57', '2022-03-28 07:28:57'),
-(327, 138, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'switch =)))', 'completed', '0', '2022-03-28 07:31:13', '2022-03-28 07:31:13'),
-(328, 138, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:35:45', '2022-03-28 07:35:45'),
-(329, 137, '2022-03-28', NULL, 19, 1, 2, 2, NULL, 'done', 'completed', '1', '2022-03-28 07:38:59', '2022-03-28 07:38:59'),
-(330, 141, '2022-03-28', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 07:43:03', '2022-03-28 07:43:03'),
-(331, 141, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:43:20', '2022-03-28 07:43:20'),
-(332, 141, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:44:05', '2022-03-28 07:44:05'),
-(333, 141, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'done by switch gear for FRDS', 'completed', '0', '2022-03-28 07:45:16', '2022-03-28 07:45:16'),
-(334, 141, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:56:43', '2022-03-28 07:56:43'),
-(335, 141, '2022-03-28', NULL, 19, 2, NULL, 2, NULL, 'done by protection for FRDS', 'completed', '1', '2022-03-28 07:57:49', '2022-03-28 07:57:49'),
-(336, 142, '2022-03-28', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 10:43:52', '2022-03-28 10:43:52'),
-(337, 142, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:11:41', '2022-03-28 11:11:41'),
-(338, 142, '2022-03-28', NULL, 19, 1, 2, 2, NULL, 'done', 'completed', '1', '2022-03-28 11:12:29', '2022-03-28 11:12:29'),
-(339, 139, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:15:59', '2022-03-28 11:15:59'),
-(340, 139, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:17:35', '2022-03-28 11:17:35'),
-(341, 139, '2022-03-28', NULL, 16, 2, 6, 6, NULL, 'switch', 'completed', '0', '2022-03-28 11:18:32', '2022-03-28 11:18:32'),
-(342, 143, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 11:39:28', '2022-03-28 11:39:28'),
-(343, 143, '2022-03-28', NULL, NULL, 6, 2, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:41:17', '2022-03-28 11:41:17'),
-(344, 143, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:41:40', '2022-03-28 11:41:40'),
-(345, 143, '2022-03-28', NULL, 18, 6, 2, 2, NULL, 'done protection', 'completed', '1', '2022-03-28 11:42:20', '2022-03-28 11:42:20'),
-(346, 138, '2022-03-29', 'قطع غيار غير متوفرة', 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-29 05:08:02', '2022-03-29 05:08:02'),
-(347, 138, '2022-03-29', 'مسؤولية جهة آخرى', 18, 2, NULL, 2, 'ok', NULL, 'completed', '0', '2022-03-29 05:09:57', '2022-03-29 05:09:57'),
-(348, 144, '2022-04-03', NULL, 4, 5, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-03 05:01:08', '2022-04-03 05:01:08'),
-(349, 144, '2022-04-03', NULL, NULL, 5, 6, NULL, NULL, NULL, 'change', '0', '2022-04-03 05:01:23', '2022-04-03 05:01:23'),
-(350, 144, '2022-04-03', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 05:02:36', '2022-04-03 05:02:36'),
-(351, 144, '2022-04-03', NULL, 16, 5, 6, 6, NULL, 'switchgear is done and now it up to you transformers', 'completed', '2', '2022-04-03 05:03:56', '2022-04-11 18:39:05'),
-(352, 144, '2022-04-03', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 06:59:37', '2022-04-03 06:59:37'),
-(353, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:42:32', '2022-04-04 14:42:32'),
-(354, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:43:20', '2022-04-04 14:43:20'),
-(355, 145, '2022-04-04', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-04 14:48:59', '2022-04-04 14:48:59'),
-(356, 145, '2022-04-04', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:49:09', '2022-04-04 14:49:09'),
-(357, 145, '2022-04-04', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:49:57', '2022-04-04 14:49:57'),
-(358, 145, '2022-04-04', NULL, 16, 2, 6, 6, NULL, 'done', 'completed', '0', '2022-04-04 14:50:24', '2022-04-11 18:38:42'),
-(359, 145, '2022-04-04', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:51:29', '2022-04-04 14:51:29'),
-(360, 145, '2022-04-04', NULL, 19, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:54:41', '2022-04-04 14:54:41'),
-(361, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:56:13', '2022-04-04 14:56:13'),
-(362, 145, '2022-04-04', NULL, NULL, 2, 5, NULL, NULL, NULL, 'change', '0', '2022-04-04 15:09:48', '2022-04-04 15:09:48'),
-(363, 145, '2022-04-04', NULL, 5, 5, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 15:16:21', '2022-04-04 15:16:21'),
-(364, 146, '2022-04-04', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-04 15:30:11', '2022-04-04 15:30:11'),
-(365, 146, '2022-04-04', NULL, 18, 2, NULL, 2, NULL, 'dq', 'completed', '1', '2022-04-04 15:30:59', '2022-04-04 15:30:59'),
-(366, 147, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:07:48', '2022-04-10 10:07:48'),
-(367, 147, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, 'done by ahmad', 'completed', '1', '2022-04-10 10:10:16', '2022-04-10 10:10:16'),
-(369, 149, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:14:13', '2022-04-10 10:14:13'),
-(370, 149, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, 'done and add image', 'completed', '1', '2022-04-10 10:16:12', '2022-04-10 10:16:12'),
-(371, 150, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:17:52', '2022-04-10 10:17:52'),
-(373, 150, '2022-04-10', 'مسؤولية جهة آخرى', 36, 2, NULL, 2, 'switchgear', NULL, 'completed', '1', '2022-04-10 10:28:05', '2022-04-10 10:28:05'),
-(374, 150, '2022-04-10', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:43:45', '2022-04-10 10:43:45'),
-(375, 151, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:46:29', '2022-04-10 10:46:29'),
-(376, 151, '2022-04-10', 'بإنتظار إصلاحات', 36, 2, NULL, 2, NULL, NULL, 'pending', '0', '2022-04-10 10:46:59', '2022-04-10 10:46:59'),
-(377, 151, '2022-04-10', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:47:30', '2022-04-10 10:47:30'),
-(378, 151, '2022-04-10', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:51:54', '2022-04-10 10:51:54'),
-(379, 151, '2022-04-10', NULL, 16, 2, 6, 6, NULL, 'done and now to protection', 'completed', '0', '2022-04-10 10:56:10', '2022-04-11 18:38:45'),
-(380, 151, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 11:00:15', '2022-04-10 11:00:15'),
-(381, 151, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, 'done', 'completed', '0', '2022-04-10 11:00:41', '2022-04-11 18:31:00'),
-(382, 144, '2022-04-11', NULL, 4, 5, NULL, 5, NULL, 'done', 'completed', '0', '2022-04-11 18:43:59', '2022-04-11 18:48:23'),
-(383, 152, '2022-04-11', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:42:41', '2022-04-11 19:42:41'),
-(384, 152, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:43:02', '2022-04-11 19:43:02'),
-(385, 152, '2022-04-11', NULL, 16, 1, 6, 6, NULL, 'done', 'completed', '1', '2022-04-11 19:43:35', '2022-04-11 19:43:35'),
-(386, 153, '2022-04-11', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:44:14', '2022-04-11 19:44:14'),
-(387, 154, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:44:47', '2022-04-11 19:44:47'),
-(388, 154, '2022-04-11', NULL, NULL, 6, 2, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:49:37', '2022-04-11 19:49:37'),
-(389, 155, '2022-04-11', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:50:18', '2022-04-11 19:50:18'),
-(390, 155, '2022-04-11', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:50:30', '2022-04-11 19:50:30'),
-(391, 155, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:51:08', '2022-04-11 19:51:08'),
-(392, 155, '2022-04-11', NULL, 16, 2, 6, 6, NULL, 'done and convert it to protection section', 'completed', '1', '2022-04-11 19:51:38', '2022-04-11 19:51:38'),
-(393, 155, '2022-04-11', NULL, 18, 2, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:52:43', '2022-04-11 19:52:43'),
-(394, 155, '2022-04-11', NULL, 18, 2, NULL, 2, NULL, 'it has done', 'completed', '1', '2022-04-11 19:53:10', '2022-04-11 19:53:10'),
-(395, 156, '2022-04-11', NULL, 1, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:53:46', '2022-04-11 19:53:46'),
-(396, 156, '2022-04-11', NULL, NULL, 2, 6, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:54:03', '2022-04-11 19:54:03'),
-(397, 156, '2022-04-11', NULL, 13, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:54:31', '2022-04-11 19:54:31'),
-(398, 156, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:57:18', '2022-04-11 19:57:18'),
-(399, 156, '2022-04-11', NULL, 16, 2, 6, 6, NULL, 'done', 'completed', '1', '2022-04-11 19:57:41', '2022-04-11 19:57:41'),
-(400, 157, '2022-04-11', NULL, 18, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:58:08', '2022-04-11 19:58:08');
+INSERT INTO `task_details` (`id`, `task_id`, `report_date`, `reasonOfUncompleted`, `eng_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
+(314, 136, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 03:24:35', '2022-03-28 03:24:35'),
+(315, 136, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:24:51', '2022-03-28 03:24:51'),
+(316, 136, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:25:38', '2022-03-28 03:25:38'),
+(317, 136, '2022-03-28', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'done by Switchgear', 'completed', '0', '2022-03-28 03:30:10', '2022-03-28 03:30:10'),
+(318, 136, '2022-03-28', NULL, NULL, 2, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:39:04', '2022-03-28 03:39:04'),
+(319, 136, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:39:21', '2022-03-28 03:39:21'),
+(320, 136, '2022-03-28', NULL, 18, 2, 2, 2, NULL, NULL, NULL, 'done protection', 'completed', '1', '2022-03-28 03:40:37', '2022-03-28 03:40:37'),
+(321, 137, '2022-03-28', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 03:43:04', '2022-03-28 03:43:04'),
+(322, 137, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 03:43:40', '2022-03-28 03:43:40'),
+(323, 138, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 04:53:44', '2022-03-28 04:53:44'),
+(324, 138, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 05:15:00', '2022-03-28 05:15:00'),
+(325, 139, '2022-03-28', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 05:36:45', '2022-03-28 05:36:45'),
+(326, 138, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:28:57', '2022-03-28 07:28:57'),
+(327, 138, '2022-03-28', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'switch =)))', 'completed', '0', '2022-03-28 07:31:13', '2022-03-28 07:31:13'),
+(328, 138, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:35:45', '2022-03-28 07:35:45'),
+(329, 137, '2022-03-28', NULL, 19, 1, 2, 2, NULL, NULL, NULL, 'done', 'completed', '1', '2022-03-28 07:38:59', '2022-03-28 07:38:59'),
+(330, 141, '2022-03-28', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 07:43:03', '2022-03-28 07:43:03'),
+(331, 141, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:43:20', '2022-03-28 07:43:20'),
+(332, 141, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:44:05', '2022-03-28 07:44:05'),
+(333, 141, '2022-03-28', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'done by switch gear for FRDS', 'completed', '0', '2022-03-28 07:45:16', '2022-03-28 07:45:16'),
+(334, 141, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 07:56:43', '2022-03-28 07:56:43'),
+(335, 141, '2022-03-28', NULL, 19, 2, NULL, 2, NULL, NULL, NULL, 'done by protection for FRDS', 'completed', '1', '2022-03-28 07:57:49', '2022-03-28 07:57:49'),
+(336, 142, '2022-03-28', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 10:43:52', '2022-03-28 10:43:52'),
+(337, 142, '2022-03-28', NULL, 19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:11:41', '2022-03-28 11:11:41'),
+(338, 142, '2022-03-28', NULL, 19, 1, 2, 2, NULL, NULL, NULL, 'done', 'completed', '1', '2022-03-28 11:12:29', '2022-03-28 11:12:29'),
+(339, 139, '2022-03-28', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:15:59', '2022-03-28 11:15:59'),
+(340, 139, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:17:35', '2022-03-28 11:17:35'),
+(341, 139, '2022-03-28', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'switch', 'completed', '0', '2022-03-28 11:18:32', '2022-03-28 11:18:32'),
+(342, 143, '2022-03-28', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-28 11:39:28', '2022-03-28 11:39:28'),
+(343, 143, '2022-03-28', NULL, NULL, 6, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:41:17', '2022-03-28 11:41:17'),
+(344, 143, '2022-03-28', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-03-28 11:41:40', '2022-03-28 11:41:40'),
+(345, 143, '2022-03-28', NULL, 18, 6, 2, 2, NULL, NULL, NULL, 'done protection', 'completed', '1', '2022-03-28 11:42:20', '2022-03-28 11:42:20'),
+(346, 138, '2022-03-29', 'قطع غيار غير متوفرة', 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-03-29 05:08:02', '2022-03-29 05:08:02'),
+(347, 138, '2022-03-29', 'مسؤولية جهة آخرى', 18, 2, NULL, 2, NULL, NULL, 'ok', NULL, 'completed', '0', '2022-03-29 05:09:57', '2022-03-29 05:09:57'),
+(348, 144, '2022-04-03', NULL, 4, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-03 05:01:08', '2022-04-03 05:01:08'),
+(349, 144, '2022-04-03', NULL, NULL, 5, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 05:01:23', '2022-04-03 05:01:23'),
+(350, 144, '2022-04-03', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 05:02:36', '2022-04-03 05:02:36'),
+(351, 144, '2022-04-03', NULL, 16, 5, 6, 6, NULL, NULL, NULL, 'switchgear is done and now it up to you transformers', 'completed', '2', '2022-04-03 05:03:56', '2022-04-11 18:39:05'),
+(352, 144, '2022-04-03', NULL, 4, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-03 06:59:37', '2022-04-03 06:59:37'),
+(353, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:42:32', '2022-04-04 14:42:32'),
+(354, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:43:20', '2022-04-04 14:43:20'),
+(355, 145, '2022-04-04', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-04 14:48:59', '2022-04-04 14:48:59'),
+(356, 145, '2022-04-04', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:49:09', '2022-04-04 14:49:09'),
+(357, 145, '2022-04-04', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:49:57', '2022-04-04 14:49:57'),
+(358, 145, '2022-04-04', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'done', 'completed', '0', '2022-04-04 14:50:24', '2022-04-11 18:38:42'),
+(359, 145, '2022-04-04', NULL, 19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:51:29', '2022-04-04 14:51:29'),
+(360, 145, '2022-04-04', NULL, 19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:54:41', '2022-04-04 14:54:41'),
+(361, 144, '2022-04-04', NULL, 4, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 14:56:13', '2022-04-04 14:56:13'),
+(362, 145, '2022-04-04', NULL, NULL, 2, 5, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 15:09:48', '2022-04-04 15:09:48'),
+(363, 145, '2022-04-04', NULL, 5, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-04 15:16:21', '2022-04-04 15:16:21'),
+(364, 146, '2022-04-04', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-04 15:30:11', '2022-04-04 15:30:11'),
+(365, 146, '2022-04-04', NULL, 18, 2, NULL, 2, NULL, NULL, NULL, 'dq', 'completed', '1', '2022-04-04 15:30:59', '2022-04-04 15:30:59'),
+(366, 147, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:07:48', '2022-04-10 10:07:48'),
+(367, 147, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, NULL, NULL, 'done by ahmad', 'completed', '1', '2022-04-10 10:10:16', '2022-04-10 10:10:16'),
+(369, 149, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:14:13', '2022-04-10 10:14:13'),
+(370, 149, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, NULL, NULL, 'done and add image', 'completed', '1', '2022-04-10 10:16:12', '2022-04-10 10:16:12'),
+(371, 150, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:17:52', '2022-04-10 10:17:52'),
+(373, 150, '2022-04-10', 'مسؤولية جهة آخرى', 36, 2, NULL, 2, NULL, NULL, 'switchgear', NULL, 'completed', '2', '2022-04-10 10:28:05', '2022-04-12 05:25:42'),
+(374, 150, '2022-04-10', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:43:45', '2022-04-10 10:43:45'),
+(375, 151, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:46:29', '2022-04-10 10:46:29'),
+(376, 151, '2022-04-10', 'بإنتظار إصلاحات', 36, 2, NULL, 2, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-10 10:46:59', '2022-04-10 10:46:59'),
+(377, 151, '2022-04-10', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:47:30', '2022-04-10 10:47:30'),
+(378, 151, '2022-04-10', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 10:51:54', '2022-04-10 10:51:54'),
+(379, 151, '2022-04-10', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'done and now to protection', 'completed', '0', '2022-04-10 10:56:10', '2022-04-11 18:38:45'),
+(380, 151, '2022-04-10', NULL, 36, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-10 11:00:15', '2022-04-10 11:00:15'),
+(381, 151, '2022-04-10', NULL, 36, 2, NULL, 2, NULL, NULL, NULL, 'done', 'completed', '0', '2022-04-10 11:00:41', '2022-04-11 18:31:00'),
+(382, 144, '2022-04-11', NULL, 4, 5, NULL, 5, NULL, NULL, NULL, 'done', 'completed', '0', '2022-04-11 18:43:59', '2022-04-11 18:48:23'),
+(383, 152, '2022-04-11', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:42:41', '2022-04-11 19:42:41'),
+(384, 152, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:43:02', '2022-04-11 19:43:02'),
+(385, 152, '2022-04-11', NULL, 16, 1, 6, 6, NULL, NULL, NULL, 'done', 'completed', '1', '2022-04-11 19:43:35', '2022-04-11 19:43:35'),
+(386, 153, '2022-04-11', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:44:14', '2022-04-11 19:44:14'),
+(387, 154, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:44:47', '2022-04-11 19:44:47'),
+(388, 154, '2022-04-11', NULL, NULL, 6, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:49:37', '2022-04-11 19:49:37'),
+(389, 155, '2022-04-11', NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:50:18', '2022-04-11 19:50:18'),
+(390, 155, '2022-04-11', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:50:30', '2022-04-11 19:50:30'),
+(391, 155, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:51:08', '2022-04-11 19:51:08'),
+(392, 155, '2022-04-11', NULL, 16, 2, 6, 6, NULL, 'switch', NULL, 'done and convert it to protection section', 'completed', '1', '2022-04-11 19:51:38', '2022-04-11 19:51:38'),
+(393, 155, '2022-04-11', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:52:43', '2022-04-11 19:52:43'),
+(394, 155, '2022-04-11', NULL, 18, 2, NULL, 2, NULL, 'protection', NULL, 'it has done', 'completed', '1', '2022-04-11 19:53:10', '2022-04-11 19:53:10'),
+(395, 156, '2022-04-11', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:53:46', '2022-04-11 19:53:46'),
+(396, 156, '2022-04-11', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:54:03', '2022-04-11 19:54:03'),
+(397, 156, '2022-04-11', NULL, 13, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:54:31', '2022-04-11 19:54:31'),
+(398, 156, '2022-04-11', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-11 19:57:18', '2022-04-11 19:57:18'),
+(399, 156, '2022-04-11', NULL, 16, 2, 6, 6, NULL, NULL, NULL, 'done', 'completed', '1', '2022-04-11 19:57:41', '2022-04-11 19:57:41'),
+(400, 157, '2022-04-11', NULL, 18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-11 19:58:08', '2022-04-11 19:58:08'),
+(401, 156, '2022-04-11', NULL, 19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-12 04:56:50', '2022-04-12 04:56:50'),
+(402, 156, '2022-04-12', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-12 05:04:06', '2022-04-12 05:04:06'),
+(403, 158, '2022-04-13', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 10:38:27', '2022-04-13 10:38:27'),
+(404, 159, '2022-04-13', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 10:47:48', '2022-04-13 10:47:48'),
+(405, 160, '2022-04-13', NULL, 16, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 11:07:00', '2022-04-13 11:07:00'),
+(406, 161, '2022-04-13', NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 17:23:13', '2022-04-13 17:23:13'),
+(407, 161, '2022-04-13', NULL, NULL, 2, 6, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-13 17:23:24', '2022-04-13 17:23:24'),
+(408, 162, '2022-04-13', NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 17:54:31', '2022-04-13 17:54:31'),
+(409, 160, '2022-04-13', NULL, NULL, 6, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-13 17:54:52', '2022-04-13 17:54:52'),
+(410, 163, '2022-04-13', NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 17:55:11', '2022-04-13 17:55:11'),
+(411, 163, '2022-04-13', NULL, NULL, 6, 5, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-13 17:55:27', '2022-04-13 17:55:27'),
+(412, 164, '2022-04-13', NULL, 4, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 19:00:11', '2022-04-13 19:00:11'),
+(413, 165, '2022-04-13', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-04-13 19:00:29', '2022-04-13 19:00:29'),
+(414, 145, '2022-04-13', NULL, NULL, 5, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-04-13 19:00:50', '2022-04-13 19:00:50');
 
 -- --------------------------------------------------------
 
@@ -1198,7 +1222,10 @@ INSERT INTO `tr_tasks` (`id`, `task_id`, `work_type`, `work_type_description`, `
 (66, 144, NULL, NULL, '1', '2', '2022-04-04 14:42:32', '2022-04-04 14:42:32'),
 (67, 144, NULL, NULL, '1', '2', '2022-04-04 14:43:20', '2022-04-04 14:43:20'),
 (68, 144, NULL, NULL, '1', '2', '2022-04-04 14:56:13', '2022-04-04 14:56:13'),
-(69, 145, NULL, NULL, '1', '1', '2022-04-04 15:16:21', '2022-04-04 15:16:21');
+(69, 145, NULL, NULL, '1', '1', '2022-04-04 15:16:21', '2022-04-04 15:16:21'),
+(70, 164, NULL, 'Change MCB', '1', '1', '2022-04-13 19:00:11', '2022-04-13 19:00:11'),
+(71, 165, NULL, 'Change MCB', '2', '1', '2022-04-13 19:00:29', '2022-04-13 19:00:29'),
+(72, 145, NULL, NULL, '1', '1', '2022-04-13 19:00:50', '2022-04-13 19:00:50');
 
 -- --------------------------------------------------------
 
@@ -1428,7 +1455,7 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
@@ -1440,7 +1467,7 @@ ALTER TABLE `task_attachments`
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=401;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
 
 --
 -- AUTO_INCREMENT for table `tr`
@@ -1452,7 +1479,7 @@ ALTER TABLE `tr`
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `users`

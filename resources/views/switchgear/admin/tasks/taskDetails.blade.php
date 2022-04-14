@@ -187,7 +187,12 @@
                                                         @endphp
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->refNum}}</td>
-                                                        <td>{{$x->sections->section_name}}</td>
+                                                        @if(isset($x->sections->section_name))
+                                                       <td>{{$x->sections->section_name}}</td>
+                                                       @else
+                                                       <td>{{$x->toSections->section_name}}</td>
+
+                                                       @endif
                                                         <td>{{$x->station->SSNAME}}</td>
                                                         <td>{{$x->task_date}}</td>
                                                         @if(isset($x->eng_id))

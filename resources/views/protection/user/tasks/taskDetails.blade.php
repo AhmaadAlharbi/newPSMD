@@ -184,7 +184,12 @@
                                                         $i++
                                                         @endphp
                                                         <td>{{$i}}</td>
-                                                        <td>{{$tasks->sections->section_name}}</td>
+                                                        @if(isset($x->sections->section_name))
+                                                       <td>{{$x->sections->section_name}}</td>
+                                                       @else
+                                                       <td>{{$x->toSections->section_name}}</td>
+
+                                                       @endif
                                                         <td>{{$tasks->station->SSNAME}}</td>
                                                         <td>{{$tasks->task_date}}</td>
                                                         @if(isset($tasks->engineers->name))

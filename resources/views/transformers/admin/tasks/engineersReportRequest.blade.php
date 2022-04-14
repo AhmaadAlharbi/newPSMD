@@ -104,7 +104,7 @@ window.onload = function() {
                                 @else
                                 <td class="table-light">{{$task->tasks->station->control}}</td>
                                 @endif
-                                <td>{{$task->tasks->users->name}}</td>
+                                <td>{{$task->users->name}}</td>
                                 <td>{{$task->tasks->task_date}}</td>
 
                                 <td> <a href="{{route('Transformers.allowEngineersReportRequest',['id'=>$task->task_id])}}"

@@ -5,6 +5,7 @@
     \App\Models\TrTasks::where(['task_id'=>$task->id])->pluck('department')->first()
     @endphp
     <div class="card-body p-0 customers mt-1">
+        
         <div class="list-group list-lg-group list-group-flush">
             <div class="list-group-item list-group-item-action" href="#">
                 <div class="media  mt-0">
@@ -17,6 +18,13 @@
                                 <p class="text-right text-muted"> {{$task->created_at}}</p>
                                {{-- <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                     قسم {{$task->sections->section_name}} </p>--}}
+                                    @if(isset($task->sections->section_name))
+                                    <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
+                                        قسم {{$task->sections->section_name}} </p>
+                                    @else
+                                    <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
+                                        قسم {{$task->toSections->section_name}} </p>
+                                    @endif
                                 @if($task->status == 'waiting')
                                 <span class="badge badge-warning text-white ml-2">
 
@@ -34,9 +42,8 @@
                                 <span class="bg-info p-1 d-block text-center m-1">Chemistry</span>
                                 @elseif($department == 3)
                                 <span class="bg-dark text-white p-1  d-block text-center m-1">Electrical</span>
-                                @else
-                                <span class="bg-dark text-white p-1  d-block text-center m-1">غير مصنف</span>
                                 @endif
+                     
                                 @if(isset($task->eng_id))
                                 <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
                                 @else

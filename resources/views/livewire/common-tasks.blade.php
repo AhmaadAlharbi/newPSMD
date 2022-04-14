@@ -41,7 +41,7 @@
                                 <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
                                 @switch(Auth::user()->section_id)
                                 
-                                @case(1)
+                                @case(2)
                                 {{--protection--}}
                                 <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
                                     class=" my-2 btn btn-outline-secondary ">Read More</a>

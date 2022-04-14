@@ -20,7 +20,7 @@ class ShowReports extends Component
              $task_details= TaskDetails::where('section_id',$section_id)
              ->where('status','completed')
              ->orderBy('id', 'desc')
-             ->paginate(2);
+             ->paginate(3);
         return view('livewire.show-reports',compact('task_details'));
     }
 }
