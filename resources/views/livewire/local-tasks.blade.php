@@ -18,10 +18,16 @@
                                 <p class="text-right text-muted"> {{$task->created_at}}</p>
                                {{-- <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                     قسم {{$task->sections->section_name}} </p>--}}
+                                    @unless( Auth::user()->section_id == 1)
                                     @if(isset($task->sections->section_name))
                                     <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                         قسم {{$task->sections->section_name}} </p>
                                     @else
+                                    <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
+                                        قسم {{$task->toSections->section_name}} </p>
+                                    @endif
+                                    @endunless
+                                    @if( Auth::user()->section_id == 1)
                                     <p class=" bg-light py-2 my-2 text-center text-dark font-weight-bold">
                                         قسم {{$task->toSections->section_name}} </p>
                                     @endif
@@ -54,17 +60,20 @@
                                 <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
                                 {{--check which route bases on section--}}
                                 @switch(Auth::user()->section_id)
+                                {{--edara--}}
+                                @case(1)
+                                <a href="{{route('edara.admin.taskDetails',['id'=>$task->id])}}"
+                                    class=" my-2 btn btn-outline-secondary ">Read More</a>
+                                    <a class="text-left btn btn-success "
+                                    href="{{route('edara.updateTask',['id'=>$task->id])}}"
+                                    class=" m-2 btn btn-primary btn-sm">Edit</a>
+                                    @break
+                                @break
                                 {{--protection--}}
                                 @case(2)
                                 <a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}"
                                     class=" my-2 btn btn-outline-secondary ">Read More</a>
-                                @if(isset($task->engineers->name))
-                                {{-- <a class="text-left btn btn-dark " href=""
-                                    class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
-                                @endif
-                                {{--  <a class="text-left btn btn-danger "
-                                    href=""
-                                class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
+                               
 
                                 <a class="text-left btn btn-success "
                                     href="{{route('switch.updateTask',['id'=>$task->id])}}"
@@ -111,7 +120,9 @@
         </div>
     </div>
     @endforeach
+   
   <div class="d-flex justify-content-center">
     {{ $tasks->links() }}
   </div>
 </div>
+

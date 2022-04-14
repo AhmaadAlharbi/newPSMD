@@ -166,133 +166,29 @@
 
 <!-- row opened -->
 <div class="row row-sm">
-    <div class="col-xl-4 col-md-12 col-lg-6">
+     {{-- المهمات الصادرة --}}
+    <div class="col-xl-3 col-md-12 col-lg-6 ">
         <div class="card">
             <div class="card-header pb-1">
-                <h3 class="card-title mb-2">آخر المهمات</h3>
-                <p class="tx-12 mb-0 text-muted"></p>
+                <h5 class="border-bottom py-3 text-center">المهمات المنشئة</h6>
             </div>
-            @foreach($tasks as $task)
-            <div class="card-body p-0 customers mt-1">
-                <div class="list-group list-lg-group list-group-flush">
-                    <div class="list-group-item list-group-item-action" href="#">
-                        <div class="media  mt-0">
-
-                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
-                                alt="Image description">
-
-                            <div class="media-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="mt-0">
-                                        <p class="text-right text-muted"> {{$task->created_at}}</p>
-                                        @if($task->status == 'waiting')
-                                        <span class="badge badge-warning text-white ml-2">
-
-                                            {{$task->status}}
-                                        </span>
-                                        @else
-                                        <span class="badge badge-danger ml-2">
-
-                                            {{$task->status}}
-                                        </span>
-                                        @endif
-                                        <p class="text-right bg-light py-2 my-2 text-center">قسم {{$task->toSections->section_name}} </p>
-
-                                        @if(isset($task->eng_id))
-                                        <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
-                                        @else
-                                        <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
-                                        </h5>
-                                        @endif
-
-                                        <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}}</p>
-                                        <a href="{{route('edara.admin.taskDetails',['id'=>$task->id])}}"
-                                            class=" my-2 btn btn-outline-secondary ">Read More</a>
-                                        @if(isset($task->engineers->name))
-                                        {{-- <a class="text-left btn btn-dark " href=""
-                                            class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
-                                        @endif
-                                        {{--  <a class="text-left btn btn-danger "
-                                            href=""
-                                        class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-
-                                        <a class="text-left btn btn-success "
-                                            href="{{route('edara.updateTask',['id'=>$task->id])}}"
-                                            class=" m-2 btn btn-primary btn-sm">Edit</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
+            <livewire:local-tasks /> 
         </div>
     </div>
-    <div class="col-xl-8 col-md-12 col-lg-6">
+
+    {{-- التقارير  --}}
+    <div class="col-xl-9 col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header pb-1">
                 <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
 
             </div>
-            @foreach($task_details as $task_detail)
-            <div class="product-timeline card-body pt-2 mt-1 text-center ">
-                <ul class="timeline-1 mb-0 ">
-                    <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
-                        <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
-                        <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
-                        <p class="text-right bg-light py-2 my-2 text-center text-success font-weight-bold">قسم {{$task_detail->tasks->toSections->section_name}} </p>
-
-                        <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                            {{$task_detail->users->name}}
-                        </p>
-
-                        <p class="  bg-white text-dark text-center  "><ins>Station :
-                                @php
-                                //to get station id
-                                $station_id =
-                                \App\Models\Task::where(['id'=>$task_detail->task_id])->pluck('station_id')->first();
-                                @endphp
-                                {{-- To get sation SSNAME--}}
-                                {{\App\Models\Station::where(['id'=>$station_id])->pluck('SSNAME')->first()}}
-
-                            </ins></p>
-                        <p class=" bg-white text-secondary font-weight-bold text-center">Nature of fault :
-                            {{$task_detail->problem}}</p>
-                        @if(is_null($task_detail->action_take))
-                        <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
-                            {{$task_detail->reasonOfUncompleted}}
-                        </p>
-                        @else
-                        <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
-                            {{$task_detail->action_take}}
-                        </p>
-                        @endif
-                        <a class="btn btn-info mt-2 text-center"
-                            href="{{route('edara.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-                        <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('edara.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
-                    </li>
-                </ul>
-
-            </div>
-            <hr class="my-4 bg-info">
-            @endforeach
-            <nav aria-label="Page navigation pagination-sm   pagination-lg justify-content-center ">
-                <ul class="pagination">
-                    <li class="page-item">
-                        {{--  {{$task_details->links()}}--}}
-
-                    </li>
-
-                </ul>
-            </nav>
+           <livewire:show-reports/>
+   
         </div>
 
 
-
     </div>
-
 </div>
 <!-- row close -->
 

@@ -1,11 +1,15 @@
 <div>
+
     @foreach($task_details as $task_detail)
     <div class="product-timeline card-body pt-2 mt-1 text-center ">
         <ul class="timeline-1 mb-0 ">
             <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
                 <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
                 <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
+                @if(Auth::user()->section_id == 1)
+                <p class="text-right bg-light py-2 my-2 text-center text-success font-weight-bold">قسم {{$task_detail->tasks->toSections->section_name}} </p>
 
+                @endif
                 <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
                     {{$task_detail->users->name}}
                 </p>
@@ -32,6 +36,13 @@
                 </p>
                 @endif
                 @switch(Auth::user()->section_id)
+                {{--edara--}}
+                @case(1)
+                <a class="btn btn-info mt-2 text-center"
+                    href="{{route('edara.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center"
+                    href="{{route('edara.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                @break
                 @case(2)
                 {{--protection--}}
                 <a class="btn btn-info mt-2 text-center"
