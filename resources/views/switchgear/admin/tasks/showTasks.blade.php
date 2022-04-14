@@ -107,11 +107,11 @@ window.onload = function() {
 
                                     @endif
 
-                                <td>{{$task->task_Date}}</td>
-                                @if(isset($task->engineers->name))
-                                <td>{{$task->engineers->name}}</td>
+                                <td>{{$task->task_date}}</td>
+                                @if(isset($task->users->name))
+                                <td>{{$task->users->name}}</td>
                                 @else
-                                <td>waiting...</td>
+                                <td>...</td>
                                 @endif
                                  @if($task->status == 'completed')
                                 <td>

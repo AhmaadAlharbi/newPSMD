@@ -46,7 +46,7 @@
                                 class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
 
                                 <a class="text-left btn btn-success "
-                                    href="{{route('Transformers.updateTask',['id'=>$task->id])}}"
+                                    href="{{route('protection.updateTask',['id'=>$task->id])}}"
                                     class=" m-2 btn btn-primary btn-sm">Edit</a>
                                 @break
                                 @case(5)
