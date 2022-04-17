@@ -277,7 +277,7 @@
                             <input id="equip" type="text" name="equip" class="form-control SlectBox">
                         </div>
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 mt-2">
                             <label for="problem" class="control-label m-1"> Nature of Fault</label>
                             <textarea list="problems" class="form-control" name="problem" id="problem"></textarea>
 

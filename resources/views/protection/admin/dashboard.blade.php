@@ -76,7 +76,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','pending')->where('fromSection',2)->orWhere('toSection',2)->count()}}
+                                {{\App\Models\Task::where('status','pending')->where('fromSection',2)->orWhere('toSection',2)->where('status','pending')->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات غير منجزة</p>
                         </div>

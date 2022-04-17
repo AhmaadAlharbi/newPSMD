@@ -73,7 +73,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','pending')->where('fromSection',6)->count()}}
+                            {{\App\Models\Task::where('status','pending')->where('fromSection',6)->orWhere('toSection',6)->where('status','pending')->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات غير منجزة</p>
                         </div>
@@ -161,7 +161,7 @@
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
-                <h5 class="border-bottom py-3">المهمات المنشئة</h6>
+            <h5 class="border-bottom py-3 text-center">المهمات المنشئة</h6>
                
             </div>
             <livewire:local-tasks /> 
@@ -171,7 +171,7 @@
      <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
-                <h5 class="border-bottom py-3">المهمات الواررة</h6>        
+            <h5 class="border-bottom py-3 text-center">المهمات الواررة</h6>        
             </div>
             <livewire:incoming-tasks /> 
           
@@ -181,7 +181,7 @@
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
-                <h5 class="border-bottom py-3">المهمات الصادرة</h6>
+            <h5 class="border-bottom py-3 text-center">المهمات الصادرة</h6>
             </div>
             <livewire:common-tasks /> 
         </div>

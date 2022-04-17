@@ -46,6 +46,7 @@
 
 td {
     height: 50px;
+    font-size:20px
 }
 </style>
 <style>
@@ -134,16 +135,12 @@ td {
                                 <h5>{{$task_details->report_date}}</h5>
                             </div>
                             <div class="row ssname-table">
-                                <div class="col-sm-12 col-md-4">
-                                    <h1
-                                        class="d-none d-sm-block text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
-                                        {{$task_details->tasks->station->SSNAME}}
-                                    </h1>
-                                    <h1 class="d-md-none  p-3 text-center mt-2  bg-dark text-white">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                            <h1 class=" text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
                                         {{$task_details->tasks->station->SSNAME}}
                                     </h1>
                                 </div>
-                                <div class="col-sm-12 col-md-8">
+                                <div class="col-sm-12 col-md-12 col-lg-8">
                                     <table class="table mt-2 p-5 border  border-dark h-100 text-center" id="table1"
                                         class="ltr-table ">
                                         <thead class="thead-light">
@@ -220,7 +217,7 @@ td {
                     <hr class=" mg-b-40">
                     @isset($commonTasks)
                 <!-- row -->
-<div class="row">
+<div class="row d-print-none">
     <!--div-->
     <div class="col-xl-12">
         <div class="card mg-b-20">

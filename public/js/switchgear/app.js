@@ -69,6 +69,7 @@ const controlColor = (value) => {
                 "bg-danger",
                 "text-light"
             );
+            area_select_option.text = "المنطقة الشمالية";
             shiftSelect.value != 0
                 ? (area_select_option.value = 3)
                 : (area_select_option.value = 1);

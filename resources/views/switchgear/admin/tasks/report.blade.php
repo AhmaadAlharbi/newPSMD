@@ -46,11 +46,13 @@
 
 td {
     height: 50px;
+    font-size: 22px;
 }
+
 </style>
 <style>
 @media print {
-    #print_Button {
+    #print_Button,#commonTable {
         display: none;
     }
 
@@ -134,23 +136,18 @@ td {
                                 <h5>{{$task_details->report_date}}</h5>
                             </div>
                             <div class="row ssname-table">
-                                <div class="col-sm-12 col-md-4">
-                                    <h1
-                                        class="d-none d-sm-block text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
-                                        {{$task_details->tasks->station->SSNAME}}
-                                    </h1>
-                                    <h1 class="d-md-none  p-3 text-center mt-2  bg-dark text-white">
-                                        {{$task_details->tasks->station->SSNAME}}
-                                    </h1>
+                             <div class=" col-sm-12 col-md-12 col-lg-4 ">
+                                <h1 class=" text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
+                                            {{$task_details->tasks->station->SSNAME}}
+                                        </h1>
                                 </div>
-                                <div class="col-sm-12 col-md-8">
+                                <div class=" col-sm-12 col-md-12 col-lg-8 ">
                                     <table class="table mt-2 p-5 border  border-dark h-100 text-center" id="table1"
                                         class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Company Make</th>
                                                 <th scope="col">Contract.No</th>
-
                                             </tr>
                                             <tr></tr>
                                         </thead>
@@ -171,7 +168,7 @@ td {
                                         <tbody>
                                             <tr>
                                                 <td>{{$task_details->tasks->station->COMMISIONING_DATE}}</td>
-                                                {{-- <td>{{$task->pm}}</td>--}}
+                                                 <td>ddd</td>
 
                                             </tr>
                                         </tbody>
@@ -180,7 +177,7 @@ td {
 
                             </div>
 
-                            <div class="d-block p-3 mb-2 bg-white text-dark">
+                            <div class="d-block p-3 my-2 bg-white text-dark">
                                 <h2>:Unit</h2>
                                 <h4>{{$task_details->tasks->equip}}</h4>
                             </div>
@@ -222,7 +219,7 @@ td {
                 <!-- row -->
 <div class="row">
     <!--div-->
-    <div class="col-xl-12">
+    <div class="col-xl-12" id="commonTable">
         <div class="card mg-b-20">
 
             <div class="card-body">

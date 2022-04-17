@@ -152,7 +152,7 @@
                                 class="text-center d-none p-3 form-control" readonly>
                             <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control"
                                 readonly>
-                            <input type="text" id="station_id" name="ssnameID">
+                            <input type="hidden" id="station_id" name="ssnameID">
                         </div>
                         <div class=" col-lg-4">
                             <label>تاريخ ارسال المهمة</label>
@@ -224,16 +224,15 @@
                     </div>
                     <div class="row m-3">
 
-                        <div class="col-lg-6">
+                    <div class="col-lg-12">
                             <label for="equip" class="control-label m-1">Bay Unit</label>
                             <input id="equip" type="text" name="equip" class="form-control SlectBox">
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12 mt-2">
                             <label for="problem" class="control-label m-1"> Nature of Fault</label>
-                            <input list="problems" class="form-control" name="problem" id="problem">
-                            <datalist id="problems">
-                            </datalist>
+                            <textarea list="problems" class="form-control" name="problem" id="problem"></textarea>
+
                         </div>
                     </div>
 
