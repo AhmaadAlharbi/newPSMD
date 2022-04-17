@@ -324,7 +324,10 @@ public function newuser(Request $request){
         return view('switchgear.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',6)->orWhere('toSection',6)->orderBy('id', 'desc')
+        $tasks = Task::whereMonth('created_at', date('m'))
+        ->where('fromSection',6)
+        ->orWhere('toSection',6)
+        ->orderBy('id', 'desc')
         ->get();
         return view('switchgear.admin.tasks.showTasks',compact('tasks'));
     }

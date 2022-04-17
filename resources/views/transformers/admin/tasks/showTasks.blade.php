@@ -119,7 +119,11 @@ window.onload = function() {
                                 <td>Electrical</td>
                                 @endif
                                 <td>{{$task->task_date}}</td>
+                                @if(isset($task->users->name))
                                 <td>{{$task->users->name}}</td>
+                                @else
+                                <td>...</td>
+                                @endif
 
 
                                  @if($task->status == 'completed')

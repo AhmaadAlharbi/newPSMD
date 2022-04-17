@@ -329,8 +329,9 @@ class TransformersController extends Controller
         return view('transformers.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',5)
-        ->orWhere('toSection','5')
+        $tasks = Task::whereMonth('created_at', date('m'))
+        ->where('fromSection',5)
+        ->orWhere('toSection',5)
         ->orderBy('id', 'desc')
         ->get();
         return view('transformers.admin.tasks.showTasks',compact('tasks'));

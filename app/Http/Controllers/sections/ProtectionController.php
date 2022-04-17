@@ -169,7 +169,6 @@ class ProtectionController extends Controller
         ]);
         $task_id = Task::latest()->first()->id;
         $engineer_email = $request->eng_email;
-        
         TaskDetails::create([
             'task_id'=>$task_id,
             'eng_id'=>$request->eng_name,
@@ -262,9 +261,10 @@ class ProtectionController extends Controller
         return view('protection.admin.tasks.engineersReportRequest',compact('tasks'));
     }
     public function showAllTasks(){
-        $tasks = Task::where('fromSection',2)
-        ->orWhere('toSection','2')->
-        orderBy('id', 'desc')
+        $tasks = Task::whereMonth('created_at', date('m'))
+        ->where('fromSection',2)
+        ->orWhere('toSection',2)
+        ->orderBy('id', 'desc')
         ->get();
         $sections = Section::all();
         return view('protection.admin.tasks.showTasks',compact('tasks','sections'));

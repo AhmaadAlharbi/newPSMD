@@ -102,4 +102,8 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
   Route::get('/register/protection',[ProtectionController::class,'registerPage'])->name('protection.registerPage');
   Route::post('/register/protection/signup',[ProtectionController::class,'register'])->name('protection.register');
 
+
+  Route::get('/profile', function () {
+    //
+})->middleware('auth');
 require __DIR__ . '/auth.php';
