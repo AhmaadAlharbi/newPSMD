@@ -140,8 +140,8 @@ td {
                                         {{$task_details->tasks->station->SSNAME}}
                                     </h1>
                                 </div>
-                                <div class="col-sm-12 col-md-12 col-lg-8">
-                                    <table class="table mt-2 p-5 border  border-dark h-100 text-center" id="table1"
+                                <div class="col-sm-12 col-md-12 col-lg-8 d-none d-sm-block">
+                                    <table class="table mt-2 p-5  border  border-dark h-100 text-center" id="table1"
                                         class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
