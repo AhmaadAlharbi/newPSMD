@@ -323,12 +323,12 @@
                                                             </td>
                                                             <td colspan="2">
                                                                 <a class="btn btn-outline-success btn-sm"
-                                                                    href="{{route('protection.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                    href="{{route('switch.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                     عرض</a>
 
                                                                 <a class="btn btn-outline-info btn-sm"
-                                                                    href="{{route('protection.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                    href="{{route('switch.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                     role="button"><i class="fas fa-download"></i>&nbsp;
                                                                     تحميل</a>
                                                                 <button class="btn btn-outline-danger btn-sm"
@@ -372,7 +372,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('delete_file')}}" method="post">
+            <form action="{{route('switch.delete_file')}}" method="post">
 
                 @csrf
                 <div class="modal-body">

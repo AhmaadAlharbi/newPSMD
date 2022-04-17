@@ -295,7 +295,7 @@ public function newuser(Request $request){
         if ($request->hasfile('pic')) {
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/switchgear/' . $task_id), $name);
+                $file->move(public_path('Attachments/switch/' . $task_id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();
@@ -482,12 +482,12 @@ public function newuser(Request $request){
     }
   public function open_file($id, $file_name)
     {
-        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('switchgear/'.$id . '/' . $file_name);
+        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('switch/'.$id . '/' . $file_name);
         return response()->file($files);
     }
     public function get_file($id, $file_name)
     {
-        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('switchgear/'.$id . '/' . $file_name);
+        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('switch/'.$id . '/' . $file_name);
         return response()->download($contents);
     }
     public function destroyAttachment(Request $request)
@@ -624,7 +624,7 @@ public function newuser(Request $request){
         if ($request->hasfile('pic')) {
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move(public_path('Attachments/switchgear/' . $id), $name);
+                $file->move(public_path('Attachments/switch/' . $id), $name);
                 $data[] = $name;
                 $refNum = $request->refNum;
                 $attachments = new TaskAttachment();

@@ -18,13 +18,14 @@ class AddTaskWithAttachments extends Notification
      *
      * @return void
      */
-    public function __construct($id,array $pic,$ssname)
+    public function __construct($id,array $pic,$ssname,$fromSection)
     {
      
       
         $this->id = $id;
         $this->pic = $pic;
         $this->ssname = strtolower($ssname);
+        $this->fromSection = $fromSection;
     }
 
     /**
@@ -59,13 +60,16 @@ class AddTaskWithAttachments extends Notification
                 case '5':
                 $section = 'transformers';
                 break;
+                case '6':
+                    $section = 'switch';
+                break;    
             default:
             $section = 'section';
 
         }
+        $url ="http://127.0.0.1:8000/dashboard/user/query_section_id=".$this->fromSection."/Engineer-report-form".'/'.$this->id;
+
        if(count($this->pic)== 1){
-        // $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
-         $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
         return (new MailMessage)
             ->subject($this->ssname." مهمة جديدة لمحطة")
             ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
@@ -74,55 +78,47 @@ class AddTaskWithAttachments extends Notification
             ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
             ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]));
        }elseif(count($this->pic)==2){
-        $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
-        // $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
         return (new MailMessage)
             ->subject($this->ssname." مهمة جديدة لمحطة")
             ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
             ->line('اضافة مهمة جديدة')
             ->action('عرض المهمة', $url)
             ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[0]))
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[1]));
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]));
        }elseif(count($this->pic)==3){
-        $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
-        // $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
         return (new MailMessage)
             ->subject($this->ssname." مهمة جديدة لمحطة")
             ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
             ->line('اضافة مهمة جديدة')
             ->action('عرض المهمة', $url)
             ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[0]))
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[1]))
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[2]));
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]))
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[2]));
        }elseif(count($this->pic)==4){
-        $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
-        // $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
         return (new MailMessage)
             ->subject($this->ssname." مهمة جديدة لمحطة")
             ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
             ->line('اضافة مهمة جديدة')
             ->action('عرض المهمة', $url)
             ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[0]))
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[1]))
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[2]))
-            ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[3]));
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]))
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[2]))
+            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[3]));
        }else{
-            $url = 'http://127.0.0.1:8001/add_your_report/'.$this->id;
-            // $url = 'http://192.168.188.208:80/add_your_report/'.$this->id;
             return (new MailMessage)
                 ->subject($this->ssname." مهمة جديدة لمحطة")
                 ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
                 ->line('اضافة مهمة جديدة')
                 ->action('عرض المهمة', $url)
                 ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-                ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[0]))
-                ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[1]))
-                ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[2]))
-                ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[3]))
-                ->attach(public_path('Attachments/protection/'.$this->id.'/'.$this->pic[4]));   
+                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
+                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]))
+                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[2]))
+                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[3]))
+                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[4]));   
            }
     
 

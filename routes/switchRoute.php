@@ -84,7 +84,7 @@ Route::post('/dashboard/admin/query_section_id=6/add-new-user',[SwitchGearContro
     Route::post('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'update'])->name('switch.update');
     Route::delete('/dashboard/admin/query_section_id=6/deleteTask',[SwitchGearController::class,'destroyTask'])->name('switch.destroyTask');
   //attachments
-    Route::post('delete_file', [SwitchGearController::class, 'destroyAttachment'])->name('delete_file');
+    Route::post('delete_file/switchgear', [SwitchGearController::class, 'destroyAttachment'])->name('switch.delete_file');
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=6/print-report/{id}',[SwitchGearController::class,'viewPrintReport'])->name('switch.veiwReport');
     Route::get('/dashboard/admin/query_section_id=6/print-common-report/{id}/{section_id}',[SwitchGearController::class,'viewCommonReport'])->name('switch.viewCommonReport');
