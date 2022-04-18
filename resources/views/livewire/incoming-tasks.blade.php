@@ -92,7 +92,7 @@
         </div>
     </div>
     @endforeach
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center p-3">
         {{ $incomingTasks->links() }}
       </div>
 </div>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class CommonTasks extends Component
 {    use WithPagination;
 
-    protected $paginationTheme = 'bootstrap';
+    // protected $paginationTheme = 'bootstrap';
     public function render()
     {
         $section_id = Auth::user()->section_id;
@@ -18,7 +18,7 @@ class CommonTasks extends Component
         $common_tasks_details = Task::where('fromSection',$section_id)
         ->whereNotNull('toSection')
         ->where('toSection','!=',$section_id)
-        ->paginate(1);
+        ->simplePaginate(1);
         return view('livewire.common-tasks',compact('common_tasks_details'));
     }
 }

@@ -121,7 +121,7 @@
     </div>
     @endforeach
    
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center pagination p-3">
     {{ $tasks->links() }}
   </div>
 </div>

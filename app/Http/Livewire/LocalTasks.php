@@ -9,7 +9,7 @@ use App\Models\Task;
 
 class LocalTasks extends Component
 {
-    protected $paginationTheme = 'bootstrap';
+    // protected $paginationTheme = 'bootstrap';
     use WithPagination;
     public function render()
     {
@@ -24,7 +24,7 @@ class LocalTasks extends Component
             ->orWhere('toSection',$section_id)
             ->whereNull('fromSection')
             ->where('status', 'pending')
-            ->paginate(1);
+            ->simplePaginate(1);
         }else{
         //edara's tasks
             $tasks = Task::orderBy('id', 'desc')

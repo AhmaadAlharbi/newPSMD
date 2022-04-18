@@ -97,7 +97,7 @@
     </div>
     @endforeach
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center p-3">
             {{$common_tasks_details->links() }}
         </div>
 </div>
