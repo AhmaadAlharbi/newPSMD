@@ -1,11 +1,11 @@
+
 <div>
     @foreach($tasks as $task)
     @php
     $department =
     \App\Models\TrTasks::where(['task_id'=>$task->id])->pluck('department')->first()
     @endphp
-    <div class="card-body p-0 customers mt-1">
-        
+    <div class="card-body p-0 customers mt-1">     
         <div class="list-group list-lg-group list-group-flush">
             <div class="list-group-item list-group-item-action" href="#">
                 <div class="media  mt-0">
@@ -118,11 +118,13 @@
                 </div>
             </div>
         </div>
+        @endforeach
+
+        <div class="d-flex justify-content-center p-3">
+        {{ $tasks->links() }}
+      </div>
     </div>
-    @endforeach
    
-  <div class="d-flex justify-content-center pagination p-3">
-    {{ $tasks->links() }}
-  </div>
+
 </div>
 

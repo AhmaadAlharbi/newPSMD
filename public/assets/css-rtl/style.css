@@ -8334,6 +8334,7 @@ textarea.custom-file-input.parsley-error:focus ~ .custom-file-label {
 
 .pagination {
     display: flex;
+    flex-wrap: wrap;
     padding-right: 0;
     list-style: none;
     border-radius: 3px;

@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class IncomingTasks extends Component
 {
     use WithPagination;
-    // protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'bootstrap';
     public function render()
     { 
         $section_id = Auth::user()->section_id;
         $incomingTasks = Task::Where('toSection',$section_id)
         ->whereNotNull('fromSection')
         ->where('status', 'pending')
-        ->simplePaginate(1);
+        ->Paginate(1);
         return view('livewire.incoming-tasks',compact('incomingTasks'));
     }
 }

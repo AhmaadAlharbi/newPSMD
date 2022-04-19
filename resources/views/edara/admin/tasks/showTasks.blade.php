@@ -86,7 +86,7 @@ window.onload = function() {
                             <tr>
                                 <td>{{$i}}</td>
                                 <td><a
-                                        href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
+                                        href="{{route('edara.admin.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
                                 </td>
                                 <td>{{$task->station->SSNAME}}</td>
 
@@ -133,14 +133,14 @@ window.onload = function() {
                                             type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
                                         <a class="dropdown-item"
-                                                href="{{route('protection.changeSectionView',['id'=>$task->id])}}"><i
+                                                href="{{route('edara.changeSectionView',['id'=>$task->id])}}"><i
                                                     class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
                                                 تحويل لقسم آخر
                                             </a>
                                             @if($task->status ==="completed")
                                      
                                             <a class="dropdown-item"
-                                                href="{{route('protection.veiwReport',['id'=>$task->id])}}"><i
+                                                href="{{route('edara.veiwReport',['id'=>$task->id])}}"><i
                                                     class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                  التقرير
                                             </a>
@@ -152,7 +152,7 @@ window.onload = function() {
                                             @else
 
                                             <a class="dropdown-item"
-                                                href="{{route('protection.updateTask',['id'=>$task->id])}}">
+                                                href="{{route('edara.updateTask',['id'=>$task->id])}}">
                                                 تعديل
                                             </a>
 
@@ -189,7 +189,7 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{route('protection.destroyTask')}}" method="post">
+                <form action="{{route('edara.destroyTask')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>

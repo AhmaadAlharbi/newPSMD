@@ -88,7 +88,9 @@ window.onload = function() {
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td><a href="{{url('taskDetails')}}/{{$task->id}}">{{$task->refNum}}</a></td>
+                                <td><a
+                                        href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
+                                </td>
                                 <td>{{$task->station->SSNAME}}</td>
 
 
@@ -163,7 +165,7 @@ window.onload = function() {
                                             @else
 
                                             <a class="dropdown-item"
-                                                href="{{route('protection.updateTask',['id'=>$task->id])}}">
+                                                href="{{route('Transformers.updateTask',['id'=>$task->id])}}">
                                                 تعديل
                                             </a>
 
@@ -200,7 +202,7 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{route('protection.destroyTask')}}" method="post">
+                <form action="{{route('Transformers.destroyTask')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>

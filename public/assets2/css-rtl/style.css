@@ -5960,7 +5960,8 @@ textarea.form-control.is-invalid, textarea.form-control.parsley-error {
   display: flex;
   padding-right: 0;
   list-style: none;
-  border-radius: 3px; }
+  border-radius: 3px; 
+  flex-wrap: wrap;}
 
 .page-link {
   position: relative;

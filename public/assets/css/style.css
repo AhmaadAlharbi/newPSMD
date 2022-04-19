@@ -5958,6 +5958,7 @@ textarea.form-control.is-invalid, textarea.form-control.parsley-error {
 
 .pagination {
   display: flex;
+  flex-wrap: wrap;
   padding-left: 0;
   list-style: none;
   border-radius: 3px; }
