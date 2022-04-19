@@ -320,6 +320,23 @@ class ProtectionController extends Controller
         $users = User::where('section_id',2)->get();
         return view('protection.admin.users.usersList',compact('users'));
     }
+    //updateuser get
+    public function editUser($id){
+        $user = User::findOrFail($id);
+        return view('protection.admin.users.update_user',compact('user'));
+
+    }
+    //update user post
+    public function updateUser(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'name'=>$request->eng_name,
+            'email'=>$request->email,
+     
+        ]);
+        session()->flash('edit', 'تم   التعديل  بنجاح');
+        return back();
+    }
     public function addEngineer(Request $request){
         Engineer::create([
             'user_id'=>$request->user_id,

@@ -92,7 +92,9 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/cancel-task-traking/{id}',[ProtectionController::class,'cancelTaskTraking'])->name('protection.cancelTaskTraking');
   //add a new user from dashboard
   Route::post('/dashboard/admin/query_section_id=2/add-new-user',[ProtectionController::class,'newuser'])->name('protection.admin.newUser');  
-  
+  Route::get('/dashboard/admin/query_section_id=2/edit-user-details/{id}',[ProtectionController::class,'editUser'])->name('protection.admin.editUser');  
+  Route::post('/dashboard/admin/query_section_id=2/update-edit-user-details/{id}',[ProtectionController::class,'updateUser'])->name('protection.admin.updateUser');  
+
   });
     
     Route::get('/dashboard/admin/stations-list',[ProtectionController::class,'showStations'])->name('stationsList')->middleware('auth');

@@ -30,6 +30,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Section::class);
     }
+    
     public function tr()
     {
         return $this->hasOne(TR::class);

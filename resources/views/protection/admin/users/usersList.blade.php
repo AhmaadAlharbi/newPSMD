@@ -40,9 +40,6 @@ window.onload = function() {
 }
 </script>
 @endif
-
-
-
 @if (session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{ session()->get('Add') }}</strong>
@@ -88,22 +85,22 @@ window.onload = function() {
                                 <td>{{$i}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-
-
-                                <td>
+                                <td><a class="btn btn-primary" href="{{route('protection.admin.editUser',['id'=>$user->id])}}">تعديل</a></td>
+                                
+                               {{-- <td>
                                     <div class="dropdown">
                                         <button aria-expanded="false" aria-haspopup="true"
                                             class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                             type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item" href="">تعديل</a>
+                                          
                                             <form action="" method="POST"> @csrf
                                                 @method('delete');
                                                 <button class="dropdown-item" href="">حذف</button>
                                             </form>
 
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </td>
                             </tr>
                             @endforeach
