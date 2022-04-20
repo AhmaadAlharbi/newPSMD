@@ -69,57 +69,17 @@ class AddTaskWithAttachments extends Notification
         }
         $url ="http://127.0.0.1:8000/dashboard/user/query_section_id=".$this->fromSection."/Engineer-report-form".'/'.$this->id;
 
-       if(count($this->pic)== 1){
-        return (new MailMessage)
-            ->subject($this->ssname." مهمة جديدة لمحطة")
-            ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
-            ->line('اضافة مهمة جديدة')
-            ->action('عرض المهمة', $url)
-            ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]));
-       }elseif(count($this->pic)==2){
-        return (new MailMessage)
-            ->subject($this->ssname." مهمة جديدة لمحطة")
-            ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
-            ->line('اضافة مهمة جديدة')
-            ->action('عرض المهمة', $url)
-            ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]));
-       }elseif(count($this->pic)==3){
-        return (new MailMessage)
-            ->subject($this->ssname." مهمة جديدة لمحطة")
-            ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
-            ->line('اضافة مهمة جديدة')
-            ->action('عرض المهمة', $url)
-            ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]))
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[2]));
-       }elseif(count($this->pic)==4){
-        return (new MailMessage)
-            ->subject($this->ssname." مهمة جديدة لمحطة")
-            ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
-            ->line('اضافة مهمة جديدة')
-            ->action('عرض المهمة', $url)
-            ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]))
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[2]))
-            ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[3]));
-       }else{
-            return (new MailMessage)
-                ->subject($this->ssname." مهمة جديدة لمحطة")
+        $mailMessage = (new MailMessage)
+        ->subject($this->ssname." مهمة جديدة لمحطة")
                 ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
                 ->line('اضافة مهمة جديدة')
                 ->action('عرض المهمة', $url)
-                ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ')
-                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[0]))
-                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[1]))
-                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[2]))
-                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[3]))
-                ->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$this->pic[4]));   
-           }
+                ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ');
+                foreach($this->pic as $file){
+                    $mailMessage->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$file));
+                }
+                return $mailMessage;
+      
     
 
         
