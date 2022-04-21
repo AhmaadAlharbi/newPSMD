@@ -90,7 +90,8 @@ Route::post('/dashboard/admin/query_section_id=6/add-new-user',[SwitchGearContro
     Route::get('/dashboard/admin/query_section_id=6/print-common-report/{id}/{section_id}',[SwitchGearController::class,'viewCommonReport'])->name('switch.viewCommonReport');
       //cancel track task that send to others sections
       Route::get('/dashboard/admin/query_section_id=6/cancel-task-traking/{id}',[SwitchGearController::class,'cancelTaskTraking'])->name('switch.cancelTaskTraking');
-
+      Route::get('/dashboard/admin/query_section_id=6/edit-user-details/{id}',[SwitchGearController::class,'editUser'])->name('switch.admin.editUser');  
+      Route::post('/dashboard/admin/query_section_id=6/update-edit-user-details/{id}',[SwitchGearController::class,'updateUser'])->name('switch.admin.updateUser');  
 
     });
     

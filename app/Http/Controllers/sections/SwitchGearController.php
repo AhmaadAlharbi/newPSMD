@@ -94,6 +94,23 @@ public function newuser(Request $request){
         $stations = Station::all();
         return view ('switchgear.admin.tasks.add_task',compact('stations','task_id'));
     }
+      //updateuser get
+      public function editUser($id){
+        $user = User::findOrFail($id);
+        return view('switchgear.admin.users.update_user',compact('user'));
+
+    }
+    //update user post
+    public function updateUser(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'name'=>$request->eng_name,
+            'email'=>$request->email,
+     
+        ]);
+        session()->flash('edit', 'تم   التعديل  بنجاح');
+        return back();
+    }
     public function addEngineer(Request $request){
         Engineer::create([
             'user_id'=>$request->user_id,

@@ -73,6 +73,7 @@ window.onload = function() {
                                 <th class="border-bottom-0">#</th>
                                 <th class="border-bottom-0">الاسم</th>
                                 <th class="border-bottom-0"> البريد الإلكتروني </th>
+                                <th class="border-bottom-0">القسم</th>
                                 <th class="border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -88,23 +89,22 @@ window.onload = function() {
                                 <td>{{$i}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
+                                @switch($user->tr->department)
+                                @case(0)
+                                <td>Admin</td>
+                                @break
+                                @case(1)
+                                <td>Mechanical</td>
+                                @break
+                                @case(2)
+                                <td>Chemistry</td>
+                                @break
+                                @default
+                                <td>Electrical</td>
 
+                                @endswitch
+                                <td><a class="btn btn-primary" href="{{route('Transformers.admin.editUser',['id'=>$user->id])}}">تعديل</a></td>
 
-                                <td>
-                                    <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true"
-                                            class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-                                            type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
-                                        <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item" href="">تعديل</a>
-                                            <form action="" method="POST"> @csrf
-                                                @method('delete');
-                                                <button class="dropdown-item" href="">حذف</button>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

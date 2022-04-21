@@ -132,6 +132,27 @@ class TransformersController extends Controller
     public function getUserEmail($user_name){
             return (String) User::where('name',$user_name)->first();
         }
+         //updateuser get
+      public function editUser($id){
+        $user = User::findOrFail($id);
+        return view('transformers.admin.users.update_user',compact('user'));
+
+    }
+    //update user post
+    public function updateUser(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user_tr =TR::where('user_id',$id)->first();
+        $user->update([
+            'name'=>$request->eng_name,
+            'email'=>$request->email,
+     
+        ]);
+        $user_tr->update([
+            'department'=>$request->department,
+        ]);
+        session()->flash('edit', 'تم   التعديل  بنجاح');
+        return back();
+    }
     public function addEngineer(Request $request){
             TR::create([
                 'user_id'=>$request->user_id,
