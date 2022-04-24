@@ -23,6 +23,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
+use App\Rules\fourName;
 
 class ProtectionController extends Controller
 {
@@ -60,7 +61,9 @@ class ProtectionController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        
+        $request->validate([
+            'name' => ['required', 'string', new fourName(4)],
+        ]);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
