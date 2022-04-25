@@ -25,7 +25,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
-
+use App\Rules\fourName;
+use App\Rules\OnlyMewEmail;
 class TransformersController extends Controller
 {
        ###################### ADMIN CONTROLLER ########################
@@ -36,8 +37,8 @@ class TransformersController extends Controller
     //sign up users
     public function register(Request $request){
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255',new fourName(4)],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $user = User::create([
@@ -57,8 +58,8 @@ class TransformersController extends Controller
     //sign up a new user from admin dashboard
     public function newuser(Request $request){
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255',new fourName(4)],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $user = User::create([

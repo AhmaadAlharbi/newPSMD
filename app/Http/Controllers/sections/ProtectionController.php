@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
 use App\Rules\fourName;
-
+use App\Rules\OnlyMewEmail;
 class ProtectionController extends Controller
 {
     ####################### ADMIN CONTROLLER ########################
@@ -36,8 +36,8 @@ class ProtectionController extends Controller
     //sign up users
     public function register(Request $request){
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255',new fourName(4)],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         
@@ -57,13 +57,11 @@ class ProtectionController extends Controller
     //sign up a new user from admin dashboard
     public function newuser(Request $request){
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255',new fourName(4)],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $request->validate([
-            'name' => ['required', 'string', new fourName(4)],
-        ]);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
