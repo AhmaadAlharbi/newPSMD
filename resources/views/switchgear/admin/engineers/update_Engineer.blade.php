@@ -58,9 +58,9 @@
                     @csrf
                     <div class="modal-body">
                         <label for="eng_name" class="control-label ">اسم المهندس</label>
-                        <input readonly type="text" name="eng_name" class="form-control m-2" value="{{$engineer->user_id}}">
+                        <input readonly type="text" name="eng_name" class="form-control m-2" value="{{$engineer->users->name}}">
                         <label for="email" class="control-label ">البريد الإلكتروني</label>
-                        <input readonly type="text" name="email" class="form-control m-2" value="{{$engineer->email}}">
+                        <input readonly type="text" name="email" class="form-control m-2" value="{{$engineer->users->email}}">
                         <label for="area_id" class="control-label ">المنطقة</label>
                         <select name="area_id" id="area" class="form-control">
                             <!--placeholder-->

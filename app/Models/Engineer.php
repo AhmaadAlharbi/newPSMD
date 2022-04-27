@@ -13,6 +13,9 @@ class Engineer extends Model
     {
         return $this->hasMany(Section::class);
     }
-
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
    
 }

@@ -87,7 +87,10 @@ Route::middleware(['is_admin','is_transformers'])->group(function () {
     Route::post('/dashboard/admin/query_section_id=5/update-task/{id}',[TransformersController::class,'update'])->name('Transformers.update');
     Route::delete('/dashboard/admin/query_section_id=5/deleteTask',[TransformersController::class,'destroyTask'])->name('Transformers.destroyTask');
     Route::post('/Transformers/addEngineer',[TransformersController::class,'addEngineer'])->name('Transformers.addEngineer');
-  //attachments
+  //update Engineer
+  Route::get('/dashboard/admin/query_section_id=5/edit-engineer-details/{id}',[TransformersController::class,'editEngineer'])->name('Transformers.admin.editEngieer');  
+  Route::post('/dashboard/admin/query_section_id=5/update-engineer-details/{id}',[TransformersController::class,'updateEngineer'])->name('Transformers.admin.updateEngineer');  
+    //attachments
     Route::post('delete_file', [TransformersController::class, 'destroyAttachment'])->name('delete_file');
     // VIEW REPORT PRINT PAGE
     Route::get('/dashboard/admin/query_section_id=5/print-report/{id}',[TransformersController::class,'viewPrintReport'])->name('Transformers.veiwReport');

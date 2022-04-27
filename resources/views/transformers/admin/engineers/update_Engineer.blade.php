@@ -52,15 +52,51 @@
         <div class="card">
             <div class="card-body">
 
-                <form action="{{route('protection.admin.updateEngineer',['id'=>$engineer->user_id])}}" enctype="multipart/form-data"
+                <form action="{{route('Transformers.admin.updateEngineer',['id'=>$engineer->user_id])}}" enctype="multipart/form-data"
 
                 method="post" autocomplete="off">
                     @csrf
                     <div class="modal-body">
                         <label for="eng_name" class="control-label ">اسم المهندس</label>
-                        <input readonly type="text" name="eng_name" class="form-control m-2" value="{{$engineer->users->name}}">
+                        <input readonly type="text" name="eng_name" class="form-control m-2" value="{{$engineer->user->name}}">
                         <label for="email" class="control-label ">البريد الإلكتروني</label>
-                        <input readonly type="text" name="eng_name" class="form-control m-2" value="{{$engineer->users->email}}">
+                        <input readonly type="text" name="eng_name" class="form-control m-2" value="{{$engineer->user->email}}">
+                        <label for="area_id" class="control-label ">القسم</label>
+                        <select name="department"  class="form-control">
+                            <!--placeholder-->
+                            @if($engineer->department == 1)
+                            <option value="1"> 
+                                Mechanical
+                            </option>
+                            <option value="2"> 
+                                Chemistry
+                            </option>
+                            <option value="3">
+                                Electrical
+                            </option>
+                            @elseif($engineer->department == 2)
+                            <option value="2"> 
+                                Chemistry
+                            </option>
+                            <option value="1"> 
+                                Mechanical
+                            </option>
+                            <option value="3">
+                                Electrical
+                            </option>
+                            @else
+                            <option value="3">
+                                Electrical
+                            </option>
+                            <option value="1"> 
+                                Mechanical
+                            </option>
+                            <option value="2"> 
+                                Chemistry
+                            </option>
+                     
+                            @endif
+                        </select>
                         <label for="area_id" class="control-label ">المنطقة</label>
                         <select name="area_id" id="area" class="form-control">
                             <!--placeholder-->

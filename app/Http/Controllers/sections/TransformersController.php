@@ -164,6 +164,25 @@ class TransformersController extends Controller
             session()->flash('Add','تم الاضافة بنجاح');
             return back();
         }
+    //edit Engineer get
+        public function editEngineer($id){
+            $engineer = TR::where('user_id',$id)->first();
+            return view('transformers.admin.engineers.update_Engineer',compact('engineer'));
+        
+         }
+
+ //update engineer post
+    public function updateEngineer(Request $request,$id){
+        $engineer = TR::where('user_id',$id)->first();
+        $engineer->update([
+            'department'=>$request->department,
+            'area'=>$request->area_id,
+            'shift'=>$request->shift_id,
+    
+        ]);
+        session()->flash('edit', 'تم   التعديل  بنجاح');
+        return back();
+    }
        //get all Engineer  JSON
     public function getEngineerName($area,$department,$shift){
         $shift = 1;
