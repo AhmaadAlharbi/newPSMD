@@ -79,6 +79,9 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
     Route::get('/dashboard/admin/query_section_id=2/users_list',[ProtectionController::class,'showUsers'])->name('protection.users');
      //add engineer
     Route::post('/dashboard/admin/query_section_id=2/add-engineer',[ProtectionController::class,'addEngineer'])->name('protection.addEngineer');
+    //update Engineer
+    Route::get('/dashboard/admin/query_section_id=2/edit-engineer-details/{id}',[ProtectionController::class,'editEngineer'])->name('protection.admin.editEngieer');  
+    Route::post('/dashboard/admin/query_section_id=2/update-engineer-details/{id}',[ProtectionController::class,'updateEngineer'])->name('protection.admin.updateEngineer');  
 
     Route::get('/dashboard/admin/query_section_id=2/update-task/{id}',[ProtectionController::class,'updateTask'])->name('protection.updateTask');
     Route::post('/dashboard/admin/query_section_id=2/update-task/{id}',[ProtectionController::class,'update'])->name('protection.update');
@@ -93,7 +96,7 @@ Route::middleware(['is_admin','is_protection'])->group(function () {
   //add a new user from dashboard
   Route::post('/dashboard/admin/query_section_id=2/add-new-user',[ProtectionController::class,'newuser'])->name('protection.admin.newUser');  
   Route::get('/dashboard/admin/query_section_id=2/edit-user-details/{id}',[ProtectionController::class,'editUser'])->name('protection.admin.editUser');  
-  Route::post('/dashboard/admin/query_section_id=2/update-edit-user-details/{id}',[ProtectionController::class,'updateUser'])->name('protection.admin.updateUser');  
+  Route::post('/dashboard/admin/query_section_id=2/update-user-details/{id}',[ProtectionController::class,'updateUser'])->name('protection.admin.updateUser');  
 
   });
     

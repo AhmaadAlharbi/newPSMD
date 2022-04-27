@@ -79,6 +79,9 @@ Route::post('/dashboard/admin/query_section_id=6/add-new-user',[SwitchGearContro
     Route::get('/dashboard/admin/query_section_id=6/engineers_list',[SwitchGearController::class,'showEngineers'])->name('switch.engineers');
      //add engineer
      Route::post('/dashboard/admin/query_section_id=6/add-engineer',[SwitchGearController::class,'addEngineer'])->name('switch.addEngineer');
+     //update Engineer
+     Route::get('/dashboard/admin/query_section_id=6/edit-engineer-details/{id}',[SwitchGearController::class,'editEngineer'])->name('switch.admin.editEngieer');  
+     Route::post('/dashboard/admin/query_section_id=6/update-engineer-details/{id}',[SwitchGearController::class,'updateEngineer'])->name('switch.admin.updateEngineer');  
      Route::get('/dashboard/admin/query_section_id=6/users_list',[SwitchGearController::class,'showUsers'])->name('switch.users');
     Route::get('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'updateTask'])->name('switch.updateTask');
     Route::post('/dashboard/admin/query_section_id=6/update-task/{id}',[SwitchGearController::class,'update'])->name('switch.update');

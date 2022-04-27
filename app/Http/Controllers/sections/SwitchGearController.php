@@ -102,6 +102,12 @@ public function newuser(Request $request){
         return view('switchgear.admin.users.update_user',compact('user'));
 
     }
+        //updae Engineer get
+        public function editEngineer($id){
+            $engineer = Engineer::where('user_id',$id)->first();
+            return view('switchgear.admin.engineers.update_Engineer',compact('engineer'));
+        
+         }
     //update user post
     public function updateUser(Request $request,$id){
         $user = User::findOrFail($id);
@@ -109,6 +115,17 @@ public function newuser(Request $request){
             'name'=>$request->eng_name,
             'email'=>$request->email,
      
+        ]);
+        session()->flash('edit', 'تم   التعديل  بنجاح');
+        return back();
+    }
+//update engineer post
+    public function updateEngineer(Request $request,$id){
+        $engineer = Engineer::where('user_id',$id)->first();
+        $engineer->update([
+            'area'=>$request->area_id,
+            'shift'=>$request->shift_id,
+    
         ]);
         session()->flash('edit', 'تم   التعديل  بنجاح');
         return back();
