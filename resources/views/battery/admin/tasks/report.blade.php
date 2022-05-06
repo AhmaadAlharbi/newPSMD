@@ -29,7 +29,9 @@
 .print-title {
     background: #e6e6e8 !important;
 }
-
+td {
+    font-size: 20px;
+}
 #table0 td,
 #table1 td,
 #table2 td,
@@ -134,16 +136,14 @@ td {
                                 <h5>{{$task_details->report_date}}</h5>
                             </div>
                             <div class="row ssname-table">
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-sm-12 col-md-12 col-lg-4">
                                     <h1
-                                        class="d-none d-sm-block text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
+                                        class=" text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
                                         {{$task_details->tasks->station->SSNAME}}
                                     </h1>
-                                    <h1 class="d-md-none  p-3 text-center mt-2  bg-dark text-white">
-                                        {{$task_details->tasks->station->SSNAME}}
-                                    </h1>
+                        
                                 </div>
-                                <div class="col-sm-12 col-md-8">
+                                <div class="col-sm-12 col-md-12 col-lg-8 d-none d-sm-block">
                                     <table class="table mt-2 p-5 border  border-dark h-100 text-center" id="table1"
                                         class="ltr-table ">
                                         <thead class="thead-light">
@@ -171,7 +171,7 @@ td {
                                         <tbody>
                                             <tr>
                                                 <td>{{$task_details->tasks->station->COMMISIONING_DATE}}</td>
-                                                {{-- <td>{{$task->pm}}</td>--}}
+                                                 <td>11/11/2002</td>
 
                                             </tr>
                                         </tbody>
@@ -188,13 +188,18 @@ td {
                                 <h2>Nature of Fault</h2>
 
 
-                                <h4 class="  ml-4 ">{{$task_details->tasks->problem}}</h4>
+                                <h4 class="  ml-4 ">{{$task_details->problem}}</h4>
                             </div>
 
                             <div
                                 class=" d-none d-sm-block p-5 border border-dark print-title  p-3-lg p-1 mt-4 mb-2  text-dark">
                                 <h2>Action Take</h2>
+                                @if(isset($task_details->action_take))
                                 <h4 class=" ml-4 w-auto h-25 ">{{$task_details->action_take}}</h4>
+                                @else
+                                <h4 class=" ml-4 w-auto h-25 ">{{$task_details->reasonOfUncompleted}}</h4>
+                                <h5 class=" ml-4 w-auto h-25 ">{{$task_details->engineer_notes}}</h5>
+                                @endif
                             </div>
                             <div class="  d-md-none border border-dark print-title  px-3  p-1 mt-4 mb-2  text-dark">
                                 <h2>Action Take</h2>
@@ -204,20 +209,71 @@ td {
                             <div class="d-block p-3 mb-2 bg-white text-dark">
                                 <h2>Engineer</h2>
                             </div>
-                            <h4 class="  ml-4 ">{{$task_details->engineers->name}}<br>
+                            <h4 class="  ml-4 ">{{$task_details->users->name}}<br>
 
                             </h4>
-                            <p class="ml-4 lead">{{$task_details->engineers->email}}</p>
+                            <p class="ml-4 lead">{{$task_details->users->email}}</p>
                         </div>
 
                     </div>
 
                     <hr class=" mg-b-40">
+                    @isset($commonTasks)
+                <!-- row -->
+<div class="row d-print-none">
+    <!--div-->
+    <div class="col-xl-12">
+        <div class="card mg-b-20">
 
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
+                        <thead>
+                            <tr>
+                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">رقم المهمة</th>
+                                <th class="border-bottom-0">اسم المحطة </th>
+                                <th class="border-bottom-0"> القسم </th>
+                                <th class="border-bottom-0"> المهندس </th>
+                                <th class="border-bottom-0"> التقرير </th>
+                     
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $i = 0;
+                            @endphp
+                            @foreach ($commonTasks as $task)
+                            @php
+                            $i++
+                            @endphp
+                            <tr>
+                                <td>{{$i}}</td>
+                                <td><a
+                                        href="{{route('battery.admin.taskDetails',['id'=>$task->id])}}">{{$task->tasks->refNum}}</a>
+                                </td>
+                                <td>{{$task->tasks->station->SSNAME}}</td>
+                                <td>{{$task->sectionID->section_name}}</td>
+                                <td>{{$task->users->name}}</td>
+                                <td><a href="{{route('battery.viewCommonReport',['id'=>$task->task_id,'section_id'=>$task->sectionID->id])}}" class="btn btn-outline-success">التقرير</a></td>
+
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/div-->
+</div>
+                @endisset
                     <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
                             class="mdi mdi-printer ml-1"></i>طباعة</button>
 
                 </div>
+
             </div>
         </div>
     </div><!-- COL-END -->

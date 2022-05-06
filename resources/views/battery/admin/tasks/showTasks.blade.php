@@ -55,10 +55,10 @@ window.onload = function() {
 
 <!-- row -->
 <div class="row">
+</div>
     <!--div-->
     <div class="col-xl-12">
         <div class="card mg-b-20">
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
@@ -85,7 +85,9 @@ window.onload = function() {
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td><a href="{{url('taskDetails')}}/{{$task->id}}">{{$task->refNum}}</a></td>
+                                <td><a
+                                        href="{{route('battery.admin.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
+                                </td>
                                 <td>{{$task->station->SSNAME}}</td>
 
 
@@ -98,8 +100,7 @@ window.onload = function() {
                                 @elseif($task->station->control == "TOWN CONTROL CENTER")
                                 <td class="table-danger">{{$task->station->control}}
                                 </td>
-                                @elseif($task->station->control == "SHUAIBA CONTROL
-                                CENTER")
+                                @elseif($task->station->control == "SHUAIBA CONTROL CENTER")
                                 <td class="table-success">{{$task->station->control}}
                                 </td>
                                 @else
@@ -107,9 +108,9 @@ window.onload = function() {
 
                                     @endif
 
-                                <td>{{$task->task_Date}}</td>
-                                @if(isset($task->engineers->name))
-                                <td>{{$task->engineers->name}}</td>
+                                <td>{{$task->task_date}}</td>
+                                @if(isset($task->users->name))
+                                <td>{{$task->users->name}}</td>
                                 @else
                                 <td>waiting...</td>
                                 @endif
@@ -131,13 +132,19 @@ window.onload = function() {
                                             class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                             type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-
+                                        <a class="dropdown-item"
+                                                href="{{route('battery.changeSectionView',['id'=>$task->id])}}"><i
+                                                    class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                                تحويل لقسم آخر
+                                            </a>
                                             @if($task->status ==="completed")
+                                     
                                             <a class="dropdown-item"
-                                                href="{{route('protection.veiwReport',['id'=>$task->id])}}"><i
+                                                href="{{route('battery.veiwReport',['id'=>$task->id])}}"><i
                                                     class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                  التقرير
                                             </a>
+
                                             {{--  <a class=" dropdown-item btn btn-outline-info "
                                                 href="{{url('generate-pdf')}}/{{$task->id}}">
                                             <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
@@ -145,7 +152,7 @@ window.onload = function() {
                                             @else
 
                                             <a class="dropdown-item"
-                                                href="{{route('protection.updateTask',['id'=>$task->id])}}">
+                                                href="{{route('battery.updateTask',['id'=>$task->id])}}">
                                                 تعديل
                                             </a>
 
@@ -182,7 +189,7 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{route('protection.destroyTask')}}" method="post">
+                <form action="{{route('battery.destroyTask')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>

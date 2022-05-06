@@ -50,6 +50,13 @@
                 <a class="btn btn-outline-dark mt-2 text-center"
                     href="{{route('protection.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                 @break
+                @case(3)
+                {{--battery--}}
+                <a class="btn btn-info mt-2 text-center"
+                    href="{{route('battery.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center"
+                    href="{{route('battery.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                @break
                 @case(5)
                    {{--Transformers--}}
                    <a class="btn btn-info mt-2 text-center"

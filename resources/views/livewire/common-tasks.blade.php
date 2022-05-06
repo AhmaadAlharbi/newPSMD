@@ -1,4 +1,9 @@
 <div>
+    @isset($common_tasks_details )
+    <p class="text-center">
+        nothing to view
+    </p>
+    @endisset
     @foreach($common_tasks_details as $task)
     <div class="card-body p-0 customers mt-1">
         <div class="list-group list-lg-group list-group-flush">
@@ -53,6 +58,21 @@
                                     href="{{route('protection.viewCommonReport',['id'=>$task->id,'section_id'=>$task->toSections->id])}}">Report</a>
                                 <a class="text-left btn btn-success "
                                     href="{{route('protection.updateTask',['id'=>$task->id])}}"
+                                    class=" m-2 btn btn-primary btn-sm">Edit</a>
+                                @endif
+                                @break
+                                @case(3)
+                                {{--Battery--}}
+                                <a href="{{route('battery.admin.taskDetails',['id'=>$task->id])}}"
+                                    class=" my-2 btn btn-outline-secondary ">Read More</a>
+                                    <a href="{{route('battery.cancelTaskTraking',['id'=>$task->id])}}" 
+                                        class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+    
+                                @if($task->status === 'completed')
+                                <a class="btn btn-info mt-0 text-center"
+                                    href="{{route('battery.viewCommonReport',['id'=>$task->id,'section_id'=>$task->toSections->id])}}">Report</a>
+                                <a class="text-left btn btn-success "
+                                    href="{{route('battery.updateTask',['id'=>$task->id])}}"
                                     class=" m-2 btn btn-primary btn-sm">Edit</a>
                                 @endif
                                 @break

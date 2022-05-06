@@ -14,7 +14,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم إدارة مهمات قسم البطاريات</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم إدارة مهمات قسم الوقاية</h2>
         </div>
     </div>
 </div>
@@ -36,32 +36,23 @@
     margin: 0 auto;
 }
 </style>
-@if (session()->has('Add'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        @endif
+
 <div class="row row-sm">
-    
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('battery.showEngineerTasks',['id'=>Auth::user()->id])}}">عرض
-                            كافة
-                            مهمات </a>
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{ url('/' . $page='All_tasks') }}">عرض كافة
+                            مهمات شهر {{$monthName}}</a>
                     </h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{--\App\Models\Task::where('eng_id',Auth::user()->id)->count()--}}
-                                {{Auth::user()->name}} 
+                                {{\App\Models\Task::whereMonth('created_at', date('m'))->count()}}
+
+
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
@@ -77,21 +68,26 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('battery.showEngineerTasksUncompleted',['id'=>Auth::user()->id])}}">المهمات
-                            الغير
+                            href="{{ url('/' . $page='task_uncompleted') }}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','pending')->where('eng_id',Auth::user()->id)->count()}}
+                                {{\App\Models\Task::where('status','pending')->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات غير منجزة</p>
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-down text-white"></i>
-      
+                            <span class="text-white tx-16 op-7">
+                                @if(\App\Models\Task::count()!==0)
+                                {{round((\App\Models\Task::where('status','pending')->count()/\App\Models\Task::count())*100)}}%
+
+                                @endif
+
+                            </span>
                         </span>
                     </div>
                 </div>
@@ -104,15 +100,14 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('battery.showEngineerTasksCompleted',['id'=>Auth::user()->id])}}">المهمات
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{ url('/' . $page='task_completed') }}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->where('eng_id',Auth::user()->id)->count()}}
+                                {{\App\Models\Task::where('status','completed')->whereMonth('created_at', date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -120,7 +115,11 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-up text-white"></i>
-              
+                            <span class="text-white tx-18 op-7">
+                                @if(\App\Models\Task::count()!==0)
+                                {{round((\App\Models\Task::where('status','completed')->count()/\App\Models\Task::count())*100)}}%
+                                @endif
+                            </span>
                         </span>
                     </div>
                 </div>
@@ -133,7 +132,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
-                        <a class="text-white" href="{{route('battery.user.archive')}}">ارشيف التقارير</a>
+                        <a class="text-white" href="{{route('archive')}}">ارشيف التقارير</a>
                     </h6>
                     </h6>
                 </div>
@@ -141,7 +140,7 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\TaskDetails::where('section_id','3')->count()}}
+                                {{\App\Models\Task::where('status','completed')->count()}}
                             </h4>
                             <p class="mb-0 tx-12 text-white op-7">
                                 تقرير
@@ -178,7 +177,7 @@
                     <div class="list-group-item list-group-item-action" href="#">
                         <div class="media  mt-0">
 
-                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="{{asset('image/electricIcon.svg')}}"
+                            <img class="avatar-lg rounded-circle ml-3 my-auto" src="image/electricIcon.svg"
                                 alt="Image description">
 
                             <div class="media-body">
@@ -197,30 +196,27 @@
                                             {{$task->status}}
                                         </span>
                                         @endif
-                                        @if($task->status=="pending")
-                                        <h5 class="m-1 tx-15">{{$task->users->name}}</h5>
+                                        @if(isset($task->engineers->name))
+                                        <h5 class="m-1 tx-15">{{$task->engineers->name}}</h5>
                                         @else
                                         <h5 class="m-1 tx-15 text-info border  p-2">Waiting to be assigned
                                         </h5>
-                                        <a href="" class="btn  btn-warning d-block">Assign Engineer</a>
+                                        <a href="{{route('selectEngineer',['id'=>$task->id])}}"
+                                            class="btn  btn-warning d-block">Assign Engineer</a>
                                         @endif
 
                                         <p class="mb-0 tx-13 text-dark">ssname: {{$task->station->SSNAME}} </p>
-                                        <a href="{{route('battery.user.taskDetails',['id'=>$task->id])}}"
+                                        <a href="/taskDetails/{{$task->id}}"
                                             class=" my-2 btn btn-outline-secondary ">Read More</a>
                                         @if(isset($task->engineers->name))
 
-                                        {{-- <a class="text-left btn btn-dark " href=""
-                                            class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
+                                        <a class="text-left btn btn-dark "
+                                            href="{{route('task.reminder',['id'=>$task->id,'eng_email'=>$task->engineers->email,'ssname'=>$task->station->SSNAME])}}"
+                                            class=" m-2 btn btn-primary btn-sm">Resend Task</a>
                                         @endif
                                         {{--  <a class="text-left btn btn-danger "
-                                            href=""
+                                            href="{{route('tasks.addYourReport',['id'=>$task->id])}}"
                                         class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
-                                        <a class="text-left btn btn-success "
-                                            href="{{route('battery.engineerReportForm',['id'=>$task->id])}}"
-                                            class=" m-2 btn btn-primary btn-sm">Action Take</a>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -243,37 +239,23 @@
                     <li class="mt-0 mb-0 "> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i>
                         <!-- <p class=" badge badge-success ">{{$task_detail->status}}</p> -->
                         <p class="text-right text-muted"> {{$task_detail->created_at}}</p>
-
+                        @if(isset($task_detail->engineers->name))
                         <p class="p-3 mb-2 bg-dark text-white text-center">Engineer :
-                            {{ \App\Models\User::where(['id'=>$task_detail->eng_id])->pluck('name')->first()}}
-
-                        </p>
+                            {{$task_detail->engineers->name}}
+                        </p> @else
+                        <h5 class="m-1 tx-15">Waiting...</h5>
+                        @endif
 
                         <p class="  bg-white text-dark text-center  "><ins>Station :
-                                @php
-                                //to get station id
-                                $station_id =
-                                \App\Models\Task::where(['id'=>$task_detail->task_id])->pluck('station_id')->first();
-                                @endphp
-                                {{-- To get sation SSNAME--}}
-                                {{\App\Models\Station::where(['id'=>$station_id])->pluck('SSNAME')->first()}}
-
-                            </ins></p>
+                                {{$task_detail->station->SSNAME}}</ins></p>
                         <p class=" bg-white text-secondary font-weight-bold text-center">Nature of fault :
                             {{$task_detail->problem}}</p>
-                        @if(is_null($task_detail->action_take))
-                        <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
-                            {{$task_detail->reasonOfUncompleted}}
-                        </p>
-                        @else
                         <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
                             {{$task_detail->action_take}}
                         </p>
-                        @endif
-                        <a class="btn btn-info mt-2 text-center"
-                            href="{{route('battery.user.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                        <a class="btn btn-info mt-2 text-center" href="/Print_task/{{$task_detail->id_task}}">Report</a>
                         <a class="btn btn-outline-dark mt-2 text-center"
-                            href="{{route('battery.user.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                            href="{{route('ShowTask',['id'=>$task_detail->id_task])}}">Details</a>
                     </li>
                 </ul>
 
@@ -283,7 +265,7 @@
             <nav aria-label="Page navigation pagination-sm   pagination-lg justify-content-center ">
                 <ul class="pagination">
                     <li class="page-item">
-                        {{--  {{$task_details->links()}}--}}
+                        {{$task_details->links()}}
 
                     </li>
 

@@ -19,6 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
     public const ProtectionHomeUser = "/dashboard/user/query_section_id=2";
+    public const BatteryHomeUser = "/dashboard/user/query_section_id=3";
     public const TransformersHomeUser = "/dashboard/user/query_section_id=5";
     public const SwitchGearHomeUser = "/dashboard/user/query_section_id=6";
 

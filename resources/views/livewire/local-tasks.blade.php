@@ -1,5 +1,10 @@
 
 <div>
+    @isset($tasks )
+    <p class="text-center">
+        nothing to view
+    </p>
+    @endisset
     @foreach($tasks as $task)
     @php
     $department =
@@ -76,9 +81,18 @@
                                
 
                                 <a class="text-left btn btn-success "
-                                    href="{{route('switch.updateTask',['id'=>$task->id])}}"
+                                    href="{{route('protection.updateTask',['id'=>$task->id])}}"
                                     class=" m-2 btn btn-primary btn-sm">Edit</a>
                                     @break
+                                    @case(3)
+                                    <a href="{{route('battery.admin.taskDetails',['id'=>$task->id])}}"
+                                        class=" my-2 btn btn-outline-secondary ">Read More</a>
+                                   
+    
+                                    <a class="text-left btn btn-success "
+                                        href="{{route('battery.updateTask',['id'=>$task->id])}}"
+                                        class=" m-2 btn btn-primary btn-sm">Edit</a>
+                                        @break
                                     @case(5)
                                     {{--Transformers--}}
                                     <a href="{{route('Transformers.admin.taskDetails',['id'=>$task->id])}}"

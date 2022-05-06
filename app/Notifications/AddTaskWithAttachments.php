@@ -51,6 +51,8 @@ class AddTaskWithAttachments extends Notification
         $section = "";
         $is_admin = Auth::user()->is_admin ? 'admin':'user';
         switch($user->section_id){
+            case '1':
+                $section = 'edara';
             case '2':
                 $section = 'protection';
                 break;

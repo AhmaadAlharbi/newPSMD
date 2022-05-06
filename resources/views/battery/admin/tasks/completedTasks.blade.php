@@ -18,8 +18,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المهندسين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
-
+            <h4 class="content-title mb-0 my-auto">المهمات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ كل
+                المهمات
 
             </span>
         </div>
@@ -30,7 +30,7 @@
 @endsection
 @section('content')
 
-@if (session()->has('delete'))
+@if (session()->has('delete_invoice'))
 <script>
 window.onload = function() {
     notif({
@@ -42,39 +42,34 @@ window.onload = function() {
 @endif
 
 
-
-@if (session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ session()->get('Add') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+@if (session()->has('Status_Update'))
+<script>
+window.onload = function() {
+    notif({
+        msg: "تم تحديث حالة الدفع بنجاح",
+        type: "success"
+    })
+}
+</script>
 @endif
 
 <!-- row -->
 <div class="row">
+</div>
     <!--div-->
     <div class="col-xl-12">
         <div class="card mg-b-20">
-            <div class="card-header pb-0">
-                <div class="d-flex justify-content-between">
-
-                </div>
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <button type="button" class="btn btn-success m-3" data-toggle="modal" data-target="#exampleModal">
-                        اضافة مهندس
-                    </button>
-                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='10'>
+                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
                         <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">الاسم</th>
-                                <th class="border-bottom-0"> البريد الإلكتروني </th>
-                                <th class="border-bottom-0"> المنطقة </th>
-                                <th class="border-bottom-0"> shift </th>
+                                <th class="border-bottom-0">رقم المهمة</th>
+                                <th class="border-bottom-0">اسم المحطة </th>
+                                <th class="border-bottom-0"> التحكم </th>
+                                <th class="border-bottom-0">تاريخ ارسال المهمة</th>
+                                <th class="border-bottom-0">المهندس</th>
                                 <th class="border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -82,34 +77,88 @@ window.onload = function() {
                             @php
                             $i = 0;
                             @endphp
-                            @foreach ($engineers as $engineer)
+                            @foreach ($tasks as $task)
                             @php
                             $i++
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$engineer->name}}</td>
-                                <td>{{$engineer->email}}</td>
-                                {{--<td>{{$engineer->mobile}}</td>--}}
-                                @if($engineer->area == 1)
-                                <td>North</td>
-                                @else
-                                <td>south</td>
-                                @endif
-                                @if($engineer->shift == 0)
-                                <td>Morning</td>
-                                @else
-                                <td>Evening</td>
-                                @endif
+                                <td><a
+                                        href="{{route('battery.admin.taskDetails',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
+                                </td>
+                                <td>{{$task->tasks->station->SSNAME}}</td>
 
-     
-                                <td><a class="btn btn-primary" href="{{route('battery.admin.editEngieer',['id'=>$engineer->id])}}">تعديل</a></td>
 
+                                @if($task->tasks->station->control == "JAHRA CONTROL CENTER")
+                                <td class="table-warning">{{$task->tasks->station->control}}
+                                </td>
+                                @elseif($task->tasks->station->control == "JABRIYA CONTROL CENTER")
+                                <td class="table-info">{{$task->tasks->station->control}}
+                                </td>
+                                @elseif($task->tasks->station->control == "TOWN CONTROL CENTER")
+                                <td class="table-danger">{{$task->tasks->station->control}}
+                                </td>
+                                @elseif($task->tasks->station->control == "SHUAIBA CONTROL CENTER")
+                                <td class="table-success">{{$task->tasks->station->control}}
+                                </td>
+                                @else
+                                <td class="table-light">{{$task->ttasks->station->control}}
+
+                                    @endif
+
+                                <td>{{$task->tasks->task_date}}</td>
+                                @if(isset($task->users->name))
+                                <td>{{$task->users->name}}</td>
+                                @else
+                                <td>waiting...</td>
+                                @endif
                                 
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button aria-expanded="false" aria-haspopup="true"
+                                            class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
+                                            type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
+                                        <div class="dropdown-menu tx-13">
+                                        <a class="dropdown-item"
+                                                href="{{route('battery.changeSectionView',['id'=>$task->task_id])}}"><i
+                                                    class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                                تحويل لقسم آخر
+                                            </a>
+                                            @if($task->status ==="completed")
+                                     
+                                            <a class="dropdown-item"
+                                                href="{{route('battery.veiwReport',['id'=>$task->task_id])}}"><i
+                                                    class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                 التقرير
+                                            </a>
+
+                                            {{--  <a class=" dropdown-item btn btn-outline-info "
+                                                href="{{url('generate-pdf')}}/{{$task->id}}">
+                                            <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
+                                            </a>--}}
+                                            @else
+
+                                            <a class="dropdown-item"
+                                                href="{{route('battery.updateTask',['id'=>$task->task_id])}}">
+                                                تعديل
+                                            </a>
+
+                                            @endif
+                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $task->task_id }}"
+                                                data-toggle="modal" data-target="#delete_invoice"><i
+                                                    class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                                المهمة
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+
+
                             </tr>
                             @endforeach
-                        </tbody>
 
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -118,55 +167,7 @@ window.onload = function() {
     <!--/div-->
 </div>
 
-<!-- اضافة  المحطة -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">اضافة مهندس</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{route('battery.addEngineer')}}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <label for="eng_name" class="control-label ">اسم المهندس</label>
-                    <input list="users" class="form-control" value="" name="user_engineer" id="user_engineer"
-                        onchange="getUserEmail()">
-                    <datalist id="users">
-                        @foreach($users as $user)
-                        <option value="{{$user->name}}">
-                            @endforeach
-                    </datalist>
-                    <label for="email" class="control-label ">البريد الإلكتروني</label>
-                    <input type="email" id="user_email" name="email" class="form-control m-2">
-                    <input type="hidden" id="user_id" name="user_id">
-                    <label for="area_id" class="control-label ">المنطقة</label>
-                    <select name="area_id" id="area" class="form-control">
-                        <!--placeholder-->
-                        <option value="1">المنطقة الشمالية</option>
-                        <option value="2">المنطقة الجنوبية</option>
-                    </select>
-
-                    <label for="shift_id" class="control-label ">shift</label>
-                    <select name="shift_id" id="shift" class="form-control">
-                        <!--placeholder-->
-                        <option value="0">صباحاً</option>
-                        <option value="1">مساءً</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">تراجع</button>
-                    <button type="submit" class="btn btn-danger">تاكيد</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- حذف  المحطة -->
+<!-- حذف المهمة -->
 <div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -176,11 +177,11 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="" method="post">
+                <form action="{{route('battery.destroyTask')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>
-            <div class=" modal-body">
+            <div class="modal-body">
                 هل انت متاكد من عملية الحذف ؟
                 <input type="hidden" name="invoice_id" id="invoice_id" value="">
             </div>
@@ -227,14 +228,13 @@ window.onload = function() {
 <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
-
 <script>
 $('#delete_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
     modal.find('.modal-body #invoice_id').val(invoice_id);
-});
+})
 </script>
 
 <script>
@@ -248,20 +248,3 @@ $('#Transfer_invoice').on('show.bs.modal', function(event) {
 
 
 @endsection
-
-<script>
-//this function to get user email in order to add user to engineers table
-const getUserEmail = async () => {
-    const user_name = document.querySelector("#user_engineer").value;
-    const user_email = document.querySelector("#user_email");
-    const user_id = document.querySelector("#user_id");
-    const response = await fetch("/getUserEmail/" + user_name);
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
-    }
-    const data = await response.json();
-    console.log(data);
-    user_email.value = data.email;
-    user_id.value = data.id;
-};
-</script>

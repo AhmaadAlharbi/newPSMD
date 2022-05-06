@@ -156,9 +156,9 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form action="{{route('battery.SubmitEngineerReport',['id'=>$tasks->id])}}"
+                    <form action="{{route('battery.submitEditReport',['id'=>$tasks->id])}}"
                         enctype="multipart/form-data" method="post" autocomplete="off"> @csrf
-                
+
                         {{-- 1 --}}
                         <div class="row">
                             <div class="col-md-12 col-xl-12">
@@ -180,7 +180,8 @@
                                                 <div class="table-responsive mg-t-40">
                                                     <h2 class="text-center m-2 text-primary">إدارة صيانة محطات التحويل
                                                         الرئيسية</h2>
-                                                    <a href="" class="btn btn-secondary">الصفحة
+                                                    <a href="{{route('battery.user.homepage')}}"
+                                                        class="btn btn-secondary">الصفحة
                                                         الرئيسية</a>
 
                                                     <table
@@ -298,9 +299,9 @@
                                                     <div class="col">
                                                         <label for="exampleTextarea">Action Take</label>
                                                         <textarea class="form-control" id="exampleTextarea"
-                                                            name="action_take" rows="3"></textarea>
+                                                            name="action_take"
+                                                            rows="3">{{$tasks_details->action_take}}</textarea>
                                                     </div>
-
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
@@ -337,13 +338,13 @@
                                                                         <td colspan="2">
 
                                                                             <a class="btn btn-outline-success btn-sm"
-                                                                                href="{{route('protection.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                                href="{{route('battery.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                                 role="button"><i
                                                                                     class="fas fa-eye"></i>&nbsp;
                                                                                 عرض</a>
 
                                                                             <a class="btn btn-outline-info btn-sm"
-                                                                                href="{{route('protection.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
+                                                                                href="{{route('battery.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
                                                                                 role="button"><i
                                                                                     class="fas fa-download"></i>&nbsp;
                                                                                 تحميل</a>
@@ -444,7 +445,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <form action="{{route('proteciton.engineerReportUnCompleted',['id'=>$tasks->id])}}"
+                            <form action="{{route('battery.engineerReportUnCompleted',['id'=>$tasks->id])}}"
                                 method="post">
                                 {{ csrf_field() }}
                         </div>

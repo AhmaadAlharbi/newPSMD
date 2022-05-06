@@ -1,4 +1,9 @@
 <div>
+    @isset($incomingTasks)
+    <p class="text-center">
+        nothing to view
+    </p>
+    @endisset
     @foreach($incomingTasks as $task)
     <div class="card-body p-0 customers mt-1">
         <div class="list-group list-lg-group list-group-flush">

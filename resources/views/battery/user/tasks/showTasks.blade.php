@@ -134,8 +134,8 @@ window.onload = function() {
 
                                             @if($task->status ==="completed")
                                             <a class="dropdown-item"
-                                                href="{{route('protection.user.veiwReport',['id'=>$task->id])}}"><i
-                                                    class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                href="{{route('battery.user.veiwReport',['id'=>$task->id])}}"><i
+                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                  التقرير
                                             </a>
                                             {{--  <a class=" dropdown-item btn btn-outline-info "
@@ -145,8 +145,7 @@ window.onload = function() {
                                             @else
 
                                             <a class="dropdown-item"
-                                                href="{{route('protection.updateTask',['id'=>$task->id])}}">
-                                                تعديل
+                                                href="{{route('battery.editReport',['id'=>$task->id])}}">                                          تعديل
                                             </a>
 
                                             @endif
@@ -182,7 +181,7 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{route('protection.destroyTask')}}" method="post">
+                <form action="" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>
