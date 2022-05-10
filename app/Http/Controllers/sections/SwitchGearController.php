@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
 use App\Rules\fourName;
-use App\Rules\OnlyMewEmail;
+use App\Rules\onlyMewEmail;
 class SwitchGearController extends Controller
 {
     ####################### ADMIN CONTROLLER ########################
@@ -35,7 +35,7 @@ class SwitchGearController extends Controller
 public function register(Request $request){
     $request->validate([
         // 'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new onlyMewEmail],
         'password' => ['required', 'confirmed', Rules\Password::defaults()],
     ]);
 $fullname = $request->fname . " " . $request->sname . " " . $request->tname . " " . $request->lname ; 
