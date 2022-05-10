@@ -180,7 +180,7 @@
     <div class="col-xl-9 col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header pb-1">
-                <h1 class="card-title mb-2"> تقارير شهر {{$monthName}}</h1>
+                <h5 class="border-bottom py-3 text-center"> تقارير شهر {{$monthName}}</h5>
 
             </div>
            <livewire:show-reports/>

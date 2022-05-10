@@ -34,12 +34,13 @@ class SwitchGearController extends Controller
 //sign up users
 public function register(Request $request){
     $request->validate([
-        'name' => ['required', 'string', 'max:255',new fourName(4)],
+        // 'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
         'password' => ['required', 'confirmed', Rules\Password::defaults()],
     ]);
+$fullname = $request->fname . " " . $request->sname . " " . $request->tname . " " . $request->lname ; 
     $user = User::create([
-        'name' => $request->name,
+        'name' => $fullname,
         'email' => $request->email,
         'section_id'=>6,
         'password' => Hash::make($request->password),
@@ -55,13 +56,13 @@ public function register(Request $request){
 //sign up a new user from admin dashboard
 public function newuser(Request $request){
     $request->validate([
-        'name' => ['required', 'string', 'max:255',new fourName(4)],
+        // 'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users',new OnlyMewEmail],
         'password' => ['required', 'confirmed', Rules\Password::defaults()],
     ]);
-    
+$fullname = $request->fname . " " . $request->sname . " " . $request->tname . " " . $request->lname ; 
     $user = User::create([
-        'name' => $request->name,
+        'name' => $fullname,
         'email' => $request->email,
         'section_id'=>6,
         'password' => Hash::make($request->password),

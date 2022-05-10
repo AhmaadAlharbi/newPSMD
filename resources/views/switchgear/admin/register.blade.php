@@ -21,9 +21,18 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <label for="">First Name</label>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                <x-input  class="block my-1 w-full" type="text" name="fname"  required
+                    autofocus />
+                <label for="" >Second Name</label>
+                    <x-input  class="block mt-4 w-full" type="text" name="sname"  required
+                    autofocus />
+                    <label for="" >Third Name</label>
+                    <x-input  class="block mt-4 w-full" type="text" name="tname"  required
+                    autofocus />
+                    <label for="">Last Name</label>
+                    <x-input  class="block mt-4 w-full" type="text" name="lname"  required
                     autofocus />
             </div>
 
