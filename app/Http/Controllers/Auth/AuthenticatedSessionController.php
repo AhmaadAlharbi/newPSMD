@@ -17,6 +17,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        session(['url.intended' => url()->previous()]);
+
         return view('protection.user.auth.login');
     }
 
@@ -30,6 +32,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        $request->authenticate();
+        //in case intended url is available
+        if (session()->has('url.intended')) {
+            $redirectTo = session()->get('url.intended');
+            session()->forget('url.intended');
+        }else{
+            $redirectTo = null;
+            return redirect(
+                // 'dashboard/section'. $user->section_id.'/'.$user->is_admin
+                'dashboard/'.$user->is_admin.'/query_section_id='. $user->section_id
+            );
+        }
+        $request->session()->regenerate();
+    
+        if ($redirectTo) {
+            return redirect($redirectTo);
+        }
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -41,7 +60,6 @@ class AuthenticatedSessionController extends Controller
             return redirect(
                 // 'dashboard/section'. $user->section_id.'/'.$user->is_admin
                 'dashboard/'.$user->is_admin.'/query_section_id='. $user->section_id
-
             );
         }
         
