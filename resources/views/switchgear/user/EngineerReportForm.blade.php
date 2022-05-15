@@ -26,112 +26,113 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
     <style>
-    .mew-logo {
-        width: 250px;
-    }
-
-    /** LOADING */
-
-    .loader {
-        color: #ffb300;
-        font-size: 90px;
-        text-indent: -9999em;
-        overflow: hidden;
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
-        margin: 72px auto;
-        position: relative;
-        -webkit-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-        animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-    }
-
-    @-webkit-keyframes load6 {
-        0% {
-            box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+        .mew-logo {
+            width: 250px;
         }
 
-        5%,
-        95% {
-            box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+        /** LOADING */
+
+        .loader {
+            color: #ffb300;
+            font-size: 90px;
+            text-indent: -9999em;
+            overflow: hidden;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            margin: 72px auto;
+            position: relative;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+            animation: load6 1.7s infinite ease, round 1.7s infinite ease;
         }
 
-        10%,
-        59% {
-            box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+        @-webkit-keyframes load6 {
+            0% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            5%,
+            95% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            10%,
+            59% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+            }
+
+            20% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+            }
+
+            38% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+            }
+
+            100% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
         }
 
-        20% {
-            box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+        @keyframes load6 {
+            0% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            5%,
+            95% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            10%,
+            59% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+            }
+
+            20% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+            }
+
+            38% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+            }
+
+            100% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
         }
 
-        38% {
-            box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+        @-webkit-keyframes round {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
         }
 
-        100% {
-            box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-        }
-    }
+        @keyframes round {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
 
-    @keyframes load6 {
-        0% {
-            box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-        }
-
-        5%,
-        95% {
-            box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
         }
 
-        10%,
-        59% {
-            box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+        body {
+            font-family: 'Cairo', sans-serif;
         }
 
-        20% {
-            box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-        }
-
-        38% {
-            box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-        }
-
-        100% {
-            box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-        }
-    }
-
-    @-webkit-keyframes round {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
-
-    @keyframes round {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
-
-    body {
-        font-family: 'Cairo', sans-serif;
-    }
     </style>
 </head>
 
@@ -144,21 +145,21 @@
     <!-- row -->
     <div class="row">
         @if (session()->has('Add'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session()->get('Add') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
 
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
 
-                    <form action="{{route('switch.SubmitEngineerReport',['id'=>$tasks->id])}}"
+                    <form action="{{ route('switch.SubmitEngineerReport', ['id' => $tasks->id]) }}"
                         enctype="multipart/form-data" method="post" autocomplete="off"> @csrf
-                       
+
                         {{-- 1 --}}
                         <div class="row">
                             <div class="col-md-12 col-xl-12">
@@ -188,103 +189,107 @@
                                                         class="table table-hover table-invoice table-striped table-border text-md-nowrap mb-0">
                                                         <tr>
                                                             <th class="border-bottom-0">Ref Num</th>
-                                                            <td colspan="4">{{$tasks->refNum}}</td>
+                                                            <td colspan="4">{{ $tasks->refNum }}</td>
                                                         </tr>
-                                                        <input type="hidden" name="refNum" value="{{$tasks->refNum}}">
+                                                        <input type="hidden" name="refNum" value="{{ $tasks->refNum }}">
                                                         <tr>
                                                             <th class="border-bottom-0"> Main Alaram</th>
-                                                            <td>{{$tasks->main_alarm}}</td>
+                                                            <td>{{ $tasks->main_alarm }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="border-bottom-0">Station</th>
-                                                            <td colspan="4">{{$tasks->station->SSNAME}}</td>
+                                                            <td colspan="4">{{ $tasks->station->SSNAME }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="border-bottom-0">Station Full name </th>
-                                                            <td colspan="4">{{$tasks->station->fullName}}</td>
+                                                            <td colspan="4">{{ $tasks->station->fullName }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="border-bottom-0">Make </th>
-                                                            <td colspan="4">{{$tasks->station->COMPANY_MAKE}}</td>
+                                                            <td colspan="4">{{ $tasks->station->COMPANY_MAKE }}</td>
                                                         </tr>
 
                                                         <tr>
                                                             <th class="border-bottom-0">Last P.M </th>
-                                                            <td colspan="4">{{$tasks->pm}}</td>
+                                                            <td colspan="4">{{ $tasks->pm }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="border-bottom-0">Control</th>
                                                             @switch($tasks->station->control)
-                                                            @case("JAHRA CONTROL CENTER")
-                                                            <td colspan="4" class="table-warning">
-                                                                {{$tasks->station->control}}
-                                                            </td>
-                                                            @break
-                                                            @case("JABRIYA CONTROL CENTER")
-                                                            <td colspan="4" class="table-info">
-                                                                {{$tasks->station->control}}
-                                                            </td>
-                                                            @break
-                                                            @case("TOWN CONTROL CENTER")
-                                                            <td colspan="4" class="table-danger">
-                                                                {{$tasks->station->control}}
-                                                            </td>
-                                                            @break
-                                                            @case("SHUAIBA CONTROL CENTER")
-                                                            <td colspan="4" class="table-success">
-                                                                {{$tasks->station->control}}
-                                                            </td>
-                                                            @break
-                                                            @default
-                                                            <td colspan="4" class="table-light">
-                                                                {{$tasks->station->control}}
-                                                            </td>
+                                                                @case('JAHRA CONTROL CENTER')
+                                                                    <td colspan="4" class="table-warning">
+                                                                        {{ $tasks->station->control }}
+                                                                    </td>
+                                                                @break
+
+                                                                @case('JABRIYA CONTROL CENTER')
+                                                                    <td colspan="4" class="table-info">
+                                                                        {{ $tasks->station->control }}
+                                                                    </td>
+                                                                @break
+
+                                                                @case('TOWN CONTROL CENTER')
+                                                                    <td colspan="4" class="table-danger">
+                                                                        {{ $tasks->station->control }}
+                                                                    </td>
+                                                                @break
+
+                                                                @case('SHUAIBA CONTROL CENTER')
+                                                                    <td colspan="4" class="table-success">
+                                                                        {{ $tasks->station->control }}
+                                                                    </td>
+                                                                @break
+
+                                                                @default
+                                                                    <td colspan="4" class="table-light">
+                                                                        {{ $tasks->station->control }}
+                                                                    </td>
                                                             @endswitch
 
                                                         </tr>
 
                                                         <input type="hidden" name="ssname"
-                                                            value="{{$tasks->station->id}}">
+                                                            value="{{ $tasks->station->id }}">
                                                         <tr>
                                                             <th class="border-bottom-0">Date</th>
-                                                            <td>{{$tasks->task_date}}</td>
+                                                            <td>{{ $tasks->task_date }}</td>
                                                         </tr>
                                                         <input type="hidden" name="task_date"
-                                                            value="{{$tasks->task_date}}">
+                                                            value="{{ $tasks->task_date }}">
 
                                                         <tr>
-                                                            @if($tasks->main_alarm == "Transformer Clearance" ||
-                                                            $tasks->main_alarm =="Shunt Reactor Clearance" )
-                                                            <th class="border-bottom-0">Capacity</th>
+                                                            @if ($tasks->main_alarm == 'Transformer Clearance' || $tasks->main_alarm == 'Shunt Reactor Clearance')
+                                                                <th class="border-bottom-0">Capacity</th>
                                                             @else
-                                                            <th class="border-bottom-0">Voltage Level</th>
+                                                                <th class="border-bottom-0">Voltage Level</th>
                                                             @endif
-                                                            <td>{{$tasks->voltage_level}}</td>
+                                                            <td>{{ $tasks->voltage_level }}</td>
 
                                                         </tr>
                                                         <tr>
                                                             <th class="border-bottom-0">Bay Unity</th>
-                                                            <td colspan="4">{{$tasks->equip}}</td>
+                                                            <td colspan="4">{{ $tasks->equip }}</td>
 
                                                         </tr>
-                                                        <input type="hidden" name="equip" value="{{$tasks->equip}}">
+                                                        <input type="hidden" name="equip" value="{{ $tasks->equip }}">
 
                                                         <tr>
                                                             <th class="border-bottom-0">Nature of Fault</th>
-                                                            <td colspan="4">{{$tasks->problem}}</td>
+                                                            <td colspan="4">{{ $tasks->problem }}</td>
                                                         </tr>
-                                                        <input type="hidden" name="problem" value="{{$tasks->problem}}">
+                                                        <input type="hidden" name="problem"
+                                                            value="{{ $tasks->problem }}">
 
                                                         <tr>
                                                             <th>ملاحظات</th>
-                                                            <td colspan="4">{{$tasks->notes}}</td>
+                                                            <td colspan="4">{{ $tasks->notes }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="border-bottom-0 wd-40p">Engineer</th>
-                                                            <td colspan="3">{{$tasks->users->name}}</td>
+                                                            <td colspan="3">{{ $tasks->users->name }}</td>
                                                         </tr>
                                                         <input type="hidden" name="eng_id"
-                                                            value="{{$tasks->users->id}}">
+                                                            value="{{ $tasks->users->id }}">
                                                         <input class="form-control fc-datepicker" name="report_Date"
                                                             placeholder="YYYY-MM-DD" type="hidden"
                                                             value="{{ date('Y-m-d') }}" readonly required>
@@ -298,15 +303,14 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="exampleTextarea">Action Take</label>
-                                                        <textarea class="form-control" id="exampleTextarea"
-                                                            name="action_take" rows="3"></textarea>
+                                                        <textarea class="form-control" id="exampleTextarea" name="action_take" rows="3"></textarea>
                                                     </div>
 
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title">المرفقات</h5>
-                                                        {{--show Attahcments --}}
+                                                        {{-- show Attahcments --}}
                                                         <div class="table-responsive mt-15">
                                                             <table class="table center-aligned-table mb-0  table-hover"
                                                                 style="text-align:center">
@@ -322,36 +326,36 @@
                                                                 <tbody>
                                                                     <?php $i = 0; ?>
                                                                     @foreach ($task_attachments as $attachment)
-                                                                    <?php $i++; ?>
-                                                                    <tr>
-                                                                        <td>{{ $i }}</td>
-                                                                        <td>{{ $attachment->file_name }}</td>
-                                                                        <td>{{ $attachment->created_at }}</td>
-                                                                        <td>
-                                                                            @if($attachment->Created_by =="")
-                                                                            {{$task->engineers->name}}
-                                                                            @else
-                                                                            {{ $attachment->Created_by }}
-                                                                            @endif
-                                                                        </td>
-                                                                        <td colspan="2">
+                                                                        <?php $i++; ?>
+                                                                        <tr>
+                                                                            <td>{{ $i }}</td>
+                                                                            <td>{{ $attachment->file_name }}</td>
+                                                                            <td>{{ $attachment->created_at }}</td>
+                                                                            <td>
+                                                                                @if ($attachment->Created_by == '')
+                                                                                    {{ $task->engineers->name }}
+                                                                                @else
+                                                                                    {{ $attachment->Created_by }}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td colspan="2">
 
-                                                                            <a class="btn btn-outline-success btn-sm"
-                                                                                href="{{route('switch.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                                                                role="button"><i
-                                                                                    class="fas fa-eye"></i>&nbsp;
-                                                                                عرض</a>
+                                                                                <a class="btn btn-outline-success btn-sm"
+                                                                                    href="{{ route('switch.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                                                                    role="button"><i
+                                                                                        class="fas fa-eye"></i>&nbsp;
+                                                                                    عرض</a>
 
-                                                                            <a class="btn btn-outline-info btn-sm"
-                                                                                href="{{route('switch.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                                                                role="button"><i
-                                                                                    class="fas fa-download"></i>&nbsp;
-                                                                                تحميل</a>
+                                                                                <a class="btn btn-outline-info btn-sm"
+                                                                                    href="{{ route('switch.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                                                                    role="button"><i
+                                                                                        class="fas fa-download"></i>&nbsp;
+                                                                                    تحميل</a>
 
 
 
-                                                                        </td>
-                                                                    </tr>
+                                                                            </td>
+                                                                        </tr>
                                                                     @endforeach
                                                                 </tbody>
 
@@ -370,7 +374,7 @@
                                                                 data-height="70" />
 
                                                         </div><br>
-                                                         <div class="text-center mb-3">
+                                                        <div class="text-center mb-3">
                                                             <button id="showAttachment"
                                                                 class="btn btn-outline-info">اضغط لإضافة المزيد من
                                                                 المرفقات</button>
@@ -405,15 +409,16 @@
                                                 <button type="submit" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#exampleModal3">ارسال البيانات</button>
                                                 <!-- Loading Modal -->
-                                                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal3" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header text-center">
                                                                 <h5 class="modal-title" id="exampleModalLabel">جاري
                                                                     إرسال البيانات</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -437,8 +442,8 @@
             </div>
 
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -446,7 +451,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <form action="{{route('switch.engineerReportUnCompleted',['id'=>$tasks->id])}}"
+                            <form action="{{ route('switch.engineerReportUnCompleted', ['id' => $tasks->id]) }}"
                                 method="post">
                                 {{ csrf_field() }}
                         </div>
@@ -463,26 +468,25 @@
                                 </select>
                                 <!--Take all these hidden value to the form-->
                                 <input type="hidden" class="form-control" id="inputName" name="refNum"
-                                    value="{{$tasks->refNum}}" readonly>
+                                    value="{{ $tasks->refNum }}" readonly>
                                 <input type="hidden" class="form-control" readonly name="ssname" id="ssname"
-                                    value="{{$tasks->station->id}}">
+                                    value="{{ $tasks->station->id }}">
                                 <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
-                                    type="hidden" value="{{ $tasks->task_Date}}" readonly required>
+                                    type="hidden" value="{{ $tasks->task_Date }}" readonly required>
                                 <input type="hidden" class="form-control" readonly name="equip" id="equip"
-                                    value="{{$tasks->equip}}">
-                                <input type="hidden" class="form-control" readonly value="{{$tasks->problem}}"
+                                    value="{{ $tasks->equip }}">
+                                <input type="hidden" class="form-control" readonly value="{{ $tasks->problem }}"
                                     name="problem" id="problem">
                                 <input class="form-control fc-datepicker" name="report_Date" placeholder="YYYY-MM-DD"
                                     type="hidden" value="{{ date('Y-m-d') }}" readonly required>
                                 <input type="hidden" class="form-control" name="eng_name" readonly
-                                    value="{{$tasks->users->name}}">
-                                <textarea type="hidden" style="display:none;" class="form-control" id="exampleTextarea"
-                                    name="notes" readonly rows="3">{{$tasks->notes}}</textarea>
+                                    value="{{ $tasks->users->name }}">
+                                <textarea type="hidden" style="display:none;" class="form-control" id="exampleTextarea" name="notes" readonly
+                                    rows="3">{{ $tasks->notes }}</textarea>
                                 <!--END Taking all these hidden value to the form-->
 
                                 <label for="exampleTextarea">ملاحظات</label>
-                                <textarea class="form-control" id="exampleTextarea" name="engineer_note"
-                                    rows="3"></textarea>
+                                <textarea class="form-control" id="exampleTextarea" name="engineer_note" rows="3"></textarea>
 
                             </div>
                         </div>
@@ -511,22 +515,22 @@
     </script>
 </body>
 <script>
-//to toggle files atthachmant
-const showAttachment = document.getElementById('showAttachment');
-const hideAttachment = document.getElementById('hideAttachment');
-const attachmentFile = document.getElementById('attachmentFile');
-showAttachment.addEventListener('click', e => {
-    e.preventDefault();
-    hideAttachment.classList.toggle('d-none');
-    showAttachment.classList.toggle('d-none');
-    attachmentFile.classList.toggle('d-none');
-})
-hideAttachment.addEventListener('click', e => {
-    e.preventDefault();
-    hideAttachment.classList.toggle('d-none');
-    showAttachment.classList.toggle('d-none');
-    attachmentFile.classList.toggle('d-none');
-})
+    //to toggle files atthachmant
+    const showAttachment = document.getElementById('showAttachment');
+    const hideAttachment = document.getElementById('hideAttachment');
+    const attachmentFile = document.getElementById('attachmentFile');
+    showAttachment.addEventListener('click', e => {
+        e.preventDefault();
+        hideAttachment.classList.toggle('d-none');
+        showAttachment.classList.toggle('d-none');
+        attachmentFile.classList.toggle('d-none');
+    })
+    hideAttachment.addEventListener('click', e => {
+        e.preventDefault();
+        hideAttachment.classList.toggle('d-none');
+        showAttachment.classList.toggle('d-none');
+        attachmentFile.classList.toggle('d-none');
+    })
 </script>
 
 </html>
