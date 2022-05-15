@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="row m-3">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <label for="main_alarm" class="control-label m-3">Main Alarm</label>
                                 <select name="mainAlarm" id="main_alarm" class="form-control">
                                     <!--placeholder-->
@@ -287,7 +287,7 @@
 
                                     <!--placeholder-->
                                     <!-- <option value="1"> المنطقة الشمالية</option>
-                                                                                    <option value="2"> المنطقة الجنوبية</option> -->
+                                                                                        <option value="2"> المنطقة الجنوبية</option> -->
 
                                 </select>
                             </div>

@@ -28,7 +28,6 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-
     @if (session()->has('edit'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>{{ session()->get('edit') }}</strong>
@@ -116,7 +115,7 @@
                                 </datalist>
 
 
-                                <input type="text" id="station_id" name="ssnameID" value="{{ $tasks->station->id }}">
+                                <input type="hidden" id="station_id" name="ssnameID" value="{{ $tasks->station->id }}">
 
                                 <input id="staion_full_name" name="staion_full_name" class="text-center p-3 form-control"
                                     readonly value="{{ $tasks->station->fullName }}">
@@ -130,7 +129,7 @@
                                 <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
                                     type="text" value="{{ $tasks->task_date }}" readonly>
                             </div>
-                            <div class="row m-3">
+                            {{-- <div class="row m-3">
                                 <div class="col-lg-6">
                                     <label for="" class="control-label">Make</label>
                                     <input id="make" type="text" class="form-control" name="make">
@@ -139,7 +138,7 @@
                                     <label for="" class="control-label">Last P.M</label>
                                     <input type="text" class="form-control" name="pm">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="row m-3">
@@ -181,7 +180,8 @@
                                 <select name="Voltage_Level" id="voltageLevel" class="form-control">
                                     <!--placeholder-->
                                     @if (!$tasks->main_alarm == 'Transformer Clearance' || 'Shunt Reactor Clearance')
-                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}</option>
+                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}
+                                        </option>
                                     @endif
                                     <option value="400KV">400KV</option>
                                     <option value="300KV">300KV</option>
@@ -193,7 +193,8 @@
                                 <select id="transformerVoltage" class="d-none form-control">
                                     <!--placeholder-->
                                     @if ($tasks->main_alarm == 'Transformer Clearance')
-                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}</option>
+                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}
+                                        </option>
                                     @endif
                                     <option value="750MVA">750MVA</option>
                                     <option value="300MVA">300MVA</option>
@@ -210,7 +211,8 @@
                                 <select id="shuntVoltage" class="d-none form-control">
                                     <!--Placeholder-->
                                     @if ($tasks->main_alarm == 'Shunt Reactor Clearance')
-                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}</option>
+                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}
+                                        </option>
                                     @endif
                                     <option value="250MVAR">250MVAR</option>
                                     <option value="125MVAR">125MVAR</option>
@@ -230,7 +232,8 @@
 
                             <div class="col-lg-6">
                                 <label for="equip" class="control-label m-1">Bay Unit</label>
-                                <input type="text" name="equip" class="form-control SlectBox" value="{{ $tasks->equip }}">
+                                <input type="text" name="equip" class="form-control SlectBox"
+                                    value="{{ $tasks->equip }}">
 
                             </div>
 
