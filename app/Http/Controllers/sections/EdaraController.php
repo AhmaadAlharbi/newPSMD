@@ -16,7 +16,7 @@ use  App\Notifications\AddTask;
 use  App\Notifications\AddTaskWithAttachments;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;

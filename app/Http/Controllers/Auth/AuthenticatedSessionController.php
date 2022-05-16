@@ -22,7 +22,7 @@ class AuthenticatedSessionController extends Controller
         return view('protection.user.auth.login');
     }
 
-   
+
 
     /**
      * Handle an incoming authentication request.
@@ -37,15 +37,17 @@ class AuthenticatedSessionController extends Controller
         if (session()->has('url.intended')) {
             $redirectTo = session()->get('url.intended');
             session()->forget('url.intended');
-        }else{
+        } else {
             $redirectTo = null;
+            $is_admin = Auth::user()->is_admin ? 'admin' : 'user';
+
             return redirect(
                 // 'dashboard/section'. $user->section_id.'/'.$user->is_admin
-                'dashboard/'.$user->is_admin.'/query_section_id='. $user->section_id
+                'dashboard/' . $is_admin . '/query_section_id=' . Auth::user()->section_id
             );
         }
         $request->session()->regenerate();
-    
+
         if ($redirectTo) {
             return redirect($redirectTo);
         }
@@ -56,20 +58,19 @@ class AuthenticatedSessionController extends Controller
         // /dashboard/admin/query_section_id=2
         if (Auth::attempt($request->only(['email', 'password']))) {
             $user = Auth::user();
-             $user->is_admin = $user->is_admin ? 'admin':'user';
+            $user->is_admin = $user->is_admin ? 'admin' : 'user';
             return redirect(
                 // 'dashboard/section'. $user->section_id.'/'.$user->is_admin
-                'dashboard/'.$user->is_admin.'/query_section_id='. $user->section_id
+                'dashboard/' . $user->is_admin . '/query_section_id=' . $user->section_id
             );
         }
-        
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
-        
     }
 
-    
+
     /**
      * Destroy an authenticated session.
      *
