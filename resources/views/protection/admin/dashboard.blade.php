@@ -23,18 +23,18 @@
 @section('content')
 <!-- row -->
 <style>
-.HORIZONTAL_SCROLL_NAV {
+    .HORIZONTAL_SCROLL_NAV {
 
-    -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch;
 
-    overflow-x: auto;
-    overflow-y: hidden;
-}
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 
-.HORIZONTAL_SCROLL_NAV>ul {
+    .HORIZONTAL_SCROLL_NAV>ul {
 
-    margin: 0 auto;
-}
+        margin: 0 auto;
+    }
 </style>
 
 <div class="row row-sm">
@@ -68,8 +68,7 @@
         <div class="card overflow-hidden sales-card bg-danger-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                    <h6 class="mb-3 tx-16 text-white"><a class="text-white" href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -94,8 +93,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('protection.admin.completedTasks')}}">المهمات
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('protection.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -153,46 +151,47 @@
 <!-- row closed -->
 
 <!-- row opened -->
-<div class="row row-sm">
+<div class="row row-sm ">
+
     {{-- المهمات الصادرة --}}
-    <div class=" col-xl-4 col-md-12 col-lg-6">
+    <div class="col-xl-4 col-md-12 col-lg-6">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" id="btn-local">Local</button>
+            <button type="button" class="btn btn-secondary" id="btn-incoming">incoming</button>
+            <button type="button" class="btn btn-secondary" id="btn-common">common</button>
+        </div>
         <div class="card">
-            <div class="card-header pb-1">
+            <div class="card-header text-center ">
                 <h5 class="border-bottom py-3 text-center">المهمات المنشئة</h6>
             </div>
-            <livewire:local-tasks /> 
+            <div class="d-none" id="div-local">
+                <livewire:local-tasks />
+            </div>
         </div>
-    </div>
+        <div class="card">
 
-    
-    {{-- المهمات الواررة --}}
-    <div class="col-xl-4 col-md-12 col-lg-6">
-        <div class="card">
-            <div class="card-header pb-1">
-                <h5 class="border-bottom py-3 text-center">المهمات الواررة</h6>        
+            <div class="d-none" id="div-incoming">
+                <livewire:incoming-tasks />
+
             </div>
-            <livewire:incoming-tasks /> 
-          
         </div>
-    </div>
-    {{-- المهمات المشتركة --}}
-    <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="card">
-            <div class="card-header pb-1">
-                <h5 class="border-bottom py-3 text-center">المهمات الصادرة</h6>
+       
+            <div class="d-none" id="div-common">
+                <livewire:common-tasks />
+
             </div>
-            <livewire:common-tasks /> 
         </div>
     </div>
     {{-- التقارير  --}}
-    <div class="col-xl-12 col-md-12 col-lg-12">
+    <div class="col-xl-8 col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header pb-1">
                 <h5 class="border-bottom py-3 text-center"> تقارير شهر {{$monthName}}</h5>
 
             </div>
-           <livewire:show-reports/>
-   
+            <livewire:show-reports />
+
         </div>
 
 
@@ -206,4 +205,6 @@
 @endsection
 @section('js')
 <script src="{{URL::asset('assets/js/index.js')}}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
+
 @endsection
