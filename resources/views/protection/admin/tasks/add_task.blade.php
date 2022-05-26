@@ -330,7 +330,7 @@
                     <div class="row m-3">
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">المنطقة</label>
-                            <select name="area" id="areaSelect" class="form-control areaSelect">
+                            <select name="area" id="areaSelect" class="form-control areaSelect"  onchange = "nccEngineers()">
                                 <!--placeholder-->
                                 <!-- <option value="1"> المنطقة الشمالية</option>
                                 <option value="2"> المنطقة الجنوبية</option> -->

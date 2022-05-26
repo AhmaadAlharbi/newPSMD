@@ -131,6 +131,27 @@ const getEngineer = async () => {
     }
     return data;
 };
+//to show Engineers based on Area in Ncc
+const nccEngineers = async () => {
+    engineerSelect.innerHTML=""
+    area_id = areaSelect.value;
+    shift_id = shiftSelect.value;
+    const response = await fetch("/getEngineer/" + area_id + "/" + shift_id);
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    console.log(data);
+    for (let i = 0; i < data.length; i++) {
+        let engineerSelectValue = document.createElement("option");
+        engineerSelectValue.value = data[i].id;
+        engineerSelectValue.innerHTML = data[i].name;
+        engineerSelect.appendChild(engineerSelectValue);
+        engEmail.value = data[0].email;
+        console.log(data[i].id, data[i].name);
+    }
+    return data;
+};
 //get Engineer's email
 const getEngineerEmail = async () => {
     let eng_id = engineerSelect.value;
