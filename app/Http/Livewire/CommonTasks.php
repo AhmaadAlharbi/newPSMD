@@ -6,8 +6,11 @@ use Livewire\Component;
 use App\Models\Task;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+
 class CommonTasks extends Component
-{    use WithPagination;
+{
+    use WithPagination;
+    public $search = '';
 
     protected $paginationTheme = 'bootstrap';
     public function render()
@@ -15,10 +18,10 @@ class CommonTasks extends Component
         $section_id = Auth::user()->section_id;
 
         //to track mutal tasks in diffrent sections  
-        $common_tasks_details = Task::where('fromSection',$section_id)
-        ->whereNotNull('toSection')
-        ->where('toSection','!=',$section_id)
-        ->Paginate(1);
-        return view('livewire.common-tasks',compact('common_tasks_details'));
+        $common_tasks_details = Task::where('fromSection', $section_id)
+            ->whereNotNull('toSection')
+            ->where('toSection', '!=', $section_id)
+            ->Paginate(5, ['*'], 'commonsTasks');
+        return view('livewire.common-tasks', compact('common_tasks_details'));
     }
 }

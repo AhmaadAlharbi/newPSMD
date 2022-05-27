@@ -35,6 +35,42 @@
 
         margin: 0 auto;
     }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
 </style>
 
 <div class="row row-sm">
@@ -156,35 +192,39 @@
     {{-- المهمات الصادرة --}}
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary" id="btn-local">Local</button>
-            <button type="button" class="btn btn-secondary" id="btn-incoming">incoming</button>
-            <button type="button" class="btn btn-secondary" id="btn-common">common</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-local" onclick="showTab(event, 'div-local')">المهمات المنشئة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-incoming" onclick="showTab(event, 'div-incoming')">المهمات الواردة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-common" onclick="showTab(event, 'div-common')">المهمات الصادرة</button>
         </div>
-        <div class="card">
-            <div class="card-header text-center ">
-                <h5 class="border-bottom py-3 text-center">المهمات المنشئة</h6>
-            </div>
-            <div class="d-none" id="div-local">
-                <livewire:local-tasks />
-            </div>
-        </div>
-        <div class="card">
 
-            <div class="d-none" id="div-incoming">
+
+        <div id="main-div">
+            <h5 class=" py-3 text-center">المهمات المنشئة</h6>
+
+                <livewire:local-tasks />
+        </div>
+        <div class="tabcontent" id="div-local">
+            <h5 class=" py-3 text-center">المهمات المنشئة</h6>
+                <livewire:local-tasks />
+        </div>
+        <div class=" tabcontent" id="div-incoming">
+            <h5 class="py-3 text-center">المهمات الواررة</h6>
+
                 <livewire:incoming-tasks />
 
-            </div>
         </div>
-        <div class="card">
-       
-            <div class="d-none" id="div-common">
+
+        <div class=" tabcontent" id="div-common">
+            <h5 class="border-bottom py-3 text-center">المهمات الصادرة</h6>
+
                 <livewire:common-tasks />
 
-            </div>
         </div>
+
+
     </div>
     {{-- التقارير  --}}
-    <div class="col-xl-8 col-md-12 col-lg-12">
+    <div class="col-xl-8 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
                 <h5 class="border-bottom py-3 text-center"> تقارير شهر {{$monthName}}</h5>

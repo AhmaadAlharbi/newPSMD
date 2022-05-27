@@ -1,26 +1,23 @@
-//buttons
-const btnLocal = document.getElementById('btn-local')
-const btnIncoming = document.getElementById('btn-incoming')
-const btnCommon = document.getElementById('btn-common')
+const divLocal = document.getElementById("main-div");
 
-//divs
-const divLocal = document.getElementById('div-local')
-const divIncoming = document.getElementById('div-incoming')
-const divCommon = document.getElementById('div-common')
+function showTab(evt, cityName) {
+    divLocal.classList.add("d-none");
+    // Declare all variables
+    var i, tabcontent, tablinks;
 
-//enventlistners for tasks buttons
-btnLocal.addEventListener('click',(e)=>{
-   divLocal.classList.toggle('d-none');
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
 
-})
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" d-block", "");
+    }
 
-btnIncoming.addEventListener('click',(e)=>{
-    divIncoming.classList.toggle('d-none');
-
- })
-
- btnCommon.addEventListener('click',(e)=>{
-    divCommon.classList.toggle('d-none');
-
-    
- })
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += "active";
+}

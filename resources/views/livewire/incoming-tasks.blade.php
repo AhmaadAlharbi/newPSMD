@@ -1,9 +1,5 @@
 <div>
-    @if($incomingTasks->count()==0)
-    <div>
-    <h6 class="text-center">لايوجد بيانات لعرضها</h3>
-    </div>
-    @endif
+
     @foreach ($incomingTasks as $task)
     <div class="card-body p-0 customers mt-1">
         <div class="list-group list-lg-group list-group-flush">
