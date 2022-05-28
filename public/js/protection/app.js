@@ -133,7 +133,7 @@ const getEngineer = async () => {
 };
 //to show Engineers based on Area in Ncc
 const nccEngineers = async () => {
-    engineerSelect.innerHTML=""
+    engineerSelect.innerHTML = "";
     area_id = areaSelect.value;
     shift_id = shiftSelect.value;
     const response = await fetch("/getEngineer/" + area_id + "/" + shift_id);

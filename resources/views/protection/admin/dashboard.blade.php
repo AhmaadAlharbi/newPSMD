@@ -70,6 +70,19 @@
         padding: 6px 12px;
         border: 1px solid #ccc;
         border-top: none;
+        animation: fadeEffect 1s;
+        /* Fading effect takes 1 second */
+
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 </style>
 
@@ -191,7 +204,7 @@
 
     {{-- المهمات الصادرة --}}
     <div class="col-xl-4 col-md-12 col-lg-6">
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div class="btn-group " role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary tablinks" id="btn-local" onclick="showTab(event, 'div-local')">المهمات المنشئة</button>
             <button type="button" class="btn btn-secondary tablinks" id="btn-incoming" onclick="showTab(event, 'div-incoming')">المهمات الواردة</button>
             <button type="button" class="btn btn-secondary tablinks" id="btn-common" onclick="showTab(event, 'div-common')">المهمات الصادرة</button>
@@ -199,32 +212,27 @@
 
 
         <div id="main-div">
-            <h5 class=" py-3 text-center">المهمات المنشئة</h6>
-
+            <h5 class="py-3 bg-white mt-2 text-center">المهمات المنشئة</h6>
                 <livewire:local-tasks />
         </div>
         <div class="tabcontent" id="div-local">
-            <h5 class=" py-3 text-center">المهمات المنشئة</h6>
+            <h5 class=" py-3 bg-white text-center">المهمات المنشئة</h6>
                 <livewire:local-tasks />
         </div>
         <div class=" tabcontent" id="div-incoming">
-            <h5 class="py-3 text-center">المهمات الواررة</h6>
-
+            <h5 class="py-3 bg-white text-center">المهمات الواررة</h6>
                 <livewire:incoming-tasks />
-
         </div>
-
         <div class=" tabcontent" id="div-common">
-            <h5 class="border-bottom py-3 text-center">المهمات الصادرة</h6>
+            <h5 class="py-3 bg-white text-center">المهمات الصادرة</h6>
 
                 <livewire:common-tasks />
-
         </div>
 
 
     </div>
     {{-- التقارير  --}}
-    <div class="col-xl-8 col-md-12 col-lg-6">
+    <div class="mt-5 col-xl-8 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">
                 <h5 class="border-bottom py-3 text-center"> تقارير شهر {{$monthName}}</h5>
