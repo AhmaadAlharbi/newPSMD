@@ -156,7 +156,7 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
-                            <input list="ssnames" class="form-control" value="" name="station_code" id="ssname" onchange="getStation(),getEngineer()" type="search">
+                            <input list="ssnames" class="form-control" value="" name="station_code" id="ssname" onchange="getStation(),getEngineer(),getEquip()" type="search">
                             <datalist id="ssnames">
                                 @foreach($stations as $station)
                                 <option value="{{$station->SSNAME}}">
@@ -232,58 +232,26 @@
                         </div>
                         <div class="col-lg-6">
                             <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage Level</label>
-                            <select name="voltage_level" id="voltageLevel" class="form-control">
-                                <!--placeholder-->
-                                <optgroup>
-                                    <option value="400KV">400KV</option>
-                                    <option value="300KV">300KV</option>
-                                    <option value="132KV">132KV</option>
-                                    <option value="33KV">33KV</option>
-                                    <option value="11KV">11KV</option>
-                                </optgroup>
-                                <optgroup label="General Check">
-                                    <option value="132/11KV">132/11KV</option>
-                                    <option value="33/11KV">33/11KV</option>
-                                    <option value="400/132/11KV">400/132/11KV</option>
-                                    <option value="300/132/11KV">300/132/11KV</option>
-                                </optgroup>
 
-                            </select>
-                            <select id="transformerVoltage" class="d-none form-control">
-                                <!--placeholder-->
-                                <option value="750MVA">750MVA</option>
-                                <option value="300MVA">300MVA</option>
-                                <option value="75MVA">75MVA</option>
-                                <option value="45MVA">45MVA</option>
-                                <option value="30MVA">30MVA</option>
-                                <option value="20MVA">20MVA</option>
-                                <option value="15MVA">15MVA</option>
-                                <option value="10MVA">10MVA</option>
-                                <option value="7.5MVA">7.5MVA</option>
-                                <option value="5MVA">5MVA</option>
-
-                            </select>
-                            <select id="shuntVoltage" class="d-none form-control">
-                                <!--placeholder-->
-                                <option value="250MVAR">250MVAR</option>
-                                <option value="125MVAR">125MVAR</option>
-                                <option value="50MVAR">50MVAR</option>
-                                <option value="45MVAR">45MVAR</option>
-                                <option value="30MVAR">30MVAR</option>
-                            </select>
-                            <select id="dist" class="d-none form-control">
-                                <!--placeholder-->
-                                <option value=""></option>
-                                <option value="400KV">400KV</option>
-                                <option value="300KV">300KV</option>
+                            <select class="form-control" id="equipVoltage" onchange="getEquipNumber()">
+                                <option>-</option>
                             </select>
                         </div>
                     </div>
                     <div class="row m-3">
 
-                        <div class="col-lg-12">
-                            <label for="equip" class="control-label m-1">Bay Unit</label>
-                            <input id="equip" type="text" name="equip" class="form-control SlectBox">
+                    <div class="col-lg-6">
+                            <label for="equip" class="control-label m-1">equip Number</label>
+                            <select type="text" id="equipNumber" name="equip" class="form-control"
+                                onchange=" getEquipName()">
+                                <option value="">-</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="equip" class="control-label m-1">equip name</label>
+                            <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
+                            <input type="text" id="equipName" class="form-control ">
                         </div>
 
                         <div class="col-lg-12 mt-2">

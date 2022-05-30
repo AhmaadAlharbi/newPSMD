@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\Station;
 use App\Models\Section;
+use App\Models\Equip;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
@@ -581,6 +582,20 @@ class ProtectionController extends Controller
         return view('protection.admin.tasks.report', compact('task_details', 'commonTasks'));
     }
 
+
+    ///equip
+    public function getEquip($id){
+        return (string)  Equip::where('station_id',$id)->orderBy('voltage_level')->get();
+
+    }
+    public function getEquipNumber($station_id,$voltage_level){
+        return (string)  Equip::where('station_id',$station_id)
+        ->where('voltage_level',$voltage_level)->get();
+
+    }
+    public function getEquipName($euipNumber){
+        return (string)  Equip::where('equip_number',$euipNumber)->get();
+    }
     ///##### end backend functions
 
     ####################### USER CONTROLLER ########################

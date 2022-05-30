@@ -38,7 +38,10 @@ Route::post('/dashboard/user/query_section_id=2/edit-report/{id}',[ProtectionCon
 Route::get('/dashboard/user/query_section_id=2/engineer-tasks/{id}',[ProtectionController::class,'showEngineerTasks'])->name('protection.showEngineerTasks');
 Route::get('/dashboard/user/query_section_id=2/engineer-tasks-uncompleted/{id}',[ProtectionController::class,'showEngineerTasksUncompleted'])->name('protection.showEngineerTasksUncompleted');
 Route::get('/dashboard/user/query_section_id=2/engineer-tasks-completed/{id}',[ProtectionController::class,'showEngineerTasksCompleted'])->name('protection.showEngineerTasksCompleted');
-
+//equip
+Route::get('/protection/Equip/{id}', [ProtectionController::class, 'getEquip']);
+Route::get('/protection/EquipNumber/{id}/{voltage_level}', [ProtectionController::class, 'getEquipNumber']);
+Route::get('/protection/Equipname/{id}', [ProtectionController::class, 'getEquipName']);
 });
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin','is_protection'])->group(function () {
