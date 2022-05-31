@@ -138,8 +138,8 @@
                                     </h1>
 
                                 </div>
-                                <div class="col-sm-12  col-lg-8  table-responsive-sm">
-                                    <table class="table mt-2 p-5 border    border-dark h-100 text-center" id="table1" class="ltr-table ">
+                                <div class="col-sm-12  col-lg-8   table-responsive-sm">
+                                    <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1" class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Company Make</th>
