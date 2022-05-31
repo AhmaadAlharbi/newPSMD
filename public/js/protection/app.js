@@ -217,12 +217,7 @@ const getEquip = async () => {
     equip_number_option.text = "-";
     equipVoltage.add(voltage_option);
     equipNumber.add(equip_number_option);
-    // let staionName = stationName.value;
-    // const response = await fetch("/stations/" + staionName);
-    // if (response.status !== 200) {
-    //     throw new Error("can not fetch the data");
-    // }
-    // const data = await response.json();
+    //get area value from getStation
     const area_fromFunc =  await getStation();
     let station_id = area_fromFunc[1];
     // let station_id =await getStation()

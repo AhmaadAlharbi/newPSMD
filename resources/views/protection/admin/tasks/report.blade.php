@@ -132,14 +132,14 @@
 
 
                             <div class=" row ssname-table">
-                                <div class="col-sm-12 col-md-6 ">
+                                <div class="col-sm-12  col-lg-4 ">
                                     <h1 class="d-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
                                         {{$task_details->tasks->station->SSNAME}}
                                     </h1>
 
                                 </div>
-                                <div class="col-sm-12 col-md-6 d-none d-sm-block">
-                                    <table class="table mt-2 p-5 border  border-dark h-100 text-center" id="table1" class="ltr-table ">
+                                <div class="col-sm-12  col-lg-8  table-responsive-sm">
+                                    <table class="table mt-2 p-5 border    border-dark h-100 text-center" id="table1" class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Company Make</th>
