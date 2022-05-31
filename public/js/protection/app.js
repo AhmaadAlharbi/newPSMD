@@ -109,11 +109,13 @@ const getStation = async () => {
     engineerSelect.innerText = null;
     //calling function
     controlColor(controlName.value);
-    return areaSelect.value;
+    // return areaSelect.value;
+    return [areaSelect.value,stationIdInput.value];
 };
 //get Engineer's name
 const getEngineer = async () => {
-    area_id = await getStation();
+    const area_fromFunc =  await getStation();
+    area_id = area_fromFunc[0]
     shift_id = shiftSelect.value;
     const response = await fetch("/getEngineer/" + area_id + "/" + shift_id);
     if (response.status !== 200) {
@@ -215,13 +217,15 @@ const getEquip = async () => {
     equip_number_option.text = "-";
     equipVoltage.add(voltage_option);
     equipNumber.add(equip_number_option);
-    let staionName = stationName.value;
-    const response = await fetch("/stations/" + staionName);
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
-    }
-    const data = await response.json();
-    let station_id = stationIdInput.value;
+    // let staionName = stationName.value;
+    // const response = await fetch("/stations/" + staionName);
+    // if (response.status !== 200) {
+    //     throw new Error("can not fetch the data");
+    // }
+    // const data = await response.json();
+    const area_fromFunc =  await getStation();
+    let station_id = area_fromFunc[1];
+    // let station_id =await getStation()
     const response2 = await fetch("/protection/Equip/" + station_id);
     const data2 = await response2.json();
     console.log(data2);
@@ -254,12 +258,6 @@ const getEquip = async () => {
 };
 const getEquipNumber = async () => {
     equipNumber.innerText = null;
-    let staionName = stationName.value;
-    const response = await fetch("/stations/" + staionName);
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
-    }
-    const data = await response.json();
     let station_id = stationIdInput.value;
     let voltage_level_select = equipVoltage.value;
     const response2 = await fetch(
