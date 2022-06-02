@@ -44,9 +44,9 @@
 
 
         /* #table th,
-                                                                            #table td {
-                                                                                transform: rotate(-90deg);
-                                                                            } */
+                                                                                                                                                                                #table td {
+                                                                                                                                                                                    transform: rotate(-90deg);
+                                                                                                                                                                                } */
 
         td {
             height: 50px;
@@ -62,7 +62,6 @@
             body {
                 -webkit-print-color-adjust: exact !important;
             }
-
 
 
             #table1 th,
@@ -133,15 +132,23 @@
 
 
 
-                                <div class=" row ssname-table">
-                                    <div class="col-sm-12  col-lg-4 ">
+                                <div class=" row ssname-table  ">
+                                    <div class=" d-print-none col-sm-12 col-print-12  col-lg-4  ">
                                         <h1
                                             class="d-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
                                             {{ $task_details->tasks->station->SSNAME }}
                                         </h1>
 
                                     </div>
-                                    <div class="col-sm-12  col-lg-8   table-responsive-sm">
+                                    {{-- this div show only on print --}}
+                                    <div class="d-none d-print-block  col-sm-4  ">
+                                        <h1
+                                            class="d-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
+                                            {{ $task_details->tasks->station->SSNAME }}
+                                        </h1>
+
+                                    </div>
+                                    <div class="d-print-none col-sm-12  col-lg-8  col-print-12  table-responsive-sm">
                                         <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1"
                                             class="ltr-table ">
                                             <thead class="thead-light">
@@ -172,10 +179,12 @@
                                                         $todayDate = date('Y-m-d');
                                                     @endphp
                                                     @if (isset($task_details->tasks->station->pm) && $todayDate < $task_details->tasks->station->pm)
-                                                        <td class="table-success">{{ $task_details->tasks->station->pm }}
+                                                        <td class="bg-success text-white">
+                                                            {{ $task_details->tasks->station->pm }}
                                                         </td>
                                                     @else
-                                                        <td class="table-danger">{{ $task_details->tasks->station->pm }}
+                                                        <td class="bg-danger text-white">
+                                                            {{ $task_details->tasks->station->pm }}
                                                         </td>
                                                     @endif
 
@@ -183,7 +192,51 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    {{-- this div show only on print --}}
+                                    <div class="d-none d-print-block    col-sm-8  table-responsive-sm">
+                                        <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1"
+                                            class="ltr-table ">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Company Make</th>
+                                                    <th scope="col">Contract.No</th>
 
+                                                </tr>
+                                                <tr></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $task_details->tasks->station->COMPANY_MAKE }}</td>
+                                                    <td>{{ $task_details->tasks->station->Contract_No }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                            <tr>
+                                                <thead class="thead-light">
+                                                    <th scope="col">COMMISIONING DATE</th>
+                                                    <th scope="col">Previous maintenance</th>
+                                                </thead>
+                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $task_details->tasks->station->COMMISIONING_DATE }}</td>
+                                                    @php
+                                                        $todayDate = date('Y-m-d');
+                                                    @endphp
+                                                    @if (isset($task_details->tasks->station->pm) && $todayDate < $task_details->tasks->station->pm)
+                                                        <td class="bg-success">
+                                                            {{ $task_details->tasks->station->pm }}
+                                                        </td>
+                                                    @else
+                                                        <td class="bg-danger">
+                                                            {{ $task_details->tasks->station->pm }}
+                                                        </td>
+                                                    @endif
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                                 <div class="d-block p-3 mb-2 bg-white text-dark">
