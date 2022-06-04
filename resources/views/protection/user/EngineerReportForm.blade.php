@@ -1,5 +1,14 @@
 @extends('layouts.master')
 @section('css')
+<link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+<!---Internal Fileupload css-->
+<link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+<!---Internal Fancy uploader css-->
+<link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+<!--Internal Sumoselect css-->
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+<!--Internal  TelephoneInput css-->
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 <style>
     .mew-logo {
         width: 250px;
@@ -122,6 +131,10 @@
                         </div>
 
                         {{-- --}}
+                        <div class="mt-3">
+                            <h3 class=" text-center  py-4 px-3 bg-secondary text-light">{{$tasks->station->fullName}}<br>{{$tasks->station->control}} - {{$tasks->voltage_level}}</h3>
+
+                        </div>
                         <div class="text-left">
                             <div class=" row ssname-table  ">
                                 <div class=" d-print-none col-sm-12 col-print-12  col-lg-4  ">
@@ -166,7 +179,7 @@
                                                 $todayDate = date('Y-m-d');
                                                 @endphp
                                                 @if (isset($tasks->station->pm) && $todayDate < $tasks->station->pm)
-                                                    <td class="bg-success text-white">
+                                                    <td class="bgsuccess- text-white">
                                                         {{ $tasks->station->pm }}
                                                     </td>
                                                     @else
@@ -259,7 +272,9 @@
                                 <h2 class="ml-4">Nature of Fault</h2>
                                 <h4 class="ml-4 text-left ">{{$tasks->problem }}</h4>
                             </div>
-
+                            <button type="button" class="btn  btn-lg btn-dark" data-toggle="modal" data-target="#exampleModal">
+                                Can not complete the task
+                            </button>
                             <form action="{{route('proteciton.SubmitEngineerReport',['id'=>$tasks->id])}}" enctype="multipart/form-data" method="post" autocomplete="off">
                                 @csrf
                                 <div class="    my-2  text-dark">
@@ -268,8 +283,20 @@
                                     <textarea name="action_take" placeholder="Write Your Report here" style="text-align: left; font-size:20px;" rows="5" cols="100" class="form-control"></textarea>
 
                                 </div>
-                                <button class="btn btn-lg btn-success btn-block">Submit</button>
+                                <div id="attachmentFile" class="e">
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                    </div><br>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                    </div><br>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                    </div><br>
+                                </div>
+                                <button class="btn btn-lg btn-success-gradient btn-block">Submit</button>
                             </form>
+
 
                             <div class="d-block p-3 mb-2 bg-white text-dark">
                                 <h2>Engineer</h2>
@@ -338,10 +365,54 @@
             </div>
         </div>
     </div><!-- COL-END -->
-</div>
-<!-- row closed -->
-</div>
-<!-- Container closed -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> سبب عدم الإنجاز </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="{{route('proteciton.engineerReportUnCompleted',['id'=>$tasks->id])}}" method="post">
+                        {{ csrf_field() }}
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"> اختر السبب</label>
+                        <select name="reason" class="form-control" id="exampleFormControlSelect1">
+                            <option value="مسؤولية جهة آخرى">مسؤولية جهة آخرى</option>
+                            <option value="تحت الكفالة">تحت الكفالة</option>
+                            <option value="قطع غيار غير متوفرة "> قطع غيار غير متوفرة </option>
+                            <option value="بإنتظار إصلاحات"> بإنتظار إصلاحات</option>
+                            <option value="تحويل المهمة لمهندس آخر">تحويل المهمة لمهندس آخر </option>
+                            <option value="آخرى"> آخرى</option>
+                        </select>
+                        <!--Take all these hidden value to the form-->
+                        <input type="hidden" class="form-control" id="inputName" name="refNum" value="{{$tasks->refNum}}" readonly>
+                        <input type="hidden" class="form-control" readonly name="ssname" id="ssname" value="{{$tasks->station->id}}">
+                        <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD" type="hidden" value="{{ $tasks->task_Date}}" readonly required>
+                        <input type="hidden" class="form-control" readonly name="equip" id="equip" value="{{$tasks->equip}}">
+                        <input type="hidden" class="form-control" readonly value="{{$tasks->problem}}" name="problem" id="problem">
+                        <input class="form-control fc-datepicker" name="report_Date" placeholder="YYYY-MM-DD" type="hidden" value="{{ date('Y-m-d') }}" readonly required>
+                        <input type="hidden" class="form-control" name="eng_name" readonly value="{{$tasks->users->name}}">
+                        <textarea type="hidden" style="display:none;" class="form-control" id="exampleTextarea" name="notes" readonly rows="3">{{$tasks->notes}}</textarea>
+                        <!--END Taking all these hidden value to the form-->
+
+                        <label for="exampleTextarea">ملاحظات</label>
+                        <textarea class="form-control" id="exampleTextarea" name="engineer_note" rows="3"></textarea>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                    <button type="submit" class="btn btn-danger">تاكيد</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- row closed -->
+    </div>
+    <!-- Container closed -->
 </div>
 <!-- main-content closed -->
 @endsection
@@ -358,4 +429,30 @@
         location.reload();
     }
 </script>
+<script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+<!--Internal Fileuploads js-->
+<script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+<!--Internal Fancy uploader js-->
+<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+<!--Internal  Form-elements js-->
+<script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
+<script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+<!--Internal Sumoselect js-->
+<script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+<!--Internal  Datepicker js -->
+<script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+<!--Internal  jquery.maskedinput js -->
+<script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+<!--Internal  spectrum-colorpicker js -->
+<script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+<!-- Internal form-elements js -->
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+
+<!--PROTECTION JS fiLE-->
+<script type="text/javascript" src="{{ URL::asset('js/protection/app.js') }}"></script>
 @endsection

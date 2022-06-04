@@ -33,24 +33,6 @@
     td {
         font-size: 20px;
     }
-
-    #table0 td,
-    #table1 td,
-    #table2 td,
-        {
-
-        font-size: 19px;
-    }
-
-
-    /* #table th,
-                                                                                                                                                                                #table td {
-                                                                                                                                                                                    transform: rotate(-90deg);
-                                                                                                                                                                                } */
-
-    td {
-        height: 50px;
-    }
 </style>
 <style>
     @media print {
@@ -75,6 +57,55 @@
 
 
 
+    }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+        animation: fadeEffect 1s;
+        /* Fading effect takes 1 second */
+
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 </style>
 @endsection
@@ -335,9 +366,15 @@
                     </div>
 
                     <hr class=" mg-b-40">
-                    @isset($commonTasks)
+                    <div class="btn-group mb-3 d-print-none" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-info tablinks" onclick="showTab(event, 'commonTasks')">Related Reports</button>
+                        <button type="button" class="btn btn-outline-info tablinks" onclick="showTab(event, 'attachments')">Attachments</button>
+                    </div>
+                    {{--common Reports--}}
+                    @if(count($commonTasks) > 0)
+
                     <!-- row -->
-                    <div class="row d-print-none">
+                    <div class="tabcontent row d-print-none mb-4 " id="commonTasks">
                         <!--div-->
                         <div class="col-xl-12">
                             <div class="card mg-b-20">
@@ -384,7 +421,51 @@
                         </div>
                         <!--/div-->
                     </div>
-                    @endisset
+                    @else
+                    <p class="tabcontent row d-print-none mb-4" id="commonTasks">Nothing To view</p>
+                    @endif
+                    {{--attachments table--}}
+                    <div class="tabcontent table-responsive mt-15 d-print-none d-none" id="attachments">
+                        <table class="table center-aligned-table mb-0  table-hover" style="text-align:center">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">م</th>
+                                    <th scope="col">اسم الملف</th>
+                                    <th scope="col">تاريخ الاضافة</th>
+                                    <th scope="col"> بواسطة</th>
+                                    <th scope="col">العمليات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 0; ?>
+                                @foreach ($task_attachment as $attachment)
+                                <?php $i++; ?>
+                                <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>{{ $attachment->file_name }}</td>
+                                    <td>{{ $attachment->created_at }}</td>
+                                    <td>
+                                        @if($attachment->Created_by =="")
+                                        {{$task->engineers->name}}
+                                        @else
+                                        {{ $attachment->Created_by }}
+                                        @endif
+                                    </td>
+                                    <td colspan="2">
+                                        <a class="btn btn-outline-success btn-sm" href="{{route('protection.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}" role="button"><i class="fas fa-eye"></i>&nbsp;
+                                            عرض</a>
+
+                                        <a class="btn btn-outline-info btn-sm" href="{{route('protection.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}" role="button"><i class="fas fa-download"></i>&nbsp;
+                                            تحميل</a>
+                                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-file_name="{{ $attachment->file_name }}" data-invoice_number="{{ $attachment->id_task }}" data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+
+                    </div>
                     <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
 
                 </div>
@@ -412,4 +493,6 @@
         location.reload();
     }
 </script>
+<script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
+
 @endsection

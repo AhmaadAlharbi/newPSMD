@@ -568,7 +568,9 @@ class ProtectionController extends Controller
             ->where('status', 'completed')
             ->where('section_id', '!=', 2)
             ->get();
-        return view('protection.admin.tasks.report', compact('task_details', 'commonTasks'));
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('protection.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
     }
     public function viewCommonReport($id, $section_id)
     {
@@ -579,22 +581,25 @@ class ProtectionController extends Controller
         $commonTasks = TaskDetails::where('task_id', $id)
             ->where('status', 'completed')
             ->get();
-        return view('protection.admin.tasks.report', compact('task_details', 'commonTasks'));
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('protection.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
     }
 
 
     ///equip
-    public function getEquip($id){
-        return (string)  Equip::where('station_id',$id)->orderBy('voltage_level')->get();
-
+    public function getEquip($id)
+    {
+        return (string)  Equip::where('station_id', $id)->orderBy('voltage_level')->get();
     }
-    public function getEquipNumber($station_id,$voltage_level){
-        return (string)  Equip::where('station_id',$station_id)
-        ->where('voltage_level',$voltage_level)->get();
-
+    public function getEquipNumber($station_id, $voltage_level)
+    {
+        return (string)  Equip::where('station_id', $station_id)
+            ->where('voltage_level', $voltage_level)->get();
     }
-    public function getEquipName($euipNumber){
-        return (string)  Equip::where('equip_number',$euipNumber)->get();
+    public function getEquipName($euipNumber)
+    {
+        return (string)  Equip::where('equip_number', $euipNumber)->get();
     }
     ///##### end backend functions
 

@@ -1,7 +1,9 @@
 const divLocal = document.getElementById("main-div");
 
 function showTab(evt, cityName) {
-    divLocal.classList.add("d-none");
+    if (divLocal) {
+        divLocal.classList.add("d-none");
+    }
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -9,6 +11,7 @@ function showTab(evt, cityName) {
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
+        tabcontent[i].classList.remove("d-none");
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
