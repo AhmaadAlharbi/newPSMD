@@ -110,12 +110,12 @@ const getStation = async () => {
     //calling function
     controlColor(controlName.value);
     // return areaSelect.value;
-    return [areaSelect.value,stationIdInput.value];
+    return [areaSelect.value, stationIdInput.value];
 };
 //get Engineer's name
 const getEngineer = async () => {
-    const area_fromFunc =  await getStation();
-    area_id = area_fromFunc[0]
+    const area_fromFunc = await getStation();
+    area_id = area_fromFunc[0];
     shift_id = shiftSelect.value;
     const response = await fetch("/getEngineer/" + area_id + "/" + shift_id);
     if (response.status !== 200) {
@@ -218,7 +218,7 @@ const getEquip = async () => {
     equipVoltage.add(voltage_option);
     equipNumber.add(equip_number_option);
     //get area value from getStation
-    const area_fromFunc =  await getStation();
+    const area_fromFunc = await getStation();
     let station_id = area_fromFunc[1];
     // let station_id =await getStation()
     const response2 = await fetch("/protection/Equip/" + station_id);
@@ -230,10 +230,10 @@ const getEquip = async () => {
         equip_number_option = document.createElement("option");
         // console.log(data2)
         voltageArray.push(data2[i].voltage_level);
-        // voltage_option.text = data2[i];
-        equip_number_option.text = data2[i].eqiup_number;
-        // equipVoltage.add(voltage_option)
-        equipNumber.add(equip_number_option);
+        // // voltage_option.text = data2[i];
+        // equip_number_option.text = data2[i].eqiup_number;
+        // // equipVoltage.add(voltage_option)
+        // equipNumber.add(equip_number_option);
     }
     const voltageSet = new Set(voltageArray);
     const voltageUnique = [...voltageSet];
@@ -267,12 +267,14 @@ const getEquipNumber = async () => {
     for (let i = 0; i < data2.length; i++) {
         let equip_number_option = document.createElement("option");
         equip_number_option.text = data2[i].equip_number;
-        equipNumber.add(equip_number_option)
+        equipNumber.add(equip_number_option);
         equipName.value = data2[0].equip_name;
     }
 };
 const getEquipName = async () => {
-    const response = await fetch("/protection/Equipname/" + await equipNumber.value);
+    const response = await fetch(
+        "/protection/Equipname/" + (await equipNumber.value)
+    );
     if (response.status !== 200) {
         throw new Error("can not fetch the data");
     }
