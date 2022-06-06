@@ -12,10 +12,6 @@ const stationIdInput = document.querySelector("#station_id");
 const refNum = document.querySelector("#refNum");
 //generate random number
 
-if (refNum === "") {
-    let randomNumber = Math.floor(Math.random() * 900);
-    refNum.value += randomNumber + 1;
-}
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");
     let area_select_option2 = document.createElement("option");
@@ -79,6 +75,7 @@ const controlColor = (value) => {
             areaSelect.add(area_select_option2);
             break;
     } //switch end
+    return areaSelect.value;
 };
 //get Station
 const getStation = async () => {
@@ -123,30 +120,29 @@ const getEngineer = async () => {
     }
     return data;
 };
-//show Engineers instead of a button to call a function
+// show Engineers instead of a button to call a function
 const showEngineers = async () => {
-    const area_fromFunc = await getStation();
-    area_id = area_fromFunc[0];
+    area_id = controlColor(controlName.value);
     shift_id = shiftSelect.value;
     const response = await fetch("/getEngineer/" + area_id + "/" + shift_id);
     if (response.status !== 200) {
         throw new Error("can not fetch the data");
     }
     const data = await response.json();
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
-        let engineerSelectValue = document.createElement("option");
-
         if (data[i].id != engineerSelect.value) {
+            let engineerSelectValue = document.createElement("option");
             engineerSelectValue.value = data[i].id;
-            engineerSelectValue.innerHTML = data[i].name;
+            engineerSelectValue.text = data[i].name;
             engineerSelect.appendChild(engineerSelectValue);
-            engEmail.value = data[0].email;
         }
     }
+
     return data;
 };
+
 showEngineers();
+
 //get Engineer's email
 const getEngineerEmail = async () => {
     let eng_id = engineerSelect.value;
@@ -194,7 +190,6 @@ const showEquip = async (station_id) => {
     const response2 = await fetch("/protection/Equip/" + station_id);
     const data2 = await response2.json();
     let voltageArray = [];
-    let EquipNumberArray = [];
     for (let i = 0; i < data2.length; i++) {
         voltage_option = document.createElement("option");
         equip_number_option = document.createElement("option");

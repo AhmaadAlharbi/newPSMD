@@ -195,29 +195,26 @@
                             <div class="col-lg-6">
                                 <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage Level</label>
 
-                                <select class="form-control" id="equipVoltage" onchange="getEquipNumber()">
+                                <select class="form-control" name="voltage_level" id="equipVoltage"
+                                    onchange="getEquipNumber()">
                                     <option value="{{ $tasks->voltage_level }}">{{ $tasks->voltage_level }}</option>
 
                                 </select>
                             </div>
                         </div>
                         <div class="row m-3">
-
-
-
                             <div class="col-lg-6">
                                 <label for="equip" class="control-label m-1">equip Number</label>
-                                <select type="text" id="equipNumber" name="equip" class="form-control"
+                                <select type="text" id="equipNumber" name="equip_number" class="form-control"
                                     onchange=" getEquipName()">
                                     <option value="{{ $tasks->equip_number }}">{{ $tasks->equip_number }}</option>
-
                                 </select>
                             </div>
 
                             <div class="col-lg-6">
                                 <label for="equip" class="control-label m-1">equip name</label>
                                 <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
-                                <input type="text" id="equipName" class="form-control ">
+                                <input type="text" name="equip_name" id="equipName" class="form-control ">
                             </div>
 
                             <div class="col-lg-12 mt-2">
@@ -226,10 +223,6 @@
 
                             </div>
                         </div>
-
-
-
-
                         {{-- 2 --}}
                         <div class="row m-3">
                             <div class="col border border-warning p-3 flex-wrap">
@@ -253,10 +246,6 @@
                                 <label for="area" class="control-label">area</label>
                                 <select name="area" id="areaSelect" class="form-control areaSelect"
                                     onchange="getEngineer()">
-
-
-
-
                                 </select>
                             </div>
 
@@ -266,10 +255,8 @@
                                 <select name="shift" id="shiftSelect" class="form-control " onchange="getEngineersShift()">
                                     <!--placeholder-->
                                     <option value="0"> صباحاً </option>
-
                                     <option value="1"> مساءً </option>
                                 </select>
-
 
                             </div>
 
