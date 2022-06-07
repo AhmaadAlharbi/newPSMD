@@ -159,7 +159,8 @@ class BatteryController extends Controller
             'voltage_level'=>$request->voltage_level,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
-            'equip'=>$request->equip,
+            'equip_number' => $request->equip_number,
+            'equip_name' => $request->equip_name,
             'pm'=>$request->pm,
             'eng_id'=>$request->eng_name,
             'problem' => $request->problem,
@@ -219,7 +220,8 @@ class BatteryController extends Controller
             'voltage_level'=>$request->voltage_level,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
-            'equip'=>$request->equip,
+            'equip_number' => $request->equip_number,
+            'equip_name' => $request->equip_name,
             'pm'=>$request->pm,
             'problem' => $request->problem,
             'notes' => $request->notes,
@@ -465,7 +467,8 @@ class BatteryController extends Controller
             'voltage_level'=>$request->voltage_level,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
-            'equip'=>$request->equip,
+            'equip_number' => $request->equip_number,
+            'equip_name' => $request->equip_name,
             'eng_id'=>$request->eng_name,
             'problem' => $request->problem,
             'notes' => $request->notes,
@@ -541,7 +544,9 @@ class BatteryController extends Controller
         ->where('status','completed')
         ->where('section_id','!=',3)
         ->get();
-        return view('battery.admin.tasks.report',compact('task_details','commonTasks'));
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('battery.admin.tasks.report',compact('task_details','commonTasks','task_attachment'));
     }
     public function viewCommonReport($id,$section_id){
        $task_details = TaskDetails::where('task_id',$id)

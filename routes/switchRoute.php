@@ -64,7 +64,7 @@ Route::post('/dashboard/admin/query_section_id=6/add-new-user',[SwitchGearContro
     //get an engineer's email
     Route::get('/switchgear/getEngineersEmail/{id}', [SwitchGearController::class, 'getEngineersEmail']);
     //get an engineer based on shift
-    Route::get('/switchgear/getEngineersOnShift/{area_id}/{shift_id}',[SwitchGearController::class,'getEngineersShift']);
+    Route::get('/switchgear/getEngineersOnShift',[SwitchGearController::class,'getEngineersShift']);
     //get stations
     Route::get('/switchgear/stations/{id}',[SwitchGearController::class,'getStations']);
 

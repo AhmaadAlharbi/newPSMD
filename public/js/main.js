@@ -1,5 +1,4 @@
 const divLocal = document.getElementById("main-div");
-
 function showTab(evt, cityName) {
     if (divLocal) {
         divLocal.classList.add("d-none");

@@ -10,13 +10,8 @@ const controlName = document.querySelector("#control_name");
 const make = document.querySelector("#make");
 const stationIdInput = document.querySelector("#station_id");
 const refNum = document.querySelector("#refNum");
-const changeEngineerButton = document.querySelector("#changeEngineerButton");
 //generate random number
 
-if (refNum === "") {
-    let randomNumber = Math.floor(Math.random() * 900);
-    refNum.value += randomNumber + 1;
-}
 const controlColor = (value) => {
     let area_select_option = document.createElement("option");
     let area_select_option2 = document.createElement("option");
@@ -30,10 +25,7 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الجنوبية";
-            // area value depends on shift morining or night
-            shiftSelect.value != 0
-                ? (area_select_option.value = 2)
-                : (area_select_option.value = 1);
+            area_select_option.value = 2;
             areaSelect.add(area_select_option);
             break;
         case "JABRIYA CONTROL CENTER":
@@ -44,10 +36,7 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الوسطى";
-            // area value depends on shift morining or night
-            shiftSelect.value != 0
-                ? (area_select_option.value = 3)
-                : (area_select_option.value = 1);
+            area_select_option.value = 3;
             areaSelect.add(area_select_option);
             break;
         case "JAHRA CONTROL CENTER":
@@ -68,11 +57,10 @@ const controlColor = (value) => {
                 "bg-danger",
                 "text-light"
             );
-            area_select_option.text = "المنطقة الوسطى";
-            shiftSelect.value != 0
-                ? (area_select_option.value = 3)
-                : (area_select_option.value = 1);
+            area_select_option.text = "المنطقة الشمالية";
+            area_select_option.value = 1;
             areaSelect.add(area_select_option);
+
             break;
         case "NATIONAL CONTROL CENTER":
             controlName.classList.add(
@@ -102,6 +90,7 @@ const controlColor = (value) => {
 
             controlName.value = " الرجاء تعديل اسم التحكم من جدول المحطات";
     } //switch end
+    return areaSelect.value;
 };
 //get Station
 const getStation = async () => {
@@ -125,6 +114,29 @@ const getStation = async () => {
     controlColor(controlName.value);
     return areaSelect.value;
 };
+//show Engineers
+const showEngineers = async () => {
+    area_id = controlColor(controlName.value);
+    shift_id = shiftSelect.value;
+    const response = await fetch(
+        "/switchgear/getEngineer/" + area_id + "/" + shift_id
+    );
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    console.log(data);
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].id != engineerSelect.value) {
+            let engineerSelectValue = document.createElement("option");
+            engineerSelectValue.value = data[i].id;
+            engineerSelectValue.text = data[i].name;
+            engineerSelect.appendChild(engineerSelectValue);
+        }
+    }
+    return data;
+};
+showEngineers();
 //get Engineer's name
 const getEngineer = async () => {
     area_id = await getStation();
@@ -147,6 +159,7 @@ const getEngineer = async () => {
     }
     return data;
 };
+
 //get Engineer's email
 const getEngineerEmail = async () => {
     let eng_id = engineerSelect.value;
@@ -159,35 +172,43 @@ const getEngineerEmail = async () => {
 };
 //get Engineers on shift
 const getEngineersShift = async () => {
-    engineerSelect.innerText = null;
-    engEmail.value = "";
-    let shift_id = shiftSelect.value;
-    let area_id = shiftSelect.value != 0 ? await getStation() : 1;
-
     // let area_id = await getStation();
-    const response = await fetch(
-        "/switchgear/getEngineersOnShift/" + area_id + "/" + shift_id
-    );
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
+    engineerSelect.innerHTML = "";
+    engEmail.innerHTML = "";
+    if (shiftSelect.value == 1) {
+        const response = await fetch("/switchgear/getEngineersOnShift");
+        if (response.status !== 200) {
+            throw new Error("can not fetch the data");
+        }
+        const data = await response.json();
+        for (let i = 0; i < data.length; i++) {
+            let engineerSelectValue = document.createElement("option");
+            engineerSelectValue.value = data[i].id;
+            engineerSelectValue.innerHTML = data[i].name;
+            engineerSelect.appendChild(engineerSelectValue);
+            engEmail.value = data[0].email;
+        }
+    } else {
+        area_id = controlColor(controlName.value);
+        shift_id = 0;
+        const response = await fetch(
+            "/switchgear/getEngineer/" + area_id + "/" + shift_id
+        );
+        if (response.status !== 200) {
+            throw new Error("can not fetch the data");
+        }
+        const data = await response.json();
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+            let engineerSelectValue = document.createElement("option");
+            engineerSelectValue.value = data[i].id;
+            engineerSelectValue.innerHTML = data[i].name;
+            engineerSelect.appendChild(engineerSelectValue);
+            engEmail.value = data[0].email;
+            //console.log(data[i].id, data[i].name)
+        }
+        return data;
     }
-    const data = await response.json();
-    console.log(data);
-    for (let i = 0; i < data.length; i++) {
-        let engineerSelectValue = document.createElement("option");
-        engineerSelectValue.value = data[i].id;
-        engineerSelectValue.innerHTML = data[i].name;
-        engineerSelect.appendChild(engineerSelectValue);
-        engEmail.value = data[0].email;
-        //console.log(data[i].id, data[i].name)
-    }
-    return data;
 };
 //to color control based on area
 controlColor(controlName.value);
-
-//to change engineers
-changeEngineerButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    getEngineer();
-});

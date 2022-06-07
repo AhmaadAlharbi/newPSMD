@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <label for="ssname">يرجى اختيار اسم المحطة</label>
-                                <input list="ssnames" class="form-control" name="station_code" id="ssname"
+                                <input type="search" list="ssnames" class="form-control" name="station_code" id="ssname"
                                     onchange="getStation(),getEngineer()" value="{{ $tasks->station->SSNAME }}">
 
 
@@ -142,7 +142,7 @@
                         </div>
 
                         <div class="row m-3">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <label for="mainAlarm" class="control-label m-3">Main Alarm</label>
                                 <select name="mainAlarm" id="main_alarm" class="form-control">
                                     <!--placeholder-->
@@ -175,58 +175,7 @@
                                 <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text"
                                     class=" invisible form-control" onfocus=this.value=''>
                             </div>
-                            <div class="col-lg-6">
-                                <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage Level</label>
-                                <select name="Voltage_Level" id="voltageLevel" class="form-control">
-                                    <!--placeholder-->
-                                    @if (!$tasks->main_alarm == 'Transformer Clearance' || 'Shunt Reactor Clearance')
-                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}
-                                        </option>
-                                    @endif
-                                    <option value="400KV">400KV</option>
-                                    <option value="300KV">300KV</option>
-                                    <option value="132KV">132KV</option>
-                                    <option value="33KV">33KV</option>
-                                    <option value="11KV">11KV</option>
 
-                                </select>
-                                <select id="transformerVoltage" class="d-none form-control">
-                                    <!--placeholder-->
-                                    @if ($tasks->main_alarm == 'Transformer Clearance')
-                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}
-                                        </option>
-                                    @endif
-                                    <option value="750MVA">750MVA</option>
-                                    <option value="300MVA">300MVA</option>
-                                    <option value="75MVA">75MVA</option>
-                                    <option value="45MVA">45MVA</option>
-                                    <option value="30MVA">30MVA</option>
-                                    <option value="20MVA">20MVA</option>
-                                    <option value="15MVA">15MVA</option>
-                                    <option value="10MVA">10MVA</option>
-                                    <option value="7.5MVA">7.5MVA</option>
-                                    <option value="5MVA">5MVA</option>
-
-                                </select>
-                                <select id="shuntVoltage" class="d-none form-control">
-                                    <!--Placeholder-->
-                                    @if ($tasks->main_alarm == 'Shunt Reactor Clearance')
-                                        <option value="{{ $tasks->Voltage_level }}">{{ $tasks->Voltage_level }}
-                                        </option>
-                                    @endif
-                                    <option value="250MVAR">250MVAR</option>
-                                    <option value="125MVAR">125MVAR</option>
-                                    <option value="50MVAR">50MVAR</option>
-                                    <option value="45MVAR">45MVAR</option>
-                                    <option value="30MVAR">30MVAR</option>
-                                </select>
-
-                                <select id="dist" class="d-none form-control">
-                                    <!--placeholder-->
-                                    <option value="400KV">400KV</option>
-                                    <option value="300KV">300KV</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="row m-3">
 
@@ -234,7 +183,6 @@
                                 <label for="equip" class="control-label m-1">Bay Unit</label>
                                 <input type="text" name="equip" class="form-control SlectBox"
                                     value="{{ $tasks->equip }}">
-
                             </div>
 
                             <div class="col-lg-6">
@@ -247,10 +195,6 @@
                                 </datalist>
                             </div>
                         </div>
-
-
-
-
                         {{-- 2 --}}
                         <div class="row m-3">
                             <div class="col border border-warning p-3 flex-wrap">
@@ -294,8 +238,7 @@
                             </div>
 
                             <div class="col">
-                                <button id="changeEngineerButton" class="btn btn-outline-info btn-sm ml-2">تغيير اسم
-                                    المهندس</button>
+
                                 <label for="inputName" class="control-label">اسم المهندس</label>
                                 <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                     onchange="getEngineerEmail()">

@@ -108,7 +108,6 @@
                 transform: rotate(360deg);
             }
         }
-
     </style>
 @endsection
 @section('page-header')
@@ -158,8 +157,8 @@
                             </div>
                             <div class="col-lg-4">
                                 <label for="ssname">يرجى اختيار اسم المحطة</label>
-                                <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
-                                    onchange="getStation(),getEngineer()">
+                                <input type="search" list="ssnames" class="form-control" value="" name="station_code"
+                                    id="ssname" onchange="getStation(),getEngineer()">
                                 <datalist id="ssnames">
                                     @foreach ($stations as $station)
                                         <option value="{{ $station->SSNAME }}">
@@ -287,7 +286,7 @@
 
                                     <!--placeholder-->
                                     <!-- <option value="1"> المنطقة الشمالية</option>
-                                                                                        <option value="2"> المنطقة الجنوبية</option> -->
+                                                                                            <option value="2"> المنطقة الجنوبية</option> -->
 
                                 </select>
                             </div>

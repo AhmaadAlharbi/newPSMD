@@ -31,10 +31,7 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الجنوبية";
-            // area value depends on shift morining or night
-            shiftSelect.value != 0
-                ? (area_select_option.value = 2)
-                : (area_select_option.value = 1);
+            area_select_option.value = 2;
             areaSelect.add(area_select_option);
             break;
         case "JABRIYA CONTROL CENTER":
@@ -45,10 +42,7 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الوسطى";
-            // area value depends on shift morining or night
-            shiftSelect.value != 0
-                ? (area_select_option.value = 3)
-                : (area_select_option.value = 1);
+            area_select_option.value = 3;
             areaSelect.add(area_select_option);
             break;
         case "JAHRA CONTROL CENTER":
@@ -70,10 +64,9 @@ const controlColor = (value) => {
                 "text-light"
             );
             area_select_option.text = "المنطقة الشمالية";
-            shiftSelect.value != 0
-                ? (area_select_option.value = 3)
-                : (area_select_option.value = 1);
+            area_select_option.value = 1;
             areaSelect.add(area_select_option);
+
             break;
         case "NATIONAL CONTROL CENTER":
             controlName.classList.add(
@@ -160,28 +153,28 @@ const getEngineerEmail = async () => {
 };
 //get Engineers on shift
 const getEngineersShift = async () => {
-    engineerSelect.innerText = null;
-    engEmail.value = "";
-    let shift_id = shiftSelect.value;
-    let area_id = shiftSelect.value != 0 ? await getStation() : 1;
     // let area_id = await getStation();
-    const response = await fetch(
-        "/switchgear/getEngineersOnShift/" + area_id + "/" + shift_id
-    );
-    if (response.status !== 200) {
-        throw new Error("can not fetch the data");
+
+    if (shiftSelect.value == 1) {
+        engineerSelect.innerHTML = "";
+        engEmail.innerHTML = "";
+        const response = await fetch("/switchgear/getEngineersOnShift");
+        if (response.status !== 200) {
+            throw new Error("can not fetch the data");
+        }
+        const data = await response.json();
+        for (let i = 0; i < data.length; i++) {
+            let engineerSelectValue = document.createElement("option");
+            engineerSelectValue.value = data[i].id;
+            engineerSelectValue.innerHTML = data[i].name;
+            engineerSelect.appendChild(engineerSelectValue);
+            engEmail.value = data[0].email;
+
+            //console.log(data[i].id, data[i].name)
+        }
+    } else {
+        getEngineer();
     }
-    const data = await response.json();
-    console.log(data);
-    for (let i = 0; i < data.length; i++) {
-        let engineerSelectValue = document.createElement("option");
-        engineerSelectValue.value = data[i].id;
-        engineerSelectValue.innerHTML = data[i].name;
-        engineerSelect.appendChild(engineerSelectValue);
-        engEmail.value = data[0].email;
-        //console.log(data[i].id, data[i].name)
-    }
-    return data;
 };
 //to toggle files atthachmant
 
