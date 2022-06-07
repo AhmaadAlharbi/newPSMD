@@ -13,6 +13,8 @@ const refNum = document.querySelector("#refNum");
 const showAttachment = document.getElementById("showAttachment");
 const hideAttachment = document.getElementById("hideAttachment");
 const attachmentFile = document.getElementById("attachmentFile");
+const voltageLevel = document.querySelector("#voltageLevel");
+const inputEquipNumber = document.querySelector("#inputEquipNumber");
 //generate random number
 // let randomNumber = Math.floor(Math.random() * 900);
 // refNum.value += randomNumber + 1;
@@ -246,9 +248,17 @@ const getEquip = async () => {
         // console.log(data2)
         voltage_option.text = voltageUnique[i];
         equipVoltage.add(voltage_option);
-        console.log(voltageArray);
-        console.log(voltageSet);
-        console.log(voltageUnique);
+    }
+    if (voltageUnique.length > 0) {
+        voltageLevel.classList.add("d-none");
+        inputEquipNumber.classList.add("d-none");
+        equipVoltage.classList.remove("d-none");
+        equipNumber.classList.remove("d-none");
+    } else {
+        voltageLevel.classList.remove("d-none");
+        inputEquipNumber.classList.remove("d-none");
+        equipVoltage.classList.add("d-none");
+        equipNumber.classList.add("d-none");
     }
 };
 const getEquipNumber = async () => {

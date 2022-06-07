@@ -108,7 +108,6 @@
                 transform: rotate(360deg);
             }
         }
-
     </style>
 @endsection
 @section('page-header')
@@ -244,7 +243,25 @@
                                     onchange="getEquipNumber()">
                                     <option>-</option>
                                 </select>
+                                <select name="voltage_level" id="voltageLevel" class="form-control d-none">
+                                    <!--placeholder-->
+                                    <optgroup>
+                                        <option value="400KV">400KV</option>
+                                        <option value="300KV">300KV</option>
+                                        <option value="132KV">132KV</option>
+                                        <option value="33KV">33KV</option>
+                                        <option value="11KV">11KV</option>
+                                    </optgroup>
+                                    <optgroup label="General Check">
+                                        <option value="132/11KV">132/11KV</option>
+                                        <option value="33/11KV">33/11KV</option>
+                                        <option value="400/132/11KV">400/132/11KV</option>
+                                        <option value="300/132/11KV">300/132/11KV</option>
+                                    </optgroup>
+
+                                </select>
                             </div>
+
                         </div>
                         <div class="row m-3">
 
@@ -254,6 +271,7 @@
                                     onchange=" getEquipName()">
                                     <option value="">-</option>
                                 </select>
+                                <input type="text" name="equip_number" class="form-control d-none" id="inputEquipNumber">
                             </div>
 
                             <div class="col-lg-6">
@@ -319,7 +337,7 @@
                                     onchange="nccEngineers()">
                                     <!--placeholder-->
                                     <!-- <option value="1"> المنطقة الشمالية</option>
-                                    <option value="2"> المنطقة الجنوبية</option> -->
+                                                                <option value="2"> المنطقة الجنوبية</option> -->
 
                                 </select>
                             </div>

@@ -10,6 +10,8 @@ const controlName = document.querySelector("#control_name");
 const make = document.querySelector("#make");
 const stationIdInput = document.querySelector("#station_id");
 const refNum = document.querySelector("#refNum");
+const voltageLevel = document.querySelector("#voltageLevel");
+const inputEquipNumber = document.querySelector("#inputEquipNumber");
 //generate random number
 
 const controlColor = (value) => {
@@ -226,6 +228,17 @@ const showEquipNumber = async (station_id) => {
         equipNumber.add(equip_number_option);
         equipName.value = data2[0].equip_name;
     }
+    if (data2.length > 0) {
+        voltageLevel.classList.add("d-none");
+        inputEquipNumber.classList.add("d-none");
+        equipVoltage.classList.remove("d-none");
+        equipNumber.classList.remove("d-none");
+    } else {
+        voltageLevel.classList.remove("d-none");
+        inputEquipNumber.classList.remove("d-none");
+        equipVoltage.classList.add("d-none");
+        equipNumber.classList.add("d-none");
+    }
 };
 //call
 showEquip(stationIdInput.value);
@@ -269,9 +282,17 @@ const getEquip = async () => {
         // console.log(data2)
         voltage_option.text = voltageUnique[i];
         equipVoltage.add(voltage_option);
-        console.log(voltageArray);
-        console.log(voltageSet);
-        console.log(voltageUnique);
+    }
+    if (voltageUnique.length > 0) {
+        voltageLevel.classList.add("d-none");
+        inputEquipNumber.classList.add("d-none");
+        equipVoltage.classList.remove("d-none");
+        equipNumber.classList.remove("d-none");
+    } else {
+        voltageLevel.classList.remove("d-none");
+        inputEquipNumber.classList.remove("d-none");
+        equipVoltage.classList.add("d-none");
+        equipNumber.classList.add("d-none");
     }
 };
 const getEquipNumber = async () => {
