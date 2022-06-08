@@ -256,7 +256,9 @@ const getEquip = async () => {
         equipNumber.classList.remove("d-none");
     } else {
         voltageLevel.classList.remove("d-none");
+        voltageLevel.setAttribute("name", "voltage_level");
         inputEquipNumber.classList.remove("d-none");
+        inputEquipNumber.setAttribute("name", "equip_number");
         equipVoltage.classList.add("d-none");
         equipNumber.classList.add("d-none");
     }

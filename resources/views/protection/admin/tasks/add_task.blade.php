@@ -243,7 +243,7 @@
                                     onchange="getEquipNumber()">
                                     <option>-</option>
                                 </select>
-                                <select name="voltage_level" id="voltageLevel" class="form-control d-none">
+                                <select id="voltageLevel" class="form-control d-none">
                                     <!--placeholder-->
                                     <optgroup>
                                         <option value="400KV">400KV</option>
@@ -271,7 +271,7 @@
                                     onchange=" getEquipName()">
                                     <option value="">-</option>
                                 </select>
-                                <input type="text" name="equip_number" class="form-control d-none" id="inputEquipNumber">
+                                <input type="text" class="form-control d-none" id="inputEquipNumber">
                             </div>
 
                             <div class="col-lg-6">
@@ -337,7 +337,7 @@
                                     onchange="nccEngineers()">
                                     <!--placeholder-->
                                     <!-- <option value="1"> المنطقة الشمالية</option>
-                                                                <option value="2"> المنطقة الجنوبية</option> -->
+                                                                        <option value="2"> المنطقة الجنوبية</option> -->
 
                                 </select>
                             </div>
