@@ -265,7 +265,7 @@ const controlColor = (value) => {
                 "bg-info",
                 "text-light"
             );
-            area_select_option.text = "المنطقة  الوسطى";
+            area_select_option.text = "المنطقة  الوسطى";
             area_select_option.value = 3;
             areaSelect.add(area_select_option);
             break;
@@ -287,7 +287,7 @@ const controlColor = (value) => {
                 "bg-danger",
                 "text-light"
             );
-            area_select_option.text = "المنطقة  الوسطى";
+            area_select_option.text = "المنطقة  الوسطى";
             area_select_option.value = 3;
             areaSelect.add(area_select_option);
             break;
@@ -301,7 +301,7 @@ const controlColor = (value) => {
             area_select_option.text = "المنطقة الشمالية";
             area_select_option.value = 1;
             areaSelect.add(area_select_option);
-            area_select_option3.text = "المنطقة  الوسطى";
+            area_select_option3.text = "المنطقة  الوسطى";
             area_select_option3.value = 3;
             areaSelect.add(area_select_option3);
             area_select_option2.text = "المنطقة الجنوبية";
@@ -316,7 +316,7 @@ const controlColor = (value) => {
                 "bg-dark",
                 "text-danger"
             );
-            controlName.value = " الرجاء تعديل اسم التحكم من جدول المحطات";
+            controlName.value = " الرجاء تعديل اسم التحكم من جدول المحطات";
     } //switch end
 };
 //get Station

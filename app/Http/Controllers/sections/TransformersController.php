@@ -187,7 +187,6 @@ class TransformersController extends Controller
     }
        //get all Engineer  JSON
     public function getEngineerName($area,$department,$shift){
-        $shift = 1;
         return (String) $tr = DB::table('tr')
         ->where("area",$area)
         ->where('department',$department)
@@ -217,7 +216,8 @@ class TransformersController extends Controller
             'voltage_level'=>$request->voltage_level,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
-            'equip'=>$request->equip,
+            'equip_number' => $request->equip_number,
+            'equip_name' => $request->equip_name,
             'pm'=>$request->pm,
             'problem' => $request->problem,
             'notes' => $request->notes,
@@ -280,8 +280,9 @@ class TransformersController extends Controller
        return (String) $tr = DB::table('tr')
         ->where("area",$area)
         ->where('department',$department)
-        ->where('is_admin',1)
-        ->orWhere('area',0)->where('department',$department)
+        ->where('admin',1)
+        ->orWhere('area',0)
+        ->where('department',$department)
         ->join('users','users.id','=','tr.user_id')
         ->select('users.name','users.id','users.email')
         ->get();     
@@ -313,7 +314,8 @@ class TransformersController extends Controller
             'main_alarm'=>$request->mainAlarm,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
-            'equip'=>$request->equip,
+            'equip_number' => $request->equip_number,
+            'equip_name' => $request->equip_name,
             'pm'=>$request->pm,
             'eng_id'=>$request->eng_name,
             'notes' => $request->notes,
@@ -525,7 +527,8 @@ class TransformersController extends Controller
             'main_alarm'=>$request->mainAlarm,
             'work_type'=>$request->work_type,
             'task_date'=>$request->task_Date,
-            'equip'=>$request->equip,
+            'equip_number' => $request->equip_number,
+            'equip_name' => $request->equip_name,
             'pm'=>$request->pm,
             'eng_id'=>$request->eng_name,
             'notes' => $request->notes,
@@ -616,8 +619,10 @@ class TransformersController extends Controller
         ->where('fromSection','!=',5)
         ->where('toSection','!=',5)
         ->where('status','completed')
-        ->get();;
-        return view('Transformers.admin.tasks.report',compact('task_details','commonTasks'));
+        ->get();
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('Transformers.admin.tasks.report',compact('task_details','commonTasks','task_attachment'));
     }
     public function viewCommonReport($id,$section_id){
         $task_details = TaskDetails::where('task_id',$id)

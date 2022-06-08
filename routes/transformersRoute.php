@@ -14,7 +14,7 @@ use App\Http\Controllers\sections\TransformersController;
 |
 */
 Route::middleware(['auth','is_transformers'])->group(function(){
-  Route::get('/dashboard/user/query_section_id=5',[TransformersController::class,'userIndex']);
+  Route::get('/dashboard/user/query_section_id=5',[TransformersController::class,'userIndex'])->name('transformers.user.homepage');
   //engineer report form
   Route::get('/dashboard/user/query_section_id=5/Engineer-report-form/{id}',[TransformersController::class,
   'engineerReportForm'])->name('Transformers.engineerReportForm');

@@ -295,7 +295,7 @@ const getAdmins = async () => {
 const getEngineer = async () => {
     area_id = await getStation();
     // shift_id = shiftSelect.value;
-    shift_id = 1;
+    shift_id = 0;
     let department = await checkDepartment();
     const response = await fetch(
         "/Transformers/getEngineer/" +

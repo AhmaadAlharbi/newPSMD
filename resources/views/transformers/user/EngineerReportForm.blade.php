@@ -1,534 +1,485 @@
-<<!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-
-        <title>Troubleshooting Report</title>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="css/util.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <!--===============================================================================================-->
-        <style>
+@extends('layouts.master')
+@section('css')
+    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+    <!---Internal Fancy uploader css-->
+    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <!--Internal Sumoselect css-->
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+    <!--Internal  TelephoneInput css-->
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
+    <style>
         .mew-logo {
             width: 250px;
         }
 
-        /** LOADING */
-
-        .loader {
-            color: #ffb300;
-            font-size: 90px;
-            text-indent: -9999em;
-            overflow: hidden;
-            width: 1em;
-            height: 1em;
-            border-radius: 50%;
-            margin: 72px auto;
-            position: relative;
-            -webkit-transform: translateZ(0);
-            -ms-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-            animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+        .kuwait {
+            visibility: hidden;
         }
 
-        @-webkit-keyframes load6 {
-            0% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
 
-            5%,
-            95% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-
-            10%,
-            59% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-            }
-
-            20% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-            }
-
-            38% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-            }
-
-            100% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
+        #table1,
+        #table2 {
+            direction: ltr;
         }
 
-        @keyframes load6 {
-            0% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
+        .ssname-table {
+            direction: ltr;
 
-            5%,
-            95% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
-
-            10%,
-            59% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-            }
-
-            20% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-            }
-
-            38% {
-                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-            }
-
-            100% {
-                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-            }
         }
 
-        @-webkit-keyframes round {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
+        #table0 th,
+        #table1 th,
+        #table2 th {
+            font-size: 20px;
         }
 
-        @keyframes round {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
+        .print-title {
+            background: #e6e6e8 !important;
         }
 
-        body {
-            font-family: 'Cairo', sans-serif;
+        td {
+            font-size: 20px;
         }
-        </style>
-    </head>
 
-    <body>
+        #table0 td,
+        #table1 td,
+        #table2 td,
+            {
 
-
-
-
-
-        <!-- row -->
-        <div class="row">
+            font-size: 19px;
+        }
 
 
-            <div class="col-lg-12 col-md-12">
-                <div class="card">
+        /* #table th,
+                                                                                                                                                                                            #table td {
+                                                                                                                                                                                                transform: rotate(-90deg);
+                                                                                                                                                                                            } */
+
+        td {
+            height: 50px;
+        }
+    </style>
+    <style>
+        @media print {
+            #print_Button {
+                display: none;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact !important;
+            }
+
+
+            #table1 th,
+            #table2 th .print-title {
+                background: #e6e6e8 !important;
+            }
+
+            #table1 td,
+            #table2 td {
+                font-size: 19px;
+            }
+
+
+
+        }
+    </style>
+@endsection
+@section('page-header')
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                    report</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- breadcrumb -->
+@endsection
+@section('content')
+    <!-- row -->
+
+    <div class="test row row-sm " id="print">
+        <div class="col-md-12 col-xl-12 ">
+            <div class=" main-content-body-invoice border border-dark">
+                <div class="card card-invoice">
                     <div class="card-body">
+                        <div class="invoice-header">
 
-                        <form action="{{route('Transformers.SubmitEngineerReport',['id'=>$tasks->id])}}"
-                            enctype="multipart/form-data" method="post" autocomplete="off"> @csrf
-                         
-                            {{-- 1 --}}
-                            <div class="row">
-                                <div class="col-md-12 col-xl-12">
-                                    <div class=" main-content-body-invoice">
-                                        <div class="card card-invoice">
-                                            <div class="card-body">
-                                                <div class="invoice-header">
-                                                    <div class="billed-from">
-                                                        <img class=" rounded float-left"
-                                                            src="https://www.mew.gov.kw/images/logo2@2x.png"
-                                                            alt="mew logo">
-                                                    </div><!-- billed-from -->
+                            <div class="billed-from">
 
-                                                    <div class="billed-from">
-                                                        <img class="mew-logo rounded float-right"
-                                                            src="https://www.mew.gov.kw/images/logo@2x.png"
-                                                            alt="mew logo">
-                                                    </div><!-- billed-from -->
-                                                </div><!-- invoice-header -->
-                                                <div class="container">
-                                                    <div class="table-responsive mg-t-40">
-                                                        <h2 class="text-center m-2 text-primary">إدارة صيانة محطات
-                                                            التحويل
-                                                            الرئيسية</h2>
-                                                        <a href="" class="btn btn-secondary">الصفحة
-                                                            الرئيسية</a>
+                            </div><!-- billed-from -->
+
+                            <div class="billed-from">
+                                <img class="mew-logo rounded " src="https://www.mew.gov.kw/images/logo@2x.png"
+                                    alt="mew logo">
+                            </div><!-- billed-from -->
+
+                        </div><!-- invoice-header -->
 
 
-                                                        <table
-                                                            class="table table-hover table-invoice table-striped table-border text-md-nowrap mb-0">
-                                                            <tr>
-                                                                <th class="border-bottom-0">Ref Num</th>
-                                                                <td colspan="4">{{$tasks->refNum}}</td>
-                                                            </tr>
-                                                            <input type="hidden" name="refNum"
-                                                                value="{{$tasks->refNum}}">
-                                                            <tr>
-                                                                <th class="border-bottom-0"> Main Alaram</th>
-                                                                <td>{{$tasks->main_alarm}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="border-bottom-0">Station</th>
-                                                                <td colspan="4">{{$tasks->station->SSNAME}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="border-bottom-0">Station Full name </th>
-                                                                <td colspan="4">{{$tasks->station->fullName}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="border-bottom-0">Make </th>
-                                                                <td colspan="4">{{$tasks->station->COMPANY_MAKE}}</td>
-                                                            </tr>
+                        <div class="container">
+                            <div class="d-block p-3  print-title text-dark">
+                                <p class="text-center">Primary substation maintenance department</p>
 
+                                <h2 class="text-center "> Trouble shooting Report</h2>
+                                <h5 class="text-center m-1"><ins>Ref.No: {{ $tasks->refNum }}</ins></h5>
+
+                            </div>
+
+                            {{--  --}}
+                            <div class="mt-3">
+                                <h3 class=" text-center  py-4 px-3 bg-secondary text-light">
+                                    {{ $tasks->station->fullName }}<br>{{ $tasks->station->control }} -
+                                    {{ $tasks->voltage_level }}</h3>
+
+                            </div>
+                            <div class="text-left">
+                                <div class=" row ssname-table  ">
+                                    <div class=" d-print-none col-sm-12 col-print-12  col-lg-4  ">
+
+                                        <h1
+                                            class="d-none d-sm-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
+                                            {{ $tasks->station->SSNAME }}
+                                        </h1>
+                                        <h1 style="font-size:44px;"
+                                            class="d-block 
+                             justify-content-center align-items-center text-center mt-2  p-5 h-100 bg-dark text-white d-sm-none">
+                                            {{ $tasks->station->SSNAME }}
+                                        </h1>
+                                    </div>
+
+                                    <div
+                                        class="d-none d-sm-block d-print-none col-sm-12  col-lg-8  col-print-12  table-responsive-sm">
+                                        <table class=" table mt-2 p-5 border border-dark h-100 text-center" id="table1"
+                                            class="ltr-table ">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Company Make</th>
+                                                    <th scope="col">Contract.No</th>
+
+                                                </tr>
+                                                <tr></tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $tasks->station->COMPANY_MAKE }}</td>
+                                                    <td>{{ $tasks->station->Contract_No }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                            <tr>
+                                                <thead class="thead-light">
+                                                    <th scope="col">COMMISIONING DATE</th>
+                                                    <th scope="col">Previous maintenance</th>
+                                                </thead>
+                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $tasks->station->COMMISIONING_DATE }}</td>
+                                                    @php
+                                                        $todayDate = date('Y-m-d');
+                                                    @endphp
+                                                    @if (isset($tasks->station->pm) && $todayDate < $tasks->station->pm)
+                                                        <td class="bgsuccess- text-white">
+                                                            {{ $tasks->station->pm }}
+                                                        </td>
+                                                    @else
+                                                        <td class="bg-danger text-white">
+                                                            {{ $tasks->station->pm }}
+                                                        </td>
+                                                    @endif
+
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+                                    {{-- mobile screen table --}}
+                                    <div class="d-block d-sm-none col-sm-12">
+                                        <table class=" table mt-2 p-5 border border-dark h-100 text-center" id="table1"
+                                            class="ltr-table ">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Company Make</th>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $tasks->station->COMPANY_MAKE }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                            <thead class="thead-light">
+                                                <th scope="col">Contract.No</th>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $tasks->station->Contract_No }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                            <thead class="thead-light">
+                                                <th scope="col">COMMISIONING DATE</th>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $tasks->station->COMMISIONING_DATE }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                            <thead class="thead-light">
+                                                <th scope="col">PREVIOUS MAINTENANCE
+                                                </th>
+
+                                            <tbody>
+                                                <tr>
+                                                    @php
+                                                        $todayDate = date('Y-m-d');
+                                                    @endphp
+                                                    @if (isset($tasks->station->pm) && $todayDate < $tasks->station->pm)
+                                                        <td class="bg-success text-white">
+                                                            {{ $tasks->station->pm }}
+                                                        </td>
+                                                    @else
+                                                        <td class="bg-danger text-white">
+                                                            {{ $tasks->station->pm }}
+                                                        </td>
+                                                    @endif
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                <div class="d-block p-3 mb-2 mt-3 bg-white text-dark">
+                                    <h2>Main alarm</h2>
+                                    <h4>{{ $tasks->main_alarm }}</h4>
+                                    <h2>:Unit</h2>
+                                    <h4>{{ $tasks->equip }}</h4>
+                                </div>
+
+
+
+                                <div class="d-block border border-dark  mb-2   text-dark">
+                                    <h3 class=" bg-warning-gradient py-2 text-white pl-4">Alarm Date <br>
+                                        {{ $tasks->task_date }}
+                                    </h3>
+                                    <h2 class="ml-4">Nature of Fault</h2>
+                                    <h4 class="ml-4 text-left ">{{ $tasks->problem }}</h4>
+                                </div>
+                                <button type="button" class="btn  btn-lg btn-dark" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Can not complete the task
+                                </button>
+                                <form action="{{ route('Transformers.SubmitEngineerReport', ['id' => $tasks->id]) }}"
+                                    enctype="multipart/form-data" method="post" autocomplete="off">
+                                    @csrf
+                                    <div class="    my-2  text-dark">
+                                        <h2>Action Take</h2>
+
+                                        <textarea name="action_take" placeholder="Write Your Report here" style="text-align: left; font-size:20px;" rows="5"
+                                            cols="100" class="form-control"></textarea>
+
+                                    </div>
+                                    <div id="attachmentFile" class="e">
+                                        <div class="col-sm-12 col-md-12">
+                                            <input type="file" name="pic[]" class="dropify"
+                                                accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                        </div><br>
+                                        <div class="col-sm-12 col-md-12">
+                                            <input type="file" name="pic[]" class="dropify"
+                                                accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                        </div><br>
+                                        <div class="col-sm-12 col-md-12">
+                                            <input type="file" name="pic[]" class="dropify"
+                                                accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                        </div><br>
+                                    </div>
+                                    <button class="btn btn-lg btn-success-gradient btn-block">Submit</button>
+                                </form>
+
+
+                                <div class="d-block p-3 mb-2 bg-white text-dark">
+                                    <h2>Engineer</h2>
+                                </div>
+                                <h4 class="  ml-4 ">{{ $tasks->users->name }}<br>
+
+                                </h4>
+                                <p class="ml-4 lead">{{ $tasks->users->email }}</p>
+                            </div>
+
+                        </div>
+                        <hr class=" mg-b-40">
+                        @isset($commonTasks)
+                            <!-- row -->
+                            <div class="row d-print-none">
+                                <!--div-->
+                                <div class="col-xl-12">
+                                    <div class="card mg-b-20">
+
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="example1" class="table key-buttons text-md-nowrap"
+                                                    data-page-length='50'>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="border-bottom-0">#</th>
+                                                            <th class="border-bottom-0">رقم المهمة</th>
+                                                            <th class="border-bottom-0">اسم المحطة </th>
+                                                            <th class="border-bottom-0"> القسم </th>
+                                                            <th class="border-bottom-0"> المهندس </th>
+                                                            <th class="border-bottom-0"> التقرير </th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @php
+                                                            $i = 0;
+                                                        @endphp
+                                                        @foreach ($commonTasks as $task)
+                                                            @php
+                                                                $i++;
+                                                            @endphp
                                                             <tr>
-                                                                <th class="border-bottom-0">Last P.M </th>
-                                                                <td colspan="4">{{$tasks->pm}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="border-bottom-0">Control</th>
-                                                                @switch($tasks->station->control)
-                                                                @case("JAHRA CONTROL CENTER")
-                                                                <td colspan="4" class="table-warning">
-                                                                    {{$tasks->station->control}}
+                                                                <td>{{ $i }}</td>
+                                                                <td><a
+                                                                        href="{{ route('Transformers.admin.taskDetails', ['id' => $task->id]) }}">{{ $task->tasks->refNum }}</a>
                                                                 </td>
-                                                                @break
-                                                                @case("JABRIYA CONTROL CENTER")
-                                                                <td colspan="4" class="table-info">
-                                                                    {{$tasks->station->control}}
-                                                                </td>
-                                                                @break
-                                                                @case("TOWN CONTROL CENTER")
-                                                                <td colspan="4" class="table-danger">
-                                                                    {{$tasks->station->control}}
-                                                                </td>
-                                                                @break
-                                                                @case("SHUAIBA CONTROL CENTER")
-                                                                <td colspan="4" class="table-success">
-                                                                    {{$tasks->station->control}}
-                                                                </td>
-                                                                @break
-                                                                @default
-                                                                <td colspan="4" class="table-light">
-                                                                    {{$tasks->station->control}}
-                                                                </td>
-                                                                @endswitch
+                                                                <td>{{ $task->tasks->station->SSNAME }}</td>
+                                                                <td>{{ $task->sectionID->section_name }}</td>
+                                                                <td>{{ $task->users->name }}</td>
+                                                                <td><a href="{{ route('Transformers.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}"
+                                                                        class="btn btn-outline-success">التقرير</a></td>
 
                                                             </tr>
+                                                        @endforeach
 
-                                                            <input type="hidden" name="ssname"
-                                                                value="{{$tasks->station->id}}">
-                                                            <tr>
-                                                                <th class="border-bottom-0">Date</th>
-                                                                <td>{{$tasks->task_date}}</td>
-                                                            </tr>
-                                                            <input type="hidden" name="task_date"
-                                                                value="{{$tasks->task_date}}">
-
-                                                            <tr>
-                                                                @if($tasks->main_alarm == "Transformer Clearance" ||
-                                                                $tasks->main_alarm =="Shunt Reactor Clearance" )
-                                                                <th class="border-bottom-0">Capacity</th>
-                                                                @else
-                                                                <th class="border-bottom-0">Voltage Level</th>
-                                                                @endif
-                                                                <td>{{$tasks->voltage_level}}</td>
-
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="border-bottom-0">Bay Unity</th>
-                                                                <td colspan="4">{{$tasks->equip}}</td>
-
-                                                            </tr>
-                                                            <input type="hidden" name="equip" value="{{$tasks->equip}}">
-
-                                                            <tr>
-                                                                <th class="border-bottom-0">Nature of Fault</th>
-                                                                <td colspan="4">{{$tasks->problem}}</td>
-                                                            </tr>
-                                                            <input type="hidden" name="problem"
-                                                                value="{{$tasks->problem}}">
-
-                                                            <tr>
-                                                                <th>ملاحظات</th>
-                                                                <td colspan="4">{{$tasks->notes}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="border-bottom-0 wd-40p">Engineer</th>
-                                                                <td colspan="3">{{$tasks->users->name}}</td>
-                                                            </tr>
-                                                            <input type="hidden" name="eng_id"
-                                                                value="{{$tasks->users->id}}">
-                                                            <input class="form-control fc-datepicker" name="report_Date"
-                                                                placeholder="YYYY-MM-DD" type="hidden"
-                                                                value="{{ date('Y-m-d') }}" readonly required>
-                                                        </table>
-                                                    </div>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                        data-target="#exampleModal">
-                                                        لم يتم الإنجاز؟
-                                                    </button>
-
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <label for="exampleTextarea">Action Take</label>
-                                                            <textarea class="form-control" id="exampleTextarea"
-                                                                name="action_take" rows="3"></textarea>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <h5 class="card-title">المرفقات</h5>
-                                                            {{--show Attahcments --}}
-                                                            <div class="table-responsive mt-15">
-                                                                <table
-                                                                    class="table center-aligned-table mb-0  table-hover"
-                                                                    style="text-align:center">
-                                                                    <thead>
-                                                                        <tr class="text-dark">
-                                                                            <th scope="col">م</th>
-                                                                            <th scope="col">اسم الملف</th>
-                                                                            <th scope="col">تاريخ الاضافة</th>
-                                                                            <th scope="col"> بواسطة</th>
-                                                                            <th scope="col">العمليات</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <?php $i = 0; ?>
-                                                                        @foreach ($task_attachments as $attachment)
-                                                                        <?php $i++; ?>
-                                                                        <tr>
-                                                                            <td>{{ $i }}</td>
-                                                                            <td>{{ $attachment->file_name }}</td>
-                                                                            <td>{{ $attachment->created_at }}</td>
-                                                                            <td>
-                                                                                @if($attachment->Created_by =="")
-                                                                                {{$task->engineers->name}}
-                                                                                @else
-                                                                                {{ $attachment->Created_by }}
-                                                                                @endif
-                                                                            </td>
-                                                                            <td colspan="2">
-
-                                                                                <a class="btn btn-outline-success btn-sm"
-                                                                                    href="{{route('transformers.view_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                                                                    role="button"><i
-                                                                                        class="fas fa-eye"></i>&nbsp;
-                                                                                    عرض</a>
-
-                                                                                <a class="btn btn-outline-info btn-sm"
-                                                                                    href="{{route('transformers.download_file',['id'=> $attachment->id_task,'file_name'=>$attachment->file_name])}}"
-                                                                                    role="button"><i
-                                                                                        class="fas fa-download"></i>&nbsp;
-                                                                                    تحميل</a>
-
-
-
-                                                                            </td>
-                                                                        </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-
-                                                                </table>
-
-                                                            </div>
-                                                            <div class="col-sm-12 col-md-12">
-                                                                <input type="file" name="pic[]" class="dropify"
-                                                                    accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                                                    data-height="70" />
-                                                            </div><br>
-
-                                                            <div class="col-sm-12 col-md-12">
-                                                                <input type="file" name="pic[]" class="dropify"
-                                                                    accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                                                    data-height="70" />
-
-                                                            </div><br>
-                                                             <div class="text-center mb-3">
-                                                                <button id="showAttachment"
-                                                                    class="btn btn-outline-info">اضغط لإضافة المزيد من
-                                                                    المرفقات</button>
-                                                                <button id="hideAttachment"
-                                                                    class="btn d-none btn-outline-info">اضغط  لإخفاء
-                                                                    المزيد
-                                                                    من
-                                                                    المرفقات</button>
-
-                                                            </div>
-                                                            <div id="attachmentFile" class="d-none">
-                                                                <div class="col-sm-12 col-md-12">
-                                                                    <input type="file" name="pic[]" class="dropify"
-                                                                        accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                                                        data-height="70" />
-                                                                </div><br>
-                                                                <div class="col-sm-12 col-md-12">
-                                                                    <input type="file" name="pic[]" class="dropify"
-                                                                        accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                                                        data-height="70" />
-                                                                </div><br>
-                                                                <div class="col-sm-12 col-md-12">
-                                                                    <input type="file" name="pic[]" class="dropify"
-                                                                        accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                                                        data-height="70" />
-                                                                </div><br>
-                                                            </div>
-                                                            <br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex justify-content-center">
-                                                    <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModal3">ارسال البيانات</button>
-                                                    <!-- Loading Modal -->
-                                                    <div class="modal fade" id="exampleModal3" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header text-center">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">جاري
-                                                                        إرسال البيانات</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <h5 class="text-center mt-2 text-warning">
-                                                                        Loading...Please wait</h5>
-                                                                    <div class="loader">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!--/div-->
                             </div>
-                        </form>
+                        @endisset
+
                     </div>
+
                 </div>
+            </div>
+        </div><!-- COL-END -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> سبب عدم الإنجاز </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <form action="{{ route('Transformers.engineerReportUnCompleted', ['id' => $tasks->id]) }}"
+                            method="post">
+                            {{ csrf_field() }}
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1"> اختر السبب</label>
+                            <select name="reason" class="form-control" id="exampleFormControlSelect1">
+                                <option value="مسؤولية جهة آخرى">مسؤولية جهة آخرى</option>
+                                <option value="تحت الكفالة">تحت الكفالة</option>
+                                <option value="قطع غيار غير متوفرة "> قطع غيار غير متوفرة </option>
+                                <option value="بإنتظار إصلاحات"> بإنتظار إصلاحات</option>
+                                <option value="تحويل المهمة لمهندس آخر">تحويل المهمة لمهندس آخر </option>
+                                <option value="آخرى"> آخرى</option>
+                            </select>
+                            <!--Take all these hidden value to the form-->
+                            <input type="hidden" class="form-control" id="inputName" name="refNum"
+                                value="{{ $tasks->refNum }}" readonly>
+                            <input type="hidden" class="form-control" readonly name="ssname" id="ssname"
+                                value="{{ $tasks->station->id }}">
+                            <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
+                                type="hidden" value="{{ $tasks->task_Date }}" readonly required>
+                            <input type="hidden" class="form-control" readonly name="equip" id="equip"
+                                value="{{ $tasks->equip }}">
+                            <input type="hidden" class="form-control" readonly value="{{ $tasks->problem }}"
+                                name="problem" id="problem">
+                            <input class="form-control fc-datepicker" name="report_Date" placeholder="YYYY-MM-DD"
+                                type="hidden" value="{{ date('Y-m-d') }}" readonly required>
+                            <input type="hidden" class="form-control" name="eng_name" readonly
+                                value="{{ $tasks->users->name }}">
+                            <textarea type="hidden" style="display:none;" class="form-control" id="exampleTextarea" name="notes" readonly
+                                rows="3">{{ $tasks->notes }}</textarea>
+                            <!--END Taking all these hidden value to the form-->
 
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"> سبب عدم الإنجاز </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <form action="{{route('battery.engineerReportUnCompleted',['id'=>$tasks->id])}}"
-                                    method="post">
-                                    {{ csrf_field() }}
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1"> اختر السبب</label>
-                                    <select name="reason" class="form-control" id="exampleFormControlSelect1">
-                                        <option value="مسؤولية جهة آخرى">مسؤولية جهة آخرى</option>
-                                        <option value="تحت الكفالة">تحت الكفالة</option>
-                                        <option value="قطع غيار غير متوفرة "> قطع غيار غير متوفرة </option>
-                                        <option value="بإنتظار إصلاحات"> بإنتظار إصلاحات</option>
-                                        <option value="تحويل المهمة لمهندس آخر">تحويل المهمة لمهندس آخر </option>
-                                        <option value="آخرى"> آخرى</option>
-                                    </select>
-                                    <!--Take all these hidden value to the form-->
-                                    <input type="hidden" class="form-control" id="inputName" name="refNum"
-                                        value="{{$tasks->refNum}}" readonly>
-                                    <input type="hidden" class="form-control" readonly name="ssname" id="ssname"
-                                        value="{{$tasks->station->id}}">
-                                    <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
-                                        type="hidden" value="{{ $tasks->task_Date}}" readonly required>
-                                    <input type="hidden" class="form-control" readonly name="equip" id="equip"
-                                        value="{{$tasks->equip}}">
-                                    <input type="hidden" class="form-control" readonly value="{{$tasks->problem}}"
-                                        name="problem" id="problem">
-                                    <input class="form-control fc-datepicker" name="report_Date"
-                                        placeholder="YYYY-MM-DD" type="hidden" value="{{ date('Y-m-d') }}" readonly
-                                        required>
-                                    <input type="hidden" class="form-control" name="eng_name" readonly
-                                        value="{{$tasks->users->name}}">
-                                    <textarea type="hidden" style="display:none;" class="form-control"
-                                        id="exampleTextarea" name="notes" readonly rows="3">{{$tasks->notes}}</textarea>
-                                    <!--END Taking all these hidden value to the form-->
-
-                                    <label for="exampleTextarea">ملاحظات</label>
-                                    <textarea class="form-control" id="exampleTextarea" name="engineer_note"
-                                        rows="3"></textarea>
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                                <button type="submit" class="btn btn-danger">تاكيد</button>
-                            </div>
+                            <label for="exampleTextarea">ملاحظات</label>
+                            <textarea class="form-control" id="exampleTextarea" name="engineer_note" rows="3"></textarea>
 
                         </div>
-
-                        <!-- row closed -->
                     </div>
-                    <!-- Container closed -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                        <button type="submit" class="btn btn-danger">تاكيد</button>
+                    </div>
+
                 </div>
-
             </div>
+            <!-- row closed -->
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-        </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-        </script>
-    </body>
-    <script>
-    //to toggle files atthachmant
-    const showAttachment = document.getElementById('showAttachment');
-    const hideAttachment = document.getElementById('hideAttachment');
-    const attachmentFile = document.getElementById('attachmentFile');
-    showAttachment.addEventListener('click', e => {
-        e.preventDefault();
-        hideAttachment.classList.toggle('d-none');
-        showAttachment.classList.toggle('d-none');
-        attachmentFile.classList.toggle('d-none');
-    })
-    hideAttachment.addEventListener('click', e => {
-        e.preventDefault();
-        hideAttachment.classList.toggle('d-none');
-        showAttachment.classList.toggle('d-none');
-        attachmentFile.classList.toggle('d-none');
-    })
+        <!-- Container closed -->
+    </div>
+    <!-- main-content closed -->
+@endsection
+@section('js')
+    <!--Internal  Chart.bundle js -->
+    <script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+    <script type="text/javascript">
+        function printDiv() {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
     </script>
+    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+    <!--Internal Fileuploads js-->
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+    <!--Internal Fancy uploader js-->
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <!--Internal  Form-elements js-->
+    <script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+    <!--Internal Sumoselect js-->
+    <script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+    <!--Internal  Datepicker js -->
+    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+    <!--Internal  jquery.maskedinput js -->
+    <script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+    <!--Internal  spectrum-colorpicker js -->
+    <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+    <!-- Internal form-elements js -->
+    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
-    </html>
+    <!--Transformers JS fiLE-->
+    <script type="text/javascript" src="{{ URL::asset('js/transformers/app.js') }}"></script>
+@endsection
