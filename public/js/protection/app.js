@@ -171,7 +171,8 @@ const getEngineersShift = async () => {
     engineerSelect.innerText = null;
     engEmail.value = "";
     let shift_id = shiftSelect.value;
-    let area_id = await getStation();
+    const area_fromFunc = await getStation();
+    area_id = area_fromFunc[0];
     const response = await fetch(
         "/getEngineersOnShift/" + area_id + "/" + shift_id
     );
@@ -298,5 +299,5 @@ const getEquipName = async () => {
         throw new Error("can not fetch the data");
     }
     const data = await response.json();
-    equipName.value = data[0].equip_name.trim();
+    equipName.value = data[0].equip_name.trim;
 };

@@ -150,8 +150,8 @@
 
                                 <h2 class="text-center "> Trouble shooting Report</h2>
                                 <h5 class="text-center m-1"><ins>Ref.No: {{ $task_details->tasks->refNum }}</ins></h5>
-
                             </div>
+                            <h4 class="text-center mt-3">{{ $task_details->sections->section_name }} Section</h4>
 
                             {{--  --}}
                             <div class="table-responsive text-left">
