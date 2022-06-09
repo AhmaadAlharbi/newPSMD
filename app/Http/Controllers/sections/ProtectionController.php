@@ -600,9 +600,12 @@ class ProtectionController extends Controller
         return (string)  Equip::where('station_id', $station_id)
             ->where('voltage_level', $voltage_level)->get();
     }
-    public function getEquipName($euipNumber)
+    public function getEquipName($station_id,$voltage_level,$euipNumber)
     {
-        return (string)  Equip::where('equip_number', $euipNumber)->get();
+        return (string)  Equip::where('station_id',$station_id)
+        ->where('voltage_level',$voltage_level)
+        ->where('equip_number', $euipNumber)
+        ->get();
     }
     ///##### end backend functions
 

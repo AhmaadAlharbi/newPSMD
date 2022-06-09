@@ -277,7 +277,8 @@
                             <div class="col-lg-6">
                                 <label for="equip" class="control-label m-1">equip name</label>
                                 <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
-                                <input type="text" id="equipName" class="form-control " name="equip_name">
+                                <input style="direction:ltr;" type="text" id="equipName" class="form-control "
+                                    name="equip_name">
                             </div>
 
                             <div class="col-lg-12 mt-2">
@@ -337,7 +338,7 @@
                                     onchange="nccEngineers()">
                                     <!--placeholder-->
                                     <!-- <option value="1"> المنطقة الشمالية</option>
-                                                                        <option value="2"> المنطقة الجنوبية</option> -->
+                                                                            <option value="2"> المنطقة الجنوبية</option> -->
 
                                 </select>
                             </div>

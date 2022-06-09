@@ -41,7 +41,7 @@ Route::get('/dashboard/user/query_section_id=2/engineer-tasks-completed/{id}',[P
 //equip
 Route::get('/protection/Equip/{id}', [ProtectionController::class, 'getEquip']);
 Route::get('/protection/EquipNumber/{id}/{voltage_level}', [ProtectionController::class, 'getEquipNumber']);
-Route::get('/protection/Equipname/{id}', [ProtectionController::class, 'getEquipName']);
+Route::get('/protection/Equipname/{station_id}/{voltage_level}/{equip_number}', [ProtectionController::class, 'getEquipName']);
 });
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin','is_protection'])->group(function () {

@@ -237,8 +237,10 @@
                             <div class="col-lg-6">
                                 <label for="equip" class="control-label m-1">equip name</label>
                                 <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
-                                <input type="text" name="equip_name" id="equipName" class="form-control "
-                                    value="{{ $tasks->equip_name }}">
+                                <input style="direction:ltr;" type="text" name="equip_name" id="equipName"
+                                    class="form-control text-center " value="{{ $tasks->equip_name }}">
+
+
                             </div>
 
                             <div class="col-lg-12 mt-2">
@@ -289,7 +291,9 @@
                                 <label for="inputName" class="control-label">اسم المهندس</label>
                                 <select id="eng_name" name="eng_name" class="form-control engineerSelect"
                                     onchange="getEngineerEmail()">
-                                    <option value="{{ $tasks->users->id }}">{{ $tasks->users->name }}</option>
+                                    @if (isset($tasks->users->id))
+                                        <option value="{{ $tasks->users->id }}">{{ $tasks->users->name }}</option>
+                                    @endif
                                 </select>
                             </div>
                             <div class=" col email">

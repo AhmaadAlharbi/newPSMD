@@ -284,12 +284,19 @@ const getEquipNumber = async () => {
     }
 };
 const getEquipName = async () => {
+    let station_id = stationIdInput.value;
+    let voltage_level_select = equipVoltage.value;
     const response = await fetch(
-        "/protection/Equipname/" + (await equipNumber.value)
+        "/protection/Equipname/" +
+            station_id +
+            "/" +
+            voltage_level_select +
+            "/" +
+            (await equipNumber.value)
     );
     if (response.status !== 200) {
         throw new Error("can not fetch the data");
     }
     const data = await response.json();
-    equipName.value = data[0].equip_name;
+    equipName.value = data[0].equip_name.trim();
 };
