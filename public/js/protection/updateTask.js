@@ -329,5 +329,5 @@ const getEquipName = async () => {
         throw new Error("can not fetch the data");
     }
     const data = await response.json();
-    equipName.value = data[0].equip_name.trim();
+    equipName.value = data[0].equip_name;
 };
