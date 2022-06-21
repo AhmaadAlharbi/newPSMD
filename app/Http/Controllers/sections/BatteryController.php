@@ -104,10 +104,9 @@ class BatteryController extends Controller
         return view ('battery.admin.tasks.assign_task',compact('stations','task_id'));
     }
     //get all Engineer  JSON
-    public function getEngineerName($area_id,$shift_id){
+    public function getEngineerName(){
         return (String) DB::table('engineers')
-        ->where('area',$area_id)
-        ->where('shift',$shift_id)
+
         ->Join('users','users.id','=','engineers.user_id')
         ->where('users.section_id',3)
         ->get();

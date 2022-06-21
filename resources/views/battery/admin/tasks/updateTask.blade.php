@@ -163,7 +163,8 @@
 
                             <div class="col-lg-6">
                                 <label for="equip" class="control-label m-1">Bay Unit</label>
-                                <input type="text" name="equip" class="form-control SlectBox" value="{{ $tasks->equip }}">
+                                <input type="text" name="equip" class="form-control SlectBox"
+                                    value="{{ $tasks->equip_name }}">
 
                             </div>
 
@@ -201,10 +202,6 @@
                                 <label for="area" class="control-label">area</label>
                                 <select name="area" id="areaSelect" class="form-control areaSelect"
                                     onchange="getEngineer()">
-
-
-
-
                                 </select>
                             </div>
 

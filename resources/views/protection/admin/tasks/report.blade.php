@@ -137,7 +137,8 @@
                         </div><!-- billed-from -->
 
                         <div class="billed-from">
-                            <img class="mew-logo rounded " src="https://www.mew.gov.kw/images/logo@2x.png" alt="mew logo">
+                            <img class="mew-logo rounded " src="https://www.mew.gov.kw/images/logo@2x.png"
+                                alt="mew logo">
                         </div><!-- billed-from -->
 
                     </div><!-- invoice-header -->
@@ -160,10 +161,12 @@
 
                             <div class=" row ssname-table  ">
                                 <div class=" d-print-none col-sm-12 col-print-12  col-lg-4  ">
-                                    <h1 class="d-none d-sm-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
+                                    <h1
+                                        class="d-none d-sm-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
                                         {{ $task_details->tasks->station->SSNAME }}
                                     </h1>
-                                    <h1 style="font-size:44px;" class="d-block 
+                                    <h1 style="font-size:44px;"
+                                        class="d-block 
                              justify-content-center align-items-center text-center mt-2  p-5 h-100 bg-dark text-white d-sm-none">
                                         {{ $task_details->tasks->station->SSNAME }}
                                     </h1>
@@ -171,13 +174,16 @@
                                 </div>
                                 {{-- this div show only on print --}}
                                 <div class="d-none d-print-block  col-sm-4  ">
-                                    <h1 class="d-flex justify-content-center align-items-center text-center mt-2 p-5 h-100 bg-dark text-white">
+                                    <h1
+                                        class="d-flex justify-content-center align-items-center text-center mt-2 p-5 h-100 bg-dark text-white">
                                         {{ $task_details->tasks->station->SSNAME }}
                                     </h1>
 
                                 </div>
-                                <div class="d-print-none d-none d-sm-block col-sm-12  col-lg-8  col-print-12  table-responsive-sm">
-                                    <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1" class="ltr-table ">
+                                <div
+                                    class="d-print-none d-none d-sm-block col-sm-12  col-lg-8  col-print-12  table-responsive-sm">
+                                    <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1"
+                                        class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Company Make</th>
@@ -205,7 +211,8 @@
                                                 @php
                                                 $todayDate = date('Y-m-d');
                                                 @endphp
-                                                @if (isset($task_details->tasks->station->pm) && $todayDate < $task_details->tasks->station->pm)
+                                                @if (isset($task_details->tasks->station->pm) && $todayDate <
+                                                    $task_details->tasks->station->pm)
                                                     <td class="bg-success text-white">
                                                         {{ $task_details->tasks->station->pm }}
                                                     </td>
@@ -221,7 +228,8 @@
                                 </div>
                                 {{-- this div show only on print --}}
                                 <div class="d-none d-print-block    col-sm-8  table-responsive-sm">
-                                    <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1" class="ltr-table ">
+                                    <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1"
+                                        class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Company Make</th>
@@ -249,7 +257,8 @@
                                                 @php
                                                 $todayDate = date('Y-m-d');
                                                 @endphp
-                                                @if (isset($task_details->tasks->station->pm) && $todayDate < $task_details->tasks->station->pm)
+                                                @if (isset($task_details->tasks->station->pm) && $todayDate <
+                                                    $task_details->tasks->station->pm)
                                                     <td class="bg-success">
                                                         {{ $task_details->tasks->station->pm }}
                                                     </td>
@@ -265,7 +274,8 @@
                                 </div>
                                 {{-- mobile screen table --}}
                                 <div class="d-block d-sm-none col-sm-12">
-                                    <table class=" table mt-2 p-5 border border-dark h-100 text-center" id="table1" class="ltr-table ">
+                                    <table class=" table mt-2 p-5 border border-dark h-100 text-center" id="table1"
+                                        class="ltr-table ">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Company Make</th>
@@ -369,10 +379,13 @@
 
                     <hr class=" mg-b-40">
                     <div class="btn-group mb-3 d-print-none" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info tablinks" onclick="showTab(event, 'commonTasks')">Related Reports @php
-                            echo "(".count($commonTasks).")"
+                        <button type="button" class="btn btn-info tablinks"
+                            onclick="showTab(event, 'commonTasks')">Related Reports @php
+                            echo '(' . count($commonTasks) . ')';
                             @endphp</button>
-                        <button type="button" class="btn btn-outline-info tablinks" onclick="showTab(event, 'attachments')">Attachments @php echo "(".count($task_attachment).")"
+                        <button type="button" class="btn btn-outline-info tablinks"
+                            onclick="showTab(event, 'attachments')">Attachments @phpecho '(' . count($task_attachment) .
+                            ')';
                             @endphp</button></button>
                     </div>
                     {{-- common Reports --}}
@@ -385,7 +398,8 @@
 
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
+                                        <table id="example1" class="table key-buttons text-md-nowrap"
+                                            data-page-length='50'>
                                             <thead>
                                                 <tr>
                                                     <th class="border-bottom-0">#</th>
@@ -407,12 +421,15 @@
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $i }}</td>
-                                                    <td><a href="{{ route('protection.admin.taskDetails', ['id' => $task->id]) }}">{{ $task->tasks->refNum }}</a>
+                                                    <td><a
+                                                            href="{{ route('protection.admin.taskDetails', ['id' => $task->id]) }}">{{
+                                                            $task->tasks->refNum }}</a>
                                                     </td>
                                                     <td>{{ $task->tasks->station->SSNAME }}</td>
                                                     <td>{{ $task->sectionID->section_name }}</td>
                                                     <td>{{ $task->users->name }}</td>
-                                                    <td><a href="{{ route('protection.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}" class="btn btn-outline-success">التقرير</a></td>
+                                                    <td><a href="{{ route('protection.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}"
+                                                            class="btn btn-outline-success">التقرير</a></td>
 
                                                 </tr>
                                                 @endforeach
@@ -456,12 +473,19 @@
                                         @endif
                                     </td>
                                     <td colspan="2">
-                                        <a class="btn btn-outline-success btn-sm" href="{{ route('protection.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}" role="button"><i class="fas fa-eye"></i>&nbsp;
+                                        <a class="btn btn-outline-success btn-sm"
+                                            href="{{ route('protection.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                            role="button"><i class="fas fa-eye"></i>&nbsp;
                                             عرض</a>
 
-                                        <a class="btn btn-outline-info btn-sm" href="{{ route('protection.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}" role="button"><i class="fas fa-download"></i>&nbsp;
+                                        <a class="btn btn-outline-info btn-sm"
+                                            href="{{ route('protection.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                            role="button"><i class="fas fa-download"></i>&nbsp;
                                             تحميل</a>
-                                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-file_name="{{ $attachment->file_name }}" data-invoice_number="{{ $attachment->id_task }}" data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
+                                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal"
+                                            data-file_name="{{ $attachment->file_name }}"
+                                            data-invoice_number="{{ $attachment->id_task }}"
+                                            data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -470,7 +494,8 @@
                         </table>
 
                     </div>
-                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
+                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
+                            class="mdi mdi-printer ml-1"></i>طباعة</button>
 
                 </div>
 
@@ -489,13 +514,13 @@
 <script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
 <script type="text/javascript">
     function printDiv() {
-        var printContents = document.getElementById('print').innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-        location.reload();
-    }
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
 </script>
 <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
 @endsection
