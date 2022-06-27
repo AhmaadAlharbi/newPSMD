@@ -75,7 +75,8 @@ class ProtectionController extends Controller
             'is_admin' => 0,
         ]);
         session()->flash('Add', 'تم اضافة الموظف بنجاح');
-        $users = User::all();
+        $users = User::where('section_id',2)->get();
+
         return view('protection.admin.users.usersList', compact('users'));
     }
     public function index()
@@ -320,7 +321,11 @@ class ProtectionController extends Controller
         $tasks = Task::where('id', $id)->get();
         $task_details = TaskDetails::where('task_id', $id)->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
-        return view('protection.admin.tasks.taskDetails', compact('tasks', 'task_details', 'task_attachment'));
+        $report = TaskDetails::where('task_id', $id)
+        ->where('section_id', 2)
+        ->where('status', 'completed')
+        ->first();
+        return view('protection.admin.tasks.taskDetails', compact('tasks', 'task_details', 'task_attachment','report'));
     }
 
     public function showEngineers()

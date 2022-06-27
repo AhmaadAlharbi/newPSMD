@@ -80,6 +80,8 @@
                                         <li><a href="#tab3" class="nav-link" data-toggle="tab"> التفاصيل </a></li>
                                         <li><a href="#tab4" class="nav-link" data-toggle="tab">المستجدات </a></li>
                                         <li><a href="#tab6" class="nav-link" data-toggle="tab">المرفقات</a></li>
+                                        <li><a href="#tab7" class="nav-link" data-toggle="tab">التقرير</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -188,11 +190,11 @@
                                                         <td>{{$i}}</td>
                                                         <td>{{$x->refNum}}</td>
                                                         @if(isset($x->sections->section_name))
-                                                       <td>{{$x->sections->section_name}}</td>
-                                                       @else
-                                                       <td>{{$x->toSections->section_name}}</td>
+                                                        <td>{{$x->sections->section_name}}</td>
+                                                        @else
+                                                        <td>{{$x->toSections->section_name}}</td>
 
-                                                       @endif
+                                                        @endif
                                                         <td>{{$x->station->SSNAME}}</td>
                                                         <td>{{$x->task_date}}</td>
                                                         @if(isset($x->eng_id))
@@ -348,6 +350,12 @@
                                         </div>
 
                                     </div>
+                                    <div class="tab-pane" id="tab7">
+                                        @isset($report)
+                                        <a href="{{route('switch.veiwReport',['id'=>$report->task_id])}}"
+                                            class="btn btn-outline-primary d-block">اضغط هنا لعرض التقرير</a>
+                                        @endisset
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -423,7 +431,7 @@
 <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
 <script>
-$('#delete_file').on('show.bs.modal', function(event) {
+    $('#delete_file').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var id_file = button.data('id_file')
     var file_name = button.data('file_name')
@@ -436,7 +444,7 @@ $('#delete_file').on('show.bs.modal', function(event) {
 </script>
 
 <script>
-// Add the following code if you want the name of the file appear on select
+    // Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function() {
     var fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

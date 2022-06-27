@@ -384,7 +384,8 @@
                             echo '(' . count($commonTasks) . ')';
                             @endphp</button>
                         <button type="button" class="btn btn-outline-info tablinks"
-                            onclick="showTab(event, 'attachments')">Attachments @phpecho '(' . count($task_attachment) .
+                            onclick="showTab(event, 'attachments')">Attachments @php echo '(' . count($task_attachment)
+                            .
                             ')';
                             @endphp</button></button>
                     </div>

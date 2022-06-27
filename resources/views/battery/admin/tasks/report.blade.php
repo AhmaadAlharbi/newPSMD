@@ -150,8 +150,8 @@
 
                             <h2 class="text-center "> Trouble shooting Report</h2>
                             <h5 class="text-center m-1"><ins>Ref.No: {{ $task_details->tasks->refNum }}</ins></h5>
-
                         </div>
+                        <h4 class="text-center mt-3">{{ $task_details->sections->section_name }} Section</h4>
 
                         {{-- --}}
                         <div class="table-responsive text-left">
@@ -336,7 +336,9 @@
 
                             <div class="d-block p-3 mb-2 bg-white text-dark">
                                 <h2>:Unit</h2>
-                                <h4>{{ $task_details->tasks->equip }}</h4>
+                                <h4>{{ $task_details->tasks->equip_number }} -
+                                    {{ $task_details->tasks->equip_name }}
+                                </h4>
                             </div>
 
 
@@ -382,8 +384,10 @@
                             echo '(' . count($commonTasks) . ')';
                             @endphp</button>
                         <button type="button" class="btn btn-outline-info tablinks"
-                            onclick="showTab(event, 'attachments')">Attachments @php'(' . count($task_attachment) . ')';
-                            @endphp  </button>
+                            onclick="showTab(event, 'attachments')">Attachments @php echo '(' . count($task_attachment)
+                            .
+                            ')';
+                            @endphp</button></button>
                     </div>
                     {{-- common Reports --}}
                     @if (count($commonTasks) > 0)
@@ -419,13 +423,13 @@
                                                 <tr>
                                                     <td>{{ $i }}</td>
                                                     <td><a
-                                                            href="{{ route('battery.admin.taskDetails', ['id' => $task->id]) }}">{{
+                                                            href="{{ route('protection.admin.taskDetails', ['id' => $task->id]) }}">{{
                                                             $task->tasks->refNum }}</a>
                                                     </td>
                                                     <td>{{ $task->tasks->station->SSNAME }}</td>
                                                     <td>{{ $task->sectionID->section_name }}</td>
                                                     <td>{{ $task->users->name }}</td>
-                                                    <td><a href="{{ route('battery.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}"
+                                                    <td><a href="{{ route('protection.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}"
                                                             class="btn btn-outline-success">التقرير</a></td>
 
                                                 </tr>
@@ -471,12 +475,12 @@
                                     </td>
                                     <td colspan="2">
                                         <a class="btn btn-outline-success btn-sm"
-                                            href="{{ route('battery.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                            href="{{ route('protection.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
                                             role="button"><i class="fas fa-eye"></i>&nbsp;
                                             عرض</a>
 
                                         <a class="btn btn-outline-info btn-sm"
-                                            href="{{ route('battery.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                            href="{{ route('protection.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
                                             role="button"><i class="fas fa-download"></i>&nbsp;
                                             تحميل</a>
                                         <button class="btn btn-outline-danger btn-sm" data-toggle="modal"
