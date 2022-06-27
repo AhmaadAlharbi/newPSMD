@@ -399,7 +399,7 @@ $fullname = $request->fname . " " . $request->sname . " " . $request->tname . " 
         $task_details = TaskDetails::where('task_id',$id)->get();
         $task_attachment = TaskAttachment::where('id_task',$id)->get();
         $report = TaskDetails::where('task_id', $id)
-        ->where('section_id', 2)
+        ->where('section_id', 6)
         ->where('status', 'completed')
         ->first();
         return view('switchgear.admin.tasks.taskDetails',compact('tasks','task_details','task_attachment','report'));
