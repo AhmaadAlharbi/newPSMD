@@ -100,9 +100,8 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::whereMonth('created_at', date('m'))->where('fromSection',2)->orWhere('toSection',2)->count()}}
-
-
+                                {{\App\Models\Task::whereMonth('created_at',
+                                date('m'))->where('section_id',2)->count()}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
@@ -117,7 +116,8 @@
         <div class="card overflow-hidden sales-card bg-danger-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 text-white"><a class="text-white" href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                    <h6 class="mb-3 tx-16 text-white"><a class="text-white"
+                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -142,14 +142,16 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('protection.admin.completedTasks')}}">المهمات
+                    <h6 class="mb-3 tx-16 "><a class="text-white"
+                            href="{{route('protection.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\TaskDetails::where('section_id',2)->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\TaskDetails::where('section_id',2)->whereMonth('created_at',
+                                date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -205,9 +207,12 @@
     {{-- المهمات الصادرة --}}
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="btn-group " role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary tablinks" id="btn-local" onclick="showTab(event, 'div-local')">المهمات المنشئة</button>
-            <button type="button" class="btn btn-secondary tablinks" id="btn-incoming" onclick="showTab(event, 'div-incoming')">المهمات الواردة</button>
-            <button type="button" class="btn btn-secondary tablinks" id="btn-common" onclick="showTab(event, 'div-common')">المهمات الصادرة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-local"
+                onclick="showTab(event, 'div-local')">المهمات المنشئة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-incoming"
+                onclick="showTab(event, 'div-incoming')">المهمات الواردة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-common"
+                onclick="showTab(event, 'div-common')">المهمات الصادرة</button>
         </div>
 
 
@@ -231,7 +236,7 @@
 
 
     </div>
-    {{-- التقارير  --}}
+    {{-- التقارير --}}
     <div class="mt-5 col-xl-8 col-md-12 col-lg-6">
         <div class="card">
             <div class="card-header pb-1">

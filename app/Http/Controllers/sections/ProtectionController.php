@@ -75,7 +75,7 @@ class ProtectionController extends Controller
             'is_admin' => 0,
         ]);
         session()->flash('Add', 'تم اضافة الموظف بنجاح');
-        $users = User::where('section_id',2)->get();
+        $users = User::where('section_id', 2)->get();
 
         return view('protection.admin.users.usersList', compact('users'));
     }
@@ -166,6 +166,7 @@ class ProtectionController extends Controller
         }
         Task::create([
             'refNum' => $refNum,
+            'section_id' => 2,
             'fromSection' => 2,
             'station_id' => $request->ssnameID,
             'main_alarm' => $request->mainAlarm,
@@ -227,6 +228,8 @@ class ProtectionController extends Controller
         }
         Task::create([
             'refNum' => $refNum,
+            'section_id' => 2,
+
             'fromSection' => 2,
             'station_id' => $request->ssnameID,
             'main_alarm' => $request->mainAlarm,
@@ -322,10 +325,10 @@ class ProtectionController extends Controller
         $task_details = TaskDetails::where('task_id', $id)->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
         $report = TaskDetails::where('task_id', $id)
-        ->where('section_id', 2)
-        ->where('status', 'completed')
-        ->first();
-        return view('protection.admin.tasks.taskDetails', compact('tasks', 'task_details', 'task_attachment','report'));
+            ->where('section_id', 2)
+            ->where('status', 'completed')
+            ->first();
+        return view('protection.admin.tasks.taskDetails', compact('tasks', 'task_details', 'task_attachment', 'report'));
     }
 
     public function showEngineers()
@@ -605,12 +608,12 @@ class ProtectionController extends Controller
         return (string)  Equip::where('station_id', $station_id)
             ->where('voltage_level', $voltage_level)->get();
     }
-    public function getEquipName($station_id,$voltage_level,$euipNumber)
+    public function getEquipName($station_id, $voltage_level, $euipNumber)
     {
-        return (string)  Equip::where('station_id',$station_id)
-        ->where('voltage_level',$voltage_level)
-        ->where('equip_number', $euipNumber)
-        ->get();
+        return (string)  Equip::where('station_id', $station_id)
+            ->where('voltage_level', $voltage_level)
+            ->where('equip_number', $euipNumber)
+            ->get();
     }
     ///##### end backend functions
 

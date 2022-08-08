@@ -9130,6 +9130,8 @@ textarea.form-control.is-invalid, textarea.form-control.parsley-error {
   padding-right: 0;
   list-style: none;
   border-radius: 3px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .page-link {
