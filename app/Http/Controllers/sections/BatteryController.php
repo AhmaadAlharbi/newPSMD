@@ -422,6 +422,8 @@ class BatteryController extends Controller
         //allow to change section only one time
         $date = Carbon::now();
         $tasks->update([
+            'section_id' => $toSection,
+
             'fromSection' => $fromSection,
             'toSection' => $toSection,
             'eng_id' => null,
@@ -445,6 +447,29 @@ class BatteryController extends Controller
         $tasks->update([
             'fromSection' => null,
         ]);
+        return back();
+    }
+    //to cancel converting task to another section
+    public function returnTask(Request $request, $id)
+    {
+        $tasks = Task::findOrFail($id);
+        $fromSection = $tasks->fromSection;
+        $toSection = $tasks->toSection;
+        $tasks->update([
+            'section_id' => 3,
+            'toSection' => null,
+        ]);
+        TaskDetails::create([
+            'task_id' => $id,
+            'fromSection' => $toSection,
+            'toSection' => $fromSection,
+            'eng_id' => $request->eng_name,
+            'report_date' => $request->task_Date,
+            'status' => 'الغاء التحويل',
+
+        ]);
+        session()->flash('Add', 'تم  الغاء تحويل المهمة  بنجاح');
+
         return back();
     }
     //get 
