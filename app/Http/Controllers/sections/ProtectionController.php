@@ -27,6 +27,8 @@ use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
 use App\Rules\fourName;
 use App\Rules\onlyMewEmail;
+use Illuminate\Support\Arr;
+use PDO;
 
 class ProtectionController extends Controller
 {
@@ -186,8 +188,8 @@ class ProtectionController extends Controller
         $engineer_email = $request->eng_email;
         TaskDetails::create([
             'task_id' => $task_id,
+            'task_date' => $request->task_Date,
             'eng_id' => $request->eng_name,
-            'report_date' => $request->task_Date,
             'fromSection' => 2,
             'status' => 'pending',
         ]);
@@ -247,7 +249,7 @@ class ProtectionController extends Controller
         $task_id = Task::latest()->first()->id;
         TaskDetails::create([
             'task_id' => $task_id,
-            'report_date' => $request->task_Date,
+            'task_date' => $request->task_Date,
             'fromSection' => 2,
             'status' => 'pending',
         ]);
@@ -310,7 +312,7 @@ class ProtectionController extends Controller
     public function showArchive()
     {
         $tasks = TaskDetails::where('section_id', 2)->get();
-        return view('protection.admin.tasks.completedTasks', compact('tasks'));
+        return view('protection.admin.tasks.archive', compact('tasks'));
     }
 
     public function userArchive()
@@ -537,7 +539,7 @@ class ProtectionController extends Controller
             'task_id' => $id,
             'fromSection' => 2,
             'eng_id' => $request->eng_name,
-            'report_date' => $request->task_Date,
+            'task_date' => $request->task_Date,
             'status' => 'change',
 
         ]);
@@ -639,6 +641,14 @@ class ProtectionController extends Controller
             ->where('equip_number', $euipNumber)
             ->get();
     }
+    //search between dates
+    public function stationsByDates(Request $request)
+    {
+        $start_date = $request->task_Date;
+        $end_date = $request->task_Date2;
+        $tasks = TaskDetails::where('section_id', '2')->whereBetween('task_date', [$start_date, $end_date])->get();
+        return view('protection.admin.tasks.betweenDates', compact('tasks', 'start_date', 'end_date'));
+    }
     ///##### end backend functions
 
     ####################### USER CONTROLLER ########################
@@ -729,6 +739,7 @@ class ProtectionController extends Controller
     public function SubmitEngineerReport(Request $request, $id)
     {
         $task = Task::findOrFail($id);
+        $task_date = $task->task_date;
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
         $main_alarm = $task->main_alarm;
@@ -737,6 +748,7 @@ class ProtectionController extends Controller
 
         TaskDetails::create([
             'task_id' => $id,
+            'task_date' => $task_date,
             'report_date' => Carbon::now(),
             'eng_id' => $eng_id,
             'fromSection' => $fromSection,

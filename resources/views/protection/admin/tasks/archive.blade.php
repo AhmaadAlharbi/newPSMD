@@ -10,6 +10,37 @@
 <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+<style>
+    input[type='date'] {
+        position: relative;
+
+
+    }
+
+    input[type='date']:before {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        content: attr(data-date);
+        display: inline-block;
+        color: black;
+    }
+
+    input[type='date']::-webkit-datetime-edit,
+    input[type='date']::-webkit-inner-spin-button,
+    input[type='date']::-webkit-clear-button {
+        display: none;
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator {
+        position: absolute;
+        top: 3px;
+        right: 0;
+        color: black;
+        opacity: 1;
+    }
+</style>
+
 <!--Internal   Notify -->
 <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @endsection
@@ -57,8 +88,25 @@
 <!--div-->
 <div class="col-xl-12">
     <div class="card mg-b-20">
+        <div class="col-lg-6 mt-4">
+            <form action="{{route('protection.staionsByDates')}}">
+                @csrf
+                {{-- <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD" type="text"
+                    value="{{ date('Y-m-d') }}" required> --}}
+
+
+                <input type="date" data-date="" class="form-control" name="task_Date" data-date-format="DD/MM/YYYY"
+                    value="{{ date('Y-m-d') }}">
+                <input type="date" data-date="" class="form-control" name="task_Date2" data-date-format="DD/MM/YYYY"
+                    value="{{ date('Y-m-d') }}">
+                {{-- <input class="form-control mb-2 fc-datepicker" name="task_Date2" placeholder="YYYY-MM-DD"
+                    type="text" value=""> --}}
+                <input type="submit" class="btn btn-outline-danger btn-md btn-block" value="البحث في فترة معينة ">
+            </form>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
+                adad
                 <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
                     <thead>
                         <tr>
@@ -203,6 +251,28 @@
 @endsection
 @section('js')
 <!-- Internal Data tables -->
+<script>
+    // var date = $('.fc-datepicker').datepicker({
+    //     dateFormat: 'dd-mm-yy'
+    // }).val();
+
+    $("input").on("change", function() {
+        this.setAttribute(
+            "data-date",
+            moment(this.value, "YYYY-MM-DD")
+            .format( this.getAttribute("data-date-format") )
+        )
+    }).trigger("change")
+</script>
+<script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
+<script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+
 <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
