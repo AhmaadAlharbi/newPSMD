@@ -103,6 +103,8 @@ Route::middleware(['is_admin', 'is_battery'])->group(function () {
   Route::post('/dashboard/admin/query_section_id=3/add-new-user', [BatteryController::class, 'newuser'])->name('battery.admin.newUser');
   Route::get('/dashboard/admin/query_section_id=3/edit-user-details/{id}', [BatteryController::class, 'editUser'])->name('battery.admin.editUser');
   Route::post('/dashboard/admin/query_section_id=3/update-user-details/{id}', [BatteryController::class, 'updateUser'])->name('battery.admin.updateUser');
+  //search between dates
+  Route::get('/dashboard/admin/query_section_id=3/archive/search_between_Dates', [BatteryController::class, 'stationsByDates'])->name('battery.staionsByDates');
 });
 
 Route::get('/dashboard/admin/stations-list', [BatteryController::class, 'showStations'])->name('stationsList')->middleware('auth');

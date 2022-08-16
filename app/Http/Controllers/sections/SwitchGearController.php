@@ -282,7 +282,7 @@ class SwitchGearController extends Controller
 
         TaskDetails::create([
             'task_id' => $task_id,
-            'report_date' => $request->task_Date,
+            'task_date' => $request->task_Date,
             'fromSection' => 6,
             'status' => 'pending',
         ]);
@@ -372,7 +372,7 @@ class SwitchGearController extends Controller
         TaskDetails::create([
             'task_id' => $task_id,
             'eng_id' => $request->eng_name,
-            'report_date' => $request->task_Date,
+            'task_date' => $request->task_Date,
             'fromSection' => 6,
             'status' => 'pending',
         ]);
@@ -437,7 +437,7 @@ class SwitchGearController extends Controller
     public function showArchive()
     {
         $tasks = TaskDetails::where('section_id', 6)->get();
-        return view('switchgear.admin.tasks.completedTasks', compact('tasks'));
+        return view('switchgear.admin.tasks.archive', compact('tasks'));
     }
 
     public function userArchive()
@@ -623,6 +623,15 @@ class SwitchGearController extends Controller
             ->get();
         return view('switchgear.admin.tasks.report', compact('task_details', 'commonTasks'));
     }
+
+    //search between dates
+    public function stationsByDates(Request $request)
+    {
+        $start_date = $request->task_Date;
+        $end_date = $request->task_Date2;
+        $tasks = TaskDetails::where('section_id', '6')->whereBetween('task_date', [$start_date, $end_date])->get();
+        return view('switchgear.admin.tasks.betweenDates', compact('tasks', 'start_date', 'end_date'));
+    }
     ///##### end backend functions
 
     ####################### USER CONTROLLER ########################
@@ -712,6 +721,8 @@ class SwitchGearController extends Controller
     public function SubmitEngineerReport(Request $request, $id)
     {
         $task = Task::findOrFail($id);
+        $task_date = $task->task_date;
+
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
         $main_alarm = $task->main_alarm;
@@ -719,6 +730,8 @@ class SwitchGearController extends Controller
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
+            'task_date' => $task_date,
+
             'report_date' => Carbon::now(),
             'eng_id' => $eng_id,
             'fromSection' => $fromSection,

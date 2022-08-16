@@ -98,6 +98,8 @@ Route::middleware(['is_admin', 'is_switch'])->group(function () {
 
   Route::get('/dashboard/admin/query_section_id=6/edit-user-details/{id}', [SwitchGearController::class, 'editUser'])->name('switch.admin.editUser');
   Route::post('/dashboard/admin/query_section_id=6/update-edit-user-details/{id}', [SwitchGearController::class, 'updateUser'])->name('switch.admin.updateUser');
+  //search between dates
+  Route::get('/dashboard/admin/query_section_id=6/archive/search_between_Dates', [SwitchGearController::class, 'stationsByDates'])->name('switch.staionsByDates');
 });
 
 Route::get('/dashboard/admin/stations-list', [SwitchGearController::class, 'showStations'])->name('stationsList')->middleware('auth');

@@ -182,8 +182,8 @@ class BatteryController extends Controller
         $engineer_email = $request->eng_email;
         TaskDetails::create([
             'task_id' => $task_id,
+            'task_date' => $request->task_Date,
             'eng_id' => $request->eng_name,
-            'report_date' => $request->task_Date,
             'fromSection' => 3,
             'status' => 'pending',
         ]);
@@ -243,7 +243,7 @@ class BatteryController extends Controller
         $task_id = Task::latest()->first()->id;
         TaskDetails::create([
             'task_id' => $task_id,
-            'report_date' => $request->task_Date,
+            'task_date' => $request->task_Date,
             'fromSection' => 3,
             'status' => 'pending',
         ]);
@@ -306,7 +306,7 @@ class BatteryController extends Controller
     public function showArchive()
     {
         $tasks = TaskDetails::where('section_id', 3)->get();
-        return view('battery.admin.tasks.completedTasks', compact('tasks'));
+        return view('battery.admin.tasks.archive', compact('tasks'));
     }
 
     public function userArchive()
@@ -616,6 +616,14 @@ class BatteryController extends Controller
         return view('battery.admin.tasks.report', compact('task_details', 'commonTasks'));
     }
 
+    //search between dates
+    public function stationsByDates(Request $request)
+    {
+        $start_date = $request->task_Date;
+        $end_date = $request->task_Date2;
+        $tasks = TaskDetails::where('section_id', '3')->whereBetween('task_date', [$start_date, $end_date])->get();
+        return view('battery.admin.tasks.betweenDates', compact('tasks', 'start_date', 'end_date'));
+    }
     ///##### end backend functions
 
     ####################### USER CONTROLLER ########################
@@ -706,6 +714,8 @@ class BatteryController extends Controller
     public function SubmitEngineerReport(Request $request, $id)
     {
         $task = Task::findOrFail($id);
+        $task_date = $task->task_date;
+
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
         $main_alarm = $task->main_alarm;
@@ -714,6 +724,7 @@ class BatteryController extends Controller
 
         TaskDetails::create([
             'task_id' => $id,
+            'task_date' => $task_date,
             'report_date' => Carbon::now(),
             'eng_id' => $eng_id,
             'fromSection' => $fromSection,

@@ -332,7 +332,6 @@ class TransformersController extends Controller
         Task::create([
             'refNum' => $refNum,
             'section_id' => 5,
-
             'fromSection' => 5,
             'station_id' => $request->ssnameID,
             'main_alarm' => $request->mainAlarm,
@@ -353,7 +352,8 @@ class TransformersController extends Controller
             'eng_id' => $request->eng_name,
             'fromSection' => 5,
             'status' => 'pending',
-            'report_date' => $request->task_Date,
+            'task_date' => $request->task_Date,
+
         ]);
         TrTasks::create([
             'task_id' => $task_id,
@@ -426,7 +426,7 @@ class TransformersController extends Controller
     public function showArchive()
     {
         $tasks = TaskDetails::where('section_id', 5)->get();
-        return view('transformers.admin.tasks.completedTasks', compact('tasks'));
+        return view('transformers.admin.tasks.archive', compact('tasks'));
     }
 
     public function userArchive()
@@ -702,6 +702,14 @@ class TransformersController extends Controller
             ->get();
         return view('transformers.admin.tasks.report', compact('task_details', 'commonTasks'));
     }
+    //search between dates
+    public function stationsByDates(Request $request)
+    {
+        $start_date = $request->task_Date;
+        $end_date = $request->task_Date2;
+        $tasks = TaskDetails::where('section_id', '5')->whereBetween('task_date', [$start_date, $end_date])->get();
+        return view('transformers.admin.tasks.betweenDates', compact('tasks', 'start_date', 'end_date'));
+    }
     ///##### end backend functions
 
     ####################### USER CONTROLLER ########################
@@ -801,6 +809,8 @@ class TransformersController extends Controller
     public function SubmitEngineerReport(Request $request, $id)
     {
         $task = Task::findOrFail($id);
+        $task_date = $task->task_date;
+
         $fromSection = $task->fromSection;
         $toSection = $task->toSection;
         $main_alarm = $task->main_alarm;
@@ -808,6 +818,7 @@ class TransformersController extends Controller
         $eng_id = Auth::user()->id;
         TaskDetails::create([
             'task_id' => $id,
+            'task_date' => $task_date,
             'report_date' => Carbon::now(),
             'eng_id' => $eng_id,
             'fromSection' => $fromSection,

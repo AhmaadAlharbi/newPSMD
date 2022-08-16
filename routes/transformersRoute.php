@@ -107,6 +107,8 @@ Route::middleware(['is_admin', 'is_transformers'])->group(function () {
   Route::post('/dashboard/admin/query_section_id=5/add-new-user', [TransformersController::class, 'newuser'])->name('Transformers.admin.newUser');
   Route::get('/dashboard/admin/query_section_id=5/edit-user-details/{id}', [TransformersController::class, 'editUser'])->name('Transformers.admin.editUser');
   Route::post('/dashboard/admin/query_section_id=5/update-edit-user-details/{id}', [TransformersController::class, 'updateUser'])->name('Transformers.admin.updateUser');
+  //search between dates
+  Route::get('/dashboard/admin/query_section_id=5/archive/search_between_Dates', [TransformersController::class, 'stationsByDates'])->name('Transformers.staionsByDates');
 });
 //to register new users to protection
 Route::get('/register/transformers', [TransformersController::class, 'registerPage'])->name('Transformers.registerPage');
