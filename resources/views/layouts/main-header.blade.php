@@ -253,9 +253,12 @@
                             src="{{URL::asset('image/userImage/'.Auth::user()->userImage)}}"></a>
 
                     @else
-                    <a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('image/user.svg')}}"></a>
+                    {{-- <a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('image/user.svg')}}"></a>
+                    --}}
 
                     @endif
+                    <a class="btn btn-info" href="{{ route('logout') }}"><i class="bx bx-log-out mr-2"></i>تسجيل
+                        خروج</a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
