@@ -443,7 +443,7 @@ class SwitchGearController extends Controller
             ->select('users.name', 'users.id', 'users.email', 'users.section_id', 'engineers.area', 'engineers.shift')
             ->where('users.section_id', 2)
             ->get();
-        return view('switchgear.admin.tasks.archive', compact('tasks','stations','engineers'));
+        return view('switchgear.admin.tasks.archive', compact('tasks', 'stations', 'engineers'));
     }
 
     public function userArchive()
@@ -660,8 +660,9 @@ class SwitchGearController extends Controller
                 ->whereBetween('task_date', [$start_date, $end_date])
                 ->where('section_id', '6')
                 ->get();
-                return view('switchgear.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
-            }
+            return view('switchgear.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
+        }
+    }
     ///##### end backend functions
 
     ####################### USER CONTROLLER ########################
