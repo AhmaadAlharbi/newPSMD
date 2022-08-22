@@ -312,7 +312,14 @@ class ProtectionController extends Controller
     public function showArchive()
     {
         $tasks = TaskDetails::where('section_id', 2)->get();
-        return view('protection.admin.tasks.archive', compact('tasks'));
+        $stations = Station::all();
+        $engineers = DB::table('engineers')
+            ->join('users', 'users.id', '=', 'engineers.user_id')
+            ->select('users.name', 'users.id', 'users.email', 'users.section_id', 'engineers.area', 'engineers.shift')
+            ->where('users.section_id', 2)
+            ->get();
+
+        return view('protection.admin.tasks.archive', compact('tasks', 'stations', 'engineers'));
     }
 
     public function userArchive()
@@ -644,10 +651,35 @@ class ProtectionController extends Controller
     //search between dates
     public function stationsByDates(Request $request)
     {
+        $stations = Station::all();
+        $engineers = DB::table('engineers')
+            ->join('users', 'users.id', '=', 'engineers.user_id')
+            ->select('users.name', 'users.id', 'users.email', 'users.section_id', 'engineers.area', 'engineers.shift')
+            ->where('users.section_id', 2)
+            ->get();
+        $station = Station::where('SSNAME', $request->ssnameID)->pluck('id')->first();
+        $engineer = User::where('name', $request->engineer_name)->pluck('id')->first();
         $start_date = $request->task_Date;
         $end_date = $request->task_Date2;
-        $tasks = TaskDetails::where('section_id', '2')->whereBetween('task_date', [$start_date, $end_date])->get();
-        return view('protection.admin.tasks.betweenDates', compact('tasks', 'start_date', 'end_date'));
+
+        //search if the user deos not add dates
+        if (is_null($start_date) || is_null($end_date)) {
+            $tasks = TaskDetails::where('section_id', '2')
+                ->where('station_id', $station)
+                ->orwhere('eng_id', $engineer)
+                ->where('section_id', '2')
+                ->get();
+            return view('protection.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
+        } else {
+            $tasks = TaskDetails::where('section_id', '2')
+                ->where('station_id', $station)
+                ->whereBetween('task_date', [$start_date, $end_date])
+                ->orwhere('eng_id', $engineer)
+                ->whereBetween('task_date', [$start_date, $end_date])
+                ->where('section_id', '2')
+                ->get();
+            return view('protection.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
+        }
     }
     ///##### end backend functions
 
@@ -744,6 +776,7 @@ class ProtectionController extends Controller
         $toSection = $task->toSection;
         $main_alarm = $task->main_alarm;
         $problem = $task->problem;
+        $station_id = $task->station_id;
         $eng_id = Auth::user()->id;
 
         TaskDetails::create([
@@ -751,6 +784,7 @@ class ProtectionController extends Controller
             'task_date' => $task_date,
             'report_date' => Carbon::now(),
             'eng_id' => $eng_id,
+            'station_id' => $station_id,
             'fromSection' => $fromSection,
             'toSection' => $toSection,
             'section_id' => 2,

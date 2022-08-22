@@ -11,7 +11,7 @@
 <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 <style>
-    input[type='date'] {
+    /* input[type='date'] {
         position: relative;
 
 
@@ -38,7 +38,7 @@
         right: 0;
         color: black;
         opacity: 1;
-    }
+    } */
 </style>
 
 <!--Internal   Notify -->
@@ -91,18 +91,63 @@
         <div class="col-lg-6 mt-4">
             <form action="{{route('protection.staionsByDates')}}">
                 @csrf
-                {{-- <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD" type="text"
-                    value="{{ date('Y-m-d') }}" required> --}}
+                <div class="row">
+                    <div class="col-12 my-2">
+                        <label for="">المحطة</label>
+                        <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
+                            onchange="getStation()" type="search">
+                        <datalist id="ssnames">
+                            @foreach ($stations as $station)
+                            <option value="{{ $station->SSNAME }}">
+                                @endforeach
+                        </datalist>
+                        <input type="hidden" id="station_id" name="ssnameID">
+                        <script>
+                            function getStation(){
+                            const stationID = document.getElementById('station_id');
+                            const ssname = document.getElementById('ssname');
 
+                            stationID.value = ssname.value;
+                         }
+                        </script>
+                    </div>
+                    <div class="col-12 my-2">
+                        <label for="">المهندس</label>
+                        <input list="engineers" class="form-control" value="" name="engineer" id="engineer"
+                            onchange="getEngineer()" type="search">
+                        <datalist id="engineers">
+                            @foreach ($engineers as $engineer)
+                            <option value="{{ $engineer->name }}">
+                                @endforeach
+                        </datalist>
+                        <input type="hidden" id="engineer_name" name="engineer_name">
+                        <script>
+                            function getEngineer(){
+                            const engineer = document.getElementById('engineer');
+                            const engineer_name = document.getElementById('engineer_name');
+                            engineer_name.value = engineer.value;
+                         }
+                        </script>
+                    </div>
 
-                <input type="date" data-date="" class="form-control" name="task_Date" data-date-format="DD/MM/YYYY"
-                    value="{{ date('Y-m-d') }}">
-                <input type="date" data-date="" class="form-control" name="task_Date2" data-date-format="DD/MM/YYYY"
-                    value="{{ date('Y-m-d') }}">
-                {{-- <input class="form-control mb-2 fc-datepicker" name="task_Date2" placeholder="YYYY-MM-DD"
-                    type="text" value=""> --}}
+                    <div class="col">
+                        من
+                        <input type="date" data-date="" class="form-control" name="task_Date" value="">
+                    </div>
+                    <div class="col">
+                        الى
+                        <input type="date" data-date="" class="form-control" name="task_Date2" value="">
+                    </div>
+                </div>
+
                 <input type="submit" class="btn btn-outline-danger btn-md btn-block" value="البحث في فترة معينة ">
             </form>
+            {{--
+
+            <input type="text" data-date="" class="form-control" name="task_Date" data-date-format="DD/MM/YYYY"
+                value="{{ date('Y-m-d') }}">
+            <input type="text" data-date="" class="form-control" name="task_Date2" data-date-format="DD/MM/YYYY"
+                value="{{ date('Y-m-d') }}"> --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -113,7 +158,6 @@
                             <th class="border-bottom-0">#</th>
                             <th class="border-bottom-0">رقم المهمة</th>
                             <th class="border-bottom-0">اسم المحطة </th>
-                            <th class="border-bottom-0"> التحكم </th>
                             <th class="border-bottom-0"> Equip Number </th>
                             <th class="border-bottom-0"> Equip Name </th>
                             <th class="border-bottom-0">تاريخ ارسال المهمة</th>
@@ -137,24 +181,10 @@
                             <td>{{ $task->tasks->station->SSNAME }}</td>
 
 
-                            @if ($task->tasks->station->control == 'JAHRA CONTROL CENTER')
-                            <td class="table-warning">{{ $task->tasks->station->control }}
-                            </td>
-                            @elseif($task->tasks->station->control == 'JABRIYA CONTROL CENTER')
-                            <td class="table-info">{{ $task->tasks->station->control }}
-                            </td>
-                            @elseif($task->tasks->station->control == 'TOWN CONTROL CENTER')
-                            <td class="table-danger">{{ $task->tasks->station->control }}
-                            </td>
-                            @elseif($task->tasks->station->control == 'SHUAIBA CONTROL CENTER')
-                            <td class="table-success">{{ $task->tasks->station->control }}
-                            </td>
-                            @else
-                            <td class="table-light">{{ $task->tasks->station->control }}
-                                @endif
+
                             <td>{{ $task->tasks->equip_number }}</td>
                             <td>{{ $task->tasks->equip_name }}</td>
-                            <td>{{ $task->tasks->task_date }}</td>
+                            <td>{{ $task->task_date }}</td>
                             @if (isset($task->users->name))
                             <td>{{ $task->users->name }}</td>
                             @else
@@ -256,13 +286,13 @@
     //     dateFormat: 'dd-mm-yy'
     // }).val();
 
-    $("input").on("change", function() {
-        this.setAttribute(
-            "data-date",
-            moment(this.value, "YYYY-MM-DD")
-            .format( this.getAttribute("data-date-format") )
-        )
-    }).trigger("change")
+    // $("input").on("change", function() {
+    //     this.setAttribute(
+    //         "data-date",
+    //         moment(this.value, "YYYY-MM-DD")
+    //         .format( this.getAttribute("data-date-format") )
+    //     )
+    // }).trigger("change")
 </script>
 <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>

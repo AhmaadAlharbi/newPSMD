@@ -12,29 +12,29 @@ class TaskDetails extends Model
 
     public function station()
     {
-        return $this->belongsTo(Station::class,'station_id');
+        return $this->belongsTo(Station::class, 'station_id');
     }
     public function users()
     {
-        return $this->belongsTo(User::class,'eng_id');
+        return $this->belongsTo(User::class, 'eng_id');
     }
 
     public function sections()
     {
-        return $this->belongsTo(Section::class,'fromSection');
+        return $this->belongsTo(Section::class, 'fromSection');
     }
     public function sectionID()
     {
-        return $this->belongsTo(Section::class,'section_id');
+        return $this->belongsTo(Section::class, 'section_id');
     }
     public function tasks()
     {
         // return $this->belongsTo(Task::class,'task_id');
         // return $this->hasMany(Task::class);
-        return $this->belongsTo(Task::class,'task_id');
-
-
+        return $this->belongsTo(Task::class, 'task_id');
     }
-
-
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
 }
