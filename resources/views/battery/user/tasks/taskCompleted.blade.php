@@ -32,7 +32,7 @@
 
 @if (session()->has('delete_invoice'))
 <script>
-window.onload = function() {
+    window.onload = function() {
     notif({
         msg: "تم حذف المهمة بنجاح",
         type: "success"
@@ -44,7 +44,7 @@ window.onload = function() {
 
 @if (session()->has('Status_Update'))
 <script>
-window.onload = function() {
+    window.onload = function() {
     notif({
         msg: "تم تحديث حالة الدفع بنجاح",
         type: "success"
@@ -90,8 +90,8 @@ window.onload = function() {
                             <tr>
                                 <td>{{$i}}</td>
                                 <td><a
-                                    href="{{route('battery.user.veiwReport',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
-                            </td>
+                                        href="{{route('battery.user.veiwReport',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
+                                </td>
                                 <td>{{$task->tasks->station->SSNAME}}</td>
                                 @if($task->tasks->station->control == 'JAHRA CONTROL CENTER')
                                 <td class="table-warning">{{$task->tasks->station->control}}
@@ -136,7 +136,7 @@ window.onload = function() {
                                 </td>
                                 @break
                                 @case(0)
-                                <td> <a href="{{route('battery.editReport',['id'=>$task->id])}}"
+                                <td> <a href="{{route('battery.editReport',['id'=>$task->task_id])}}"
                                         class="btn btn-info"> تعديل</a>
                                 </td>
                                 @break
@@ -144,7 +144,7 @@ window.onload = function() {
                                 <td> <a href="{{route('battery.requestEditReport',['id'=>$task->id])}}"
                                         class="btn btn-danger"> erorr</a>
                                     @endswitch
-                                @endif
+                                    @endif
                             </tr>
                             @endforeach
 
@@ -219,7 +219,7 @@ window.onload = function() {
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
 <script>
-$('#delete_invoice').on('show.bs.modal', function(event) {
+    $('#delete_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
@@ -228,7 +228,7 @@ $('#delete_invoice').on('show.bs.modal', function(event) {
 </script>
 
 <script>
-$('#Transfer_invoice').on('show.bs.modal', function(event) {
+    $('#Transfer_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)

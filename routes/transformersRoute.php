@@ -101,7 +101,7 @@ Route::middleware(['is_admin', 'is_transformers'])->group(function () {
   Route::get('/dashboard/admin/query_section_id=5/print-common-report/{id}/{section_id}', [TransformersController::class, 'viewCommonReport'])->name('Transformers.viewCommonReport');
   //cancel track task that send to others sections
   Route::get('/dashboard/admin/query_section_id=5/cancel-task-traking/{id}', [TransformersController::class, 'cancelTaskTraking'])->name('Transformers.cancelTaskTraking');
-  Route::get('/dashboard/admin/query_section_id=2/return-task/{id}', [TransformersController::class, 'returnTask'])->name('Transformers.returnTask');
+  Route::get('/dashboard/admin/query_section_id=5/return-task/{id}', [TransformersController::class, 'returnTask'])->name('Transformers.returnTask');
 
   //add a new user from dashboard
   Route::post('/dashboard/admin/query_section_id=5/add-new-user', [TransformersController::class, 'newuser'])->name('Transformers.admin.newUser');

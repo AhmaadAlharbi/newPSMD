@@ -886,7 +886,7 @@ class ProtectionController extends Controller
         $tasks = Task::where('id', $id)
             ->where('status', 'completed')
             ->first();
-        $tasks_details = TaskDetails::where('task_id', $id)->where('status', 'completed')->first();
+        $tasks_details = TaskDetails::where('task_id', $id)->where('section_id', 2)->where('status', 'completed')->first();
         $task_attachments = TaskAttachment::where('id_task', $id)->get();
         return view('protection.user.tasks.editReport', compact('tasks', 'tasks_details', 'task_attachments'));
     }
@@ -894,7 +894,7 @@ class ProtectionController extends Controller
     public function submitEditReport($id, Request $request)
     {
         $tasks = Task::where('id', $id)->first();
-        $tasks_details = TaskDetails::where('task_id', $id)->where('status', 'completed')->first();
+        $tasks_details = TaskDetails::where('task_id', $id)->where('section_id', 2)->where('status', 'completed')->first();
 
         $tasks->update([
             'report_status' => 1,

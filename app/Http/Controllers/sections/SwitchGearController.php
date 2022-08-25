@@ -627,7 +627,9 @@ class SwitchGearController extends Controller
         $commonTasks = TaskDetails::where('task_id', $id)
             ->where('status', 'completed')
             ->get();
-        return view('switchgear.admin.tasks.report', compact('task_details', 'commonTasks'));
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('switchgear.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
     }
 
     //search between dates
@@ -824,7 +826,7 @@ class SwitchGearController extends Controller
             TaskDetails::create([
                 'task_id' => $id,
                 'fromSection' => 6,
-                'section_id' => 2,
+                'section_id' => 6,
                 'report_date' => Carbon::now(),
                 'reasonOfUncompleted' => $request->reason,
                 'eng_id' => $eng_id,
@@ -873,7 +875,7 @@ class SwitchGearController extends Controller
     public function submitEditReport($id, Request $request)
     {
         $tasks = Task::where('id', $id)->first();
-        $tasks_details = TaskDetails::where('task_id', $id)->where('status', 'completed')->first();
+        $tasks_details = TaskDetails::where('task_id', $id)->where('section_id', 6)->where('status', 'completed')->first();
         $tasks->update([
             'report_status' => 1,
         ]);

@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 21, 2022 at 12:37 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Host: localhost:3306
+-- Generation Time: Aug 25, 2022 at 09:09 PM
+-- Server version: 5.7.33
+-- PHP Version: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,7 +65,9 @@ INSERT INTO `engineers` (`id`, `user_id`, `section_id`, `local_department`, `are
 (21, 2, 3, 'no', '1', 0, '2022-06-05 08:49:30', '2022-06-05 08:49:30'),
 (22, 3, 3, 'no', '2', 0, '2022-06-05 08:50:39', '2022-06-05 08:50:39'),
 (23, 5, 3, 'no', '3', 0, '2022-06-06 09:52:51', '2022-06-06 09:52:51'),
-(24, 14, 2, 'no', '1', 0, '2022-08-16 18:45:04', '2022-08-16 18:45:04');
+(24, 14, 2, 'no', '1', 0, '2022-08-16 18:45:04', '2022-08-16 18:45:04'),
+(25, 132, 3, 'no', '1', 0, '2022-08-25 19:57:07', '2022-08-25 19:57:07'),
+(26, 133, 6, 'no', '1', 0, '2022-08-25 20:17:57', '2022-08-25 20:17:57');
 
 -- --------------------------------------------------------
 
@@ -18441,7 +18443,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -18513,7 +18515,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19336,9 +19338,13 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip_number`, `equip_name`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
-(1, '22-08/1', 2, 2, NULL, 1, 'Auto reclosure', '-', NULL, NULL, '2022-08-08', '-', NULL, 1, NULL, NULL, 'completed', '0', NULL, 'Ahmad Alharbi', '2022-08-16 17:43:18', '2022-08-16 18:18:54'),
-(25, '22-08/1', 2, 2, NULL, 29, 'Auto reclosure', '-', NULL, NULL, '2022-08-16', '-', NULL, 34, NULL, NULL, 'completed', '0', NULL, 'Ahmad Alharbi', '2022-08-16 17:43:18', '2022-08-16 18:18:54'),
-(26, '22-08/2', 2, 2, NULL, 1, 'Auto reclosure', '-', NULL, NULL, '2022-08-17', '-', NULL, 1, NULL, NULL, 'completed', '0', NULL, 'Ahmad Alharbi', '2022-08-17 14:05:26', '2022-08-17 14:06:02');
+(34, '22-08/1', 2, 2, NULL, 1, 'Dist Prot Main Alaram', '132KV', NULL, 'Maintenance', '2022-08-25', 'E(2)', '4 5  T R 1', 1, NULL, NULL, 'completed', '1', NULL, 'Ahmad Alharbi', '2022-08-25 06:37:34', '2022-08-25 20:38:10'),
+(35, '22-08/35', 3, 2, 3, 84, 'ampere reading showing wrong', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 132, NULL, NULL, 'completed', '0', NULL, 'Admin Battery', '2022-08-25 07:16:02', '2022-08-25 20:16:08'),
+(36, '22-08/36', 3, 3, NULL, 684, 'DC Supply Failure', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 132, NULL, NULL, 'completed', '1', NULL, 'Admin Battery', '2022-08-25 19:57:18', '2022-08-25 20:36:05'),
+(37, '22-08/37', 6, 6, NULL, 1, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 133, 'wadad', NULL, 'completed', '1', NULL, 'admin switch', '2022-08-25 20:18:14', '2022-08-25 20:27:07'),
+(38, '22-08/38', 3, 6, NULL, 3, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 133, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-08-25 20:32:17', '2022-08-25 20:50:09'),
+(39, '22-08/39', 5, 5, NULL, 1, 'Fan Trouble alarm', NULL, NULL, 'Maintenance', '2022-08-26', NULL, NULL, 117, NULL, NULL, 'completed', '1', NULL, 'Team Leader Electrical South', '2022-08-25 21:03:07', '2022-08-25 21:07:39'),
+(40, '22-08/40', 2, 5, 2, 2, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-08-26', NULL, NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'Admin1M', '2022-08-25 21:07:55', '2022-08-25 21:08:04');
 
 -- --------------------------------------------------------
 
@@ -19355,6 +19361,13 @@ CREATE TABLE `task_attachments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `task_attachments`
+--
+
+INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_task`, `created_at`, `updated_at`) VALUES
+(1, 'image5.jpg', NULL, 'Ahmad Alharbi', 34, '2022-08-25 06:37:34', '2022-08-25 06:37:34');
 
 -- --------------------------------------------------------
 
@@ -19388,11 +19401,28 @@ CREATE TABLE `task_details` (
 --
 
 INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reasonOfUncompleted`, `eng_id`, `station_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(594, 1, '2022-08-16', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-16 17:43:18', '2022-08-16 17:43:18'),
-(618, 1, '2022-08-08', '2022-08-16', NULL, 1, 1, 2, NULL, 2, 'Auto reclosure', NULL, NULL, 'done', 'completed', '1', '2022-08-16 18:18:54', '2022-08-16 18:18:54'),
-(619, 25, '2022-08-16', '2022-08-16', NULL, 34, 29, 2, NULL, 2, 'Auto reclosure', NULL, NULL, 'done', 'completed', '1', '2022-08-16 18:18:54', '2022-08-16 18:18:54'),
-(620, 26, '2022-08-17', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-17 14:05:26', '2022-08-17 14:05:26'),
-(621, 26, '2022-08-17', '2022-08-17', NULL, 1, 1, 2, NULL, 2, 'Auto reclosure', NULL, NULL, 'ddd', 'completed', '1', '2022-08-17 14:06:02', '2022-08-17 14:06:02');
+(629, 34, '2022-08-25', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 06:37:34', '2022-08-25 06:37:34'),
+(630, 34, '2022-08-25', '2022-08-25', NULL, 1, 1, 2, NULL, 2, 'Dist Prot Main Alaram', NULL, NULL, 'new done', 'completed', '0', '2022-08-25 06:46:46', '2022-08-25 20:38:10'),
+(632, 35, '2022-08-25', NULL, NULL, 14, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 07:16:02', '2022-08-25 07:16:02'),
+(633, 35, NULL, '2022-08-25', NULL, NULL, NULL, 2, 3, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 07:17:01', '2022-08-25 07:17:01'),
+(634, 35, NULL, NULL, NULL, NULL, NULL, 3, 2, NULL, NULL, NULL, NULL, NULL, 'الغاء التحويل', '0', '2022-08-25 08:43:45', '2022-08-25 08:43:45'),
+(635, 35, NULL, '2022-08-25', NULL, NULL, NULL, 2, 3, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 08:44:08', '2022-08-25 08:44:08'),
+(636, 36, '2022-08-25', NULL, NULL, 132, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 19:57:18', '2022-08-25 19:57:18'),
+(637, 36, '2022-08-25', '2022-08-25', NULL, 132, 684, 3, NULL, 3, 'DC Supply Failure', NULL, NULL, 'new one done', 'completed', '0', '2022-08-25 19:57:59', '2022-08-25 20:36:05'),
+(639, 35, NULL, '2022-08-25', NULL, 132, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:10:41', '2022-08-25 20:10:41'),
+(640, 35, '2022-08-25', '2022-08-25', NULL, 132, 84, 2, 3, 3, 'ampere reading showing wrong', NULL, NULL, 'done dasman', 'completed', '1', '2022-08-25 20:16:08', '2022-08-25 20:16:08'),
+(641, 37, '2022-08-25', NULL, NULL, 133, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 20:18:14', '2022-08-25 20:18:14'),
+(644, 37, '2022-08-25', '2022-08-25', NULL, 133, 1, 6, NULL, 6, 'Transformer Tubing SF6 Gas Pressure Low Alarm', 'wadad', NULL, '#2done 1 updated', 'completed', '0', '2022-08-25 20:25:06', '2022-08-25 20:27:07'),
+(645, 38, '2022-08-25', NULL, NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 20:32:17', '2022-08-25 20:32:17'),
+(646, 38, NULL, '2022-08-25', NULL, NULL, NULL, 6, 3, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:32:25', '2022-08-25 20:32:25'),
+(647, 38, NULL, '2022-08-25', NULL, 132, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:39:25', '2022-08-25 20:39:25'),
+(648, 38, '2022-08-25', '2022-08-25', NULL, 132, 3, 6, 3, 3, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, 'wq', 'completed', '1', '2022-08-25 20:39:45', '2022-08-25 20:39:45'),
+(649, 38, NULL, '2022-08-25', NULL, 133, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:49:47', '2022-08-25 20:49:47'),
+(650, 38, '2022-08-25', '2022-08-25', NULL, 133, 3, 6, NULL, 6, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, 'done', 'completed', '1', '2022-08-25 20:50:09', '2022-08-25 20:50:09'),
+(651, 39, '2022-08-26', NULL, NULL, 117, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 21:03:07', '2022-08-25 21:03:07'),
+(652, 39, '2022-08-26', '2022-08-26', NULL, 117, 1, 5, NULL, 5, 'Fan Trouble alarm', NULL, NULL, 'done 12 =>>>2', 'completed', '0', '2022-08-25 21:03:48', '2022-08-25 21:07:39'),
+(653, 40, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 21:07:55', '2022-08-25 21:07:55'),
+(654, 40, NULL, '2022-08-26', NULL, NULL, NULL, 5, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 21:08:04', '2022-08-25 21:08:04');
 
 -- --------------------------------------------------------
 
@@ -19405,7 +19435,7 @@ CREATE TABLE `tr` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint(4) NOT NULL DEFAULT 0,
+  `admin` tinyint(4) NOT NULL DEFAULT '0',
   `shift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19444,9 +19474,18 @@ CREATE TABLE `tr_tasks` (
   `work_type_description` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tr_tasks`
+--
+
+INSERT INTO `tr_tasks` (`id`, `task_id`, `work_type`, `work_type_description`, `department`, `area`, `created_at`, `updated_at`) VALUES
+(1, 39, 'Maintenance', 'Change MCB', '1', '1', '2022-08-25 21:03:07', '2022-08-25 21:03:07'),
+(2, 40, NULL, 'Change MCB', '1', '1', '2022-08-25 21:07:55', '2022-08-25 21:07:55'),
+(3, 40, NULL, NULL, '1', '1', '2022-08-25 21:08:04', '2022-08-25 21:08:04');
 
 -- --------------------------------------------------------
 
@@ -19461,7 +19500,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT 1,
+  `is_admin` tinyint(1) DEFAULT '1',
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -19473,7 +19512,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `password`, `is_admin`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmad Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'zG8XyNVUCb3pHKR1cTUJtSn1ZjWvfvC83nE7tyZsBVqY0RfT0In8zrLCwhY1', '2021-06-24 12:21:03', '2021-08-25 17:17:54'),
+(1, 'Ahmad Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'PCDHNXqUZXIbHCNjyCxvXbwVOaahEYutW9M7LBpgtZLDVIEJeeHA2cKLwnA2', '2021-06-24 12:21:03', '2021-08-25 17:17:54'),
 (2, 'Mohammed Alshehab', 'sss@gmails.xom', NULL, 3, '$2y$10$wDzPhe/3/dbx.An4iy8M3OW2BYhR4KJOiJ1XiY293M9X3I34QWwBO', 1, NULL, 'AE8BpQDuQ2gIG1qXhOJxFpJYB4X2aQVyU1d5lrDlYIQSM2GG4UBCrmQysWDW', '2021-06-29 07:11:19', '2021-06-29 07:11:19'),
 (3, 'Eissa Almatar', 'asdaa.gmails.xol', NULL, 3, '$2y$10$6xpUGMQcEW424O7/JV3vHunp.avGROWWFirPasKrEJ0Z87aWL4rBe', 1, NULL, 'Rxw7PXSnWR7Y17KyM4wqorov7TscKh7hVHDzESKlZAGyYyGwu8xZkJcdYz6r', '2021-06-30 07:54:55', '2021-06-30 07:54:55'),
 (4, 'Ali Albaghli', 'Ajalbaghli@mew.gov.kw', NULL, 2, '$2y$10$DxzPg6cKnP1/FpTSu13CJ.H0xNmErQp/XfnU2QPJgiWiXaWSFrsHC', 1, NULL, 'f2MJVOSIB6TKpr7TinA824EkotZjUe9k6Df8VTGojJUPGTKdlL8RcGsdYO25', '2021-07-08 06:42:58', '2021-07-08 06:42:58'),
@@ -19533,9 +19572,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `
 (128, 'Admin1C', 'admin1C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
 (129, 'Engineer1M', 'engineer1M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 0, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
 (130, 'Engineer2M', 'engineer2M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 0, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(131, 'Admin Battery', 'admin@battery.com', NULL, 3, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'cD0ZTtjBlePZpVXirODOh9X4bFgUPplL4T4Y2EgXQkxbkzLBVVuefNx5xjfh', '2021-06-24 12:21:03', '2021-08-25 17:17:54'),
+(131, 'Admin Battery', 'admin@battery.com', NULL, 3, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'FtunF31RLXx1aPUjkNrFTP57G0XxYbOmEIewFDP7YzpRePAqT5c2UZumuy0l', '2021-06-24 12:21:03', '2021-08-25 17:17:54'),
 (132, 'r r r r', 'rrr@mew.gov.kw', NULL, 3, '$2y$10$cepHtXBa5O/dorHN21zR2Oqlmld0WaJBAkfzWgCyzCH6eWmkUhQoG', 0, NULL, NULL, '2022-06-23 08:20:09', '2022-06-23 08:20:09'),
-(133, 'admin switch', 'admin@switch.com', NULL, 6, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'Ov4Q386uKt56qfnriUA1xoMPQ57QEZ9M2h7tXWqnSi56jaPThMb6xQLVNiGc', '2021-06-24 12:21:03', '2021-08-25 17:17:54');
+(133, 'admin switch', 'admin@switch.com', NULL, 6, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'PmuqP93L6Vidxw1YA8IaZeW0mR8LJ9z89KajIvNgHLnzT97RU7OcKQHJcYEh', '2021-06-24 12:21:03', '2021-08-25 17:17:54');
 
 --
 -- Indexes for dumped tables
@@ -19675,7 +19714,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `engineers`
 --
 ALTER TABLE `engineers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `equip`
@@ -19723,19 +19762,19 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=622;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=655;
 
 --
 -- AUTO_INCREMENT for table `tr`
@@ -19747,7 +19786,7 @@ ALTER TABLE `tr`
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

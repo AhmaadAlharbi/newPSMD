@@ -423,13 +423,13 @@
                                                 <tr>
                                                     <td>{{ $i }}</td>
                                                     <td><a
-                                                            href="{{ route('protection.admin.taskDetails', ['id' => $task->id]) }}">{{
+                                                            href="{{ route('battery.admin.taskDetails', ['id' => $task->id]) }}">{{
                                                             $task->tasks->refNum }}</a>
                                                     </td>
                                                     <td>{{ $task->tasks->station->SSNAME }}</td>
                                                     <td>{{ $task->sectionID->section_name }}</td>
                                                     <td>{{ $task->users->name }}</td>
-                                                    <td><a href="{{ route('protection.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}"
+                                                    <td><a href="{{ route('battery.viewCommonReport', ['id' => $task->task_id, 'section_id' => $task->sectionID->id]) }}"
                                                             class="btn btn-outline-success">التقرير</a></td>
 
                                                 </tr>
@@ -475,12 +475,12 @@
                                     </td>
                                     <td colspan="2">
                                         <a class="btn btn-outline-success btn-sm"
-                                            href="{{ route('protection.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                            href="{{ route('battery.view_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
                                             role="button"><i class="fas fa-eye"></i>&nbsp;
                                             عرض</a>
 
                                         <a class="btn btn-outline-info btn-sm"
-                                            href="{{ route('protection.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
+                                            href="{{ route('battery.download_file', ['id' => $attachment->id_task, 'file_name' => $attachment->file_name]) }}"
                                             role="button"><i class="fas fa-download"></i>&nbsp;
                                             تحميل</a>
                                         <button class="btn btn-outline-danger btn-sm" data-toggle="modal"

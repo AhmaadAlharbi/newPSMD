@@ -51,8 +51,12 @@
                                     class=" my-2 btn btn-outline-secondary ">Read More</a>
                                 <a href="{{ route('protection.cancelTaskTraking', ['id' => $task->id]) }}"
                                     class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+                                @if ($task->status === 'pending')
+
                                 <a href="{{ route('protection.returnTask', ['id' => $task->id]) }}"
                                     class="btn btn-outline-success my-2">إرجاع المهمة للقسم</a>
+                                @endif
+
 
                                 @if ($task->status === 'completed')
                                 <a class="btn btn-info mt-0 text-center"
@@ -69,8 +73,11 @@
                                     class=" my-2 btn btn-outline-secondary ">Read More</a>
                                 <a href="{{ route('battery.cancelTaskTraking', ['id' => $task->id]) }}"
                                     class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+
+                                @if ($task->status === 'pending')
                                 <a href="{{ route('battery.returnTask', ['id' => $task->id]) }}"
                                     class="btn btn-outline-success my-2">إرجاع المهمة للقسم</a>
+                                @endif
                                 @if ($task->status === 'completed')
                                 <a class="btn btn-info mt-0 text-center"
                                     href="{{ route('battery.viewCommonReport', ['id' => $task->id, 'section_id' => $task->toSections->id]) }}">Report</a>
@@ -86,9 +93,11 @@
                                     class=" my-2 btn btn-outline-secondary ">Read More</a>
                                 <a href="{{ route('Transformers.cancelTaskTraking', ['id' => $task->id]) }}"
                                     class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+
+                                @if ($task->status === 'pending')
                                 <a href="{{ route('Transformers.returnTask', ['id' => $task->id]) }}"
                                     class="btn btn-outline-success my-2">إرجاع المهمة للقسم</a>
-
+                                @endif
                                 @if ($task->status === 'completed')
                                 <a class="btn btn-info mt-0 text-center"
                                     href="{{ route('Transformers.viewCommonReport', ['id' => $task->id, 'section_id' => $task->toSections->id]) }}">Report</a>
@@ -104,8 +113,11 @@
                                     class=" my-2 btn btn-outline-secondary ">Read More</a>
                                 <a href="{{ route('switch.cancelTaskTraking', ['id' => $task->id]) }}"
                                     class="btn btn-outline-danger my-2">إلغاء متابعة المهمة</a>
+                                @if ($task->status === 'pending')
                                 <a href="{{ route('switch.returnTask', ['id' => $task->id]) }}"
                                     class="btn btn-outline-success my-2">إرجاع المهمة للقسم</a>
+                                @endif
+
                                 @if ($task->status === 'completed')
                                 <a class="btn btn-info mt-0 text-center"
                                     href="{{ route('switch.viewCommonReport', ['id' => $task->id, 'section_id' => $task->toSections->id]) }}">Report</a>

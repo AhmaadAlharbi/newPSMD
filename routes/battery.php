@@ -97,7 +97,7 @@ Route::middleware(['is_admin', 'is_battery'])->group(function () {
   Route::get('/dashboard/admin/query_section_id=3/print-common-report/{id}/{section_id}', [BatteryController::class, 'viewCommonReport'])->name('battery.viewCommonReport');
   //cancel track task that send to others sections
   Route::get('/dashboard/admin/query_section_id=3/cancel-task-traking/{id}', [BatteryController::class, 'cancelTaskTraking'])->name('battery.cancelTaskTraking');
-  Route::get('/dashboard/admin/query_section_id=2/return-task/{id}', [BatteryController::class, 'returnTask'])->name('battery.returnTask');
+  Route::get('/dashboard/admin/query_section_id=3/return-task/{id}', [BatteryController::class, 'returnTask'])->name('battery.returnTask');
 
   //add a new user from dashboard
   Route::post('/dashboard/admin/query_section_id=3/add-new-user', [BatteryController::class, 'newuser'])->name('battery.admin.newUser');

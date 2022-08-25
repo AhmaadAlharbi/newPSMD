@@ -706,7 +706,9 @@ class TransformersController extends Controller
         $commonTasks = TaskDetails::where('task_id', $id)
             ->where('status', 'completed')
             ->get();
-        return view('transformers.admin.tasks.report', compact('task_details', 'commonTasks'));
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('transformers.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
     }
     //search between dates
     public function stationsByDates(Request $request)
@@ -959,7 +961,7 @@ class TransformersController extends Controller
     public function submitEditReport($id, Request $request)
     {
         $tasks = Task::where('id', $id)->first();
-        $tasks_details = TaskDetails::where('task_id', $id)->where('status', 'completed')->first();
+        $tasks_details = TaskDetails::where('task_id', $id)->where('section_id', 5)->where('status', 'completed')->first();
 
         $tasks->update([
             'report_status' => 1,
