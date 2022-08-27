@@ -53,7 +53,7 @@ class EdaraController extends Controller
         event(new Registered($user));
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::ProtectionHomeUser);
+        return redirect(RouteServiceProvider::EdaraHomeUser);
     }
 
     //home  page

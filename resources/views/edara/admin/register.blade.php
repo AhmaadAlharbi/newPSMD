@@ -5,29 +5,25 @@
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
-        <h1 class="text-center">Protection Section</h1>
+        <h1 class="text-center">Edara Section</h1>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{route('protection.register')}}">
+        <form method="POST" action="{{route('edara.register')}}">
             @csrf
 
             <!-- Name -->
             <div>
                 <label for="">First Name</label>
 
-                <x-input  class="block my-1 w-full" type="text" name="fname"  required
-                    autofocus />
-                <label for="" >Second Name</label>
-                    <x-input  class="block mt-4 w-full" type="text" name="sname"  required
-                    autofocus />
-                    <label for="" >Third Name</label>
-                    <x-input  class="block mt-4 w-full" type="text" name="tname"  required
-                    autofocus />
-                    <label for="">Last Name</label>
-                    <x-input  class="block mt-4 w-full" type="text" name="lname"  required
-                    autofocus />
+                <x-input class="block my-1 w-full" type="text" name="fname" required autofocus />
+                <label for="">Second Name</label>
+                <x-input class="block mt-4 w-full" type="text" name="sname" required autofocus />
+                <label for="">Third Name</label>
+                <x-input class="block mt-4 w-full" type="text" name="tname" required autofocus />
+                <label for="">Last Name</label>
+                <x-input class="block mt-4 w-full" type="text" name="lname" required autofocus />
             </div>
 
             <!-- Email Address -->

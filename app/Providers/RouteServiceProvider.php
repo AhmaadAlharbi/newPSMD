@@ -22,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
     public const BatteryHomeUser = "/dashboard/user/query_section_id=3";
     public const TransformersHomeUser = "/dashboard/user/query_section_id=5";
     public const SwitchGearHomeUser = "/dashboard/user/query_section_id=6";
+    public const EdaraHomeUser = "/dashboard/admin/query_section_id=1";
 
     /**
      * The controller namespace for the application.
@@ -69,7 +70,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/EdaraRoute.php'));
-                
         });
     }
 

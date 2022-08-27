@@ -32,7 +32,7 @@
 
 @if (session()->has('delete_invoice'))
 <script>
-window.onload = function() {
+    window.onload = function() {
     notif({
         msg: "تم حذف المهمة بنجاح",
         type: "success"
@@ -44,7 +44,7 @@ window.onload = function() {
 
 @if (session()->has('Status_Update'))
 <script>
-window.onload = function() {
+    window.onload = function() {
     notif({
         msg: "تم تحديث حالة الدفع بنجاح",
         type: "success"
@@ -56,115 +56,115 @@ window.onload = function() {
 <!-- row -->
 <div class="row">
 </div>
-    <!--div-->
-    <div class="col-xl-12">
-        <div class="card mg-b-20">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
-                        <thead>
-                            <tr>
-                                <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">رقم المهمة</th>
-                                <th class="border-bottom-0">اسم المحطة </th>
-                                <th class="border-bottom-0"> التحكم </th>
-                                <th class="border-bottom-0">تاريخ ارسال المهمة</th>
-                                <th class="border-bottom-0">المهندس</th>
-                                <th class="border-bottom-0">العمليات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $i = 0;
-                            @endphp
-                            @foreach ($tasks as $task)
-                            @php
-                            $i++
-                            @endphp
-                            <tr>
-                                <td>{{$i}}</td>
-                                <td><a
-                                        href="{{route('protection.admin.taskDetails',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
-                                </td>
-                                <td>{{$task->tasks->station->SSNAME}}</td>
+<!--div-->
+<div class="col-xl-12">
+    <div class="card mg-b-20">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
+                    <thead>
+                        <tr>
+                            <th class="border-bottom-0">#</th>
+                            <th class="border-bottom-0">رقم المهمة</th>
+                            <th class="border-bottom-0">اسم المحطة </th>
+                            <th class="border-bottom-0"> التحكم </th>
+                            <th class="border-bottom-0">تاريخ ارسال المهمة</th>
+                            <th class="border-bottom-0">المهندس</th>
+                            <th class="border-bottom-0">العمليات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $i = 0;
+                        @endphp
+                        @foreach ($tasks as $task)
+                        @php
+                        $i++
+                        @endphp
+                        <tr>
+                            <td>{{$i}}</td>
+                            <td><a
+                                    href="{{route('Transformers.admin.taskDetails',['id'=>$task->task_id])}}">{{$task->tasks->refNum}}</a>
+                            </td>
+                            <td>{{$task->tasks->station->SSNAME}}</td>
 
 
-                                @if($task->tasks->station->control == "JAHRA CONTROL CENTER")
-                                <td class="table-warning">{{$task->tasks->station->control}}
-                                </td>
-                                @elseif($task->tasks->station->control == "JABRIYA CONTROL CENTER")
-                                <td class="table-info">{{$task->tasks->station->control}}
-                                </td>
-                                @elseif($task->tasks->station->control == "TOWN CONTROL CENTER")
-                                <td class="table-danger">{{$task->tasks->station->control}}
-                                </td>
-                                @elseif($task->tasks->station->control == "SHUAIBA CONTROL CENTER")
-                                <td class="table-success">{{$task->tasks->station->control}}
-                                </td>
-                                @else
-                                <td class="table-light">{{$task->ttasks->station->control}}
+                            @if($task->tasks->station->control == "JAHRA CONTROL CENTER")
+                            <td class="table-warning">{{$task->tasks->station->control}}
+                            </td>
+                            @elseif($task->tasks->station->control == "JABRIYA CONTROL CENTER")
+                            <td class="table-info">{{$task->tasks->station->control}}
+                            </td>
+                            @elseif($task->tasks->station->control == "TOWN CONTROL CENTER")
+                            <td class="table-danger">{{$task->tasks->station->control}}
+                            </td>
+                            @elseif($task->tasks->station->control == "SHUAIBA CONTROL CENTER")
+                            <td class="table-success">{{$task->tasks->station->control}}
+                            </td>
+                            @else
+                            <td class="table-light">{{$task->ttasks->station->control}}
 
-                                    @endif
-
-                                <td>{{$task->tasks->task_date}}</td>
-                                @if(isset($task->users->name))
-                                <td>{{$task->users->name}}</td>
-                                @else
-                                <td>waiting...</td>
                                 @endif
 
+                            <td>{{$task->tasks->task_date}}</td>
+                            @if(isset($task->users->name))
+                            <td>{{$task->users->name}}</td>
+                            @else
+                            <td>waiting...</td>
+                            @endif
 
-                                <td>
-                                    <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true"
-                                            class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-                                            type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
-                                        <div class="dropdown-menu tx-13">
+
+                            <td>
+                                <div class="dropdown">
+                                    <button aria-expanded="false" aria-haspopup="true"
+                                        class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
+                                        type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
+                                    <div class="dropdown-menu tx-13">
                                         <a class="dropdown-item"
-                                                href="{{route('protection.changeSectionView',['id'=>$task->task_id])}}"><i
-                                                    class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
-                                                تحويل لقسم آخر
-                                            </a>
-                                            @if($task->status ==="completed")
-                                     
-                                            <a class="dropdown-item"
-                                                href="{{route('protection.veiwReport',['id'=>$task->task_id])}}"><i
-                                                    class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
-                                                 التقرير
-                                            </a>
+                                            href="{{route('Transformers.changeSectionView',['id'=>$task->task_id])}}"><i
+                                                class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                            تحويل لقسم آخر
+                                        </a>
+                                        @if($task->status ==="completed")
 
-                                            {{--  <a class=" dropdown-item btn btn-outline-info "
-                                                href="{{url('generate-pdf')}}/{{$task->id}}">
+                                        <a class="dropdown-item"
+                                            href="{{route('Transformers.veiwReport',['id'=>$task->task_id])}}"><i
+                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                             التقرير
+                                        </a>
+
+                                        {{-- <a class=" dropdown-item btn btn-outline-info "
+                                            href="{{url('generate-pdf')}}/{{$task->id}}">
                                             <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
-                                            </a>--}}
-                                            @else
+                                        </a>--}}
+                                        @else
 
-                                            <a class="dropdown-item"
-                                                href="{{route('protection.updateTask',['id'=>$task->task_id])}}">
-                                                تعديل
-                                            </a>
+                                        <a class="dropdown-item"
+                                            href="{{route('Transformers.updateTask',['id'=>$task->task_id])}}">
+                                            تعديل
+                                        </a>
 
-                                            @endif
-                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $task->task_id }}"
-                                                data-toggle="modal" data-target="#delete_invoice"><i
-                                                    class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                المهمة
-                                            </a>
-                                        </div>
+                                        @endif
+                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $task->task_id }}"
+                                            data-toggle="modal" data-target="#delete_invoice"><i
+                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                            المهمة
+                                        </a>
                                     </div>
-                                </td>
+                                </div>
+                            </td>
 
 
-                            </tr>
-                            @endforeach
+                        </tr>
+                        @endforeach
 
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <!--/div-->
+</div>
+<!--/div-->
 </div>
 
 <!-- حذف المهمة -->
@@ -177,7 +177,7 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{route('protection.destroyTask')}}" method="post">
+                <form action="{{route('Transformers.destroyTask')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>
@@ -229,7 +229,7 @@ window.onload = function() {
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
 <script>
-$('#delete_invoice').on('show.bs.modal', function(event) {
+    $('#delete_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
@@ -238,7 +238,7 @@ $('#delete_invoice').on('show.bs.modal', function(event) {
 </script>
 
 <script>
-$('#Transfer_invoice').on('show.bs.modal', function(event) {
+    $('#Transfer_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
