@@ -112,7 +112,7 @@ class EdaraController extends Controller
             'station_id' => $request->ssnameID,
             'main_alarm' => $request->mainAlarm,
             'task_date' => $request->task_Date,
-            'equip' => $request->equip,
+            'equip_name' => $request->equip,
             'pm' => $request->pm,
             'problem' => $request->problem,
             'notes' => $request->notes,
