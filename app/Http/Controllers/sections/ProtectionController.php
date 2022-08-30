@@ -86,6 +86,7 @@ class ProtectionController extends Controller
 
         $date = Carbon::now();
         $monthName = $date->format('F');
+
         return view('protection.admin.dashboard', compact('date', 'monthName'));
     }
     //// start front END functions

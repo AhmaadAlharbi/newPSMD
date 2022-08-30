@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Livewire\Component;
 use App\Models\Task;
+use App\Models\TaskDetails;
 
 class LocalTasks extends Component
 {
@@ -26,6 +27,11 @@ class LocalTasks extends Component
                 ->whereNull('fromSection')
                 ->where('status', 'pending')
                 ->Paginate(5, ['*'], 'localTasks');
+            $pedningTask = TaskDetails::where('fromSection', $section_id)
+                ->whereNotNull('reasonOfUncompleted')
+                ->orWhere('toSection', $section_id)
+                ->whereNotNull('reasonOfUncompleted')
+                ->get();
         } else {
             //edara's tasks
             $tasks = Task::orderBy('id', 'desc')
@@ -36,6 +42,6 @@ class LocalTasks extends Component
 
 
 
-        return view('livewire.local-tasks', compact('tasks'));
+        return view('livewire.local-tasks', compact('tasks', 'pedningTask'));
     }
 }
