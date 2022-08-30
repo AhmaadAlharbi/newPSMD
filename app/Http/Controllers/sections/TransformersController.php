@@ -662,8 +662,30 @@ class TransformersController extends Controller
     {
         $id = $request->invoice_id;
         $tasks = Task::where('id', $id)->first();
-        $tasks->delete();
-        return back();
+
+        //hide tasks if toSecion == 5
+        if ($tasks->toSection == 5) {
+            $tasks->update([
+                'toSection' => null,
+            ]);
+            session()->flash('edit', 'تم   التعديل  بنجاح');
+            return back();
+        }
+
+        if ($tasks->fromSection == 5) {
+            $tasks->update([
+                'fromSection' => null,
+            ]);
+            session()->flash('edit', 'تم   التعديل  بنجاح');
+            return back();
+        }
+        //if the task is related wont delete but hide it
+        if ($tasks->fromSection == 5 && is_null($tasks->toSection)) {
+            $tasks->delete();
+            session()->flash('edit', 'تم   التعديل  بنجاح');
+
+            return back();
+        }
     }
     public function open_file($id, $file_name)
     {

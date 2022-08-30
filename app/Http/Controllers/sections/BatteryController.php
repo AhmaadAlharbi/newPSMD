@@ -576,8 +576,30 @@ class BatteryController extends Controller
     {
         $id = $request->invoice_id;
         $tasks = Task::where('id', $id)->first();
-        $tasks->delete();
-        return back();
+
+        //hide tasks if toSecion == 3
+        if ($tasks->toSection == 3) {
+            $tasks->update([
+                'toSection' => null,
+            ]);
+            session()->flash('edit', 'تم   التعديل  بنجاح');
+            return back();
+        }
+
+        if ($tasks->fromSection == 3) {
+            $tasks->update([
+                'fromSection' => null,
+            ]);
+            session()->flash('edit', 'تم   التعديل  بنجاح');
+            return back();
+        }
+        //if the task is related wont delete but hide it
+        if ($tasks->fromSection == 3 && is_null($tasks->toSection)) {
+            $tasks->delete();
+            session()->flash('edit', 'تم   التعديل  بنجاح');
+
+            return back();
+        }
     }
     public function open_file($id, $file_name)
     {
