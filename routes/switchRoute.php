@@ -40,6 +40,10 @@ Route::middleware(['auth', 'is_switch'])->group(function () {
   Route::get('/dashboard/user/query_section_id=6/engineer-tasks-completed/{id}', [SwitchGearController::class, 'showEngineerTasksCompleted'])->name('switch.showEngineerTasksCompleted');
   //add a new user from dashboard
   Route::post('/dashboard/admin/query_section_id=6/add-new-user', [SwitchGearController::class, 'newuser'])->name('switch.admin.newUser');
+  //equip
+  Route::get('/switchgear/Equip/{id}', [SwitchGearController::class, 'getEquip']);
+  Route::get('/switchgear/EquipNumber/{id}/{voltage_level}', [SwitchGearController::class, 'getEquipNumber']);
+  Route::get('/switchgear/Equipname/{station_id}/{voltage_level}/{equip_number}', [SwitchGearController::class, 'getEquipName']);
 });
 
 // /#########ADMIN ROUTES ##################

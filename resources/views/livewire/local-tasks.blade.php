@@ -143,7 +143,7 @@
                             </div>
 
                         </div>
-                        {{-- check if there is an updat on pending Task --}}
+                        {{-- check if there is an update on pending Task --}}
                         @isset($pedningTask)
                         @foreach($pedningTask as $pt)
                         @if($task->id === $pt->task_id)

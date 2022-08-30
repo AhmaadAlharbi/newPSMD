@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Engineer;
 use App\Models\Station;
 use App\Models\Section;
+use App\Models\Equip;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
@@ -653,6 +655,25 @@ class SwitchGearController extends Controller
 
         return view('switchgear.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
     }
+
+    ///equip
+    public function getEquip($id)
+    {
+        return (string)  Equip::where('station_id', $id)->orderBy('voltage_level')->get();
+    }
+    public function getEquipNumber($station_id, $voltage_level)
+    {
+        return (string)  Equip::where('station_id', $station_id)
+            ->where('voltage_level', $voltage_level)->get();
+    }
+    public function getEquipName($station_id, $voltage_level, $euipNumber)
+    {
+        return (string)  Equip::where('station_id', $station_id)
+            ->where('voltage_level', $voltage_level)
+            ->where('equip_number', $euipNumber)
+            ->get();
+    }
+
 
     //search between dates
     public function stationsByDates(Request $request)

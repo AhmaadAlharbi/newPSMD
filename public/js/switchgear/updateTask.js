@@ -10,6 +10,8 @@ const controlName = document.querySelector("#control_name");
 const make = document.querySelector("#make");
 const stationIdInput = document.querySelector("#station_id");
 const refNum = document.querySelector("#refNum");
+const voltageLevel = document.querySelector("#voltageLevel");
+const inputEquipNumber = document.querySelector("#inputEquipNumber");
 //generate random number
 
 const controlColor = (value) => {
@@ -112,7 +114,7 @@ const getStation = async () => {
     engineerSelect.innerText = null;
     //calling function
     controlColor(controlName.value);
-    return areaSelect.value;
+    return [areaSelect.value, stationIdInput.value];
 };
 //show Engineers
 const showEngineers = async () => {
@@ -212,3 +214,152 @@ const getEngineersShift = async () => {
 };
 //to color control based on area
 controlColor(controlName.value);
+const equipVoltage = document.getElementById("equipVoltage");
+const equipName = document.querySelector("#equipName");
+const equipNumber = document.querySelector("#equipNumber");
+//to show equip of the station selected
+const showEquip = async (station_id) => {
+    let voltage_option = document.createElement("option");
+    let equip_number_option = document.createElement("option");
+    const response2 = await fetch("/switchgear/Equip/" + station_id);
+    const data2 = await response2.json();
+    let voltageArray = [];
+    for (let i = 0; i < data2.length; i++) {
+        voltage_option = document.createElement("option");
+        equip_number_option = document.createElement("option");
+        // console.log(data2)
+        voltageArray.push(data2[i].voltage_level);
+    }
+
+    const voltageSet = new Set(voltageArray);
+    const voltageUnique = [...voltageSet];
+    for (let i = 0; i < voltageUnique.length; i++) {
+        voltage_option = document.createElement("option");
+        equip_number_option = document.createElement("option");
+        // console.log(data2)
+
+        if (voltageUnique[i] !== equipVoltage[0].text) {
+            voltage_option.text = voltageUnique[i];
+            equipVoltage.add(voltage_option);
+        }
+    }
+};
+const showEquipNumber = async (station_id) => {
+    const response2 = await fetch(
+        "/switchgear/EquipNumber/" + station_id + "/" + equipVoltage.value
+    );
+    if (response2.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data2 = await response2.json();
+    // console.log(JSON.stringify(data2));
+
+    for (let i = 0; i < data2.length; i++) {
+        let equip_number_option = document.createElement("option");
+        equip_number_option.text = data2[i].equip_number;
+        equipNumber.add(equip_number_option);
+    }
+    if (data2.length > 0) {
+        voltageLevel.classList.add("d-none");
+        inputEquipNumber.classList.add("d-none");
+        equipVoltage.classList.remove("d-none");
+        equipNumber.classList.remove("d-none");
+    } else {
+        voltageLevel.classList.remove("d-none");
+        inputEquipNumber.classList.remove("d-none");
+        equipVoltage.classList.add("d-none");
+        equipNumber.classList.add("d-none");
+    }
+};
+//call
+showEquip(stationIdInput.value);
+showEquipNumber(stationIdInput.value);
+const getEquip = async () => {
+    let voltage_option = document.createElement("option");
+    let equip_number_option = document.createElement("option");
+    equipVoltage.innerText = null;
+    equipNumber.innerText = null;
+    equipName.value = null;
+    voltage_option.text = "-";
+    equip_number_option.text = "-";
+    equipVoltage.add(voltage_option);
+    equipNumber.add(equip_number_option);
+    //get area value from getStation
+    const area_fromFunc = await getStation();
+    let station_id = area_fromFunc[1];
+    // let station_id =await getStation()
+    const response2 = await fetch("/switchgear/Equip/" + station_id);
+    const data2 = await response2.json();
+    console.log(data2);
+    let voltageArray = [];
+    for (let i = 0; i < data2.length; i++) {
+        voltage_option = document.createElement("option");
+        equip_number_option = document.createElement("option");
+        // console.log(data2)
+        voltageArray.push(data2[i].voltage_level);
+        // voltage_option.text = data2[i];
+        equip_number_option.text = data2[i].eqiup_number;
+        // equipVoltage.add(voltage_option)
+        equipNumber.add(equip_number_option);
+    }
+    const voltageSet = new Set(voltageArray);
+    const voltageUnique = [...voltageSet];
+    equipVoltage.innerText = null;
+    voltage_option.text = "-";
+    equipVoltage.add(voltage_option);
+    for (let i = 0; i < voltageUnique.length; i++) {
+        voltage_option = document.createElement("option");
+        equip_number_option = document.createElement("option");
+        // console.log(data2)
+        voltage_option.text = voltageUnique[i];
+        equipVoltage.add(voltage_option);
+    }
+    if (voltageUnique.length > 0) {
+        voltageLevel.classList.add("d-none");
+        inputEquipNumber.classList.add("d-none");
+        equipVoltage.classList.remove("d-none");
+        equipNumber.classList.remove("d-none");
+    } else {
+        voltageLevel.classList.remove("d-none");
+        inputEquipNumber.classList.remove("d-none");
+        equipVoltage.classList.add("d-none");
+        equipNumber.classList.add("d-none");
+    }
+};
+const getEquipNumber = async () => {
+    equipNumber.innerText = null;
+    let station_id = stationIdInput.value;
+    let voltage_level_select = equipVoltage.value;
+    const response2 = await fetch(
+        "/switchgear/EquipNumber/" + station_id + "/" + voltage_level_select
+    );
+    if (response2.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data2 = await response2.json();
+    // console.log("eeeeee " + data2);
+    console.log(JSON.stringify(data2));
+    for (let i = 0; i < data2.length; i++) {
+        let equip_number_option = document.createElement("option");
+        equip_number_option.text = data2[i].equip_number;
+        equipNumber.add(equip_number_option);
+        equipName.value = data2[0].equip_name;
+    }
+};
+const getEquipName = async () => {
+    let station_id = stationIdInput.value;
+    let voltage_level_select = equipVoltage.value;
+    const response = await fetch(
+        "/switchgear/Equipname/" +
+            station_id +
+            "/" +
+            voltage_level_select +
+            "/" +
+            (await equipNumber.value)
+    );
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    equipName.value = data[0].equip_name;
+};
