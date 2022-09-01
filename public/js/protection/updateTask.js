@@ -140,10 +140,21 @@ const showEngineers = async () => {
         }
     }
 
-    return data;
+    return engineerSelect.value;
 };
 
-showEngineers();
+const showEngineersEmailMounted = async () => {
+    let eng_id = await showEngineers();
+    const response = await fetch("/getEngineersEmail/" + eng_id);
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    engEmail.value = data[0].email;
+};
+
+// showEngineers();
+showEngineersEmailMounted();
 
 //get Engineer's email
 const getEngineerEmail = async () => {
@@ -155,6 +166,7 @@ const getEngineerEmail = async () => {
     const data = await response.json();
     engEmail.value = data[0].email;
 };
+
 //get Engineers on shift
 const getEngineersShift = async () => {
     engineerSelect.innerText = null;

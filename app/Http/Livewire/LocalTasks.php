@@ -38,6 +38,7 @@ class LocalTasks extends Component
                 ->where('fromSection', 1)
                 ->where('status', 'pending')
                 ->paginate(3);
+            $pedningTask = null;
         }
 
 

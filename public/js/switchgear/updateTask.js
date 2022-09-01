@@ -136,9 +136,18 @@ const showEngineers = async () => {
             engineerSelect.appendChild(engineerSelectValue);
         }
     }
-    return data;
+    return engineerSelect.value;
 };
-showEngineers();
+const showEngineersEmailMounted = async () => {
+    let eng_id = await showEngineers();
+    const response = await fetch("/switchgear/getEngineersEmail/" + eng_id);
+    if (response.status !== 200) {
+        throw new Error("can not fetch the data");
+    }
+    const data = await response.json();
+    engEmail.value = data[0].email;
+};
+showEngineersEmailMounted();
 //get Engineer's name
 const getEngineer = async () => {
     area_id = await getStation();
