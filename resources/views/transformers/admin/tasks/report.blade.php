@@ -130,44 +130,37 @@
         <div class=" main-content-body-invoice border border-dark">
             <div class="card card-invoice">
                 <div class="card-body">
-                    <div class="invoice-header">
-
-                        <div class="billed-from">
-
-                        </div><!-- billed-from -->
-
-                        <div class="billed-from">
-                            <img class="mew-logo rounded " src="https://www.mew.gov.kw/images/logo@2x.png"
-                                alt="mew logo">
-                        </div><!-- billed-from -->
-
-                    </div><!-- invoice-header -->
-
 
                     <div class="container">
                         <div class="d-block p-3  print-title text-dark">
-                            <p class="text-center">Primary substation maintenance department</p>
-
-                            <h2 class="text-center "> Trouble shooting Report</h2>
-                            <h5 class="text-center m-1"><ins>Ref.No: {{ $task_details->tasks->refNum }}</ins></h5>
+                            <div class="row">
+                                <div class="col">
+                                    <img class="mew-logo rounded " src="https://www.mew.gov.kw/images/logo@2x.png"
+                                        alt="mew logo">
+                                </div>
+                                <div class="col">
+                                    <p class="text-center">Primary substation maintenance department</p>
+                                    <h2 class="text-center"> Trouble shooting Report</h2>
+                                    <h5 class="text-center"><ins>Ref.No: {{ $task_details->tasks->refNum }}</ins>
+                                        <h4 class="text-center mt-3">{{ $task_details->sectionID->section_name }}
+                                            Section
+                                        </h4>
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="text-center mt-3">{{ $task_details->sections->section_name }} Section</h4>
-
                         {{-- --}}
                         <div class="table-responsive text-left">
-
-
-
-
                             <div class=" row ssname-table  ">
-                                <div class=" d-print-none col-sm-12 col-print-12  col-lg-4  ">
+                                <div class=" d-print-none col-sm-12 col-print-12  col-lg-6  ">
                                     <h1
-                                        class="d-none d-sm-flex justify-content-center align-items-center text-center mt-2 display-4 p-5 h-100 bg-dark text-white">
+                                        class="d-none
+                                        d-sm-flex justify-content-center align-items-center text-center rounded-lg mt-2 display-1 py-5 h-100 bg-white text-dark border border-dark">
                                         {{ $task_details->tasks->station->SSNAME }}
                                     </h1>
                                     <h1 style="font-size:44px;"
                                         class="d-block 
-                             justify-content-center align-items-center text-center mt-2  p-5 h-100 bg-dark text-white d-sm-none">
+                             justify-content-center align-items-center text-center mt-2  p-5 h-100 bg-wihte text-dark border border-dark rounded-lg d-sm-none">
                                         {{ $task_details->tasks->station->SSNAME }}
                                     </h1>
 
@@ -175,13 +168,13 @@
                                 {{-- this div show only on print --}}
                                 <div class="d-none d-print-block  col-sm-4  ">
                                     <h1
-                                        class="d-flex justify-content-center align-items-center text-center mt-2 p-5 h-100 bg-dark text-white">
+                                        class="d-flex justify-content-center align-items-center text-center mt-2 p-5 h-100 bg-white text-dark border border-dark rounded-lg">
                                         {{ $task_details->tasks->station->SSNAME }}
                                     </h1>
 
                                 </div>
                                 <div
-                                    class="d-print-none d-none d-sm-block col-sm-12  col-lg-8  col-print-12  table-responsive-sm">
+                                    class="d-print-none d-none d-sm-block col-sm-12  col-lg-6 col-print-12  table-responsive-sm">
                                     <table class="table mt-2 p-5 border border-dark h-100 text-center" id="table1"
                                         class="ltr-table ">
                                         <thead class="thead-light">
@@ -335,7 +328,7 @@
                             </div>
 
                             <div class="d-block p-3 mb-2 bg-white text-dark">
-                                <h2>:Unit</h2>
+                                <h2><ins>:Equip/Unit Affected</ins></h2>
                                 <h4>{{ $task_details->tasks->equip_number }} -
                                     {{ $task_details->tasks->equip_name }}
                                 </h4>
@@ -343,17 +336,19 @@
 
 
 
-                            <div class="d-block border border-dark  mb-2   text-dark">
-                                <h3 class=" bg-warning-gradient py-2 text-white pl-4">Alarm Date <br>
-                                    {{ $task_details->tasks->task_date }}
+                            <div class="d-block border border-dark  mb-4   text-dark">
+                                <h3 class=" bg-warning-gradient py-2 text-white pl-4">Alarm Date
+                                    {{ $task_details->tasks->created_at }}
+
                                 </h3>
+
                                 <h2 class="ml-4">Nature of Fault</h2>
                                 <h4 class="ml-4 text-left ">{{ $task_details->problem }}</h4>
                             </div>
 
                             <div class="  border border-dark      mb-2  text-dark">
-                                <h3 class="bg-success-gradient py-3 text-white pl-4 ">Report Date <br>
-                                    {{ $task_details->report_date }}
+                                <h3 class="bg-success-gradient py-3 text-white pl-4 ">Report Date
+                                    {{ $task_details->created_at }}
                                 </h3>
 
                                 <h2 class="ml-4">Action Take</h2>
