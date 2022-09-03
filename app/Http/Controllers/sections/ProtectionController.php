@@ -57,7 +57,6 @@ class ProtectionController extends Controller
         ]);
         event(new Registered($user));
         Auth::login($user);
-
         return redirect(RouteServiceProvider::ProtectionHomeUser);
     }
     //sign up a new user from admin dashboard

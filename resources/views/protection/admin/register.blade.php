@@ -13,63 +13,67 @@
         @auth
         <form method="POST" action="{{route('protection.admin.newUser')}}">
 
-        @endauth
-        @guest
-        <form method="POST" action="{{route('protection.register')}}">
-        @endguest    
-            @csrf
+            @endauth
+            @guest
+            <form method="POST" action="{{route('protection.register')}}">
+                @endguest
+                @csrf
 
-            <!-- Name -->
-            <div>
-                <label for="">First Name</label>
-
-                <x-input  class="block my-1 w-full" type="text" name="fname"  required
-                    autofocus />
-                <label for="" >Second Name</label>
-                    <x-input  class="block mt-4 w-full" type="text" name="sname"  required
-                    autofocus />
-                    <label for="" >Third Name</label>
-                    <x-input  class="block mt-4 w-full" type="text" name="tname"  required
-                    autofocus />
+                <div>
+                    <p style="background:#62BEC1;color:white;" class=" my-5 p-3">Please register with MEW email and The
+                        password must
+                        be
+                        at
+                        least 8
+                        characters. </p>
+                    <label for="">First Name</label>
+                    <x-input id="fname" class="block mt-1 w-full" type="text" name="fname" :value="old('fname')"
+                        required />
+                    <label for="">Second Name</label>
+                    <x-input class="block mt-4 w-full" type="text" name="sname" required autofocus
+                        :value="old('sname')" />
+                    <label for="">Third Name</label>
+                    <x-input class=" block mt-4 w-full" type="text" name="tname" required autofocus
+                        :value="old('tname')" />
                     <label for="">Last Name</label>
-                    <x-input  class="block mt-4 w-full" type="text" name="lname"  required
-                    autofocus />
-            </div>
+                    <x-input class="block mt-4 w-full" type="text" name="lname" required autofocus
+                        :value="old('lname')" />
+                </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <!-- Email Address -->
+                <div class="mt-4">
+                    <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required />
-            </div>
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                        required />
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                    autocomplete="new-password" />
+                    <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                        autocomplete="new-password" />
 
-            </div>
+                </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <!-- Confirm Password -->
+                <div class="mt-4">
+                    <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                    name="password_confirmation" required />
-            </div>
+                    <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                        name="password_confirmation" required />
+                </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+                <div class="flex items-center justify-end mt-4">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                        {{ __('Already registered?') }}
+                    </a>
 
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
+                    <x-button class="ml-4">
+                        {{ __('Register') }}
+                    </x-button>
+                </div>
+            </form>
     </x-auth-card>
 </x-guest-layout>

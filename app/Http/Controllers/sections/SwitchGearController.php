@@ -748,7 +748,7 @@ class SwitchGearController extends Controller
             ->where('status', 'pending')
             ->orderBy('id', 'desc')
             ->get();
-        return view('switchgear.user.tasks.engineertasks', compact('tasks'));
+        return view('switchgear.user.tasks.engineerTasks', compact('tasks'));
     }
     public function showEngineerTasksCompleted($id)
     {

@@ -15,15 +15,20 @@
 
             <!-- Name -->
             <div>
+                <p style="background:#62BEC1;color:white;" class=" my-5 p-3">Please register with MEW email and The
+                    password must
+                    be
+                    at
+                    least 8
+                    characters. </p>
                 <label for="">First Name</label>
-
-                <x-input class="block my-1 w-full" type="text" name="fname" required autofocus />
+                <x-input id="fname" class="block mt-1 w-full" type="text" name="fname" :value="old('fname')" required />
                 <label for="">Second Name</label>
-                <x-input class="block mt-4 w-full" type="text" name="sname" required autofocus />
+                <x-input class="block mt-4 w-full" type="text" name="sname" required autofocus :value="old('sname')" />
                 <label for="">Third Name</label>
-                <x-input class="block mt-4 w-full" type="text" name="tname" required autofocus />
+                <x-input class=" block mt-4 w-full" type="text" name="tname" required autofocus :value="old('tname')" />
                 <label for="">Last Name</label>
-                <x-input class="block mt-4 w-full" type="text" name="lname" required autofocus />
+                <x-input class="block mt-4 w-full" type="text" name="lname" required autofocus :value="old('lname')" />
             </div>
 
             <!-- Email Address -->
