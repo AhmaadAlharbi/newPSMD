@@ -87,7 +87,8 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   //update Engineer
   Route::get('/dashboard/admin/query_section_id=2/edit-engineer-details/{id}', [ProtectionController::class, 'editEngineer'])->name('protection.admin.editEngieer');
   Route::post('/dashboard/admin/query_section_id=2/update-engineer-details/{id}', [ProtectionController::class, 'updateEngineer'])->name('protection.admin.updateEngineer');
-
+  //delete Engineer 
+  Route::delete('/dashboard/admin/query_section_id=2/Delete-engineer', [ProtectionController::class, 'deleteEngineer'])->name('protection.deleteEngineer');
   Route::get('/dashboard/admin/query_section_id=2/update-task/{id}', [ProtectionController::class, 'updateTask'])->name('protection.updateTask');
   Route::post('/dashboard/admin/query_section_id=2/update-task/{id}', [ProtectionController::class, 'update'])->name('protection.update');
   Route::delete('/dashboard/admin/query_section_id=2/deleteTask', [ProtectionController::class, 'destroyTask'])->name('protection.destroyTask');

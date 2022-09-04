@@ -32,9 +32,9 @@
 
 @if (session()->has('delete'))
 <script>
-window.onload = function() {
+    window.onload = function() {
     notif({
-        msg: "تم حذف المهمة بنجاح",
+        msg: "تم الحذف  بنجاح",
         type: "success"
     })
 }
@@ -75,7 +75,7 @@ window.onload = function() {
                                 <th class="border-bottom-0"> البريد الإلكتروني </th>
                                 <th class="border-bottom-0"> المنطقة </th>
                                 <th class="border-bottom-0"> shift </th>
-                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,11 +101,12 @@ window.onload = function() {
                                 @else
                                 <td>Evening</td>
                                 @endif
-
-     
-                                <td><a class="btn btn-primary" href="{{route('protection.admin.editEngieer',['id'=>$engineer->id])}}">تعديل</a></td>
-
-                                
+                                <td><a class="btn btn-primary"
+                                        href="{{route('protection.admin.editEngieer',['id'=>$engineer->id])}}">تعديل</a>
+                                </td>
+                                <td><a class="btn btn-danger" data-invoice_id="{{ $engineer->id }}" data-toggle="modal"
+                                        data-target="#delete_invoice">حذف</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -118,7 +119,7 @@ window.onload = function() {
     <!--/div-->
 </div>
 
-<!-- اضافة  المحطة -->
+<!-- add  engineer -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -176,7 +177,7 @@ window.onload = function() {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="" method="post">
+                <form action="{{route('protection.deleteEngineer')}}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
             </div>
@@ -229,7 +230,7 @@ window.onload = function() {
 
 
 <script>
-$('#delete_invoice').on('show.bs.modal', function(event) {
+    $('#delete_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
@@ -238,7 +239,7 @@ $('#delete_invoice').on('show.bs.modal', function(event) {
 </script>
 
 <script>
-$('#Transfer_invoice').on('show.bs.modal', function(event) {
+    $('#Transfer_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
@@ -250,7 +251,7 @@ $('#Transfer_invoice').on('show.bs.modal', function(event) {
 @endsection
 
 <script>
-//this function to get user email in order to add user to engineers table
+    //this function to get user email in order to add user to engineers table
 const getUserEmail = async () => {
     const user_name = document.querySelector("#user_engineer").value;
     const user_email = document.querySelector("#user_email");

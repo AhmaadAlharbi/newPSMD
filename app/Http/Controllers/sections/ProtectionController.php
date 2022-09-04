@@ -394,6 +394,17 @@ class ProtectionController extends Controller
         session()->flash('edit', 'تم   التعديل  بنجاح');
         return back();
     }
+
+    //delete Engineer
+    public function deleteEngineer(Request $request)
+    {
+        $id = $request->invoice_id;
+        $engineer = Engineer::where('user_id', $id)->first();
+        $engineer->delete();
+        session()->flash('delete', 'تم   الحذف  بنجاح');
+
+        return back();
+    }
     public function addEngineer(Request $request)
     {
         Engineer::create([
