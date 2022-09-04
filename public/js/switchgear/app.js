@@ -124,7 +124,8 @@ const getStation = async () => {
 };
 //get Engineer's name
 const getEngineer = async () => {
-    area_id = await getStation();
+    const area_fromFunc = await getStation();
+    area_id = area_fromFunc[0];
     shift_id = shiftSelect.value;
     const response = await fetch(
         "/switchgear/getEngineer/" + area_id + "/" + shift_id
