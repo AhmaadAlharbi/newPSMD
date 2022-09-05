@@ -17,11 +17,10 @@ class editTask extends Notification
      *
      * @return void
      */
-    public function __construct($id,$ssname)
+    public function __construct($id, $ssname)
     {
         $this->id = $id;
         $this->ssname = $ssname;
-
     }
 
     /**
@@ -43,15 +42,14 @@ class editTask extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'http://psmdkw.com/add_your_report/'.$this->id;
+        $url = "http://www.psmdkw.com/dashboard/user/query_section_id=" . $this->fromSection . "/Engineer-report-form" . '/' . $this->id;
 
         return (new MailMessage)
-        ->subject('تعديل مهمة '.$this->ssname)
-           ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
-        ->line('اضافة مهمة جديدة')
-        ->action('عرض المهمة', $url)
-        ->line('   قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ');
-        
+            ->subject('تعديل مهمة ' . $this->ssname)
+            ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
+            ->line('اضافة مهمة جديدة')
+            ->action('عرض المهمة', $url)
+            ->line('   قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ');
     }
 
     /**

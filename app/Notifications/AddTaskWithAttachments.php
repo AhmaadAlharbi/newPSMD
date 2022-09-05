@@ -18,10 +18,10 @@ class AddTaskWithAttachments extends Notification
      *
      * @return void
      */
-    public function __construct($id,array $pic,$ssname,$fromSection)
+    public function __construct($id, array $pic, $ssname, $fromSection)
     {
-     
-      
+
+
         $this->id = $id;
         $this->pic = $pic;
         $this->ssname = strtolower($ssname);
@@ -49,8 +49,8 @@ class AddTaskWithAttachments extends Notification
     {
         $user = Auth::user();
         $section = "";
-        $is_admin = Auth::user()->is_admin ? 'admin':'user';
-        switch($user->section_id){
+        $is_admin = Auth::user()->is_admin ? 'admin' : 'user';
+        switch ($user->section_id) {
             case '1':
                 $section = 'edara';
             case '2':
@@ -59,35 +59,30 @@ class AddTaskWithAttachments extends Notification
             case '3':
                 $section = 'battery';
                 break;
-                case '5':
+            case '5':
                 $section = 'transformers';
                 break;
-                case '6':
-                    $section = 'switch';
-                break;    
+            case '6':
+                $section = 'switch';
+                break;
             default:
-            $section = 'section';
-
+                $section = 'section';
         }
-        $url ="http://127.0.0.1:8000/dashboard/user/query_section_id=".$this->fromSection."/Engineer-report-form".'/'.$this->id;
+        $url = "http://www.psmdkw.com/dashboard/user/query_section_id=" . $this->fromSection . "/Engineer-report-form" . '/' . $this->id;
 
         $mailMessage = (new MailMessage)
-        ->subject($this->ssname." مهمة جديدة لمحطة")
-                ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
-                ->line('اضافة مهمة جديدة')
-                ->action('عرض المهمة', $url)
-                ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ');
-                foreach($this->pic as $file){
-                    $mailMessage->attach(public_path('Attachments/'.$section.'/'.$this->id.'/'.$file));
-                }
-                return $mailMessage;
-      
-    
-
-        
+            ->subject($this->ssname . " مهمة جديدة لمحطة")
+            ->from('psmdkwco@psmdkw.com', 'Protection Maintenance')
+            ->line('اضافة مهمة جديدة')
+            ->action('عرض المهمة', $url)
+            ->line('قسم الوقاية - ادارة صيانة محطات التحويل الرئيسية  ');
+        foreach ($this->pic as $file) {
+            $mailMessage->attach(public_path('Attachments/' . $section . '/' . $this->id . '/' . $file));
+        }
+        return $mailMessage;
     }
-       
-    
+
+
 
     /**
      * Get the array representation of the notification.
