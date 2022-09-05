@@ -18,9 +18,7 @@
         </div>
     </div>
 </div>
-<!-- /breadcrumb -->
-@endsection
-@section('content')
+
 @if (session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{ session()->get('Add') }}</strong>
@@ -29,6 +27,10 @@
     </button>
 </div>
 @endif
+<!-- /breadcrumb -->
+@endsection
+@section('content')
+
 <!-- row -->
 <style>
     .HORIZONTAL_SCROLL_NAV {

@@ -32,7 +32,7 @@
 
 @if (session()->has('delete'))
 <script>
-window.onload = function() {
+    window.onload = function() {
     notif({
         msg: "تم حذف المهمة بنجاح",
         type: "success"
@@ -89,7 +89,7 @@ window.onload = function() {
                                 <td>{{$i}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                @switch($user->tr->department)
+                                @switch($user->department)
                                 @case(0)
                                 <td>Admin</td>
                                 @break
@@ -102,8 +102,8 @@ window.onload = function() {
                                 @default
                                 <td>Electrical</td>
 
-                                @endswitch
-                                <td><a class="btn btn-primary" href="{{route('Transformers.admin.editUser',['id'=>$user->id])}}">تعديل</a></td>
+                                @endswitch <td><a class="btn btn-primary"
+                                        href="{{route('Transformers.admin.editUser',['id'=>$user->id])}}">تعديل</a></td>
 
                             </tr>
                             @endforeach
@@ -182,7 +182,7 @@ window.onload = function() {
 
 
 <script>
-$('#delete_invoice').on('show.bs.modal', function(event) {
+    $('#delete_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)
@@ -191,7 +191,7 @@ $('#delete_invoice').on('show.bs.modal', function(event) {
 </script>
 
 <script>
-$('#Transfer_invoice').on('show.bs.modal', function(event) {
+    $('#Transfer_invoice').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var invoice_id = button.data('invoice_id')
     var modal = $(this)

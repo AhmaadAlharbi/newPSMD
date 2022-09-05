@@ -462,7 +462,9 @@ class TransformersController extends Controller
     }
     public function showUsers()
     {
-        $users = User::where('section_id', 5)->get();
+        // $users = User::where('section_id', 5)->get();
+        $users = DB::table('users')
+            ->join('tr', 'users.id', '=', 'tr.user_id')->get();
         return view('transformers.admin.users.usersList', compact('users'));
     }
     //change section view
