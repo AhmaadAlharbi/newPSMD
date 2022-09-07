@@ -719,7 +719,7 @@ class TransformersController extends Controller
             ->get();
         $task_attachment = TaskAttachment::where('id_task', $id)->get();
 
-        return view('Transformers.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
+        return view('transformers.admin.tasks.report', compact('task_details', 'commonTasks', 'task_attachment'));
     }
     public function viewCommonReport($id, $section_id)
     {
