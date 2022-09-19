@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sections\ProtectionController;
+use App\Http\Controllers\GeneralCheckControllerProtection;
 
 
 // /#########USER ROUTES ##################
@@ -47,7 +48,6 @@ Route::middleware(['auth', 'is_protection'])->group(function () {
 });
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin', 'is_protection'])->group(function () {
-
   //main page
   Route::get('/dashboard/admin/query_section_id=2', [ProtectionController::class, 'index'])->name('dashboard.admin.protection');
   //show engineers request to edit reports
@@ -72,7 +72,6 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   Route::get('/protection/change-section/{id}', [ProtectionController::class, 'changeSection'])->name('protection.changeSection');
   //change section page
   Route::get('/dashboard/admin/query_section_id=2/change-section-page/{id}', [ProtectionController::class, 'changeSectionView'])->name('protection.changeSectionView');
-
   Route::post('/protection/send_task', [ProtectionController::class, 'store'])->name('protection.store');
   Route::post('/protection/assignTasks', [ProtectionController::class, 'storeAssignTask'])->name('protection.store.assign_task');
   Route::get('/dashboard/admin/query_section_id=2/All-tasks', [ProtectionController::class, 'showAllTasks'])->name('protection.admin.showAllTasks');
@@ -106,6 +105,23 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   Route::post('/dashboard/admin/query_section_id=2/update-user-details/{id}', [ProtectionController::class, 'updateUser'])->name('protection.admin.updateUser');
   //search report between dates
   Route::get('/dashboard/admin/query_section_id=2/archive/search_between_Dates', [ProtectionController::class, 'stationsByDates'])->name('protection.staionsByDates');
+  //General-Check-Page
+  Route::get('/dashboard/admin/query_section_id=2/general-check', [GeneralCheckControllerProtection::class, 'generalCheckIndex'])->name('protection.generalCheckIndex');
+  //send-General-check
+  Route::get('/dashboard/admin/query_section_id=2/send-general-check', [GeneralCheckControllerProtection::class, 'sendGeneralCheck'])->name('protection.sendGeneralCheck');
+  //get all engineers
+  Route::get('/general-chack/get-all-engineers', [GeneralCheckControllerProtection::class, 'generalCheckgetEngineers'])->name('protection.generalCheckgetEngineers');
+  //get engineer Email
+  Route::get('/general-chack/get-engineer-email/{id}', [GeneralCheckControllerProtection::class, 'generalCheckGetEmail'])->name('protection.generalCheckGetEmail');
+  //send general check task 
+  Route::post('/protection/general-check/send_task', [GeneralCheckControllerProtection::class, 'store'])->name('protection.generalCheck.store');
+  //engineer  General check task Page
+  Route::get('/dashboard/admin/query_section_id=2/general-check/engineer-report-page/{id}', [GeneralCheckControllerProtection::class, 'showEngineerTask'])->name('protection.generalCheck.showTask');
+  //engineer post report
+  Route::post('/protection/general-check/{id}', [GeneralCheckControllerProtection::class, 'submitReport'])->name('protection.generalCheck.submitReport');
+  //show all gc tasks for a month
+  Route::get('/dashboard/admin/query_section_id=2/gc_tasks/All-tasks', [GeneralCheckControllerProtection::class, 'gc_showAllTasks'])->name('protection.gc.showAllTasks');
+  Route::get('/dashboard/admin/query_section_id=2/gc_tasks/print-report/{id}', [GeneralCheckControllerProtection::class, 'gc_viewPrintReport'])->name('protection.gc.veiwReport');
 });
 
 Route::get('/dashboard/admin/stations-list', [ProtectionController::class, 'showStations'])->name('stationsList')->middleware('auth');

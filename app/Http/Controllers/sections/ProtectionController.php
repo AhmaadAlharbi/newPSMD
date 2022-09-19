@@ -120,6 +120,7 @@ class ProtectionController extends Controller
             ->where('shift', $shift_id)
             ->Join('users', 'users.id', '=', 'engineers.user_id')
             ->where('users.section_id', 2)
+            ->orderBy('name')
             ->get();
     }
     //get user email
@@ -146,6 +147,7 @@ class ProtectionController extends Controller
             ->join('users', 'users.id', '=', 'engineers.user_id')
             ->select('users.name', 'users.id', 'users.email', 'users.section_id')
             ->where('users.section_id', 2)
+            ->orderBy('name')
             ->get();
     }
 

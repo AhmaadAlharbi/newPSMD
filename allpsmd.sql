@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 25, 2022 at 09:09 PM
--- Server version: 5.7.33
--- PHP Version: 8.1.9
+-- Host: localhost
+-- Generation Time: Sep 19, 2022 at 07:01 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `allpsmd`
+-- Database: `allPSMD`
 --
 
 -- --------------------------------------------------------
@@ -60,14 +60,61 @@ CREATE TABLE `engineers` (
 --
 
 INSERT INTO `engineers` (`id`, `user_id`, `section_id`, `local_department`, `area`, `shift`, `created_at`, `updated_at`) VALUES
-(19, 1, 3, 'no', '1', 0, '2022-05-26 04:24:00', '2022-05-26 04:24:00'),
-(20, 34, 3, 'no', '1', 0, '2022-05-26 04:24:27', '2022-06-09 09:53:45'),
-(21, 2, 3, 'no', '1', 0, '2022-06-05 08:49:30', '2022-06-05 08:49:30'),
-(22, 3, 3, 'no', '2', 0, '2022-06-05 08:50:39', '2022-06-05 08:50:39'),
-(23, 5, 3, 'no', '3', 0, '2022-06-06 09:52:51', '2022-06-06 09:52:51'),
-(24, 14, 2, 'no', '1', 0, '2022-08-16 18:45:04', '2022-08-16 18:45:04'),
-(25, 132, 3, 'no', '1', 0, '2022-08-25 19:57:07', '2022-08-25 19:57:07'),
-(26, 133, 6, 'no', '1', 0, '2022-08-25 20:17:57', '2022-08-25 20:17:57');
+(28, 62, 2, 'no', '1', 0, '2022-09-07 05:54:31', '2022-09-07 05:54:31'),
+(29, 60, 2, 'no', '1', 0, '2022-09-07 05:55:02', '2022-09-07 05:55:02'),
+(30, 34, 2, 'no', '1', 0, '2022-09-07 05:55:50', '2022-09-07 05:55:50'),
+(31, 63, 2, 'no', '1', 0, '2022-09-07 05:56:14', '2022-09-07 05:56:14'),
+(32, 67, 2, 'no', '1', 0, '2022-09-07 05:56:33', '2022-09-07 05:56:33'),
+(33, 83, 2, 'no', '1', 0, '2022-09-07 05:56:59', '2022-09-07 05:56:59'),
+(34, 28, 2, 'no', '1', 1, '2022-09-07 05:58:58', '2022-09-07 05:58:58'),
+(35, 81, 2, 'no', '1', 0, '2022-09-07 05:59:17', '2022-09-07 05:59:17'),
+(36, 43, 2, 'no', '1', 0, '2022-09-07 05:59:43', '2022-09-07 05:59:43'),
+(37, 41, 2, 'no', '1', 0, '2022-09-07 06:00:13', '2022-09-07 06:00:13'),
+(38, 40, 2, 'no', '1', 1, '2022-09-07 06:00:40', '2022-09-07 06:00:40'),
+(39, 48, 2, 'no', '1', 0, '2022-09-07 06:02:36', '2022-09-07 06:02:36'),
+(40, 54, 2, 'no', '1', 0, '2022-09-07 06:03:13', '2022-09-07 06:03:13'),
+(41, 53, 2, 'no', '1', 0, '2022-09-07 06:03:52', '2022-09-07 06:03:52'),
+(42, 57, 2, 'no', '1', 0, '2022-09-07 06:04:27', '2022-09-07 06:04:27'),
+(43, 74, 2, 'no', '1', 0, '2022-09-07 06:09:44', '2022-09-07 06:09:44'),
+(44, 73, 2, 'no', '1', 1, '2022-09-07 06:10:11', '2022-09-07 06:10:11'),
+(45, 72, 2, 'no', '1', 0, '2022-09-07 06:10:28', '2022-09-07 06:10:28'),
+(46, 77, 2, 'no', '1', 0, '2022-09-07 06:10:48', '2022-09-07 06:10:48'),
+(47, 87, 2, 'no', '1', 0, '2022-09-07 06:11:12', '2022-09-07 06:11:12'),
+(48, 30, 2, 'no', '1', 0, '2022-09-07 06:11:41', '2022-09-07 06:11:41'),
+(49, 68, 2, 'no', '1', 0, '2022-09-07 06:12:49', '2022-09-07 06:12:49'),
+(50, 35, 2, 'no', '1', 0, '2022-09-07 06:13:21', '2022-09-07 06:13:21'),
+(51, 45, 2, 'no', '1', 0, '2022-09-07 06:13:42', '2022-09-07 06:13:42'),
+(52, 50, 2, 'no', '1', 0, '2022-09-07 06:14:03', '2022-09-07 06:14:03'),
+(53, 39, 2, 'no', '1', 0, '2022-09-07 06:14:25', '2022-09-07 06:14:25'),
+(54, 47, 2, 'no', '1', 0, '2022-09-07 06:15:20', '2022-09-07 06:15:20'),
+(55, 61, 2, 'no', '2', 0, '2022-09-07 06:16:04', '2022-09-07 06:16:04'),
+(56, 38, 2, 'no', '2', 1, '2022-09-07 06:16:15', '2022-09-07 06:16:15'),
+(57, 36, 2, 'no', '2', 1, '2022-09-07 06:16:40', '2022-09-07 06:16:40'),
+(58, 59, 2, 'no', '2', 0, '2022-09-07 06:16:55', '2022-09-07 06:16:55'),
+(59, 64, 2, 'no', '2', 0, '2022-09-07 06:17:09', '2022-09-07 06:17:09'),
+(60, 66, 2, 'no', '2', 0, '2022-09-07 06:17:32', '2022-09-07 06:17:32'),
+(61, 84, 2, 'no', '2', 0, '2022-09-07 06:18:09', '2022-09-07 06:18:09'),
+(62, 85, 2, 'no', '2', 0, '2022-09-07 06:19:50', '2022-09-07 06:19:50'),
+(63, 29, 2, 'no', '2', 0, '2022-09-07 06:20:05', '2022-09-07 06:20:05'),
+(64, 31, 2, 'no', '2', 0, '2022-09-07 06:20:22', '2022-09-07 06:20:22'),
+(65, 32, 2, 'no', '2', 0, '2022-09-07 06:20:44', '2022-09-07 06:20:44'),
+(66, 33, 2, 'no', '2', 0, '2022-09-07 06:20:55', '2022-09-07 06:20:55'),
+(67, 46, 2, 'no', '2', 1, '2022-09-07 06:21:13', '2022-09-07 06:21:13'),
+(68, 44, 2, 'no', '2', 0, '2022-09-07 06:23:17', '2022-09-07 06:23:17'),
+(69, 55, 2, 'no', '2', 0, '2022-09-07 06:24:15', '2022-09-07 06:24:15'),
+(70, 52, 2, 'no', '2', 0, '2022-09-07 06:24:43', '2022-09-07 06:24:43'),
+(71, 76, 2, 'no', '2', 0, '2022-09-07 06:25:05', '2022-09-07 06:25:05'),
+(72, 75, 2, 'no', '2', 0, '2022-09-07 06:25:16', '2022-09-07 06:25:16'),
+(73, 71, 2, 'no', '2', 0, '2022-09-07 06:25:29', '2022-09-07 06:25:29'),
+(74, 88, 2, 'no', '2', 0, '2022-09-07 06:25:42', '2022-09-07 06:25:42'),
+(75, 86, 2, 'no', '2', 0, '2022-09-07 06:26:02', '2022-09-07 06:26:02'),
+(76, 89, 2, 'no', '2', 0, '2022-09-07 06:26:16', '2022-09-07 06:26:16'),
+(77, 80, 2, 'no', '2', 0, '2022-09-07 06:26:29', '2022-09-07 06:26:29'),
+(78, 69, 2, 'no', '2', 0, '2022-09-07 06:27:32', '2022-09-07 06:27:32'),
+(79, 65, 2, 'no', '2', 0, '2022-09-07 06:28:05', '2022-09-07 06:28:05'),
+(80, 56, 2, 'no', '2', 0, '2022-09-07 06:28:17', '2022-09-07 06:28:17'),
+(81, 82, 2, 'no', '2', 0, '2022-09-07 06:28:28', '2022-09-07 06:28:28'),
+(82, 79, 2, 'no', '2', 0, '2022-09-07 06:28:38', '2022-09-07 06:28:38');
 
 -- --------------------------------------------------------
 
@@ -18443,8 +18490,105 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gc_tasks`
+--
+
+CREATE TABLE `gc_tasks` (
+  `id` int(11) NOT NULL,
+  `refNum` varchar(255) DEFAULT NULL,
+  `section_id` bigint(4) UNSIGNED DEFAULT NULL,
+  `station_name` varchar(255) DEFAULT NULL,
+  `control` varchar(255) DEFAULT NULL,
+  `make` varchar(255) DEFAULT NULL,
+  `contract_number` varchar(255) DEFAULT NULL,
+  `contractor` varchar(255) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `eng_id` bigint(11) UNSIGNED DEFAULT NULL,
+  `ref_book` varchar(255) DEFAULT NULL,
+  `task_date` date DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gc_tasks`
+--
+
+INSERT INTO `gc_tasks` (`id`, `refNum`, `section_id`, `station_name`, `control`, `make`, `contract_number`, `contractor`, `notes`, `eng_id`, `ref_book`, `task_date`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(37, NULL, 2, 'ww', 'JAHRA CONTROL CENTER', 'ww', 'www', 'ww', 'qwdqwd', 28, 'www', '2022-09-14', 1, 'pending', '2022-09-14 07:34:37', '2022-09-14 15:53:00'),
+(38, NULL, 2, 'WAFR-M', 'JABRIYA CONTROL CENTER', NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-15', 1, 'pending', '2022-09-15 09:29:45', '2022-09-15 09:29:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gc_task_attachments`
+--
+
+CREATE TABLE `gc_task_attachments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refNum` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Created_by` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_task` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `gc_task_attachments`
+--
+
+INSERT INTO `gc_task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_task`, `created_at`, `updated_at`) VALUES
+(1, '84BE3744-5B81-4519-A422-533F51D8D8CE (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 6, '2022-09-13 18:56:28', '2022-09-13 18:56:28'),
+(2, '84BE3744-5B81-4519-A422-533F51D8D8CE (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 7, '2022-09-13 19:00:05', '2022-09-13 19:00:05'),
+(3, '84BE3744-5B81-4519-A422-533F51D8D8CE (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 8, '2022-09-14 04:07:25', '2022-09-14 04:07:25'),
+(4, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 9, '2022-09-14 04:12:23', '2022-09-14 04:12:23'),
+(5, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 10, '2022-09-14 04:13:44', '2022-09-14 04:13:44'),
+(6, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 11, '2022-09-14 04:14:18', '2022-09-14 04:14:18'),
+(7, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 12, '2022-09-14 04:15:14', '2022-09-14 04:15:14'),
+(8, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 13, '2022-09-14 04:20:39', '2022-09-14 04:20:39'),
+(9, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 14, '2022-09-14 04:21:56', '2022-09-14 04:21:56'),
+(10, 'Ahmad_Alharbi_Resume (1).PDF', NULL, 'Ahmad Zaid Ali Alharbi', 15, '2022-09-14 04:22:57', '2022-09-14 04:22:57'),
+(11, '84BE3744-5B81-4519-A422-533F51D8D8CE (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 16, '2022-09-14 04:23:24', '2022-09-14 04:23:24'),
+(12, '84BE3744-5B81-4519-A422-533F51D8D8CE (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 22, '2022-09-14 04:34:02', '2022-09-14 04:34:02'),
+(13, '84BE3744-5B81-4519-A422-533F51D8D8CE.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 34, '2022-09-14 04:58:34', '2022-09-14 04:58:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gc_task_details`
+--
+
+CREATE TABLE `gc_task_details` (
+  `id` int(11) NOT NULL,
+  `task_id` bigint(11) UNSIGNED DEFAULT NULL,
+  `section_id` bigint(11) UNSIGNED DEFAULT NULL,
+  `action_take` longtext DEFAULT NULL,
+  `notes` longtext DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `report_date` date DEFAULT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gc_task_details`
+--
+
+INSERT INTO `gc_task_details` (`id`, `task_id`, `section_id`, `action_take`, `notes`, `status`, `eng_id`, `report_date`, `reason`, `created_at`, `updated_at`) VALUES
+(1, 37, NULL, 'ddd', NULL, 'completed', 1, '2022-09-14', NULL, '2022-09-14 15:55:14', '2022-09-14 15:55:14'),
+(2, 37, NULL, 'ddd', NULL, 'completed', 1, '2022-09-14', NULL, '2022-09-14 15:59:59', '2022-09-14 15:59:59'),
+(3, 37, NULL, 'wdddd', NULL, 'completed', 1, '2022-09-14', NULL, '2022-09-14 16:01:19', '2022-09-14 16:01:19');
 
 -- --------------------------------------------------------
 
@@ -18515,7 +18659,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19333,19 +19477,6 @@ CREATE TABLE `tasks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `tasks`
---
-
-INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip_number`, `equip_name`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
-(34, '22-08/1', 2, 2, NULL, 1, 'Dist Prot Main Alaram', '132KV', NULL, 'Maintenance', '2022-08-25', 'E(2)', '4 5  T R 1', 1, NULL, NULL, 'completed', '1', NULL, 'Ahmad Alharbi', '2022-08-25 06:37:34', '2022-08-25 20:38:10'),
-(35, '22-08/35', 3, 2, 3, 84, 'ampere reading showing wrong', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 132, NULL, NULL, 'completed', '0', NULL, 'Admin Battery', '2022-08-25 07:16:02', '2022-08-25 20:16:08'),
-(36, '22-08/36', 3, 3, NULL, 684, 'DC Supply Failure', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 132, NULL, NULL, 'completed', '1', NULL, 'Admin Battery', '2022-08-25 19:57:18', '2022-08-25 20:36:05'),
-(37, '22-08/37', 6, 6, NULL, 1, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 133, 'wadad', NULL, 'completed', '1', NULL, 'admin switch', '2022-08-25 20:18:14', '2022-08-25 20:27:07'),
-(38, '22-08/38', 3, 6, NULL, 3, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, NULL, '2022-08-25', NULL, NULL, 133, NULL, NULL, 'completed', '0', NULL, 'admin switch', '2022-08-25 20:32:17', '2022-08-25 20:50:09'),
-(39, '22-08/39', 5, 5, NULL, 1, 'Fan Trouble alarm', NULL, NULL, 'Maintenance', '2022-08-26', NULL, NULL, 117, NULL, NULL, 'completed', '1', NULL, 'Team Leader Electrical South', '2022-08-25 21:03:07', '2022-08-25 21:07:39'),
-(40, '22-08/40', 2, 5, 2, 2, 'Fan Trouble alarm', NULL, NULL, NULL, '2022-08-26', NULL, NULL, NULL, NULL, NULL, 'pending', '0', NULL, 'Admin1M', '2022-08-25 21:07:55', '2022-08-25 21:08:04');
-
 -- --------------------------------------------------------
 
 --
@@ -19361,13 +19492,6 @@ CREATE TABLE `task_attachments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `task_attachments`
---
-
-INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_task`, `created_at`, `updated_at`) VALUES
-(1, 'image5.jpg', NULL, 'Ahmad Alharbi', 34, '2022-08-25 06:37:34', '2022-08-25 06:37:34');
 
 -- --------------------------------------------------------
 
@@ -19389,40 +19513,12 @@ CREATE TABLE `task_details` (
   `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `engineer_notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_take` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `report_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `task_details`
---
-
-INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reasonOfUncompleted`, `eng_id`, `station_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(629, 34, '2022-08-25', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 06:37:34', '2022-08-25 06:37:34'),
-(630, 34, '2022-08-25', '2022-08-25', NULL, 1, 1, 2, NULL, 2, 'Dist Prot Main Alaram', NULL, NULL, 'new done', 'completed', '0', '2022-08-25 06:46:46', '2022-08-25 20:38:10'),
-(632, 35, '2022-08-25', NULL, NULL, 14, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 07:16:02', '2022-08-25 07:16:02'),
-(633, 35, NULL, '2022-08-25', NULL, NULL, NULL, 2, 3, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 07:17:01', '2022-08-25 07:17:01'),
-(634, 35, NULL, NULL, NULL, NULL, NULL, 3, 2, NULL, NULL, NULL, NULL, NULL, 'الغاء التحويل', '0', '2022-08-25 08:43:45', '2022-08-25 08:43:45'),
-(635, 35, NULL, '2022-08-25', NULL, NULL, NULL, 2, 3, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 08:44:08', '2022-08-25 08:44:08'),
-(636, 36, '2022-08-25', NULL, NULL, 132, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 19:57:18', '2022-08-25 19:57:18'),
-(637, 36, '2022-08-25', '2022-08-25', NULL, 132, 684, 3, NULL, 3, 'DC Supply Failure', NULL, NULL, 'new one done', 'completed', '0', '2022-08-25 19:57:59', '2022-08-25 20:36:05'),
-(639, 35, NULL, '2022-08-25', NULL, 132, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:10:41', '2022-08-25 20:10:41'),
-(640, 35, '2022-08-25', '2022-08-25', NULL, 132, 84, 2, 3, 3, 'ampere reading showing wrong', NULL, NULL, 'done dasman', 'completed', '1', '2022-08-25 20:16:08', '2022-08-25 20:16:08'),
-(641, 37, '2022-08-25', NULL, NULL, 133, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 20:18:14', '2022-08-25 20:18:14'),
-(644, 37, '2022-08-25', '2022-08-25', NULL, 133, 1, 6, NULL, 6, 'Transformer Tubing SF6 Gas Pressure Low Alarm', 'wadad', NULL, '#2done 1 updated', 'completed', '0', '2022-08-25 20:25:06', '2022-08-25 20:27:07'),
-(645, 38, '2022-08-25', NULL, NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 20:32:17', '2022-08-25 20:32:17'),
-(646, 38, NULL, '2022-08-25', NULL, NULL, NULL, 6, 3, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:32:25', '2022-08-25 20:32:25'),
-(647, 38, NULL, '2022-08-25', NULL, 132, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:39:25', '2022-08-25 20:39:25'),
-(648, 38, '2022-08-25', '2022-08-25', NULL, 132, 3, 6, 3, 3, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, 'wq', 'completed', '1', '2022-08-25 20:39:45', '2022-08-25 20:39:45'),
-(649, 38, NULL, '2022-08-25', NULL, 133, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 20:49:47', '2022-08-25 20:49:47'),
-(650, 38, '2022-08-25', '2022-08-25', NULL, 133, 3, 6, NULL, 6, 'Transformer Tubing SF6 Gas Pressure Low Alarm', NULL, NULL, 'done', 'completed', '1', '2022-08-25 20:50:09', '2022-08-25 20:50:09'),
-(651, 39, '2022-08-26', NULL, NULL, 117, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 21:03:07', '2022-08-25 21:03:07'),
-(652, 39, '2022-08-26', '2022-08-26', NULL, 117, 1, 5, NULL, 5, 'Fan Trouble alarm', NULL, NULL, 'done 12 =>>>2', 'completed', '0', '2022-08-25 21:03:48', '2022-08-25 21:07:39'),
-(653, 40, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-08-25 21:07:55', '2022-08-25 21:07:55'),
-(654, 40, NULL, '2022-08-26', NULL, NULL, NULL, 5, 2, NULL, NULL, NULL, NULL, NULL, 'change', '0', '2022-08-25 21:08:04', '2022-08-25 21:08:04');
 
 -- --------------------------------------------------------
 
@@ -19435,31 +19531,11 @@ CREATE TABLE `tr` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint(4) NOT NULL DEFAULT '0',
+  `admin` tinyint(4) NOT NULL DEFAULT 0,
   `shift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tr`
---
-
-INSERT INTO `tr` (`id`, `user_id`, `area`, `department`, `admin`, `shift`, `created_at`, `updated_at`) VALUES
-(18, 117, '0', '1', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(19, 118, '0', '1', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(20, 119, '0', '1', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(21, 120, '0', '1', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(22, 121, '0', '1', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(23, 122, '0', '1', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(24, 128, '0', '2', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(25, 127, '0', '2', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(26, 126, '0', '2', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(27, 125, '0', '2', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(28, 124, '0', '2', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(29, 123, '0', '2', 1, '0', '2022-06-08 06:09:10', '2022-06-08 06:09:10'),
-(30, 129, '1', '1', 0, '0', NULL, NULL),
-(31, 130, '1', '1', 0, '0', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -19474,18 +19550,9 @@ CREATE TABLE `tr_tasks` (
   `work_type_description` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tr_tasks`
---
-
-INSERT INTO `tr_tasks` (`id`, `task_id`, `work_type`, `work_type_description`, `department`, `area`, `created_at`, `updated_at`) VALUES
-(1, 39, 'Maintenance', 'Change MCB', '1', '1', '2022-08-25 21:03:07', '2022-08-25 21:03:07'),
-(2, 40, NULL, 'Change MCB', '1', '1', '2022-08-25 21:07:55', '2022-08-25 21:07:55'),
-(3, 40, NULL, NULL, '1', '1', '2022-08-25 21:08:04', '2022-08-25 21:08:04');
 
 -- --------------------------------------------------------
 
@@ -19500,7 +19567,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT '1',
+  `is_admin` tinyint(1) DEFAULT 1,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -19512,69 +19579,74 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `password`, `is_admin`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmad Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'PCDHNXqUZXIbHCNjyCxvXbwVOaahEYutW9M7LBpgtZLDVIEJeeHA2cKLwnA2', '2021-06-24 12:21:03', '2021-08-25 17:17:54'),
-(2, 'Mohammed Alshehab', 'sss@gmails.xom', NULL, 3, '$2y$10$wDzPhe/3/dbx.An4iy8M3OW2BYhR4KJOiJ1XiY293M9X3I34QWwBO', 1, NULL, 'AE8BpQDuQ2gIG1qXhOJxFpJYB4X2aQVyU1d5lrDlYIQSM2GG4UBCrmQysWDW', '2021-06-29 07:11:19', '2021-06-29 07:11:19'),
-(3, 'Eissa Almatar', 'asdaa.gmails.xol', NULL, 3, '$2y$10$6xpUGMQcEW424O7/JV3vHunp.avGROWWFirPasKrEJ0Z87aWL4rBe', 1, NULL, 'Rxw7PXSnWR7Y17KyM4wqorov7TscKh7hVHDzESKlZAGyYyGwu8xZkJcdYz6r', '2021-06-30 07:54:55', '2021-06-30 07:54:55'),
-(4, 'Ali Albaghli', 'Ajalbaghli@mew.gov.kw', NULL, 2, '$2y$10$DxzPg6cKnP1/FpTSu13CJ.H0xNmErQp/XfnU2QPJgiWiXaWSFrsHC', 1, NULL, 'f2MJVOSIB6TKpr7TinA824EkotZjUe9k6Df8VTGojJUPGTKdlL8RcGsdYO25', '2021-07-08 06:42:58', '2021-07-08 06:42:58'),
-(5, 'Yousef ALotaibi', 'wsssssscc@d.xinm', NULL, 3, '$2y$10$TiR4/zPBP1HlJlz67XxZietRmONDGtybefVmQJcc64y.lAgG7h9gS', 1, NULL, NULL, '2021-07-10 04:59:05', '2021-07-10 04:59:05'),
-(6, 'Ahmad AbdulRahim Yousef', 'auyousef@mew.gov.kw', NULL, 2, '$2y$10$mavu6S3RoO/lP1.N3RoSl.2gV7.kPIe75WbcwQNQ1T.wkQSp1tAt.', 1, NULL, 'gwjpOtpefDNB2dZUTPl7n82J2IFoA0uDRHuI9XVGF0zHB9JWF8yQyvUQRURm', '2021-07-13 07:02:57', '2021-07-13 07:02:57'),
-(10, 'user', 'user@user.com', NULL, 2, '$2y$10$aa7skFyok48hiIT1rAeq3uIsgQZFrJzvq3.JcjEmcS8nYg4h0WzT6', 0, NULL, NULL, '2021-08-15 07:36:39', '2021-08-15 07:36:39'),
-(14, 'Saleh Albader', 'sbalbader@mew.gov.kw', NULL, 2, '$2y$10$WW9NQKikuxrDSgftMqJjoeLvMAX.5R7y4NVEEw49EB.oF0hMs.Ke.', 0, NULL, NULL, '2021-08-16 07:42:57', '2021-08-16 07:42:57'),
-(15, 'Ibrahem Alqallaf', 'Imhalqalaf@mew.gov.kw', NULL, 2, '$2y$10$cH23.toR/OmXeymrnGpPx.1N7Qbm/lKX4uQoRy0sMkBf4.tXHdx4m', 0, NULL, NULL, '2021-08-16 07:43:47', '2021-08-16 07:43:47'),
-(16, 'Abdullah Almazdi', 'amalmzdi@mew.gov.kw', NULL, 2, '$2y$10$.hUA5bm6EAeoZU2rYl67LOk14y3dv20o3bzvnkLH1X4rJ/inuRELO', 0, NULL, NULL, '2021-08-16 07:45:55', '2021-08-16 07:45:55'),
-(17, 'Bader Abdusalam', 'bameelad@mew.gov.kw', NULL, 2, '$2y$10$UUSl2TuO2PZhSD.oqY94mu/MdnQ6U2P4sPsR9IQ/zkvFJasYahI0C', 0, NULL, NULL, '2021-08-16 07:50:45', '2021-08-16 07:50:45'),
-(18, 'Abdullah alhumaidi', 'aaalhumaidi@mew.gov.kw', NULL, 2, '$2y$10$AQG9JXaViojZ26cfM80J9OspRfM.5NTeTnzbWT1l7J/w3oKmn3bXW', 0, NULL, NULL, '2021-08-16 07:52:36', '2021-08-16 07:52:36'),
-(19, 'YOUSEF ABDALSAYED', 'yaabdalsayed@mew.gov.kw', NULL, 2, '$2y$10$Dmmv7q4JJxuFLH28IKNEXOOzw4/RTR8SlerylE6yrTIZNc/CMVsQ2', 0, NULL, NULL, '2021-08-16 07:58:19', '2021-08-16 07:58:19'),
-(20, 'Mohamed Faheem', 'mfabdulaziz@mew.gov.kw', NULL, 2, '$2y$10$KQZUsy01VoFIV.zAJ3erkuUFqKLWVglrYJLRpLD.UA7WPbVGapOCC', 0, NULL, NULL, '2021-08-16 08:16:40', '2021-08-16 08:16:40'),
-(21, 'Ali AlQattan', 'asaalqatan@mew.gov.kw', NULL, 2, '$2y$10$51Pu3i5b4kxm3WiDd9sk6OvfHzo9ebHnnqoc4ABj9lMo.zur7.i1i', 0, NULL, NULL, '2021-08-16 08:17:58', '2021-08-16 08:17:58'),
-(22, 'Fawaz aswad', 'fuaswad@mew.gov.kw', NULL, 2, '$2y$10$zujeSIPWjfqM658IM7mR1eRMQvqSIeasMVkP6El7zoqfvEuPsLdKy', 0, NULL, NULL, '2021-08-16 08:22:35', '2021-08-16 08:22:35'),
-(23, 'Ahmad Baqer', 'ambaqer@mew.gov.kw', NULL, 2, '$2y$10$Rk44b7vqjQ8WorRO/AiBYekq64KJCgnPkdk64Ib1xaSJAA575ZSom', 0, NULL, NULL, '2021-08-21 13:59:25', '2021-08-21 13:59:25'),
-(24, 'khaled alazmi', 'kmjalazmi@mew.gov.kw', NULL, 2, '$2y$10$.0o4FHbsohpq3AQeQv6XwOhBFU/OjbZ/iuNRmfbD9RgSCKOwnxcse', 0, NULL, NULL, '2021-08-21 14:51:53', '2021-08-21 14:51:53'),
-(25, 'Salem R', 'sraalenizi@mew.gov.kw', NULL, 2, '$2y$10$s5WGR5CwPQfkz/X3v8s15Opl2KBHfMYGTHJiNeV4vh/A5f0O.yLYC', 0, NULL, NULL, '2021-08-21 15:06:19', '2021-08-21 15:06:19'),
-(26, 'Mohammad M Behbehani', 'eng.m.beh@gmail.com', NULL, 2, '$2y$10$VQejEd84wcGV8Vndu/AabuWDVFZGryNrKRdAHApHTx5Y.YYKkmyvO', 0, NULL, NULL, '2021-08-21 15:11:30', '2021-08-21 15:11:30'),
-(27, 'Mishari altuwari', 'mkaltuwari@mew.gov.kw', NULL, 2, '$2y$10$yd3NsiemYN79mhgz30OaHObqExzojzJFn73NFivfFqAsGNGLdWpxm', 0, NULL, NULL, '2021-08-21 15:16:09', '2021-08-21 15:16:09'),
-(28, 'abdullah aljuwaisri', 'amaljuwaisri@mew.gov.kw', NULL, 2, '$2y$10$FobyRBXR4EZ1d3TaBC/WJOLVMTT5/1DU2DIYrShV0y65zMtyNhrBW', 0, NULL, NULL, '2021-08-21 15:29:12', '2021-08-21 15:29:12'),
-(29, 'Yousef alhamad', 'yaalhamad@mew.gov.kw', NULL, 2, '$2y$10$ux2xPNgQ0hq7erXSVpIPaukGSvSlcT.yFJusgrN4o.v748QzJ.zp2', 0, NULL, NULL, '2021-08-21 15:46:17', '2021-08-21 15:46:17'),
-(30, 'Fahad', 'fmalkhout@mew.gov.kw', NULL, 2, '$2y$10$.eZp6vQoSkXSUpQtFusUaOORpEtxljuVDL2X6KN36UIDcmS/rua3i', 0, NULL, NULL, '2021-08-21 15:57:49', '2021-08-21 15:57:49'),
-(33, 'Mohammad Yousef Dashti', 'mydashti@mew.gov.kw', NULL, 2, '$2y$10$izF8no9uuVdOhWQVIgusg.0D2y6kyVq1Dre5BwREpsEzVMVYOMa8y', 0, NULL, NULL, '2021-08-21 19:48:36', '2021-08-21 19:48:36'),
-(34, 'Abdullah Alajmi', 'abodalajmii@gmail.com', NULL, 3, '$2y$10$Z/FqFXSJN0yLpM7uzCdYaOwhXLBUtehrK.vqXfp1n8cM0LVr.xvvK', 1, NULL, NULL, '2021-08-22 07:53:57', '2021-08-22 07:53:57'),
-(35, 'jassem salim alkandari', 'jsalkandari@mew.gov.kw', NULL, 2, '$2y$10$yKSdSTzb/X6yLlzAshtDPuny5s1Ef.X309jG3Z5h9.DvD1AdcXIsy', 0, NULL, 'TWRpitmEZLzxmNjlCMau7IFhX1MasHVSZz5LhU9zzDcFYUq4LbogQT3qTjDT', '2021-08-23 04:15:16', '2021-09-13 04:40:23'),
-(36, 'Husain Dahrab', 'Hkdehrab@mew.gov.kw', NULL, 2, '$2y$10$vzej6iRovTQ7vA3HbuBZHO8bmp.G7uqkuab8sT3ggLn9lutiC2pse', 0, NULL, NULL, '2021-08-23 04:19:35', '2021-08-23 04:19:35'),
-(37, 'Abdullah Alhadad', 'Analhaddad@mew.gov.kw', NULL, 2, '$2y$10$cN2iZvkuPHUB/QPM1B237OnGpevoEpMghXSFrV6L9M1LNMI6ZD306', 0, NULL, NULL, '2021-08-23 04:46:05', '2021-08-23 04:46:05'),
-(38, 'admin', 'admin@admin.com', NULL, 2, '$2y$10$E.Tsq0hojFZ2Ery8OFpjLulK.hDiGDGWAh/Tl9tsBW.2PqHAwePRS', 1, NULL, NULL, '2021-08-24 03:32:11', '2021-08-24 03:32:11'),
-(40, 'Shahad alyaqoub', 'sbnalyaqoub@mew.gov.kw', NULL, 2, '$2y$10$FrWw0pPN9ij.IPYMsJwPPO0groPmXohu2kekJG06r2KnC42gc7.rO', 1, NULL, NULL, '2021-08-24 03:54:50', '2021-08-24 03:54:50'),
-(41, 'Maryam', 'mmoalshati@mew.gov.kw', NULL, 2, '$2y$10$aAZ7P3LkDf2Tet2huI7ehedbQy7URp/AjeXfbFGMnqu8MA/Fn5qRO', 1, NULL, NULL, '2021-08-25 05:18:28', '2021-08-25 05:18:28'),
-(42, 'Ali Boualiyan', 'amboolyan@mew.gov.mew', NULL, 2, '$2y$10$XXm0SBOC6aXFPCxeTpig9eUM40ixzRepo1/K0zADeVg.ZN37j2F/6', 0, NULL, NULL, '2021-08-25 05:56:10', '2021-08-25 05:56:10'),
-(43, 'Mohammad', 'Mahamohammad@mew.gov.kw', NULL, 2, '$2y$10$im5.RB77Xtp5zfNvGDgzIejq2WOUYLoNZ2G0WGF1TyceyG2qjwUTu', 0, NULL, NULL, '2021-08-26 01:48:25', '2021-08-26 01:48:25'),
-(44, 'Mohammed Al-Mousawi', 'mhmalmousawii@mew.gov.kw', NULL, 2, '$2y$10$SoUqKi/gyhGrLWEM1laheer4rfFXTOeHnMu5kFKhuwELEvVA.jl.i', 0, NULL, '2v10YynpwcsYmAZ7mGAOp7xzsbQ9ImyClCHoUPPw69DbrqLN3f8txXgDx6JC', '2021-08-29 06:51:28', '2021-08-29 10:30:12'),
-(45, 'Yousef Rashed', 'yarashed@mew.gov.kw', NULL, 2, '$2y$10$aYeTajBLdBZmjgh6ToUtRuQgmE/6kReY1xQHkUB0pqwWuKBUQENrS', 0, NULL, NULL, '2021-08-29 06:54:05', '2021-08-29 06:54:05'),
-(46, 'Fahad Alotaibi', 'fmalotaybi@mew.gov.kw', NULL, 2, '$2y$10$AV.FjcCtCHxClPxJcXHp4uLVOrJw9dTt/rmyJ/nG/H8/PuJSG.c.C', 0, NULL, NULL, '2021-08-31 07:21:24', '2021-08-31 07:21:24'),
-(47, 'Mohammad Almutairi', 'mommalmutairi@mew.gov.kw', NULL, 2, '$2y$10$3qjNpOYPRAlwZjTUz0tb8O7xiwL5Cffsl8mDRygHGWkIFR1uRB03G', 0, NULL, NULL, '2021-09-30 07:51:30', '2021-09-30 07:51:30'),
-(48, 'Fahad', 'fhdstl@gmail.com', NULL, 2, '$2y$10$JDzDnhoH7hV8AIo/CQeZsOlgHo7lg3QnMlc.YxZNsCAzqCrTNQQvG', 0, NULL, NULL, '2021-10-03 08:18:19', '2021-10-03 08:18:19'),
-(49, 'Ahmad', 'ahmad@ahmad.com', NULL, 2, '$2y$10$AzGGv4Mg4kRRMoeK/7TH1eZ2A7B3rBD/s0UnTnPOlQAPIDT.lAT8a', 0, NULL, NULL, '2022-01-03 07:03:28', '2022-01-03 07:03:28'),
-(50, 'Duaa', 'dkaalhuwaidi@mew.gov.kw', NULL, 2, '$2y$10$CMG0OZM/FIdFYm8IMinWCeT7MWqF34S7vO.mYadHBJuExY8eKOLim', 0, NULL, NULL, '2022-01-03 07:26:50', '2022-01-03 07:26:50'),
-(51, 'Dalal Rashed othman Alqahtani', 'lalstar88@hotmail.com', NULL, 2, '$2y$10$LoVoa68j7KTnYTdHZqsMYOXboA2qJzxA2H/pozH3Vd0GGzeYjNjQG', 0, NULL, NULL, '2022-01-09 10:24:16', '2022-01-09 10:24:16'),
-(52, 'Dalal Rashed othman Alqahtani', 'droalqahtani@mew.gov.kw', NULL, 2, '$2y$10$TVm.wpL0kZeXa3EmYQKylu9t.sKPaycZU7FJ2c16mKMhtdiGTYd2m', 0, NULL, NULL, '2022-01-09 10:27:56', '2022-01-09 10:27:56'),
-(114, 'Team Leader Electrical South', 'ElectricalSouthTeamLeader@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(115, 'Team Leader Electrical Middle', 'ElectricalMiddleTeamLeader@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(116, 'Team Leader Electrical North', 'ElectricalNorthTeamLeader@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(117, 'Admin1M', 'admin1M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(118, 'Admin2M', 'admin2M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(119, 'Admin3M', 'admin3M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(120, 'Admin4M', 'admin4M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(121, 'Admin5M', 'admin5M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(122, 'Admin6M', 'admin6M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(123, 'Admin6C', 'admin6C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(124, 'Admin5C', 'admin5C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(125, 'Admin4C', 'admin4C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(126, 'Admin3C', 'admin3C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(127, 'Admin2C', 'admin2C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(128, 'Admin1C', 'admin1C@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 1, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(129, 'Engineer1M', 'engineer1M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 0, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(130, 'Engineer2M', 'engineer2M@mew.gov.kw', NULL, 5, '$2y$10$YPIz.XquowOugB5rqqqF6eXfdudhBP4Ctb4zZxxucnM5dsnJ1uvme', 0, NULL, NULL, '2022-06-08 06:04:14', '2022-06-08 06:04:14'),
-(131, 'Admin Battery', 'admin@battery.com', NULL, 3, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'FtunF31RLXx1aPUjkNrFTP57G0XxYbOmEIewFDP7YzpRePAqT5c2UZumuy0l', '2021-06-24 12:21:03', '2021-08-25 17:17:54'),
-(132, 'r r r r', 'rrr@mew.gov.kw', NULL, 3, '$2y$10$cepHtXBa5O/dorHN21zR2Oqlmld0WaJBAkfzWgCyzCH6eWmkUhQoG', 0, NULL, NULL, '2022-06-23 08:20:09', '2022-06-23 08:20:09'),
-(133, 'admin switch', 'admin@switch.com', NULL, 6, '$2y$10$5Sa8cC4alr8Vqlcijgk9zeu1yqr992gtsxz4c8AnJyzVOnoJZQDgC', 1, NULL, 'PmuqP93L6Vidxw1YA8IaZeW0mR8LJ9z89KajIvNgHLnzT97RU7OcKQHJcYEh', '2021-06-24 12:21:03', '2021-08-25 17:17:54');
+(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'GC', NULL, '2022-09-07 05:52:55', '2022-09-07 05:52:55'),
+(28, 'Abdllah Suleiman Haddad', 'analhaddad@mew.gov.kw', NULL, 2, '$2y$10$6L5fYI59mxKMYKVXB18a7OtjE7VnSzu2Ge2YpGJUCfA0DME7cJUV.', 0, 'admin', NULL, NULL, NULL),
+(29, 'Abdul Rahman A A Al Kandari', 'aadalkanderi@mew.gov.kw', NULL, 2, '$2y$10$H.yfbb5iUxkGJ5Xx7NhSkOfoafcaUZt2WTt7Geh9MZqzhAKcVCgY2', 0, 'TS', NULL, NULL, NULL),
+(30, 'Abdullah Esam Yaqoub Al Shatti', 'aeyalshatti@mew.gov.kw', NULL, 2, '$2y$10$GDUNk.47Cjckj.EHIx17bOa6r1w4Z4KurErikOJdMFIEtmUS2fyvG', 0, 'TS', NULL, NULL, NULL),
+(31, 'Abdullah Hassan Al-Huamidi', 'aaalhumaidi@mew.gov.kw', NULL, 2, '$2y$10$Ugt1kZigs6mCITda/Lk98uOROikh1qWOFTXq0BScLT9sa1Dt10tTS', 0, 'TS', NULL, NULL, NULL),
+(32, 'ABDULLAH M S AL JAWISSRI', 'amaljuwaisri@mew.gov.kw', NULL, 2, '$2y$10$Px8CFMKPn9fEUX2PRD6jOepUSaGtyosHsVBLui64m3IZr3eQutoiu', 0, 'TS', NULL, NULL, NULL),
+(33, 'Abdullah Mahammad Almazdi', 'amalmzdi@mew.gov.kw', NULL, 2, '$2y$10$LkmJkECjRbvG5hQAZY38.eqIOgkTCPlreyh/9fEknqvV/6Gr0hKVG', 0, 'TS', NULL, NULL, NULL),
+(34, 'Ahmad AbdulRahim Yousef', 'auyousef@mew.gov.kw', NULL, 2, '$2y$10$CFmKUEMxcIaVIPQRCWWe4e7UYNECUyprP5e76jCRUYj1rVP/.aPx.', 0, 'TS', NULL, NULL, NULL),
+(35, 'Ahmad Ibrahim Khaled Alqabandi', 'ahmadalaqabandi@mew.gov.kw', NULL, 2, '$2y$10$Y1j5nmoeaaORO19SrsCjqe4fuSvzV/iWQAOroeBbp4Fna1Il6WbLq', 0, 'TS', NULL, NULL, NULL),
+(36, 'Ahmad Mahmoud Baqer', 'ambaqer@mew.gov.kw', NULL, 2, '$2y$10$IOrJ9t24vyxNRTB0eQTFkugJr5em.5.0fdaETl8K6FntCb7wSyzFC', 0, 'TS', NULL, NULL, NULL),
+(37, 'Ahmad Mutheeb mohammad AlOtaibi', 'atalotaibi@mew.gov.kw', NULL, 2, '$2y$10$YBsM/hmcaIKxnwsyRtPH.eNWImPLajdMGlnQHQND4p0hlPdLX.Nri', 0, 'TS', NULL, NULL, NULL),
+(38, 'Ahmed Awad Al Azmi', 'aawsalazmi@mew.gov.kw', NULL, 2, '$2y$10$H.sGWi53n/exDeRdgaL5sOSUddMclcpUwtF7W3GLlrKFGmLEIKFbG', 0, 'TS', NULL, NULL, NULL),
+(39, 'Ahmed Bader Ali Al Maayouf', 'ahmadMaayouf@mew.gov.kw', NULL, 2, '$2y$10$q1rstlfqu6G0ghZsTtloLud67AiR/73iCJGjBCbMcC2P9ijGCXMLe', 0, 'TS', NULL, NULL, NULL),
+(40, 'Ali Hamoud Al-Mutairi', 'ahoalmutairi@mew.gov.kw', NULL, 2, '$2y$10$ekCsCqKrFOCgqd0.QP6kHuhFEcbN4oLzflERkx8yF50NTdqyIN7yW', 0, 'TS', NULL, NULL, NULL),
+(41, 'Ali Hussain Mohammad Ali Haidar', 'ahsali@mew.gov.kw', NULL, 2, '$2y$10$gt3evQz3c4FQcn2E3.bRAu6uHUpTYf77acBvOuAnPiv5jdQfzq.xW', 0, 'TS', NULL, NULL, NULL),
+(42, 'Ali Ismail AL-Feli', 'aialfaili@mew.gov.kw', NULL, 2, '$2y$10$RNsSNb3jjc3hJb54Fm41PuNDCZOgo515kLS.popRgYG0Yat5gX69K', 0, 'TS', NULL, NULL, NULL),
+(43, 'Ali Jassim Al-Baghli', 'ajalbaghli@mew.gov.kw', NULL, 2, '$2y$10$KXSqM9uhK9NKX4g.NiA18OOjMeYRHMBwqXKKoXZSDKWg5kl1EeEJe', 0, 'TS', NULL, NULL, NULL),
+(44, 'Ali Mahdi Boualiyan', 'amboolyan@mew.gov.kw', NULL, 2, '$2y$10$2t7W1Np7LGFAU74Fqfj0gOf2KYERfommzy5EX/TZlGsxqKbvOhB.6', 0, 'TS', NULL, NULL, NULL),
+(45, 'Ali Mohammad Abdullah Al Sahhaf', 'alialsahhaf@mew.gov.kw', NULL, 2, '$2y$10$t4yd2e3LsdEhSaB5kPXKKeIyoNCRbCvNo0VE1WO3ouwbnhXYOokfm', 0, 'TS', NULL, NULL, NULL),
+(46, 'Ali Saleh Alqattan', 'asaalqatan@mew.gov.kw', NULL, 2, '$2y$10$LRKojAvmQuchCNBpAhdx6eX5t8w5guf8H9aeqPqeiAZUOr8kx6Vay', 0, 'TS', NULL, NULL, NULL),
+(47, 'Amer H M Alansari', 'Amer@mew.gov.kw', NULL, 2, '$2y$10$02HMLXzNI043TYkNhg.WnOMDuLcWuhZlwjFhLsQdMgXZMs4B6KBca', 0, 'TS', NULL, NULL, '2022-09-07 06:15:05'),
+(48, 'Ammar Khalid Al-Ammary', 'akalamari@mew.gov.kw', NULL, 2, '$2y$10$KnWjVu2SvSEWq8eUHPMQI.0jbqvGxmT.hqJWNYlZmV05CQmM385w2', 0, 'TS', NULL, NULL, NULL),
+(49, 'BADER ABDEL SALAM KHEDER MILAD', 'bameelad@mew.gov.kw', NULL, 2, '$2y$10$tStzRO9LAgXoI0ZjY.Ywde/SvgIYOneNCbIZ21H20o9I5Uo7c7Tvy', 0, 'TS', NULL, NULL, NULL),
+(50, 'Eid  MUTHEEB MOHAMMAD AL OTAIBI', 'eid@mew.gov.kw', NULL, 2, '$2y$10$TaQQ/n21LeS9GGoUo6sf4OfBXT7CIb78KfaLaWtqjVFeMYTyTQ8im', 0, 'TS', NULL, NULL, NULL),
+(51, 'Essa Abdul Wahab Mater', 'eaalmatar@mew.gov.kw', NULL, 2, '$2y$10$AHHHMBvcmc41nmTQX7z0uOfvDePkblOT1Chigws3KOk2rF5VERKLm', 0, 'TS', NULL, NULL, NULL),
+(52, 'FAHAd A J ALKOUT', 'fmalkhout@mew.gov.kw', NULL, 2, '$2y$10$QhZdeTzV/yvYL3eZsfhQi.M0SeDG8Uz9aq0wbl9/6.qG8j5OBjwza', 0, 'TS', NULL, NULL, NULL),
+(53, 'FAHAD MUTHEEB MOHAMMAD AL OTAIBI', 'fmalotaybi@mew.gov.kw', NULL, 2, '$2y$10$RkagWY0X0T1Qa4vq4XxAFuj/vdU346bFMGemVmt2qzSyC82m6/LkW', 0, 'TS', NULL, NULL, NULL),
+(54, 'Fahad S A Al Rashidi', 'fgalrheshedi@mew.gov.kw', NULL, 2, '$2y$10$auQtpQiDGPaxTNX2PjTX.e2eND/Lr8s3NbnHBSPRDZJmqDijDeudm', 0, 'TS', NULL, NULL, NULL),
+(55, 'Fahd A R Shateel', 'fashatil@mew.gov.kw', NULL, 2, '$2y$10$0WPIyL6UB8KUYni3q7WnkO1N1NWuJsdS.zolCQlHlwip2mrG2t9q6', 0, 'TS', NULL, NULL, NULL),
+(56, 'FAISAL METLEA AZZAB AL OTAIBI', 'fmazalotaibi@mew.gov.kw', NULL, 2, '$2y$10$sVPIRir0z0t9JQp7AvBaWenfR65uTRgpzVS1CIzl5.yaZFzytoXXi', 0, 'TS', NULL, NULL, NULL),
+(57, 'FAWAZ SUHAIL ASWAD', 'fuaswad@mew.gov.kw', NULL, 2, '$2y$10$TXqCjwOJhE8VcWJf3lNL2.672KAAWx0rF1IFlcyp7/EcYR4tBU53K', 0, 'TS', NULL, NULL, NULL),
+(58, 'Hamad Salah Abdullah Abdulmalek', 'hamadabdulmaleck@mew.gov.kw', NULL, 2, '$2y$10$yrUkcQTEqk7bix5WbPbDwegVu3xCFsr0HjI52m/8.R8YhInNE85G2', 0, 'TS', NULL, NULL, NULL),
+(59, 'Hussain Khaled Ahmad Dehrab', 'hamaddehrab@mew.gov.kw', NULL, 2, '$2y$10$porFUAhLf9mxfIHYRIWT5uyM4vQ.rgJdSA8GhtAizKwCcQbBSOj5C', 0, 'TS', NULL, NULL, NULL),
+(60, 'Ibrahem M H Alqallaf', 'imhalqalaf@mew.gov.kw', NULL, 2, '$2y$10$79mGSZL5taCOahlLfoaKbu/ZrrJlwUo3sVsy9O2ocm8S/Q2b2.uvm', 0, 'TS', NULL, NULL, NULL),
+(61, 'Ibrahim Khalil Alrabiah', 'ikalrabiah@mew.gov.kw', NULL, 2, '$2y$10$WNwDAGW2KCMPhBmtiLd26uLWX1q4n5DvzZgYPczZmgSsrG916mA7O', 0, 'TS', NULL, NULL, NULL),
+(62, 'Ibrahim Waleed Ibrahim Almufarrej', 'iwalmufarrej@mew.gov.kw', NULL, 2, '$2y$10$/H7LVNkU/KTWWk8MJuFKFewntl1ul/wmabGvq9TYmM8stbfr.WMrS', 0, 'TS', NULL, NULL, NULL),
+(63, 'JASSIM SALEM JASSIM HADDAD AL KANDARI', 'jsalkandari@mew.gov.kw', NULL, 2, '$2y$10$J2Qxfa0QWgDzQJooeiOxeOeQJEL/lOWUSrw8WL7tSx.6sM6iyO1QK', 0, 'TS', NULL, NULL, NULL),
+(64, 'KHALED MEJBEL AL AZMI', 'kmjalazmi@mew.gov.kw', NULL, 2, '$2y$10$fb1uxSRKIe8M3QnBlgMqbuF4MX5RZyUwdG6ywcQySjgPeR88Aq0ie', 0, 'TS', NULL, NULL, NULL),
+(65, 'Khaled Mohammad Abbas Alkandari', 'khaled@mew.gov.kw', NULL, 2, '$2y$10$thT1ph0bzp8pY/sPOdhzPOnDenzHgsSo.ytHVr2KcOZGAqKFaT3Fq', 0, 'TS', NULL, NULL, NULL),
+(66, 'Khaleel M KH Al Qallaf', 'kmkalqallaf@mew.gov.kw', NULL, 2, '$2y$10$d0ebaIirhqxH.4pQPwF6lu4jmxW0lVGDOmpG6F8smENGxtKnkKz6.', 0, 'TS', NULL, NULL, NULL),
+(67, 'KHALIL SAYED E KH ALQALLAF', 'ksealqallafufhhj@mew.gov.kw', NULL, 2, '$2y$10$D6.2L2QHT3QbdSCBN6APo.jOvVGzJ6T6UAtxuoyTTVlM2lVhMWvYq', 0, 'TS', NULL, NULL, NULL),
+(68, 'Mahdi F A Bushehri', 'mahdi1@mew.gov.kw', NULL, 2, '$2y$10$ZXRcT8jEVDOPeKaOscdp4uU.FZqXGJVJJtmmEIj1yB4PZdX70CGbS', 0, 'TS', NULL, NULL, NULL),
+(69, 'Meshari Mohammad Ali ASAD Abdulraheem', 'mesharimohammed@mew.gov.kw', NULL, 2, '$2y$10$FidPpK8EKeMYNLudPIP6EOxZPTZ7zRjQA1SbZr5n/tF3/tXVudlA2', 0, 'TS', NULL, NULL, NULL),
+(70, 'Mishal Al-Saeed', 'mishal@mew.gov.kw', NULL, 2, '$2y$10$wq7OmdK.n4UlU0E/DqzZfuSThR0yhWloMI/u4yfLopQuU7U1pSbtO', 0, 'TS', NULL, NULL, NULL),
+(71, 'Mishari Khaled Al-Tawari', 'mkaltuwari@mew.gov.kw', NULL, 2, '$2y$10$z7.offmkuJ2mmqgs6u/AV.wQLR7rU3ANmtxV6T3Ed9CxUxYoLO0ka', 0, 'TS', NULL, NULL, NULL),
+(72, 'Mohammed Behbehani', 'mubehbehani@mew.gov.kw', NULL, 2, '$2y$10$4nA5Fugukyg5bm96Rc.s3epvHWMPtv71u68mxhFn1csFjsj3WiIea', 0, 'TS', NULL, NULL, '2022-09-07 06:29:55'),
+(73, 'Mohamed Awad Anzi', 'mwalenizi@mew.gov.kw', NULL, 2, '$2y$10$4wJosLS11U3XKv4mErfNMewfeDhyq2zVt34yaZhnFXP4YN8pU2v7a', 0, 'TS', NULL, NULL, NULL),
+(74, 'Mohammad Ahmad Ghuloum Mohammad', 'mahamohammad@mew.gov.kw', NULL, 2, '$2y$10$eAJiUZ6tGKpV2aH.qNMrquDG2Oy4Hfc6X43.FkAJ2XUG2vUmuMVZ2', 0, 'TS', NULL, NULL, NULL),
+(75, 'MOHAMMAD HASHEM MOUSA AL MOUSAWI', 'MHMALMOUSAWII@mew.gov.kw', NULL, 2, '$2y$10$fQx2ajnVGYtB7Yf1W/4RQep8QgNHcYQzQLnTv7lx8l7L/Q/Tg7HXy', 0, 'TS', NULL, NULL, NULL),
+(76, 'Mohammad Mubarak Mohammad Al Mutairi', 'mommalmutairi@mew.gov.kw', NULL, 2, '$2y$10$eI85t7goF7TC6RKUz752se1CawTkSH3PcaLlYmwz.xSOhEndTN2dO', 0, 'TS', NULL, NULL, NULL),
+(77, 'Mohammad Yousef Ali Abdullah Ali Dashti', 'mydashti@mew.gov.kw', NULL, 2, '$2y$10$1YNE0fL0kB/UQIixpkunqOEFiowgUtrbzGiSDKypmYwL6Fs1rvG9O', 0, 'TS', NULL, NULL, NULL),
+(78, 'Mohammed Abdullah Shihab', 'mbshehab@mew.gov.kw', NULL, 2, '$2y$10$LcUsC5zzIbjcnULxofG3QuKM40aanE5Yv4t99ttEj6esmpJvAgpAq', 0, 'TS', NULL, NULL, NULL),
+(79, 'Naser Salem Saket Alenezi', 'naser@mew.gov.kw', NULL, 2, '$2y$10$abf7/PAy0ORYGqv6/K8Fx.2Q7IiYhbfq1oJ1iELG5r4COLUYRWKIa', 0, 'TS', NULL, NULL, NULL),
+(80, 'Nasser Shafi Mohammed Al-Ajmi', 'nsoalajmi@mew.gov.kw', NULL, 2, '$2y$10$dYN7JbiQSPe4DJHPAmTO9ebNqGlnn1UyRH7eI0GIrL.W9wJ0ufIxS', 0, 'TS', NULL, NULL, NULL),
+(81, 'OTHMAN SAAD AL LOGHANI', 'osalloughani@mew.gov.kw', NULL, 2, '$2y$10$H.WVTwOoOLOPlvrvi.P28ejlB6jpzBdDziMOBcScQCu0GWb9YRGIa', 0, 'TS', NULL, NULL, NULL),
+(82, 'Rassam Taqi Mohammad Al Harbi', 'Rassam@mew.gov.kw', NULL, 2, '$2y$10$kTrpGya2/Fjac31180Zq9eZ6Gl/8btJ92JY5WdYPwbMxMx/JhBUMm', 0, 'TS', NULL, NULL, NULL),
+(83, 'Saleh Abdullmuhsin Al-Bader', 'sbalbader@mew.gov.kw', NULL, 2, '$2y$10$wN1lOo2Z/115xyoYqyEPr.EdnbAetfqL31kCVMrc0y7Nh9Yb0CirS', 0, 'TS', NULL, NULL, NULL),
+(84, 'Salem R Al Enzi', 'sraalenizi@mew.gov.kw', NULL, 2, '$2y$10$S/Jkis/EKH8qy00A1bj92OfqHkvwC8.kW.OfBkh/5wsBXx7hJIjyW', 0, 'TS', NULL, NULL, NULL),
+(85, 'SAUD FAYEZ HASAN ALKANDARI', 'sfalkanderi@mew.gov.kw', NULL, 2, '$2y$10$81Zm8kqKqaBPXNBzZBJ0pu0HmQwICQ..Hdxza8viShxPOcrsHRVPi', 0, 'TS', NULL, NULL, NULL),
+(86, 'Yousef A S Rashed', 'yarashed@mew.gov.kw', NULL, 2, '$2y$10$i5w//zlw8jjX2tC6iF2NjOUzImSxBwYKGVDJULYa70K8foDzsXr/u', 0, 'TS', NULL, NULL, NULL),
+(87, 'Yousef Abdulkareem abd al sayed', 'yaabdalsayed@mew.gov.kw', NULL, 2, '$2y$10$.6kmwdYbsF2Bopyfcot0s.i4hrPIobUiyz4lVHc1bXJRsTUvEP7Dq', 0, 'TS', NULL, NULL, NULL),
+(88, 'Yousef Habeb alhamad', 'yaalhamad@mew.gov.kw', NULL, 2, '$2y$10$13LDzGWxvz8deM9.I/pn9.A0kHHtr3LMU5PVMbiRkNTZy/w5CNLhu', 0, 'TS', NULL, NULL, NULL),
+(89, 'Yousef Marzouk Al Otaibi', 'yralotaibi@mew.gov.kw', NULL, 2, '$2y$10$icWWLwRnUu3I7KumY8TRRuK0XOz5uuksrABwXy4PArY1KKlt0yKoG', 0, 'TS', NULL, NULL, NULL),
+(90, 'Elaf Raji Al-Mutairi', 'elaf@mew.gov.kw', NULL, 2, '$2y$10$nGh0216II6hILMMshJ7EK.9C1ET94C5nQEbmWeMBCy5Aia6a2jsiS', 0, 'TS', NULL, NULL, NULL),
+(91, 'Lulwah Waleed Alibrahim', 'lwaalibrahim@mew.gov.kw', NULL, 2, '$2y$10$xrT9cjvFuvPstlhyo1CIMuXJtKfQ1oIhUsG1EtP/V3wto98/h5e9a', 0, 'TS', NULL, NULL, NULL),
+(92, 'REEM TALAL JEAIDAN AL ENEZI', 'rtjalenizi@mew.gov.kw', NULL, 2, '$2y$10$kZTy.Gb1dldb2pViao0xye6QLtSVJPAP3WUc1RYAuJt.TWjV53VU6', 0, 'TS', NULL, NULL, NULL),
+(93, 'SHADAN WALEED ABDULLAH AL SANOUSI', 'swaalsanoosi@mew.gov.kw', NULL, 2, '$2y$10$A8vbRm/IMtCoByAlrvVDiezhG57ELX7J1ZbrmTaCVVmQDP9s.vxP.', 0, 'TS', NULL, NULL, NULL),
+(94, 'Zahraa N F Rustom', 'znrestom@mew.gov.kw', NULL, 2, '$2y$10$Y/IxIzBjcPSRew4t/MN0WeQ2rVqpoKVSMvi0XUKjeSLIoJ4o81hby', 0, 'TS', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -19608,6 +19680,27 @@ ALTER TABLE `equip`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `gc_tasks`
+--
+ALTER TABLE `gc_tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `gc_tasks_section_id_foreign` (`section_id`),
+  ADD KEY `gc_tasks_eng_id_foreign` (`eng_id`),
+  ADD KEY `gc_tasks_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `gc_task_attachments`
+--
+ALTER TABLE `gc_task_attachments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gc_task_details`
+--
+ALTER TABLE `gc_task_details`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `main_alarms`
@@ -19714,7 +19807,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `engineers`
 --
 ALTER TABLE `engineers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `equip`
@@ -19727,6 +19820,24 @@ ALTER TABLE `equip`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gc_tasks`
+--
+ALTER TABLE `gc_tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `gc_task_attachments`
+--
+ALTER TABLE `gc_task_attachments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `gc_task_details`
+--
+ALTER TABLE `gc_task_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `main_alarms`
@@ -19762,19 +19873,19 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=655;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660;
 
 --
 -- AUTO_INCREMENT for table `tr`
@@ -19786,13 +19897,13 @@ ALTER TABLE `tr`
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- Constraints for dumped tables
@@ -19810,6 +19921,14 @@ ALTER TABLE `engineers`
 --
 ALTER TABLE `equip`
   ADD CONSTRAINT `equip_station_id_foreign` FOREIGN KEY (`station_id`) REFERENCES `stations` (`id`);
+
+--
+-- Constraints for table `gc_tasks`
+--
+ALTER TABLE `gc_tasks`
+  ADD CONSTRAINT `gc_tasks_eng_id_foreign` FOREIGN KEY (`eng_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `gc_tasks_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
+  ADD CONSTRAINT `gc_tasks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `main_alarms`

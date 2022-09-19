@@ -75,7 +75,8 @@
                                 <th class="border-bottom-0"> البريد الإلكتروني </th>
                                 <th class="border-bottom-0"> المنطقة </th>
                                 <th class="border-bottom-0"> shift </th>
-                                <th class="border-bottom-0"></th>
+                                <th class="border-bottom-0"> - </th>
+                                <th class="border-bottom-0"> - </th>
                             </tr>
                         </thead>
                         <tbody>
