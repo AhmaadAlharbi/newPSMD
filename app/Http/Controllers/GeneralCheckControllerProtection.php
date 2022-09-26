@@ -21,7 +21,7 @@ class GeneralCheckControllerProtection extends Controller
     public function generalCheckIndex()
     {
         $date = Carbon::now();
-        $tasks = gc_tasks::all();
+        $tasks = gc_tasks::orderBy('id', 'DESC')->get();
         $reports = gc_tasks_details::where('status', 'completed')->get();
         $monthName = $date->format('F');
         return view('protection.generalCheck.index', compact('date', 'monthName', 'reports', 'tasks'));
@@ -121,6 +121,22 @@ class GeneralCheckControllerProtection extends Controller
     {
         $tasks = gc_tasks::whereMonth('created_at', date('m'))
             ->where('section_id', 2)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('protection.generalCheck.showTasks', compact('tasks'));
+    }
+    public function gc_pendingTasks()
+    {
+        $tasks = gc_tasks::where('section_id', 2)
+            ->where('status', 'pending')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('protection.generalCheck.showTasks', compact('tasks'));
+    }
+    public function gc_completedTasks()
+    {
+        $tasks = gc_tasks::where('section_id', 2)
+            ->where('status', 'completed')
             ->orderBy('id', 'desc')
             ->get();
         return view('protection.generalCheck.showTasks', compact('tasks'));

@@ -124,7 +124,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                            href="{{route('protection.gc.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -150,7 +150,7 @@
 
                 <div class="">
                     <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('protection.admin.completedTasks')}}">المهمات
+                            href="{{route('protection.gc.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">

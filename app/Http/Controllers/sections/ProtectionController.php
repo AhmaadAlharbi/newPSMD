@@ -83,6 +83,9 @@ class ProtectionController extends Controller
     public function index()
     {
 
+        if (Auth::user()->role === 'GC') {
+            return redirect()->route('protection.generalCheckIndex');
+        }
         $date = Carbon::now();
         $monthName = $date->format('F');
 

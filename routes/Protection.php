@@ -121,6 +121,11 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   Route::post('/protection/general-check/{id}', [GeneralCheckControllerProtection::class, 'submitReport'])->name('protection.generalCheck.submitReport');
   //show all gc tasks for a month
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/All-tasks', [GeneralCheckControllerProtection::class, 'gc_showAllTasks'])->name('protection.gc.showAllTasks');
+  //show pending tasks
+  Route::get('/dashboard/admin/query_section_id=2/gc_tasks/pending-tasks', [GeneralCheckControllerProtection::class, 'gc_pendingTasks'])->name('protection.gc.pendingTasks');
+  //show completed tasks
+  Route::get('/dashboard/admin/query_section_id=2/gc_tasks/completed-tasks', [GeneralCheckControllerProtection::class, 'gc_completedTasks'])->name('protection.gc.completedTasks');
+
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/print-report/{id}', [GeneralCheckControllerProtection::class, 'gc_viewPrintReport'])->name('protection.gc.veiwReport');
 });
 

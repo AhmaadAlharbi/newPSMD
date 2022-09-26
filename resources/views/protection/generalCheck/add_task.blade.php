@@ -155,6 +155,11 @@
                                 required value="{{ date('y-m')}}/" readonly>
                             <input type="hidden" name="task_id" value="">
                         </div>
+                        <script>
+                            const refNum = document.querySelector("#refNum");
+                            let randomNumber = Math.floor(Math.random() * 900);
+                            refNum.value += randomNumber + 1;
+                        </script>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى  كتابة اسم المحطة</label>
                             <input class="form-control" value="" name="station_name" id="ssname" type="text">

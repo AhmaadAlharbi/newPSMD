@@ -14,4 +14,8 @@ class gc_tasks extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function engineers()
+    {
+        return $this->belongsTo(User::class, 'eng_id');
+    }
 }
