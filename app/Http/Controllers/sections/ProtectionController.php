@@ -967,4 +967,55 @@ class ProtectionController extends Controller
         $stations = Station::all();
         return view('stations.stationsList', compact('stations'));
     }
+    //duty
+    function addDutyReport()
+    {
+        $stations = Station::all();
+
+        return view('protection.user.tasks.addDutyReport', compact('stations'));
+    }
+    public function submitDutyReport(Request $request)
+    {
+        $station_id = Station::where('SSNAME', $request->station_code)->pluck('id')->first();
+        Task::create([
+            'refNum' => $request->refNum,
+            'section_id' => 2,
+            'fromSection' => 2,
+            'station_id' => $station_id,
+            'main_alarm' => $request->mainAlarm,
+            'task_date' => $request->task_Date,
+            'eng_id' => (Auth::user()->id),
+            'problem' => $request->problem,
+            'notes' => $request->notes,
+            'status' => 'duty',
+            'user' => (Auth::user()->name),
+        ]);
+        $task_id = Task::latest()->first()->id;
+
+        if ($request->hasfile('pic')) {
+            foreach ($request->file('pic') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path('Attachments/protection/' . $task_id), $name);
+                $data[] = $name;
+                $refNum = $request->refNum;
+                $attachments = new TaskAttachment();
+                $attachments->file_name = $name;
+                $attachments->created_by = Auth::user()->name;
+                $attachments->id_task = $task_id;
+                $attachments->save();
+            }
+        }
+
+        session()->flash('Add', 'تم اضافةالمهمة بنجاح');
+        return back();
+    }
+    public function showDuty()
+    {
+
+        $tasks = Task::where('fromSection', 2)
+            ->where('status', 'duty')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('protection.admin.tasks.showTasks', compact('tasks'));
+    }
 }

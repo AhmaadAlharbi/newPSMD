@@ -23,18 +23,18 @@
 @section('content')
 <!-- row -->
 <style>
-.HORIZONTAL_SCROLL_NAV {
+    .HORIZONTAL_SCROLL_NAV {
 
-    -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch;
 
-    overflow-x: auto;
-    overflow-y: hidden;
-}
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 
-.HORIZONTAL_SCROLL_NAV>ul {
+    .HORIZONTAL_SCROLL_NAV>ul {
 
-    margin: 0 auto;
-}
+        margin: 0 auto;
+    }
 </style>
 
 <div class="row row-sm">
@@ -63,6 +63,7 @@
             <span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
         </div>
     </div>
+
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-danger-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -107,7 +108,8 @@
                     <div class="d-flex">
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                {{\App\Models\Task::where('status','completed')->whereMonth('created_at', date('m'))->count()}}
+                                {{\App\Models\Task::where('status','completed')->whereMonth('created_at',
+                                date('m'))->count()}}
                             </h4>
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات منجزة</p>
@@ -214,9 +216,9 @@
                                             href="{{route('task.reminder',['id'=>$task->id,'eng_email'=>$task->engineers->email,'ssname'=>$task->station->SSNAME])}}"
                                             class=" m-2 btn btn-primary btn-sm">Resend Task</a>
                                         @endif
-                                        {{--  <a class="text-left btn btn-danger "
+                                        {{-- <a class="text-left btn btn-danger "
                                             href="{{route('tasks.addYourReport',['id'=>$task->id])}}"
-                                        class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
+                                            class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
                                     </div>
                                 </div>
                             </div>

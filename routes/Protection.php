@@ -11,6 +11,8 @@ use App\Http\Controllers\GeneralCheckControllerProtection;
 // })->middleware(['auth','is_protection'])->name('dashboard.user.protection');
 
 Route::middleware(['auth', 'is_protection'])->group(function () {
+  Route::get('/dashboard/user/query_section_id=2/add-duty-report', [ProtectionController::class, 'addDutyReport'])->name('protection.addDutyReport');
+  Route::post('/dashboard/user/query_section_id=2/submit-duty-report', [ProtectionController::class, 'submitDutyReport'])->name('protection.submitDutyReport');
   Route::get('/dashboard/user/query_section_id=2', [ProtectionController::class, 'userIndex'])->name('protection.user.homepage');
   //engineer report form
   Route::get('/dashboard/user/query_section_id=2/Engineer-report-form/{id}', [
@@ -45,6 +47,7 @@ Route::middleware(['auth', 'is_protection'])->group(function () {
   Route::get('/protection/Equip/{id}', [ProtectionController::class, 'getEquip']);
   Route::get('/protection/EquipNumber/{id}/{voltage_level}', [ProtectionController::class, 'getEquipNumber']);
   Route::get('/protection/Equipname/{station_id}/{voltage_level}/{equip_number}', [ProtectionController::class, 'getEquipName']);
+  //duty report
 });
 // /#########ADMIN ROUTES ##################
 Route::middleware(['is_admin', 'is_protection'])->group(function () {
@@ -125,8 +128,8 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/pending-tasks', [GeneralCheckControllerProtection::class, 'gc_pendingTasks'])->name('protection.gc.pendingTasks');
   //show completed tasks
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/completed-tasks', [GeneralCheckControllerProtection::class, 'gc_completedTasks'])->name('protection.gc.completedTasks');
-
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/print-report/{id}', [GeneralCheckControllerProtection::class, 'gc_viewPrintReport'])->name('protection.gc.veiwReport');
+  Route::get('/dashboard/admin/qurey_section_id=2/duty-tasks', [ProtectionController::class, 'showDuty'])->name('protection.showDuty');
 });
 
 Route::get('/dashboard/admin/stations-list', [ProtectionController::class, 'showStations'])->name('stationsList')->middleware('auth');
