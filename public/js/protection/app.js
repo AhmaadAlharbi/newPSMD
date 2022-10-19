@@ -279,9 +279,9 @@ const getEquipNumber = async () => {
     console.log(JSON.stringify(data2));
     for (let i = 0; i < data2.length; i++) {
         let equip_number_option = document.createElement("option");
-        equip_number_option.text = data2[i].equip_number;
+        equip_number_option.text = data2[i].equip_number + ' - ' + data2[i].equip_name;
         equipNumber.add(equip_number_option);
-        equipName.value = data2[0].equip_name;
+        // equipName.value = data2[0].equip_number + ' - ' + data2[0].equip_name;
     }
 };
 const getEquipName = async () => {

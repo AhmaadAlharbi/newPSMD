@@ -8,6 +8,8 @@ use App\Models\Engineer;
 use App\Models\Station;
 use App\Models\Section;
 use App\Models\Equip;
+use Illuminate\Database\Eloquent\Builder;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
@@ -90,6 +92,35 @@ class ProtectionController extends Controller
         $monthName = $date->format('F');
 
         return view('protection.admin.dashboard', compact('date', 'monthName'));
+    }
+    //control dashboard tasks
+    public  function indexControl(Request $request){
+       $control = request()->get('control');
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+        $tasks = Task::whereHas('station', function (Builder $query) use($control) {
+            $query->where('control', 'like', $control);
+        })->get();
+        return view('protection.admin.dashboardControl', compact('tasks','date', 'monthName'));
+
+
+        /*
+         *
+         * //      return (String)  $tasks = Station::find(1)->tasks;
+       $tasks = Task::all();
+       return (String) $stations = Station::has('tasks')->get();
+
+
+        $section_id = Auth::user()->section_id;
+        //we get all stations in shuaiba control
+        $stations = Station::where('control','JAHRA CONTROL CENTER')->get();
+//       return (String) $stations = Station::with('tasks')->get();
+//        foreach($tasks as $task) {
+//            echo $task->station->control . "<br>";
+//        }
+         *
+         *
+         * */
     }
     //// start front END functions
     public function add_task()
@@ -500,7 +531,7 @@ class ProtectionController extends Controller
 
         return back();
     }
-    //get 
+    //get
     public function updateTask($id)
     {
         $tasks = Task::where('id', $id)->first();
@@ -1011,11 +1042,26 @@ class ProtectionController extends Controller
     }
     public function showDuty()
     {
-
         $tasks = Task::where('fromSection', 2)
             ->where('status', 'duty')
             ->orderBy('id', 'desc')
             ->get();
         return view('protection.admin.tasks.showTasks', compact('tasks'));
+    }
+    ////############ Relay setting #################//////////
+    public function addRealySetting(){
+        if (isset(Task::latest()->first()->id)) {
+            $task_id = Task::latest()->first()->id;
+            $task_id++;
+        } else {
+            $task_id = 1;
+        }
+        $stations = Station::all();
+        $engineers = DB::table('engineers')
+            ->Join('users', 'users.id', '=', 'engineers.user_id')
+            ->where('users.section_id', 2)
+            ->orderBy('name')
+            ->get();
+        return view('protection.relaySetting.add',compact('stations','task_id','engineers'));
     }
 }

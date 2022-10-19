@@ -187,7 +187,42 @@
                             <input type="text" class="form-control" name="pm">
                         </div>
                     </div>
+                    <div class="row m-3">
+                        <div class="col border border-warning p-3 flex-wrap">
+                            <h6 class="text-warning">Work Type</h6>
 
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
+                                       value="Clearance">
+                                <label class="form-check-label  m-2" for="inlineRadio1">Clearance</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
+                                       value="Maintenance">
+                                <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
+                                       value="Troubleshooting">
+                                <label class="form-check-label m-2" for="inlineRadio3">Inspection</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
+                                       value="outage">
+                                <label class="form-check-label m-2" for="inlineRadio4">outage</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
+                                       value="Installation">
+                                <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
+                                       value="Other">
+                                <label class="form-check-label m-2" for="inlineRadio6">other</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row m-3">
                         <div class="col-lg-6">
                             <label for="main_alarm" class="control-label m-3">Main Alarm</label>
@@ -268,13 +303,13 @@
                         <div class="col-lg-6">
                             <label for="equip" class="control-label m-1">equip Number</label>
                             <select type="text" id="equipNumber" name="equip_number" class="form-control"
-                                onchange=" getEquipName()">
+                                >
                                 <option value="">-</option>
                             </select>
                             <input type="text" class="form-control d-none" id="inputEquipNumber">
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 d-none">
                             <label for="equip" class="control-label m-1">equip name</label>
                             <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
                             <input style="direction:ltr;" type="text" id="equipName" class="form-control "
@@ -287,50 +322,6 @@
 
                         </div>
                     </div>
-
-
-
-
-                    {{-- 2 --}}
-                    <div class="row m-3">
-                        <div class="col border border-warning p-3 flex-wrap">
-                            <h6 class="text-warning">Work Type</h6>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
-                                    value="Inspection">
-                                <label class="form-check-label  m-2" for="inlineRadio1">Inspection</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
-                                    value="Maintenance">
-                                <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
-                                    value="Troubleshooting">
-                                <label class="form-check-label m-2" for="inlineRadio3">Troubleshooting</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
-                                    value="outage">
-                                <label class="form-check-label m-2" for="inlineRadio4">outage</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
-                                    value="Installation">
-                                <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
-                                    value="Other">
-                                <label class="form-check-label m-2" for="inlineRadio6">other</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- 3 --}}
-
                     <div class="row m-3">
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">المنطقة</label>

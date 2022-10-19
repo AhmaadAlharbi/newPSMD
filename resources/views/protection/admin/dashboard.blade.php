@@ -15,6 +15,25 @@
     <div class="left-content">
         <div>
             <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم إدارة مهمات قسم الوقاية</h2>
+            <div>
+                <label for="" class="mt-4">عرض المهمات حسب </label>
+                <form action="{{route('dashboardControl.admin.protection')}}" method="get" onchange="this.form.submit()">
+                    @csrf
+                    <select name="control" id="control" class="form-control">
+                        <!--placeholder-->
+                        <option >اختر التحكم لعرض المهام والتقارير</option>
+                        <option value="SHUAIBA CONTROL CENTER">تحكم الشعيبة</option>
+                        <option value="JABRIYA CONTROL CENTER">تحكم الجابرية  </option>
+                        <option value="JAHRA CONTROL CENTER">تحكم الجهراء</option>
+                        <option value="TOWN CONTROL CENTER">تحكم المدينة</option>
+                        <option value="NATIONAL CONTROL CENTER"> تحكم الوطني</option>
+                        <option value="SHUAIBA CONTROL CENTER">الكل</option>
+
+                    </select>
+                    <input type="submit">
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
