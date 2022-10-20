@@ -15,4 +15,8 @@ class Station extends Model
     {
         return $this->hasMany(Task::class);
     }
+    public function details()
+    {
+        return $this->hasMany(TaskDetails::class);
+    }
 }

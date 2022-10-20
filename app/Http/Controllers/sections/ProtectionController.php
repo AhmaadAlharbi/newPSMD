@@ -96,12 +96,27 @@ class ProtectionController extends Controller
     //control dashboard tasks
     public  function indexControl(Request $request){
        $control = request()->get('control');
+       if($control == 'all'){
+           return redirect()->route('dashboard.admin.protection');
+       }
         $date = Carbon::now();
         $monthName = $date->format('F');
         $tasks = Task::whereHas('station', function (Builder $query) use($control) {
-            $query->where('control', 'like', $control);
+            $query->where('control', 'like', $control)
+               ->where('fromSection', 2)
+                ->whereNull('toSection')
+                ->where('status', 'pending')
+                ->orWhere('toSection', 2)
+                ->whereNull('fromSection')
+                ->where('status', 'pending');
         })->get();
-        return view('protection.admin.dashboardControl', compact('tasks','date', 'monthName'));
+        $tasks_reports = TaskDetails::whereHas('station', function (Builder $query) use($control) {
+            $query->where('control', 'like', $control)
+              ->where('section_id', 2)
+                  ->where('status', 'completed')
+                  ->orderBy('id', 'desc');
+        })->get();
+        return view('protection.admin.dashboardControl', compact('tasks','date', 'monthName','control','tasks_reports'));
 
 
         /*

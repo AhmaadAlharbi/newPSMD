@@ -19,17 +19,9 @@ class LocalTasks extends Component
     public function render()
     {
         $section_id = Auth::user()->section_id;
-        $routeName = Request::route()->getName();
-        if($routeName == 'dashboardControl.admin.protection'){
-            $tasks = Task::whereHas('station', function (Builder $query) {
-                $query->where('control', 'like', 'SHUAIBA CONTROL CENTER');
-            })->paginate(3);
-            return view('livewire.local-tasks', compact('tasks'));
-
-        }
 
 
-      if ($section_id != 1 && $routeName !== 'dashboardControl.admin.protection' ) {
+      if ($section_id != 1  ) {
             //other sections tasks
             $tasks = Task::orderBy('id', 'desc')
                 ->where('fromSection', $section_id)

@@ -19,18 +19,24 @@
                 <label for="" class="mt-4">عرض المهمات حسب </label>
                 <form action="{{route('dashboardControl.admin.protection')}}" method="get" onchange="this.form.submit()">
                     @csrf
-                    <select name="control" id="control" class="form-control">
-                        <!--placeholder-->
-                        <option >اختر التحكم لعرض المهام والتقارير</option>
-                        <option value="SHUAIBA CONTROL CENTER">تحكم الشعيبة</option>
-                        <option value="JABRIYA CONTROL CENTER">تحكم الجابرية  </option>
-                        <option value="JAHRA CONTROL CENTER">تحكم الجهراء</option>
-                        <option value="TOWN CONTROL CENTER">تحكم المدينة</option>
-                        <option value="NATIONAL CONTROL CENTER"> تحكم الوطني</option>
-                        <option value="SHUAIBA CONTROL CENTER">الكل</option>
+         <div class="row">
+             <div class="col-10">
+                 <select name="control" id="control" class="form-control">
+                     <!--placeholder-->
+                     <option >اختر التحكم لعرض المهام والتقارير</option>
+                     <option value="SHUAIBA CONTROL CENTER">تحكم الشعيبة</option>
+                     <option value="JABRIYA CONTROL CENTER">تحكم الجابرية  </option>
+                     <option value="JAHRA CONTROL CENTER">تحكم الجهراء</option>
+                     <option value="TOWN CONTROL CENTER">تحكم المدينة</option>
+                     <option value="NATIONAL CONTROL CENTER"> تحكم الوطني</option>
 
-                    </select>
-                    <input type="submit">
+                 </select>
+             </div>
+             <div class="col-2">
+                 <input class="btn btn-outline-primary" type="submit" value="ابحث">
+
+             </div>
+         </div>
                 </form>
 
             </div>
