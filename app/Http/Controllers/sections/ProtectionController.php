@@ -9,7 +9,6 @@ use App\Models\Station;
 use App\Models\Section;
 use App\Models\Equip;
 use Illuminate\Database\Eloquent\Builder;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
@@ -94,29 +93,30 @@ class ProtectionController extends Controller
         return view('protection.admin.dashboard', compact('date', 'monthName'));
     }
     //control dashboard tasks
-    public  function indexControl(Request $request){
-       $control = request()->get('control');
-       if($control == 'all'){
-           return redirect()->route('dashboard.admin.protection');
-       }
+    public  function indexControl(Request $request)
+    {
+        $control = request()->get('control');
+        if ($control == 'all') {
+            return redirect()->route('dashboard.admin.protection');
+        }
         $date = Carbon::now();
         $monthName = $date->format('F');
-        $tasks = Task::whereHas('station', function (Builder $query) use($control) {
+        $tasks = Task::whereHas('station', function (Builder $query) use ($control) {
             $query->where('control', 'like', $control)
-               ->where('fromSection', 2)
+                ->where('fromSection', 2)
                 ->whereNull('toSection')
                 ->where('status', 'pending')
                 ->orWhere('toSection', 2)
                 ->whereNull('fromSection')
                 ->where('status', 'pending');
         })->get();
-        $tasks_reports = TaskDetails::whereHas('station', function (Builder $query) use($control) {
+        $tasks_reports = TaskDetails::whereHas('station', function (Builder $query) use ($control) {
             $query->where('control', 'like', $control)
-              ->where('section_id', 2)
-                  ->where('status', 'completed')
-                  ->orderBy('id', 'desc');
+                ->where('section_id', 2)
+                ->where('status', 'completed')
+                ->orderBy('id', 'desc');
         })->get();
-        return view('protection.admin.dashboardControl', compact('tasks','date', 'monthName','control','tasks_reports'));
+        return view('protection.admin.dashboardControl', compact('tasks', 'date', 'monthName', 'control', 'tasks_reports'));
 
 
         /*
@@ -1031,13 +1031,29 @@ class ProtectionController extends Controller
             'main_alarm' => $request->mainAlarm,
             'task_date' => $request->task_Date,
             'eng_id' => (Auth::user()->id),
-            'problem' => $request->problem,
             'notes' => $request->notes,
             'status' => 'duty',
             'user' => (Auth::user()->name),
         ]);
-        $task_id = Task::latest()->first()->id;
 
+
+
+        $task_id = Task::latest()->first()->id;
+        TaskDetails::create([
+            'task_id' => $task_id,
+            'station_id' => $station_id,
+            'section_id' => 2,
+
+            'fromSection' => 2,
+            'task_date' => $request->task_Date,
+            'report_date' => $request->task_Date,
+            'main_alarm' => $request->mainAlarm,
+            'engineer_notes' => $request->notes,
+            'eng_id' => auth()->user()->id,
+            'status' => 'Duty'
+
+
+        ]);
         if ($request->hasfile('pic')) {
             foreach ($request->file('pic') as $file) {
                 $name = $file->getClientOriginalName();
@@ -1063,8 +1079,21 @@ class ProtectionController extends Controller
             ->get();
         return view('protection.admin.tasks.showTasks', compact('tasks'));
     }
+
+    public function printDutyReport($id)
+    {
+        $task_details = TaskDetails::where('task_id', $id)
+            ->where('fromSection', 2)
+            ->where('status', 'duty')
+            ->first();
+
+        $task_attachment = TaskAttachment::where('id_task', $id)->get();
+
+        return view('protection.admin.tasks.dutyReport', compact('task_details', 'task_attachment'));
+    }
     ////############ Relay setting #################//////////
-    public function addRealySetting(){
+    public function addRealySetting()
+    {
         if (isset(Task::latest()->first()->id)) {
             $task_id = Task::latest()->first()->id;
             $task_id++;
@@ -1077,6 +1106,6 @@ class ProtectionController extends Controller
             ->where('users.section_id', 2)
             ->orderBy('name')
             ->get();
-        return view('protection.relaySetting.add',compact('stations','task_id','engineers'));
+        return view('protection.relaySetting.add', compact('stations', 'task_id', 'engineers'));
     }
 }

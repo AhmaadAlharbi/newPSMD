@@ -13,6 +13,8 @@ use App\Http\Controllers\GeneralCheckControllerProtection;
 Route::middleware(['auth', 'is_protection'])->group(function () {
   Route::get('/dashboard/user/query_section_id=2/add-duty-report', [ProtectionController::class, 'addDutyReport'])->name('protection.addDutyReport');
   Route::post('/dashboard/user/query_section_id=2/submit-duty-report', [ProtectionController::class, 'submitDutyReport'])->name('protection.submitDutyReport');
+  Route::get('/dashboard/user/query_section_id=2/show-report/{id}', [ProtectionController::class, 'printDutyReport'])->name('protection.printDutyReport');
+
   Route::get('/dashboard/user/query_section_id=2', [ProtectionController::class, 'userIndex'])->name('protection.user.homepage');
   //engineer report form
   Route::get('/dashboard/user/query_section_id=2/Engineer-report-form/{id}', [
@@ -54,9 +56,9 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   //main page
   Route::get('/dashboard/admin/query_section_id=2', [ProtectionController::class, 'index'])->name('dashboard.admin.protection');
   //show dashboard based on control name
-    Route::get('/dashboard/admin/query_section_id=2/control/', [ProtectionController::class, 'indexControl'])->name('dashboardControl.admin.protection');
+  Route::get('/dashboard/admin/query_section_id=2/control/', [ProtectionController::class, 'indexControl'])->name('dashboardControl.admin.protection');
 
-    //show engineers request to edit reports
+  //show engineers request to edit reports
   Route::get('/dashboard/admin/query_section_id=2/engineers-report-request', [ProtectionController::class, 'showEngineersReportRequest'])->name('protection.showEngineersReportRequest');
   //allow engineers to edit
   Route::get('/dashboard/admin/query_section_id=2/allow-engineers-report-request/{id}', [ProtectionController::class, 'allowEngineersReportRequest'])->name('protection.allowEngineersReportRequest');
@@ -133,8 +135,8 @@ Route::middleware(['is_admin', 'is_protection'])->group(function () {
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/completed-tasks', [GeneralCheckControllerProtection::class, 'gc_completedTasks'])->name('protection.gc.completedTasks');
   Route::get('/dashboard/admin/query_section_id=2/gc_tasks/print-report/{id}', [GeneralCheckControllerProtection::class, 'gc_viewPrintReport'])->name('protection.gc.veiwReport');
   Route::get('/dashboard/admin/query_section_id=2/duty-tasks', [ProtectionController::class, 'showDuty'])->name('protection.showDuty');
-  Route::get('/dashboard/admin/query_section_id=2/add-relay-setting',[ProtectionController::class,'addRealySetting'])->name('protection.addRealySetting');
-  Route::post('/dashboard/admin/query_section_id=2/add-relay-setting',[\App\Http\Controllers\RelaySettignsController::class,'store'])->name('protection.submitRS');
+  Route::get('/dashboard/admin/query_section_id=2/add-relay-setting', [ProtectionController::class, 'addRealySetting'])->name('protection.addRealySetting');
+  Route::post('/dashboard/admin/query_section_id=2/add-relay-setting', [\App\Http\Controllers\RelaySettignsController::class, 'store'])->name('protection.submitRS');
 });
 
 Route::get('/dashboard/admin/stations-list', [ProtectionController::class, 'showStations'])->name('stationsList')->middleware('auth');

@@ -234,12 +234,7 @@
                     </div><br>
 
                     {{-- 6 --}}
-                    <div class="row m-3">
-                        <div class="col">
-                            <label for="exampleTextarea">ملاحظات</label>
-                            <textarea class="form-control" id="exampleTextarea" name="notes" rows="3"></textarea>
-                        </div>
-                    </div><br>
+                    <br>
 
                     <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                     <h5 class="card-title">المرفقات</h5>

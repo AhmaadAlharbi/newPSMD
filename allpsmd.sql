@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 19, 2022 at 07:01 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.1.2
+-- Host: localhost:3306
+-- Generation Time: Nov 07, 2022 at 06:20 AM
+-- Server version: 5.7.33
+-- PHP Version: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `allPSMD`
+-- Database: `allpsmd`
 --
 
 -- --------------------------------------------------------
@@ -114,7 +114,8 @@ INSERT INTO `engineers` (`id`, `user_id`, `section_id`, `local_department`, `are
 (79, 65, 2, 'no', '2', 0, '2022-09-07 06:28:05', '2022-09-07 06:28:05'),
 (80, 56, 2, 'no', '2', 0, '2022-09-07 06:28:17', '2022-09-07 06:28:17'),
 (81, 82, 2, 'no', '2', 0, '2022-09-07 06:28:28', '2022-09-07 06:28:28'),
-(82, 79, 2, 'no', '2', 0, '2022-09-07 06:28:38', '2022-09-07 06:28:38');
+(82, 79, 2, 'no', '2', 0, '2022-09-07 06:28:38', '2022-09-07 06:28:38'),
+(83, 1, 2, 'no', '1', 0, '2022-10-17 09:24:44', '2022-10-17 09:24:44');
 
 -- --------------------------------------------------------
 
@@ -18490,7 +18491,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -18508,7 +18509,7 @@ CREATE TABLE `gc_tasks` (
   `make` varchar(255) DEFAULT NULL,
   `contract_number` varchar(255) DEFAULT NULL,
   `contractor` varchar(255) DEFAULT NULL,
-  `notes` text DEFAULT NULL,
+  `notes` text,
   `eng_id` bigint(11) UNSIGNED DEFAULT NULL,
   `ref_book` varchar(255) DEFAULT NULL,
   `task_date` date DEFAULT NULL,
@@ -18523,8 +18524,10 @@ CREATE TABLE `gc_tasks` (
 --
 
 INSERT INTO `gc_tasks` (`id`, `refNum`, `section_id`, `station_name`, `control`, `make`, `contract_number`, `contractor`, `notes`, `eng_id`, `ref_book`, `task_date`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(37, NULL, 2, 'ww', 'JAHRA CONTROL CENTER', 'ww', 'www', 'ww', 'qwdqwd', 28, 'www', '2022-09-14', 1, 'pending', '2022-09-14 07:34:37', '2022-09-14 15:53:00'),
-(38, NULL, 2, 'WAFR-M', 'JABRIYA CONTROL CENTER', NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-15', 1, 'pending', '2022-09-15 09:29:45', '2022-09-15 09:29:45');
+(37, NULL, 2, 'ww', 'JAHRA CONTROL CENTER', 'ww', 'www', 'ww', 'qwdqwd', 28, 'www', '2022-09-14', 1, 'completed', '2022-09-14 07:34:37', '2022-09-14 15:53:00'),
+(38, NULL, 2, 'WAFR-M', 'JABRIYA CONTROL CENTER', NULL, NULL, NULL, NULL, 28, NULL, '2022-09-15', 1, 'pending', '2022-09-15 09:29:45', '2022-09-15 09:29:45'),
+(39, NULL, 2, 'DASM-A', 'TOWN CONTROL CENTER', 'dqdq', 'qddqd', 'dq', NULL, 38, 'dq', '2022-09-26', 1, 'pending', '2022-09-26 05:59:45', '2022-09-26 05:59:45'),
+(40, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-02', 1, 'pending', '2022-10-02 06:00:29', '2022-10-02 06:00:29');
 
 -- --------------------------------------------------------
 
@@ -18571,8 +18574,8 @@ CREATE TABLE `gc_task_details` (
   `id` int(11) NOT NULL,
   `task_id` bigint(11) UNSIGNED DEFAULT NULL,
   `section_id` bigint(11) UNSIGNED DEFAULT NULL,
-  `action_take` longtext DEFAULT NULL,
-  `notes` longtext DEFAULT NULL,
+  `action_take` longtext,
+  `notes` longtext,
   `status` varchar(255) DEFAULT NULL,
   `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
   `report_date` date DEFAULT NULL,
@@ -18659,11 +18662,32 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rs_tasks`
+--
+
+CREATE TABLE `rs_tasks` (
+  `id` int(11) NOT NULL,
+  `refNum` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `station_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `station_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `task_date` date DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
+  `notes` longtext COLLATE utf8_unicode_ci,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `eng_id` bigint(20) DEFAULT NULL,
+  `user` bigint(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -19477,6 +19501,14 @@ CREATE TABLE `tasks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip_number`, `equip_name`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
+(8, '22-10/1', 2, 2, NULL, 1, 'Auto reclosure', '11KV', NULL, NULL, '2022-10-20', 'K (17) - ABD-KOC F 5', NULL, 1, 'fgewefw', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-10-20 08:16:24', '2022-10-20 08:17:31'),
+(9, '22-10/9', 2, 2, NULL, 6, 'Auto reclosure', '400 KV', NULL, NULL, '2022-10-20', 'C(13) - SPARE 13', NULL, 44, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-10-20 08:16:47', '2022-10-20 08:16:47');
+
 -- --------------------------------------------------------
 
 --
@@ -19513,12 +19545,21 @@ CREATE TABLE `task_details` (
   `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `engineer_notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_take` longtext COLLATE utf8mb4_unicode_ci,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `report_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `task_details`
+--
+
+INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reasonOfUncompleted`, `eng_id`, `station_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
+(6, 8, '2022-10-20', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-10-20 08:16:24', '2022-10-20 08:16:24'),
+(7, 9, '2022-10-20', NULL, NULL, 44, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-10-20 08:16:47', '2022-10-20 08:16:47'),
+(8, 8, '2022-10-20', '2022-10-20', NULL, 1, 1, 2, NULL, 2, 'Auto reclosure', 'fgewefw', NULL, 'wefwfe', 'completed', '1', '2022-10-20 08:17:31', '2022-10-20 08:17:31');
 
 -- --------------------------------------------------------
 
@@ -19531,7 +19572,7 @@ CREATE TABLE `tr` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint(4) NOT NULL DEFAULT 0,
+  `admin` tinyint(4) NOT NULL DEFAULT '0',
   `shift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19550,7 +19591,7 @@ CREATE TABLE `tr_tasks` (
   `work_type_description` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19567,7 +19608,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT 1,
+  `is_admin` tinyint(1) DEFAULT '1',
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -19579,7 +19620,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `password`, `is_admin`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'GC', NULL, '2022-09-07 05:52:55', '2022-09-07 05:52:55'),
+(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'admin', NULL, '2022-09-07 05:52:55', '2022-09-07 05:52:55'),
 (28, 'Abdllah Suleiman Haddad', 'analhaddad@mew.gov.kw', NULL, 2, '$2y$10$6L5fYI59mxKMYKVXB18a7OtjE7VnSzu2Ge2YpGJUCfA0DME7cJUV.', 0, 'admin', NULL, NULL, NULL),
 (29, 'Abdul Rahman A A Al Kandari', 'aadalkanderi@mew.gov.kw', NULL, 2, '$2y$10$H.yfbb5iUxkGJ5Xx7NhSkOfoafcaUZt2WTt7Geh9MZqzhAKcVCgY2', 0, 'TS', NULL, NULL, NULL),
 (30, 'Abdullah Esam Yaqoub Al Shatti', 'aeyalshatti@mew.gov.kw', NULL, 2, '$2y$10$GDUNk.47Cjckj.EHIx17bOa6r1w4Z4KurErikOJdMFIEtmUS2fyvG', 0, 'TS', NULL, NULL, NULL),
@@ -19730,6 +19771,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `rs_tasks`
+--
+ALTER TABLE `rs_tasks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sections`
 --
 ALTER TABLE `sections`
@@ -19807,7 +19854,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `engineers`
 --
 ALTER TABLE `engineers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `equip`
@@ -19825,7 +19872,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `gc_tasks`
 --
 ALTER TABLE `gc_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `gc_task_attachments`
@@ -19858,6 +19905,12 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `rs_tasks`
+--
+ALTER TABLE `rs_tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
@@ -19873,37 +19926,37 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tr`
 --
 ALTER TABLE `tr`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- Constraints for dumped tables
