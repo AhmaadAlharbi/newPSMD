@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 07, 2022 at 06:20 AM
--- Server version: 5.7.33
--- PHP Version: 8.1.9
+-- Host: 127.0.0.1
+-- Generation Time: Nov 17, 2022 at 08:57 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18491,7 +18491,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -18509,7 +18509,7 @@ CREATE TABLE `gc_tasks` (
   `make` varchar(255) DEFAULT NULL,
   `contract_number` varchar(255) DEFAULT NULL,
   `contractor` varchar(255) DEFAULT NULL,
-  `notes` text,
+  `notes` text DEFAULT NULL,
   `eng_id` bigint(11) UNSIGNED DEFAULT NULL,
   `ref_book` varchar(255) DEFAULT NULL,
   `task_date` date DEFAULT NULL,
@@ -18574,8 +18574,8 @@ CREATE TABLE `gc_task_details` (
   `id` int(11) NOT NULL,
   `task_id` bigint(11) UNSIGNED DEFAULT NULL,
   `section_id` bigint(11) UNSIGNED DEFAULT NULL,
-  `action_take` longtext,
-  `notes` longtext,
+  `action_take` longtext DEFAULT NULL,
+  `notes` longtext DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
   `report_date` date DEFAULT NULL,
@@ -18636,7 +18636,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (41, '2021_12_09_061029_create_tasks_table', 2),
 (42, '2021_12_09_062438_create_task_attachments_table', 2),
 (43, '2021_12_09_062548_create_task_details_table', 2),
-(44, '2022_01_17_104123_create_tr_table', 2);
+(44, '2022_01_17_104123_create_tr_table', 2),
+(45, '2022_11_07_135953_create_sessions_table', 3);
 
 -- --------------------------------------------------------
 
@@ -18662,7 +18663,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -18681,7 +18682,7 @@ CREATE TABLE `rs_tasks` (
   `station_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
   `deadline` date DEFAULT NULL,
-  `notes` longtext COLLATE utf8_unicode_ci,
+  `notes` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `eng_id` bigint(20) DEFAULT NULL,
   `user` bigint(20) DEFAULT NULL,
@@ -18712,6 +18713,31 @@ INSERT INTO `sections` (`id`, `section_name`, `created_at`, `updated_at`) VALUES
 (3, 'Battery', NULL, NULL),
 (5, 'Transformers', NULL, NULL),
 (6, 'switchgear', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('3NbikwFdNbBCqEaOwvIL0oOk10WTEUngn5vEcSCT', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWUxkRDJmVmhzclZsRGtVN1kzQklGNHN3ZjdtRWtpOEVieUxQbmRleSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYWRtaW4vcXVlcnlfc2VjdGlvbl9pZD0yL2R1dHktdGFza3MiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1668595434),
+('7AIZWbm5T6BJzQvWaeFRYztcgbDE4weS9OC2EsB2', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVUNxRWxYRWJTUGh0ZUpUUmRRN2tFRlg4bXRUdGg4YkR2R2N2d1RLYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYWRtaW4vcXVlcnlfc2VjdGlvbl9pZD0yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1668659403),
+('ng5ywQqP2ulo85eyNbWY92KCSD1vYX8Xhh96E8dN', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSllIdVd6eFRFMzA1cWtKODg4NmdFcDFHOUZyWkdncUU4SFdIYmtoayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYWRtaW4vcXVlcnlfc2VjdGlvbl9pZD0yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1668660210),
+('qHfqBXun6aYHWVL6pWyOaQrPYeg8i6M2ziGIc8ZP', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZEx4WUQ3WVZZU2htSzhxaW95UWJWaVhCY3FHU3F5c2xOd29NV0d5YSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYWRtaW4vcXVlcnlfc2VjdGlvbl9pZD0yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1668670983);
 
 -- --------------------------------------------------------
 
@@ -19507,7 +19533,11 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip_number`, `equip_name`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
 (8, '22-10/1', 2, 2, NULL, 1, 'Auto reclosure', '11KV', NULL, NULL, '2022-10-20', 'K (17) - ABD-KOC F 5', NULL, 1, 'fgewefw', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-10-20 08:16:24', '2022-10-20 08:17:31'),
-(9, '22-10/9', 2, 2, NULL, 6, 'Auto reclosure', '400 KV', NULL, NULL, '2022-10-20', 'C(13) - SPARE 13', NULL, 44, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-10-20 08:16:47', '2022-10-20 08:16:47');
+(9, '22-10/9', 2, 2, NULL, 6, 'Auto reclosure', '400 KV', NULL, NULL, '2022-10-20', 'C(13) - SPARE 13', NULL, 44, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-10-20 08:16:47', '2022-10-20 08:16:47'),
+(10, '22-11/400', 2, 2, NULL, 1, 'mv reading wrong transformer', NULL, NULL, NULL, '2022-11-16', NULL, NULL, 1, NULL, 'dadadad', 'duty', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-16 07:57:49', '2022-11-16 07:57:49'),
+(11, '22-11/465', 2, 2, NULL, 4, 'Auto reclosure', NULL, NULL, NULL, '2022-11-16', NULL, NULL, 1, NULL, 'afafsfawfawsf', 'duty', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-16 08:18:59', '2022-11-16 08:18:59'),
+(12, '22-11/465', 2, 2, NULL, 4, 'Auto reclosure', NULL, NULL, NULL, '2022-11-16', NULL, NULL, 1, NULL, 'afafsfawfawsf', 'duty', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-16 08:19:15', '2022-11-16 08:19:15'),
+(13, '22-11/465', 2, 2, NULL, 4, 'Auto reclosure', NULL, NULL, NULL, '2022-11-16', NULL, NULL, 1, NULL, 'afafsfawfawsf', 'duty', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-16 08:20:14', '2022-11-16 08:20:14');
 
 -- --------------------------------------------------------
 
@@ -19545,7 +19575,7 @@ CREATE TABLE `task_details` (
   `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `engineer_notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_take` longtext COLLATE utf8mb4_unicode_ci,
+  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `report_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -19559,7 +19589,8 @@ CREATE TABLE `task_details` (
 INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reasonOfUncompleted`, `eng_id`, `station_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
 (6, 8, '2022-10-20', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-10-20 08:16:24', '2022-10-20 08:16:24'),
 (7, 9, '2022-10-20', NULL, NULL, 44, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-10-20 08:16:47', '2022-10-20 08:16:47'),
-(8, 8, '2022-10-20', '2022-10-20', NULL, 1, 1, 2, NULL, 2, 'Auto reclosure', 'fgewefw', NULL, 'wefwfe', 'completed', '1', '2022-10-20 08:17:31', '2022-10-20 08:17:31');
+(8, 8, '2022-10-20', '2022-10-20', NULL, 1, 1, 2, NULL, 2, 'Auto reclosure', 'fgewefw', NULL, 'wefwfe', 'completed', '1', '2022-10-20 08:17:31', '2022-10-20 08:17:31'),
+(9, 13, '2022-11-16', '2022-11-16', NULL, 1, 4, 2, NULL, 2, 'Auto reclosure', NULL, 'afafsfawfawsf', NULL, 'Duty', '0', '2022-11-16 08:20:14', '2022-11-16 08:20:14');
 
 -- --------------------------------------------------------
 
@@ -19572,7 +19603,7 @@ CREATE TABLE `tr` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint(4) NOT NULL DEFAULT '0',
+  `admin` tinyint(4) NOT NULL DEFAULT 0,
   `shift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19591,7 +19622,7 @@ CREATE TABLE `tr_tasks` (
   `work_type_description` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19608,7 +19639,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT '1',
+  `is_admin` tinyint(1) DEFAULT 1,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -19783,6 +19814,14 @@ ALTER TABLE `sections`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
 -- Indexes for table `stations`
 --
 ALTER TABLE `stations`
@@ -19896,7 +19935,7 @@ ALTER TABLE `main_alarms`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -19926,7 +19965,7 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
@@ -19938,7 +19977,7 @@ ALTER TABLE `task_attachments`
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tr`
