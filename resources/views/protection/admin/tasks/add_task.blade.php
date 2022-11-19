@@ -140,40 +140,34 @@
 </div>
 @endif
 <!-- row -->
-<div class="row">
+<div id="app" class="row">
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data"
-                    autocomplete="off">
+                <form action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                     {{ csrf_field() }}
                     {{-- 1 --}}
                     <div class="row m-3">
                         <div class="col-lg-4">
                             <label for="inputName" class="control-label">رقم التقرير</label>
-                            <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
-                                required value="{{ date('y-m') }}/{{ $task_id }}" readonly>
+                            <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title="" required value="{{ date('y-m') }}/{{ $task_id }}" readonly>
                             <input type="hidden" name="task_id" value="{{ $task_id }}">
                         </div>
                         <div class="col-lg-4">
                             <label for="ssname">يرجى اختيار اسم المحطة</label>
-                            <input list="ssnames" class="form-control" value="" name="station_code" id="ssname"
-                                onchange="getStation(),getEngineer(),getEquip()" type="search">
+                            <input list="ssnames" class="form-control" value="" name="station_code" id="ssname" onchange="getStation(),getEngineer(),getEquip()" type="search">
                             <datalist id="ssnames">
                                 @foreach ($stations as $station)
                                 <option value="{{ $station->SSNAME }}">
                                     @endforeach
                             </datalist>
-                            <input id="staion_full_name" name="staion_full_name"
-                                class="text-center d-none p-3 form-control" readonly>
-                            <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control"
-                                readonly>
-                            <input type="hidden" id="station_id" name="ssnameID">
+                            <input id="staion_full_name" name="staion_full_name" class="text-center d-none p-3 form-control" readonly>
+                            <input id="control_name" name="control_name" class="text-center d-none  p-3 form-control" readonly>
+                            <input type="text" id="station_id" name="ssnameID">
                         </div>
                         <div class=" col-lg-4">
                             <label>تاريخ ارسال المهمة</label>
-                            <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD"
-                                type="text" value="{{ date('Y-m-d') }}" required>
+                            <input class="form-control fc-datepicker" name="task_Date" placeholder="YYYY-MM-DD" type="text" value="{{ date('Y-m-d') }}" required>
                         </div>
                     </div>
 
@@ -192,33 +186,27 @@
                             <h6 class="text-warning">Work Type</h6>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
-                                       value="Clearance">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1" value="Clearance">
                                 <label class="form-check-label  m-2" for="inlineRadio1">Clearance</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
-                                       value="Maintenance">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2" value="Maintenance">
                                 <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
-                                       value="Troubleshooting">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3" value="Troubleshooting">
                                 <label class="form-check-label m-2" for="inlineRadio3">Inspection</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
-                                       value="outage">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4" value="outage">
                                 <label class="form-check-label m-2" for="inlineRadio4">outage</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
-                                       value="Installation">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5" value="Installation">
                                 <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
-                                       value="Other">
+                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6" value="Other">
                                 <label class="form-check-label m-2" for="inlineRadio6">other</label>
                             </div>
                         </div>
@@ -268,14 +256,12 @@
                                 </option>
                                 <option value="other">other</option>
                             </select>
-                            <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text"
-                                class=" invisible form-control" onfocus=this.value=''>
+                            <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text" class=" invisible form-control" onfocus=this.value=''>
                         </div>
                         <div class="col-lg-6">
                             <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage Level</label>
 
-                            <select name="voltage_level" class="form-control" id="equipVoltage"
-                                onchange="getEquipNumber()">
+                            <select name="voltage_level" class="form-control" id="equipVoltage" onchange="getEquipNumber()">
                                 <option>-</option>
                             </select>
                             <select id="voltageLevel" class="form-control d-none">
@@ -302,8 +288,7 @@
 
                         <div class="col-lg-6">
                             <label for="equip" class="control-label m-1">equip Number</label>
-                            <select type="text" id="equipNumber" name="equip_number" class="form-control"
-                                >
+                            <select type="text" id="equipNumber" name="equip_number" class="form-control">
                                 <option value="">-</option>
                             </select>
                             <input type="text" class="form-control d-none" id="inputEquipNumber">
@@ -312,8 +297,7 @@
                         <div class="col-lg-6 d-none">
                             <label for="equip" class="control-label m-1">equip name</label>
                             <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
-                            <input style="direction:ltr;" type="text" id="equipName" class="form-control "
-                                name="equip_name">
+                            <input style="direction:ltr;" type="text" id="equipName" class="form-control " name="equip_name">
                         </div>
 
                         <div class="col-lg-12 mt-2">
@@ -325,8 +309,7 @@
                     <div class="row m-3">
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">المنطقة</label>
-                            <select name="area" id="areaSelect" class="form-control areaSelect"
-                                onchange="nccEngineers()">
+                            <select name="area" id="areaSelect" class="form-control areaSelect" onchange="nccEngineers()">
                                 <!--placeholder-->
                                 <!-- <option value="1"> المنطقة الشمالية</option>
                                                                                             <option value="2"> المنطقة الجنوبية</option> -->
@@ -336,8 +319,7 @@
 
                         <div class="col-lg-3">
                             <label for="inputName" class="control-label">shif</label>
-                            <select name="shift" id="shiftSelect" class="form-control SlectBox"
-                                onchange="getEngineersShift()">
+                            <select name="shift" id="shiftSelect" class="form-control SlectBox" onchange="getEngineersShift()">
                                 <!--placeholder-->
                                 <option value="0"> صباحاً </option>
                                 <option value="1"> مساءً </option>
@@ -347,8 +329,7 @@
 
                         <div class="col-6">
                             <label for="inputName" class="control-label">اسم المهندس</label>
-                            <select id="eng_name" name="eng_name" class="form-control engineerSelect"
-                                onchange="getEngineerEmail()">
+                            <select id="eng_name" name="eng_name" class="form-control engineerSelect" onchange="getEngineerEmail()">
                             </select>
 
                         </div>
@@ -374,13 +355,11 @@
                     <h5 class="card-title">المرفقات</h5>
 
                     <div class="col-sm-12 col-md-12">
-                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                            data-height="70" />
+                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
                     </div><br>
 
                     <div class="col-sm-12 col-md-12">
-                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                            data-height="70" />
+                        <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
 
                     </div><br>
                     <br>
@@ -393,24 +372,20 @@
                     </div>
                     <div id="attachmentFile" class="d-none">
                         <div class="col-sm-12 col-md-12">
-                            <input type="file" name="pic[]" class="dropify"
-                                accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                            <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
                         </div><br>
                         <div class="col-sm-12 col-md-12">
-                            <input type="file" name="pic[]" class="dropify"
-                                accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                            <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
                         </div><br>
                         <div class="col-sm-12 col-md-12">
-                            <input type="file" name="pic[]" class="dropify"
-                                accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                            <input type="file" name="pic[]" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
                         </div><br>
                     </div>
 
 
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal">ارسال البيانات</button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">ارسال البيانات</button>
                     </div>
 
 
@@ -421,8 +396,7 @@
 
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -450,11 +424,12 @@
 @section('js')
 <script>
     var date = $('.fc-datepicker').datepicker({
-            dateFormat: 'yy-mm-dd'
-        }).val();
+        dateFormat: 'yy-mm-dd'
+    }).val();
 </script>
 
 <!-- Internal Select2 js-->
+
 <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 <!--Internal Fileuploads js-->
 <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
@@ -481,4 +456,6 @@
 
 <!--PROTECTION JS fiLE-->
 <script type="text/javascript" src="{{ URL::asset('js/protection/app.js') }}"></script>
+
+
 @endsection

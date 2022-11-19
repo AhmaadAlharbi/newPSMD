@@ -258,12 +258,12 @@ class ProtectionController extends Controller
                 $attachments->id_task = $task_id;
                 $attachments->save();
             }
-            //to send email
-            Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
+            // //to send email
+            // Notification::route('mail', $engineer_email)
+            //     ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
         } else {
-            Notification::route('mail', $engineer_email)
-                ->notify(new AddTask($task_id, $request->station_code, $fromSection));
+            //     Notification::route('mail', $engineer_email)
+            //         ->notify(new AddTask($task_id, $request->station_code, $fromSection));
         }
 
 

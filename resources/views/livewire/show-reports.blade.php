@@ -25,7 +25,8 @@
 
                     </ins></p>
                 <p class=" bg-white text-secondary font-weight-bold text-center">Nature of fault :
-                    {{$task_detail->tasks->problem}}</p>
+                    {{$task_detail->tasks->problem}}
+                </p>
                 @if(is_null($task_detail->action_take))
                 <p class="p-3 mb-2 bg-light text-dark text-center">Action Take :
                     {{$task_detail->reasonOfUncompleted}}
@@ -38,40 +39,30 @@
                 @switch(Auth::user()->section_id)
                 {{--edara--}}
                 @case(1)
-                <a class="btn btn-info mt-2 text-center"
-                    href="{{route('edara.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-                <a class="btn btn-outline-dark mt-2 text-center"
-                    href="{{route('edara.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                <a class="btn btn-info mt-2 text-center" href="{{route('edara.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center" href="{{route('edara.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                 @break
                 @case(2)
                 {{--protection--}}
-                <a class="btn btn-info mt-2 text-center"
-                    href="{{route('protection.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-                <a class="btn btn-outline-dark mt-2 text-center"
-                    href="{{route('protection.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                <a class="btn btn-info mt-2 text-center" href="{{route('protection.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center" href="{{route('protection.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                 @break
                 @case(3)
                 {{--battery--}}
-                <a class="btn btn-info mt-2 text-center"
-                    href="{{route('battery.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-                <a class="btn btn-outline-dark mt-2 text-center"
-                    href="{{route('battery.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                <a class="btn btn-info mt-2 text-center" href="{{route('battery.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center" href="{{route('battery.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                 @break
                 @case(5)
-                   {{--Transformers--}}
-                   <a class="btn btn-info mt-2 text-center"
-                   href="{{route('Transformers.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-               <a class="btn btn-outline-dark mt-2 text-center"
-                   href="{{route('Transformers.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                {{--Transformers--}}
+                <a class="btn btn-info mt-2 text-center" href="{{route('Transformers.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center" href="{{route('Transformers.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                 @break
                 @case(6)
-                 {{--Transformers--}}
-                 <a class="btn btn-info mt-2 text-center"
-                 href="{{route('switch.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
-             <a class="btn btn-outline-dark mt-2 text-center"
-                 href="{{route('switch.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
+                {{--Transformers--}}
+                <a class="btn btn-info mt-2 text-center" href="{{route('switch.veiwReport',['id'=>$task_detail->task_id])}}">Report</a>
+                <a class="btn btn-outline-dark mt-2 text-center" href="{{route('switch.admin.taskDetails',['id'=>$task_detail->task_id])}}">Details</a>
                 @break
-                @endswitch    
+                @endswitch
             </li>
         </ul>
 

@@ -264,6 +264,17 @@ const getEquip = async () => {
         equipNumber.classList.add("d-none");
     }
 };
+// UPDATE `equip` SET `voltage_level`='11KV' WHERE voltage_level = '11 KV ' and station_id = 18
+// SELECT SSNAME
+// FROM stations
+// WHERE id NOT IN ( SELECT station_id FROM equip );
+
+//
+
+// SELECT t1.SSNAME
+// FROM stations t1
+// LEFT JOIN equip t2 ON t2.station_id = t1.id
+// WHERE t2.station_id IS NULL
 const getEquipNumber = async () => {
     equipNumber.innerText = null;
     let station_id = stationIdInput.value;
@@ -279,7 +290,8 @@ const getEquipNumber = async () => {
     console.log(JSON.stringify(data2));
     for (let i = 0; i < data2.length; i++) {
         let equip_number_option = document.createElement("option");
-        equip_number_option.text = data2[i].equip_number + ' - ' + data2[i].equip_name;
+        equip_number_option.text =
+            data2[i].equip_number + " - " + data2[i].equip_name;
         equipNumber.add(equip_number_option);
         // equipName.value = data2[0].equip_number + ' - ' + data2[0].equip_name;
     }

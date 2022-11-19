@@ -19,24 +19,24 @@
                 <label for="" class="mt-4">عرض المهمات حسب </label>
                 <form action="{{route('dashboardControl.admin.protection')}}" method="get" onchange="this.form.submit()">
                     @csrf
-         <div class="row">
-             <div class="col-10">
-                 <select name="control" id="control" class="form-control">
-                     <!--placeholder-->
-                     <option >اختر التحكم لعرض المهام والتقارير</option>
-                     <option value="SHUAIBA CONTROL CENTER">تحكم الشعيبة</option>
-                     <option value="JABRIYA CONTROL CENTER">تحكم الجابرية  </option>
-                     <option value="JAHRA CONTROL CENTER">تحكم الجهراء</option>
-                     <option value="TOWN CONTROL CENTER">تحكم المدينة</option>
-                     <option value="NATIONAL CONTROL CENTER"> تحكم الوطني</option>
+                    <div class="row">
+                        <div class="col-10">
+                            <select name="control" id="control" class="form-control">
+                                <!--placeholder-->
+                                <option>اختر التحكم لعرض المهام والتقارير</option>
+                                <option value="SHUAIBA CONTROL CENTER">تحكم الشعيبة</option>
+                                <option value="JABRIYA CONTROL CENTER">تحكم الجابرية </option>
+                                <option value="JAHRA CONTROL CENTER">تحكم الجهراء</option>
+                                <option value="TOWN CONTROL CENTER">تحكم المدينة</option>
+                                <option value="NATIONAL CONTROL CENTER"> تحكم الوطني</option>
 
-                 </select>
-             </div>
-             <div class="col-2">
-                 <input class="btn btn-outline-primary" type="submit" value="ابحث">
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <input class="btn btn-outline-primary" type="submit" value="ابحث">
 
-             </div>
-         </div>
+                        </div>
+                    </div>
                 </form>
 
             </div>
@@ -149,8 +149,7 @@
         <div class="card overflow-hidden sales-card bg-danger-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
-                    <h6 class="mb-3 tx-16 text-white"><a class="text-white"
-                            href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
+                    <h6 class="mb-3 tx-16 text-white"><a class="text-white" href="{{route('protection.admin.pendingTasks')}}">المهمات الغير
                             منجزة</a></h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -175,8 +174,7 @@
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 
                 <div class="">
-                    <h6 class="mb-3 tx-16 "><a class="text-white"
-                            href="{{route('protection.admin.completedTasks')}}">المهمات
+                    <h6 class="mb-3 tx-16 "><a class="text-white" href="{{route('protection.admin.completedTasks')}}">المهمات
                             المنجزة</a> </h6>
                 </div>
                 <div class="pb-0 mt-0">
@@ -229,7 +227,9 @@
         </div>
     </div>
     <div class="col-xl-6 col-lg-12 col-md-12 col-xm-12">
-        <div class="card overflow-hidden sales-card bg-secondary">
+        <div class="card overflow-hidden sales-card bg-purple-gradient
+
+">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                 <div class="">
                     <h6 class="mb-3 tx-16 text-white">
@@ -268,12 +268,9 @@
     {{-- المهمات الصادرة --}}
     <div class="col-xl-4 col-md-12 col-lg-6">
         <div class="btn-group " role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary tablinks" id="btn-local"
-                onclick="showTab(event, 'div-local')">المهمات المنشئة</button>
-            <button type="button" class="btn btn-secondary tablinks" id="btn-incoming"
-                onclick="showTab(event, 'div-incoming')">المهمات الواردة</button>
-            <button type="button" class="btn btn-secondary tablinks" id="btn-common"
-                onclick="showTab(event, 'div-common')">المهمات الصادرة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-local" onclick="showTab(event, 'div-local')">المهمات المنشئة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-incoming" onclick="showTab(event, 'div-incoming')">المهمات الواردة</button>
+            <button type="button" class="btn btn-secondary tablinks" id="btn-common" onclick="showTab(event, 'div-common')">المهمات الصادرة</button>
         </div>
 
 

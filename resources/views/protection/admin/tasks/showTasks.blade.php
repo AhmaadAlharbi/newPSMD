@@ -33,11 +33,11 @@
 @if (session()->has('delete_invoice'))
 <script>
     window.onload = function() {
-    notif({
-        msg: "تم حذف المهمة بنجاح",
-        type: "success"
-    })
-}
+        notif({
+            msg: "تم حذف المهمة بنجاح",
+            type: "success"
+        })
+    }
 </script>
 @endif
 
@@ -45,11 +45,11 @@
 @if (session()->has('Status_Update'))
 <script>
     window.onload = function() {
-    notif({
-        msg: "تم تحديث حالة الدفع بنجاح",
-        type: "success"
-    })
-}
+        notif({
+            msg: "تم تحديث حالة الدفع بنجاح",
+            type: "success"
+        })
+    }
 </script>
 @endif
 
@@ -85,8 +85,7 @@
                         @endphp
                         <tr>
                             <td>{{$i}}</td>
-                            <td><a
-                                    href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
+                            <td><a href="{{route('protection.admin.taskDetails',['id'=>$task->id])}}">{{$task->refNum}}</a>
                             </td>
                             <td>{{$task->station->SSNAME}}</td>
 
@@ -128,13 +127,10 @@
 
                             <td>
                                 <div class="dropdown">
-                                    <button aria-expanded="false" aria-haspopup="true"
-                                        class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-                                        type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
+                                    <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary btn-sm" data-toggle="dropdown" type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                     <div class="dropdown-menu tx-13">
                                         @if($task->status ==="duty")
-                                        <a class="dropdown-item"
-                                            href="{{route('protection.printDutyReport',['id'=>$task->id])}}">
+                                        <a class="dropdown-item" href="{{route('protection.printDutyReport',['id'=>$task->id])}}">
                                             التقرير
                                         </a>
 
@@ -142,33 +138,26 @@
 
                                         @if($task->status ==="completed")
 
-                                        <a class="dropdown-item"
-                                            href="{{route('protection.veiwReport',['id'=>$task->id])}}"><i
-                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                        <a class="dropdown-item" href="{{route('protection.veiwReport',['id'=>$task->id])}}"><i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                              التقرير
                                         </a>
 
                                         {{-- <a class=" dropdown-item btn btn-outline-info "
                                             href="{{url('generate-pdf')}}/{{$task->id}}">
-                                            <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
+                                        <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
                                         </a>--}}
                                         @else
 
-                                        <a class="dropdown-item"
-                                            href="{{route('protection.updateTask',['id'=>$task->id])}}">
+                                        <a class="dropdown-item" href="{{route('protection.updateTask',['id'=>$task->id])}}">
                                             تعديل
                                         </a>
 
 
-                                        <a class="dropdown-item"
-                                            href="{{route('protection.changeSectionView',['id'=>$task->id])}}"><i
-                                                class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                        <a class="dropdown-item" href="{{route('protection.changeSectionView',['id'=>$task->id])}}"><i class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
                                             تحويل لقسم آخر
                                         </a>
                                         @endif
-                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $task->id }}"
-                                            data-toggle="modal" data-target="#delete_invoice"><i
-                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $task->id }}" data-toggle="modal" data-target="#delete_invoice"><i class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                             المهمة
                                         </a>
                                     </div>
@@ -189,8 +178,7 @@
 </div>
 
 <!-- حذف المهمة -->
-<div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -251,20 +239,20 @@
 
 <script>
     $('#delete_invoice').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget)
-    var invoice_id = button.data('invoice_id')
-    var modal = $(this)
-    modal.find('.modal-body #invoice_id').val(invoice_id);
-})
+        var button = $(event.relatedTarget)
+        var invoice_id = button.data('invoice_id')
+        var modal = $(this)
+        modal.find('.modal-body #invoice_id').val(invoice_id);
+    })
 </script>
 
 <script>
     $('#Transfer_invoice').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget)
-    var invoice_id = button.data('invoice_id')
-    var modal = $(this)
-    modal.find('.modal-body #invoice_id').val(invoice_id);
-})
+        var button = $(event.relatedTarget)
+        var invoice_id = button.data('invoice_id')
+        var modal = $(this)
+        modal.find('.modal-body #invoice_id').val(invoice_id);
+    })
 </script>
 
 

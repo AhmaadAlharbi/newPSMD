@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+
 // Route::get('/dashboard/user', function () {
 //     return view('protection.user.dashboard');
 // })->middleware(['auth'])->name('dashboard.user');
