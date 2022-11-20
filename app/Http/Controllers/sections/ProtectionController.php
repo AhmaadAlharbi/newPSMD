@@ -759,10 +759,15 @@ class ProtectionController extends Controller
             return view('protection.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
         } else {
             $tasks = TaskDetails::where('section_id', '2')
+                //search by stations
                 ->where('station_id', $station)
                 ->whereBetween('task_date', [$start_date, $end_date])
+                //search by engineers
                 ->orwhere('eng_id', $engineer)
                 ->whereBetween('task_date', [$start_date, $end_date])
+                ->where('section_id', '2')
+                //search by only dates
+                ->orwhereBetween('task_date', [$start_date, $end_date])
                 ->where('section_id', '2')
                 ->get();
             return view('protection.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
