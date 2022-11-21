@@ -362,6 +362,7 @@ class ProtectionController extends Controller
     }
     public function showArchive()
     {
+
         $tasks = TaskDetails::where('section_id', 2)->get();
         $stations = Station::all();
         $engineers = DB::table('engineers')
@@ -369,8 +370,8 @@ class ProtectionController extends Controller
             ->select('users.name', 'users.id', 'users.email', 'users.section_id', 'engineers.area', 'engineers.shift')
             ->where('users.section_id', 2)
             ->get();
-
-        return view('protection.admin.tasks.archive', compact('tasks', 'stations', 'engineers'));
+        $equip_name = Task::where('section_id', 2)->pluck('equip_number');
+        return view('protection.admin.tasks.archive', compact('tasks', 'stations', 'engineers', 'equip_name'));
     }
 
     public function userArchive()
@@ -762,6 +763,7 @@ class ProtectionController extends Controller
                 //search by stations
                 ->where('station_id', $station)
                 ->whereBetween('task_date', [$start_date, $end_date])
+                ->where()
                 //search by engineers
                 ->orwhere('eng_id', $engineer)
                 ->whereBetween('task_date', [$start_date, $end_date])

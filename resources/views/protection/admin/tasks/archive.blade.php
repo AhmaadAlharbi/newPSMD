@@ -92,27 +92,11 @@
             <form action="{{route('protection.staionsByDates')}}">
                 @csrf
                 <div class="row">
-                    <div class="col-12 my-2">
-                        <label for="">المحطة</label>
-                        <input list="ssnames" class="form-control" value="" name="station_code" id="ssname" onchange="getStation()" type="search">
-                        <datalist id="ssnames">
-                            @foreach ($stations as $station)
-                            <option value="{{ $station->SSNAME }}">
-                                @endforeach
-                        </datalist>
-                        <input type="hidden" id="station_id" name="ssnameID">
-                        <script>
-                            function getStation() {
-                                const stationID = document.getElementById('station_id');
-                                const ssname = document.getElementById('ssname');
-
-                                stationID.value = ssname.value;
-                            }
-                        </script>
-                    </div>
+                    @livewire('station-equip')
                     <div class="col-12 my-2">
                         <label for="">المهندس</label>
-                        <input list="engineers" class="form-control" value="" name="engineer" id="engineer" onchange="getEngineer()" type="search">
+                        <input list="engineers" class="form-control" value="" name="engineer" id="engineer"
+                            onchange="getEngineer()" type="search">
                         <datalist id="engineers">
                             @foreach ($engineers as $engineer)
                             <option value="{{ $engineer->name }}">
@@ -130,11 +114,13 @@
 
                     <div class="col">
                         من
-                        <input type="date" data-date="" data-date-format="DD/MM/YYYY" class="form-control" name="task_Date" value="">
+                        <input type="date" data-date="" data-date-format="DD/MM/YYYY" class="form-control"
+                            name="task_Date" value="">
                     </div>
                     <div class="col">
                         الى
-                        <input type="date" data-date="" data-date-format="DD/MM/YYYY" class="form-control" name="task_Date2" value="">
+                        <input type="date" data-date="" data-date-format="DD/MM/YYYY" class="form-control"
+                            name="task_Date2" value="">
                     </div>
                 </div>
 
@@ -144,7 +130,8 @@
 
             <input type="text" data-date="" class="form-control" name="task_Date" data-date-format="DD/MM/YYYY"
                 value="{{ date('Y-m-d') }}">
-            <input type="text" data-date="" class="form-control" name="task_Date2" data-date-format="DD/MM/YYYY" value="{{ date('Y-m-d') }}"> --}}
+            <input type="text" data-date="" class="form-control" name="task_Date2" data-date-format="DD/MM/YYYY"
+                value="{{ date('Y-m-d') }}"> --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -189,26 +176,35 @@
 
                             <td>
                                 <div class="dropdown">
-                                    <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary btn-sm" data-toggle="dropdown" type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
+                                    <button aria-expanded="false" aria-haspopup="true"
+                                        class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
+                                        type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                     <div class="dropdown-menu tx-13">
-                                        <a class="dropdown-item" href="{{ route('protection.changeSectionView', ['id' => $task->task_id]) }}"><i class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
+                                        <a class="dropdown-item"
+                                            href="{{ route('protection.changeSectionView', ['id' => $task->task_id]) }}"><i
+                                                class="text-warning fas fa-fast-forward"></i>&nbsp;&nbsp;
                                             تحويل لقسم آخر
                                         </a>
                                         @if ($task->status === 'completed')
-                                        <a class="dropdown-item" href="{{ route('protection.veiwReport', ['id' => $task->task_id]) }}"><i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                        <a class="dropdown-item"
+                                            href="{{ route('protection.veiwReport', ['id' => $task->task_id]) }}"><i
+                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                             التقرير
                                         </a>
 
                                         {{-- <a class=" dropdown-item btn btn-outline-info "
                                             href="{{url('generate-pdf')}}/{{$task->id}}">
-                                        <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
+                                            <i class="text-info fas fa-download"></i>&nbsp;&nbsp; تحميل
                                         </a> --}}
                                         @else
-                                        <a class="dropdown-item" href="{{ route('protection.updateTask', ['id' => $task->task_id]) }}">
+                                        <a class="dropdown-item"
+                                            href="{{ route('protection.updateTask', ['id' => $task->task_id]) }}">
                                             تعديل
                                         </a>
                                         @endif
-                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $task->task_id }}" data-toggle="modal" data-target="#delete_invoice"><i class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                        <a class="dropdown-item" href="#" data-invoice_id="{{ $task->task_id }}"
+                                            data-toggle="modal" data-target="#delete_invoice"><i
+                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                             المهمة
                                         </a>
                                     </div>
@@ -229,7 +225,8 @@
 </div>
 
 <!-- حذف المهمة -->
-<div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
