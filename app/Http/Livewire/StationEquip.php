@@ -42,6 +42,8 @@ class StationEquip extends Component
     }
     public function getEquip()
     {
+        sleep(1);
+
         if ($this->selectedVoltage !== '-1') {
 
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();

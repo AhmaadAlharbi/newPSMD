@@ -140,6 +140,9 @@ class ProtectionController extends Controller
     //// start front END functions
     public function add_task()
     {
+
+        // return (string) User::where('name', $user_name)->first();
+
         if (isset(Task::latest()->first()->id)) {
             $task_id = Task::latest()->first()->id;
             $task_id++;
