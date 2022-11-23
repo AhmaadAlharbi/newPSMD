@@ -1,19 +1,22 @@
 <div>
     <div class="text-center ">
         <label for=" ssname">يرجى اختيار اسم المحطة</label>
-        <input list="ssnames" wire:change="getStationInfo"
-            class="form-control  {{$stationDetails && $selectedStation !== null ? " is-valid" : " is-invalid" }}"
-            wire:model="selectedStation" name="station_code" id="ssname" type="search">
+        @if($selectedStation == null)
+
+        <input list="ssnames" wire:change="getStationInfo" class="form-control " wire:model="selectedStation"
+            name="station_code" id="ssname" type="search">
+        @else
+        <input list="ssnames" wire:change="getStationInfo" class="form-control  {{$stationDetails  ? " is-valid"
+            : " is-invalid" }}" wire:model="selectedStation" name="station_code" id="ssname" type="search">
+        @endif
         <datalist id="ssnames">
             @foreach ($stations as $station)
             <option value="{{ $station->SSNAME }}">
                 @endforeach
         </datalist>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-        <div class="invalid-feedback">
-            no data
+
+        <div class="invalid-feedback ">
+            <p class="h6">Please select the station from the list or contact admins to add a new station</p>
         </div>
         @isset($stationDetails)
         <div class="card bg-gray-100 border

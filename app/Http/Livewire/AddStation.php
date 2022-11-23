@@ -35,10 +35,12 @@ class AddStation extends Component
     }
     public function getStationInfo()
     {
+
         $this->area = 0;
         $this->engineerEmail = '';
         $this->selectedVoltage = '';
         $this->selectedEquip = '';
+        $this->selectedEngineer = '';
         $this->stationDetails = Station::where('SSNAME', $this->selectedStation)->first();
         if ($this->stationDetails !== null) {
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
