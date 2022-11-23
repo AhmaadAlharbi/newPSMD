@@ -79,6 +79,8 @@
         </select>
     </div>
     @endisset
-
+    @if(Route::is('users.show') )
+    // true
+    @endif
 
 </div>
