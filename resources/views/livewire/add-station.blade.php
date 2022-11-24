@@ -67,8 +67,10 @@
             </div>
             <div class="col-12">
                 <label for="main_alarm" class="control-label m-3">Main Alarm</label>
-                <select name="mainAlarm" id="main_alarm" class="form-control">
+                <select wire:model="main_alarm" wire:change="getEquip" name="mainAlarm" id="main_alarm"
+                    class="form-control">
                     <!--placeholder-->
+                    <option value="-">-</option>
                     <option value="Auto reclosure">Auto reclosure</option>
                     <option value="Flag Relay Replacement">Flag Relay Replacement </option>
                     <option value="Protection Clearance feeder">Protection Clearance feeder</option>
@@ -113,6 +115,7 @@
                 <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3" name="equip_name"
                     id="">
                     <option value="-1">Please select Voltage</option>
+                    {{-- <option value="{{$selectedVoltage}}">{{$selectedVoltage}}</option> --}}
                     @foreach($voltage as $v)
                     <option value="{{$v}}">{{$v}}</option>
                     @endforeach

@@ -140,6 +140,7 @@ class ProtectionController extends Controller
     //// start front END functions
     public function add_task()
     {
+        // return (string)  Equip::where('station_id', 1)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('voltage_level');
 
         // return (string) User::where('name', $user_name)->first();
 
@@ -214,6 +215,11 @@ class ProtectionController extends Controller
 
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'station_name' => 'required',
+        ]);
+
         //chekc if ref Num in database or not
         $task_id_count = Task::where('id', $request->task_id)->count();
         $refNum =   $request->refNum;
