@@ -144,8 +144,8 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data"
-                    autocomplete="off">
+                {{-- action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data" --}}
+                <div>
                     {{ csrf_field() }}
                     {{-- 1 --}}
                     <div class="row m-5">
@@ -194,63 +194,7 @@
                         </div>
                         <div class="col-lg-6  h-100 mt-5">
                             @livewire('add-station')
-                            <label for="" class="mt-2">نوع المهمة</label>
-                            <select name="" id="" class="form-control">
-                                <option value="">-</option>
-                                <option value="Clearance">Clearance</option>
-                                <option value="Maintenance">Maintenance</option>
-                                <option value="Inspection">Inspection</option>
-                                <option value="outage">outage</option>
-                                <option value="Installation">Installation</option>
-                                <option value="other">other</option>
-                            </select>
-                            <label for="problem" class="control-label m-1"> Nature of Fault</label>
-                            <textarea list="problems" class="form-control " rows="3" name="problem"
-                                id="problem"></textarea>
-                            <label for="exampleTextarea">ملاحظات</label>
-                            <textarea class="form-control" id="exampleTextarea" name="notes" rows="3"></textarea>
-                            <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
-                            <h5 class="card-title">المرفقات</h5>
 
-                            <div class="col-sm-12 col-md-12">
-                                <input type="file" name="pic[]" class="dropify"
-                                    accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-                            </div><br>
-
-                            <div class="col-sm-12 col-md-12">
-                                <input type="file" name="pic[]" class="dropify"
-                                    accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-
-                            </div><br>
-                            <br>
-                            <div class="text-center mb-3">
-                                <button id="showAttachment" class="btn btn-outline-info">اضغط لإضافة المزيد من
-                                    المرفقات</button>
-                                <button id="hideAttachment" class="btn d-none btn-outline-info">اضغط  لإخفاء المزيد من
-                                    المرفقات</button>
-
-                            </div>
-                            <div id="attachmentFile" class="d-none">
-                                <div class="col-sm-12 col-md-12">
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-                                </div><br>
-                                <div class="col-sm-12 col-md-12">
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-                                </div><br>
-                                <div class="col-sm-12 col-md-12">
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-                                </div><br>
-                            </div>
-
-
-
-                            <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#exampleModal">ارسال البيانات</button>
-                            </div>
                         </div>
 
                     </div>
@@ -406,7 +350,7 @@
 
 
 
-                </form>
+                </div>
             </div>
 
         </div>

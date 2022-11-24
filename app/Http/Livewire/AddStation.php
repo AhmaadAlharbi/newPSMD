@@ -25,7 +25,9 @@ class AddStation extends Component
     public $duty = false;
     public $main_alarm;
     protected $listeners = ['callEngineer' => 'getEngineer'];
-
+    protected $rules = [
+        'selectedStation' => 'required',
+    ];
     public function mount()
     {
         $this->stations = Station::all();
@@ -64,17 +66,20 @@ class AddStation extends Component
         if ($this->selectedVoltage !== '-1') {
             $this->voltage = [];
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
-
             switch ($this->main_alarm) {
                 case ('General Alarm 11KV'):
                     $this->voltage = [];
                     array_push($this->voltage, "11KV");
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
                     break;
                 case ('Auto reclosure'):
                 case ('Pilot Cable Fault Alarm'):
                 case ('General Alarm 33KV'):
                     $this->voltage = [];
                     array_push($this->voltage, "33KV");
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
                     break;
                 case ('Dist Prot Main Alaram'):
                 case ('Dist.Prot.Main B Alarm'):
@@ -82,6 +87,8 @@ class AddStation extends Component
                 case ('General Alarm 132KV'):
                     $this->voltage = [];
                     array_push($this->voltage, "132KV");
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
                     break;
                 case ('DC Supply 1 & 2 Fail Alarm'):
                     $this->voltage = [];
@@ -89,27 +96,32 @@ class AddStation extends Component
                 case ('General Alarm 300KV'):
                     $this->voltage = [];
                     array_push($this->voltage, "300KV");
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
                     break;
                 case ('B/Bar Protection Fail Alarm'):
                     $this->voltage = [];
                     array_push($this->voltage, "400KV", "300KV", "132KV", "33KV");
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
                     break;
                 case ('Transformer Clearance'):
                 case ('Transformer out of step Alarm'):
                     $this->voltage = [];
                     $this->equip = [];
-
                     $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('voltage_level');
                     $this->equip = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->where('voltage_level', $this->selectedVoltage)->get();
-
                     break;
                 default:
                     $this->equip = [];
                     $this->voltage = Equip::where('station_id', $this->station_id)->distinct()->pluck('voltage_level');
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
             }
-            if ($this->main_alarm !== 'Transformer Clearance' || $this->main_alarm !== 'Transformer out of step Alarm') {
-                $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
-            }
+
+            // $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
+            // $this->equip = Equip::where('station_id', $this->station_id)->where('voltage_level', $this->selectedVoltage)->get();
+
         }
     }
     public function getEngineer()
@@ -131,5 +143,10 @@ class AddStation extends Component
     public function getEmail()
     {
         $this->engineerEmail = User::where('id', $this->selectedEngineer)->pluck('email')->first();
+    }
+
+    public function submit()
+    {
+        $this->validate();
     }
 }
