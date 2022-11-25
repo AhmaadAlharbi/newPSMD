@@ -36,7 +36,7 @@ class AddStation extends Component
     public $photos = [];
     protected $listeners = ['callEngineer' => 'getEngineer'];
     protected $rules = [
-        'selectedStation' => 'required ',
+        // 'selectedStation' => 'required ',
     ];
     public function mount()
     {
@@ -178,6 +178,7 @@ class AddStation extends Component
         ]);
 
         foreach ($this->photos as $photo) {
+            // $file_name = uniqid() . $photo->extension(); // or any name you want
             $photo->store('photos');
         }
     }

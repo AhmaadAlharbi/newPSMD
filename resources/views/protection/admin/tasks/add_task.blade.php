@@ -144,217 +144,41 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                {{-- action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data" --}}
-                <div>
-                    {{ csrf_field() }}
-                    {{-- 1 --}}
-                    <div class="row m-5">
-                        <div class="col-lg-6">
-                            {{-- <label for="inputName" class="control-label">رقم التقرير</label>
-                            <input type="text" id="refNum" class=" form-control" id="inputName" name="refNum" title=""
-                                required value="{{ date('y-m') }}/{{ $task_id }}" readonly> --}}
-                            {{-- <input type="hidden" name="task_id" value="{{ $task_id }}"> --}}
-                            <img src="{{URL::asset('assets/img/server.svg')}}" alt="">
-                            {{-- <div class="border border-warning p-2 text-left">
-                                <h6 class="text-warning">Work Type</h6>
+                <form action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data">
+                    <div>
+                        {{ csrf_field() }}
+                        {{-- 1 --}}
+                        <div class="row m-5">
+                            <div class="col-lg-6">
+                                <img src="{{URL::asset('assets/img/server.svg')}}" alt="">
 
-                                <div class="form-check form-check-inline d-block">
-                                    <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
-                                        value="Clearance">
-                                    <label class="form-check-label  m-2" for="inlineRadio1">Clearance</label>
-                                </div>
-                                <div class="form-check form-check-inline d-block">
-                                    <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
-                                        value="Maintenance">
-                                    <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
-                                </div>
-                                <div class="form-check form-check-inline d-block">
-                                    <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
-                                        value="Troubleshooting">
-                                    <label class="form-check-label m-2" for="inlineRadio3">Inspection</label>
-                                </div>
-                                <div class="form-check form-check-inline d-block">
-                                    <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
-                                        value="outage">
-                                    <label class="form-check-label m-2" for="inlineRadio4">outage</label>
-                                </div>
-                                <div class="form-check form-check-inline d-block">
-                                    <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
-                                        value="Installation">
-                                    <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
-                                </div>
-                                <div class="form-check form-check-inline d-block">
-                                    <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
-                                        value="Other">
-                                    <label class="form-check-label m-2" for="inlineRadio6">other</label>
-                                </div>
-                            </div> --}}
+                            </div>
+                            <div class="col-lg-6  h-100 mt-5">
+                                @livewire('add-station')
+                                <div>
+                                    <input type="file" name="pic[]" class="dropify"
+                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                    <input type="file" name="pic[]" class="dropify"
+                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                                </div><br>
 
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal">ارسال
+                                        البيانات</button>
+                                </div>
+                            </div>
 
                         </div>
-                        <div class="col-lg-6  h-100 mt-5">
-                            @livewire('add-station')
-
-                        </div>
-
                     </div>
+                </form>
 
-
-                    {{-- <div class="row m-3">
-                        <div class="col border border-warning p-3 flex-wrap">
-                            <h6 class="text-warning">Work Type</h6>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio1"
-                                    value="Clearance">
-                                <label class="form-check-label  m-2" for="inlineRadio1">Clearance</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio2"
-                                    value="Maintenance">
-                                <label class="form-check-label m-2" for="inlineRadio2">Maintenance</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio3"
-                                    value="Troubleshooting">
-                                <label class="form-check-label m-2" for="inlineRadio3">Inspection</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio4"
-                                    value="outage">
-                                <label class="form-check-label m-2" for="inlineRadio4">outage</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio5"
-                                    value="Installation">
-                                <label class="form-check-label m-2" for="inlineRadio5">Installation</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_type" id="inlineRadio6"
-                                    value="Other">
-                                <label class="form-check-label m-2" for="inlineRadio6">other</label>
-                            </div>
-                        </div>
-                    </div> --}}
-                    <div class="row m-3">
-                        <div class="col-lg-6">
-                            {{-- <label for="main_alarm" class="control-label m-3">Main Alarm</label>
-                            <select name="mainAlarm" id="main_alarm" class="form-control">
-                                <!--placeholder-->
-                                <option value="Auto reclosure">Auto reclosure</option>
-                                <option value="Flag Relay Replacement">Flag Relay Replacement </option>
-                                <option value="Protection Clearance feeder">Protection Clearance feeder</option>
-                                <option value="Transformer Clearance">Transformer Clearance</option>
-                                <option value="mw reading wrong transformer">mw reading wrong transformer</option>
-                                <option value="mv reading wrong transformer">mv reading wrong transformer</option>
-                                <option value="kv reading wrong transformer">kv reading wrong transformer</option>
-                                <option value="Dist Prot Main Alaram">Dist Prot Main Alaram</option>
-                                <option value="Dist.Prot.Main B Alarm">Dist.Prot.Main B Alarm</option>
-                                <option value="Pilot Cable Fault Alarm">Pilot Cable Fault Alarm</option>
-                                <option value="Pilot cable Superv.Supply Fail Alarm">Pilot cable Superv.Supply Fail
-                                    Alarm</option>
-                                <option value="mw reading showing wrong">mw reading showing wrong</option>
-                                <option value="mv reading showing wrong">mv reading showing wrong</option>
-                                <option value="kv reading showing wrong">kv reading showing wrong</option>
-                                <option value="ampere reading showing wrong">ampere reading showing wrong</option>
-                                <option value="BB reading showing wrong">BB reading showing wrong</option>
-                                <option value="BB KV reading showing wrong">BB KV reading showing wrong</option>
-                                <option value="Transformer out of step Alarm">Transformer out of step Alarm</option>
-                                <option value="DC Supply 1 & 2 Fail Alarm">DC Supply 1 & 2 Fail Alarm</option>
-                                <option value="Communication Fail Alarm">Communication Fail Alarm</option>
-                                <option value="General Alarm 300KV">General Alarm 300KV</option>
-                                <option value="General Alarm 132KV">General Alarm 132KV</option>
-                                <option value="General Alarm 33KV">General Alarm 33KV</option>
-                                <option value="General Alarm 11KV">General Alarm 11KV</option>
-                                <option value="B/Bar Protection Fail Alarm">B/Bar Protection Fail Alarm</option>
-                                <option value="Shunt Reactor Restricted Earth Earth Fault Realy">Shunt Reactor
-                                    Restricted Earth Earth Fault Realy</option>
-                                <option value="Shunt Reactor Over Current">Shunt Reactor Over Current</option>
-                                <option value="Shunt Reactor Clearance">Shunt Reactor Clearance</option>
-
-                                <option value="Shunt Reactor Earth Fault">Shunt Reactor Earth Fault</option>
-                                <option value="Breaker Open / close undefined">Breaker Open / close undefined
-                                </option>
-                                <option value="B/Bar Isolator open / close D.S">B/Bar Isolator open / close D.S
-                                </option>
-                                <option value="B/Bar Isolator open / close D.S">Line Isolator Open / close D.S
-                                </option>
-                                <option value="other">other</option>
-                            </select> --}}
-                            <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text" class=" invisible form-control" onfocus=this.value=''>
-                        </div>
-                        <div class="col-lg-6">
-                            {{-- <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage
-                                Level</label>
-
-                            <select name="voltage_level" class="form-control" id="equipVoltage"
-                                onchange="getEquipNumber()">
-                                <option>-</option>
-                            </select>
-                            <select id="voltageLevel" class="form-control d-none">
-                                <!--placeholder-->
-                                <optgroup>
-                                    <option value="400KV">400KV</option>
-                                    <option value="300KV">300KV</option>
-                                    <option value="132KV">132KV</option>
-                                    <option value="33KV">33KV</option>
-                                    <option value="11KV">11KV</option>
-                                </optgroup>
-                                <optgroup label="General Check">
-                                    <option value="132/11KV">132/11KV</option>
-                                    <option value="33/11KV">33/11KV</option>
-                                    <option value="400/132/11KV">400/132/11KV</option>
-                                    <option value="300/132/11KV">300/132/11KV</option>
-                                </optgroup>
-
-                            </select> --}}
-                        </div>
-
-                    </div>
-                    <div class="row m-3">
-
-                        {{-- <div class="col-lg-6">
-                            <label for="equip" class="control-label m-1">equip Number</label>
-                            <select type="text" id="equipNumber" name="equip_number" class="form-control">
-                                <option value="">-</option>
-                            </select>
-                            <input type="text" class="form-control d-none" id="inputEquipNumber">
-                        </div>
-
-                        <div class="col-lg-6 d-none">
-                            <label for="equip" class="control-label m-1">equip name</label>
-                            <!-- <select type="text" name="equip" id="equipName" class="form-control "></select> -->
-                            <input style="direction:ltr;" type="text" id="equipName" class="form-control "
-                                name="equip_name">
-                        </div> --}}
-
-
-                    </div>
-                    <div class="row m-3">
-
-
-                    </div>
-
-
-
-                    {{-- 6 --}}
-                    <div class="row m-3">
-                        <div class="col">
-
-                        </div>
-                    </div><br>
-
-
-
-
-
-
-                </div>
             </div>
 
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">

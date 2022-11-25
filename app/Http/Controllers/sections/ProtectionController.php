@@ -217,42 +217,46 @@ class ProtectionController extends Controller
     {
 
         $validated = $request->validate([
-            'station_name' => 'required',
+            'station_code' => 'required',
+            'pic.*' => 'max:1024', // 1MB Max
+
         ]);
+        $title = $request->old('station_code');
+
 
         //chekc if ref Num in database or not
-        $task_id_count = Task::where('id', $request->task_id)->count();
-        $refNum =   $request->refNum;
-        if (!$task_id_count == 0) {
-            $refNum = $request->refNum = $request->refNum . -1;
-        }
-        Task::create([
-            'refNum' => $refNum,
-            'section_id' => 2,
-            'fromSection' => 2,
-            'station_id' => $request->ssnameID,
-            'main_alarm' => $request->mainAlarm,
-            'voltage_level' => $request->voltage_level,
-            'work_type' => $request->work_type,
-            'task_date' => $request->task_Date,
-            'equip_number' => $request->equip_number,
-            'equip_name' => $request->equip_name,
-            'pm' => $request->pm,
-            'eng_id' => $request->eng_name,
-            'problem' => $request->problem,
-            'notes' => $request->notes,
-            'status' => 'pending',
-            'user' => (Auth::user()->name),
-        ]);
+        // $task_id_count = Task::where('id', $request->task_id)->count();
+        // $refNum =   $request->refNum;
+        // if (!$task_id_count == 0) {
+        //     $refNum = $request->refNum = $request->refNum . -1;
+        // }
+        // Task::create([
+        //     'refNum' => $refNum,
+        //     'section_id' => 2,
+        //     'fromSection' => 2,
+        //     'station_id' => $request->ssnameID,
+        //     'main_alarm' => $request->mainAlarm,
+        //     'voltage_level' => $request->voltage_level,
+        //     'work_type' => $request->work_type,
+        //     'task_date' => $request->task_Date,
+        //     'equip_number' => $request->equip_number,
+        //     'equip_name' => $request->equip_name,
+        //     'pm' => $request->pm,
+        //     'eng_id' => $request->eng_name,
+        //     'problem' => $request->problem,
+        //     'notes' => $request->notes,
+        //     'status' => 'pending',
+        //     'user' => (Auth::user()->name),
+        // ]);
         $task_id = Task::latest()->first()->id;
-        $engineer_email = $request->eng_email;
-        TaskDetails::create([
-            'task_id' => $task_id,
-            'task_date' => $request->task_Date,
-            'eng_id' => $request->eng_name,
-            'fromSection' => 2,
-            'status' => 'pending',
-        ]);
+        // $engineer_email = $request->eng_email;
+        // TaskDetails::create([
+        //     'task_id' => $task_id,
+        //     'task_date' => $request->task_Date,
+        //     'eng_id' => $request->eng_name,
+        //     'fromSection' => 2,
+        //     'status' => 'pending',
+        // ]);
 
         $fromSection = 2;
         if ($request->hasfile('pic')) {
@@ -267,13 +271,14 @@ class ProtectionController extends Controller
                 $attachments->id_task = $task_id;
                 $attachments->save();
             }
-            // //to send email
-            // Notification::route('mail', $engineer_email)
-            //     ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
-        } else {
-            //     Notification::route('mail', $engineer_email)
-            //         ->notify(new AddTask($task_id, $request->station_code, $fromSection));
         }
+        //     // //to send email
+        //     // Notification::route('mail', $engineer_email)
+        //     //     ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
+        // } else {
+        //     //     Notification::route('mail', $engineer_email)
+        //     //         ->notify(new AddTask($task_id, $request->station_code, $fromSection));
+        // }
 
 
 
