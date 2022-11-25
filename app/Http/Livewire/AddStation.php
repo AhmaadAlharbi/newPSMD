@@ -7,9 +7,15 @@ use App\Models\Station;
 use App\Models\Equip;
 use App\Models\Engineer;
 use App\Models\User;
+use App\Models\Task;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 class AddStation extends Component
 {
+    use WithFileUploads;
+
     public $stations = [];
     public $selectedStation;
     public $stationDetails;
@@ -24,9 +30,13 @@ class AddStation extends Component
     public $engineerEmail;
     public $duty = false;
     public $main_alarm;
+    public $work_type;
+    public $date;
+    public $problem;
+    public $photos = [];
     protected $listeners = ['callEngineer' => 'getEngineer'];
     protected $rules = [
-        'selectedStation' => 'required',
+        'selectedStation' => 'required ',
     ];
     public function mount()
     {
@@ -62,7 +72,7 @@ class AddStation extends Component
     public function getEquip()
     {
         sleep(1);
-
+        $this->equip = [];
         if ($this->selectedVoltage !== '-1') {
             $this->voltage = [];
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
@@ -148,5 +158,27 @@ class AddStation extends Component
     public function submit()
     {
         $this->validate();
+        $this->date =  Carbon::now();
+        // Task::create([
+        //     'section_id' => 2,
+        //     'fromSection' => 2,
+        //     'station_id' => $this->station_id,
+        //     'main_alarm' => $this->main_alarm,
+        //     'voltage_level' => $this->selectedVoltage,
+        //     'work_type' => $this->work_type,
+        //     'task_date' => $this->date,
+        //     'equip_number' => $this->selectedEquip,
+        //     'eng_id' => $this->selectedEngineer,
+        //     'problem' => $this->problem,
+        //     'status' => 'pending',
+        //     'user' => (Auth::user()->name),
+        // ]);
+        $this->validate([
+            'photos.*' => 'image|max:1024', // 1MB Max
+        ]);
+
+        foreach ($this->photos as $photo) {
+            $photo->store('photos');
+        }
     }
 }

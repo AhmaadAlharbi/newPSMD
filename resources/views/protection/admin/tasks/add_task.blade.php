@@ -281,8 +281,7 @@
                                 </option>
                                 <option value="other">other</option>
                             </select> --}}
-                            <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text"
-                                class=" invisible form-control" onfocus=this.value=''>
+                            <input id="other_alarm" name="main_alarm" placeholder="write other main alarm" type="text" class=" invisible form-control" onfocus=this.value=''>
                         </div>
                         <div class="col-lg-6">
                             {{-- <label id="voltage" for="Voltage-Level" class=" control-label m-3">Voltage
@@ -355,8 +354,7 @@
 
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -391,9 +389,7 @@
 <!-- Internal Select2 js-->
 
 <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-<!--Internal Fileuploads js-->
-<script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+
 <!--Internal Fancy uploader js-->
 <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
