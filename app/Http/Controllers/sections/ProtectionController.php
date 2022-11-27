@@ -283,7 +283,10 @@ class ProtectionController extends Controller
 
 
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
-        return back();
+        return redirect()->back()->withInput();
+
+
+        // return back();
     }
     //store assign task
     public function storeAssignTask(Request $request)

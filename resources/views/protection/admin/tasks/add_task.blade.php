@@ -153,31 +153,42 @@
                                 <img src="{{URL::asset('assets/img/server.svg')}}" alt="">
 
                             </div>
-                            <div class="col-lg-6  h-100 mt-5">
+                            <div class="col-lg-6">
                                 @livewire('add-station')
-                                <div>
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+                            </div>
+
+                            <div id="attachment">
+                                <div class="col-sm-12 col-md-12">
                                     <input type="file" name="pic[]" class="dropify"
                                         accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
                                 </div><br>
 
+                                <div class="col-sm-12 col-md-12">
+                                    <input type="file" name="pic[]" class="dropify"
+                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+
+                                </div><br>
+                                <div class="col-sm-12 col-md-12">
+                                    <input type="file" name="pic[]" class="dropify"
+                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
+
+                                </div><br>
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal">ارسال
-                                        البيانات</button>
+                                        data-target="#exampleModal">ارسال البيانات</button>
                                 </div>
                             </div>
 
                         </div>
                     </div>
+
                 </form>
 
             </div>
 
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -196,7 +207,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- row closed -->
 </div>
 <!-- Container closed -->
@@ -210,32 +221,28 @@
     }).val();
 </script>
 
-<!-- Internal Select2 js-->
-
-<script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-
-<!--Internal Fancy uploader js-->
-<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
-<!--Internal  Form-elements js-->
-<script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
-<script src="{{ URL::asset('assets/js/select2.js') }}"></script>
-<!--Internal Sumoselect js-->
-<script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
-<!--Internal  Datepicker js -->
-<script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
-<!--Internal  jquery.maskedinput js -->
-<script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
-<!--Internal  spectrum-colorpicker js -->
-<script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
-<!-- Internal form-elements js -->
-<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
-
-<!--PROTECTION JS fiLE-->
-{{-- <script type="text/javascript" src="{{ URL::asset('js/protection/app.js') }}"></script> --}}
-
-
-@endsection
+<<script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}">
+    </script>
+    <!--Internal Fileuploads js-->
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+    <!--Internal Fancy uploader js-->
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <!--Internal  Form-elements js-->
+    <script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+    <!--Internal Sumoselect js-->
+    <script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+    <!--Internal  Datepicker js -->
+    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+    <!--Internal  jquery.maskedinput js -->
+    <script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+    <!--Internal  spectrum-colorpicker js -->
+    <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+    <!-- Internal form-elements js -->
+    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+    @endsection

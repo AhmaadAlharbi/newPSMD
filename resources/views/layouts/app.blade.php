@@ -21,7 +21,6 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
-        <h1>dddddddddddddddddddddd</h1>
         @include('layouts.navigation')
 
         <!-- Page Heading -->

@@ -15,7 +15,6 @@ use Livewire\WithFileUploads;
 class AddStation extends Component
 {
     use WithFileUploads;
-
     public $stations = [];
     public $selectedStation;
     public $stationDetails;
@@ -24,6 +23,8 @@ class AddStation extends Component
     public $selectedVoltage;
     public $equip = [];
     public $selectedEquip;
+    public $transformers = [];
+    public $selectedTransformer;
     public $engineers = [];
     public $selectedEngineer;
     public $area = 0;
@@ -34,10 +35,14 @@ class AddStation extends Component
     public $date;
     public $problem;
     public $photos = [];
+    public $pic1;
+    public $pic2;
     protected $listeners = ['callEngineer' => 'getEngineer'];
-    protected $rules = [
-        // 'selectedStation' => 'required ',
-    ];
+    // protected $rules = [
+    //     'selectedStation' => 'required ',
+    //     'photos.*' => 'max:1024', // 1MB Max
+
+    // ];
     public function mount()
     {
         $this->stations = Station::all();
@@ -119,7 +124,10 @@ class AddStation extends Component
                 case ('Transformer out of step Alarm'):
                     $this->voltage = [];
                     $this->equip = [];
-                    $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('voltage_level');
+                    // $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('equip_name');
+                    // $this->voltage = Equip::selectRaw('substr(equip_name,1,2)')->where('equip_name', 'LIKE', '%TR%')->distinct()->get();
+                    $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->get();
+
                     $this->equip = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->where('voltage_level', $this->selectedVoltage)->get();
                     break;
                 default:
@@ -157,7 +165,8 @@ class AddStation extends Component
 
     public function submit()
     {
-        $this->validate();
+
+
         $this->date =  Carbon::now();
         // Task::create([
         //     'section_id' => 2,
@@ -173,13 +182,18 @@ class AddStation extends Component
         //     'status' => 'pending',
         //     'user' => (Auth::user()->name),
         // ]);
+
         $this->validate([
             'photos.*' => 'image|max:1024', // 1MB Max
+            'pic1' => 'image|max:1024', // 1MB Max
+            'pic2' => 'image|max:1024', // 1MB Max
         ]);
 
-        foreach ($this->photos as $photo) {
-            // $file_name = uniqid() . $photo->extension(); // or any name you want
-            $photo->store('photos');
-        }
+        // foreach ($this->photos as $photo) {
+        //     $photo->store('photos');
+        // }
+
+        $this->pic1->store('photos');
+        $this->pic2->store('photos');
     }
 }
