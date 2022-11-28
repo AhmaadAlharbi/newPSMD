@@ -37,6 +37,7 @@ class AddStation extends Component
     public $photos = [];
     public $pic1;
     public $pic2;
+    public $selectedEquipTr;
     protected $listeners = ['callEngineer' => 'getEngineer'];
     // protected $rules = [
     //     'selectedStation' => 'required ',
@@ -53,8 +54,12 @@ class AddStation extends Component
     }
     public function getStationInfo()
     {
-
+        $this->engineers = [];
+        $this->voltage = [];
+        $this->transformers = [];
+        $this->equip = [];
         $this->area = 0;
+        $this->main_alarm = '';
         $this->engineerEmail = '';
         $this->selectedVoltage = '';
         $this->selectedEquip = '';
@@ -64,9 +69,15 @@ class AddStation extends Component
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
             // $this->voltage = Equip::where('station_id', $this->station_id)->distinct()->pluck('voltage_level');
 
-            if ($this->stationDetails->control === 'JAHRA CONTROL CENTER' || $this->stationDetails->control === 'TOWN CONTROL CENTER') {
+            if (
+                $this->stationDetails->control === 'JAHRA CONTROL CENTER'
+                || $this->stationDetails->control === 'TOWN CONTROL CENTER'
+            ) {
                 $this->area = 1;
-            } elseif ($this->stationDetails->control === 'SHUAIBA CONTROL CENTER' || $this->stationDetails->control === 'JABRIYA CONTROL CENTER') {
+            } elseif (
+                $this->stationDetails->control === 'SHUAIBA CONTROL CENTER'
+                || $this->stationDetails->control === 'JABRIYA CONTROL CENTER'
+            ) {
                 $this->area = 2;
             } else {
                 $this->area = 3;
@@ -76,7 +87,6 @@ class AddStation extends Component
     }
     public function getEquip()
     {
-        sleep(1);
         $this->equip = [];
         if ($this->selectedVoltage !== '-1') {
             $this->voltage = [];
@@ -126,9 +136,8 @@ class AddStation extends Component
                     $this->equip = [];
                     // $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('equip_name');
                     // $this->voltage = Equip::selectRaw('substr(equip_name,1,2)')->where('equip_name', 'LIKE', '%TR%')->distinct()->get();
-                    $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->get();
-
-                    $this->equip = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->where('voltage_level', $this->selectedVoltage)->get();
+                    $this->transformers = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('equip_name');
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('equip_name', $this->selectedTransformer)->distinct()->pluck('equip_number');
                     break;
                 default:
                     $this->equip = [];
