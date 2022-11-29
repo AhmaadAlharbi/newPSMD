@@ -37,6 +37,7 @@ return [
         'public_uploads' => [
             'driver' => 'local',
             'root'   => public_path() . '/Attachments',
+
         ],
         'public_uploads_protection' => [
             'driver' => 'local',
@@ -75,6 +76,8 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        // base_path('/public_html/storage') => storage_path('app/public'),
+
     ],
 
 ];

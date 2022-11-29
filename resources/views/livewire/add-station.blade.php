@@ -133,7 +133,7 @@
                     @case('Transformer Clearance')
                     @case('Transformer out of step Alarm')
                     <label class="my-2">Transformer</label>
-                    <select wire:model="selectedTransformer" wire:change="getEquip" class="form-control mb-3"
+                    <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3"
                         name="equip_name" id="">
                         <option value="-1">Please select Voltage</option>
                         {{-- <option value="{{$selectedVoltage}}">{{$selectedVoltage}}</option> --}}
@@ -221,7 +221,7 @@
                 <textarea list="problems" wire:model="problem" class="form-control " rows="3" name="problem"
                     id="problem"></textarea>
                 <label for="exampleTextarea" class="mt-3">ملاحظات</label>
-                <textarea class="form-control" id="exampleTextarea" name="notes" rows="3"></textarea>
+                <textarea class="form-control" id="exampleTextarea" wire:model="notes" name="notes" rows="3"></textarea>
                 @error('photos.*') <span class="error">{{ $message }}</span> @enderror
 
                 <div id="attachment">

@@ -8,9 +8,11 @@ use App\Models\Equip;
 use App\Models\Engineer;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\TaskAttachment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use DateTime;
 
 class AddStation extends Component
 {
@@ -34,10 +36,12 @@ class AddStation extends Component
     public $work_type;
     public $date;
     public $problem;
+    public $notes;
     public $photos = [];
     public $pic1;
     public $pic2;
     public $selectedEquipTr;
+
     protected $listeners = ['callEngineer' => 'getEngineer'];
     // protected $rules = [
     //     'selectedStation' => 'required ',
@@ -137,7 +141,7 @@ class AddStation extends Component
                     // $this->voltage = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('equip_name');
                     // $this->voltage = Equip::selectRaw('substr(equip_name,1,2)')->where('equip_name', 'LIKE', '%TR%')->distinct()->get();
                     $this->transformers = Equip::where('station_id', $this->station_id)->where('equip_name', 'LIKE', '%TR%')->distinct()->pluck('equip_name');
-                    $this->equip = Equip::where('station_id', $this->station_id)->where('equip_name', $this->selectedTransformer)->distinct()->pluck('equip_number');
+                    $this->equip = Equip::where('station_id', $this->station_id)->where('equip_name', $this->selectedVoltage)->distinct()->pluck('equip_number');
                     break;
                 default:
                     $this->equip = [];
@@ -191,17 +195,51 @@ class AddStation extends Component
         //     'status' => 'pending',
         //     'user' => (Auth::user()->name),
         // ]);
+        $year = (new DateTime)->format("Y");
+        $month = (new DateTime)->format("m");
+        $day = (new DateTime)->format("d");
+        $refNum = $year . "/" . $month . "/" . $day . '-' . rand(1, 10000);
+        $station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
 
-        $this->validate([
-            'selectedStation' => 'required ',
-            // 'photos.*' => 'image|max:1024', // 1MB Max
-            // 'pic1' => 'image|max:1024', // 1MB Max
-            // 'pic2' => 'image|max:1024', // 1MB Max
+        Task::create([
+            'refNum' => $refNum,
+            'section_id' => 2,
+            'fromSection' => 2,
+            'station_id' => $station_id,
+            'main_alarm' => $this->main_alarm,
+            'voltage_level' => $this->selectedVoltage,
+            'work_type' => $this->work_type,
+            'task_date' =>  $year . '-' . $month . '-' . $day,
+            'equip_number' => $this->selectedEquip,
+            // 'equip_name' => $request->equip_name,
+            // 'pm' => $request->pm,
+            'eng_id' => $this->selectedEngineer,
+            'problem' => $this->problem,
+            'notes' => $this->notes,
+            'status' => 'pending',
+            'user' => (Auth::user()->name),
         ]);
 
+        // $this->validate([
+        //     'selectedStation' => 'required ',
+        //     // 'photos.*' => 'image|max:1024', // 1MB Max
+        //     // 'pic1' => 'image|max:1024', // 1MB Max
+        //     // 'pic2' => 'image|max:1024', // 1MB Max
+        // ]);
+
         foreach ($this->photos as $photo) {
-            $photo->store('photos');
+            // $photo->store('photos');
+            $name = $photo->getClientOriginalName();
+            $photo->storeAs('public', $name);
+            $task_id = Task::latest()->first()->id;
+            $attachments = new TaskAttachment();
+            $attachments->file_name = $name;
+            $attachments->created_by = Auth::user()->name;
+            $attachments->id_task = $task_id;
+            $attachments->save();
         }
+        session()->flash('message', 'تم اضافة المهمة بنجاح.');
+
 
         // $this->pic1->store('photos');
         // $this->pic2->store('photos');
