@@ -230,7 +230,9 @@ class AddStation extends Component
         foreach ($this->photos as $photo) {
             // $photo->store('photos');
             $name = $photo->getClientOriginalName();
-            $photo->storeAs('public', $name);
+            // $photo->storeAs('public', $name);
+            $photo->storeAs('documents', $name, 'public');
+
             $task_id = Task::latest()->first()->id;
             $attachments = new TaskAttachment();
             $attachments->file_name = $name;
