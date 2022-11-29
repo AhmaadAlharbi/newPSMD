@@ -28,6 +28,8 @@ use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
 use App\Rules\fourName;
 use App\Rules\onlyMewEmail;
+use DateTime;
+
 use Illuminate\Support\Arr;
 use PDO;
 
@@ -216,6 +218,7 @@ class ProtectionController extends Controller
     public function store(Request $request)
     {
 
+
         $validated = $request->validate([
             'station_code' => 'required',
             'pic.*' => 'max:1024', // 1MB Max
@@ -224,39 +227,44 @@ class ProtectionController extends Controller
         $title = $request->old('station_code');
 
 
-        //chekc if ref Num in database or not
+        // // chekc if ref Num in database or not
         // $task_id_count = Task::where('id', $request->task_id)->count();
         // $refNum =   $request->refNum;
         // if (!$task_id_count == 0) {
         //     $refNum = $request->refNum = $request->refNum . -1;
         // }
-        // Task::create([
-        //     'refNum' => $refNum,
-        //     'section_id' => 2,
-        //     'fromSection' => 2,
-        //     'station_id' => $request->ssnameID,
-        //     'main_alarm' => $request->mainAlarm,
-        //     'voltage_level' => $request->voltage_level,
-        //     'work_type' => $request->work_type,
-        //     'task_date' => $request->task_Date,
-        //     'equip_number' => $request->equip_number,
-        //     'equip_name' => $request->equip_name,
-        //     'pm' => $request->pm,
-        //     'eng_id' => $request->eng_name,
-        //     'problem' => $request->problem,
-        //     'notes' => $request->notes,
-        //     'status' => 'pending',
-        //     'user' => (Auth::user()->name),
-        // ]);
+        $year = (new DateTime)->format("Y");
+        $month = (new DateTime)->format("m");
+        $day = (new DateTime)->format("d");
+        $refNum = $year . "/" . $month . "/" . $day . '-' . rand(1, 10000);
+        $station_id = Station::where('SSNAME', $request->station_code)->pluck('id')->first();
+        Task::create([
+            'refNum' => $refNum,
+            'section_id' => 2,
+            'fromSection' => 2,
+            'station_id' => $station_id,
+            'main_alarm' => $request->mainAlarm,
+            'voltage_level' => $request->voltage_level,
+            'work_type' => $request->work_type,
+            'task_date' =>  $year . '-' . $month . '-' . $day,
+            'equip_number' => $request->equip_number,
+            // 'equip_name' => $request->equip_name,
+            // 'pm' => $request->pm,
+            'eng_id' => $request->eng_name,
+            'problem' => $request->problem,
+            'notes' => $request->notes,
+            'status' => 'pending',
+            'user' => (Auth::user()->name),
+        ]);
         $task_id = Task::latest()->first()->id;
-        // $engineer_email = $request->eng_email;
-        // TaskDetails::create([
-        //     'task_id' => $task_id,
-        //     'task_date' => $request->task_Date,
-        //     'eng_id' => $request->eng_name,
-        //     'fromSection' => 2,
-        //     'status' => 'pending',
-        // ]);
+        $engineer_email = $request->eng_email;
+        TaskDetails::create([
+            'task_id' => $task_id,
+            'task_date' => $request->task_Date,
+            'eng_id' => $request->eng_name,
+            'fromSection' => 2,
+            'status' => 'pending',
+        ]);
 
         $fromSection = 2;
         if ($request->hasfile('pic')) {
@@ -279,9 +287,6 @@ class ProtectionController extends Controller
         //     //     Notification::route('mail', $engineer_email)
         //     //         ->notify(new AddTask($task_id, $request->station_code, $fromSection));
         // }
-
-
-
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
         return redirect()->back()->withInput();
 
