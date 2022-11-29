@@ -193,16 +193,17 @@ class AddStation extends Component
         // ]);
 
         $this->validate([
-            'photos.*' => 'image|max:1024', // 1MB Max
-            'pic1' => 'image|max:1024', // 1MB Max
-            'pic2' => 'image|max:1024', // 1MB Max
+            'selectedStation' => 'required ',
+            // 'photos.*' => 'image|max:1024', // 1MB Max
+            // 'pic1' => 'image|max:1024', // 1MB Max
+            // 'pic2' => 'image|max:1024', // 1MB Max
         ]);
 
-        // foreach ($this->photos as $photo) {
-        //     $photo->store('photos');
-        // }
+        foreach ($this->photos as $photo) {
+            $photo->store('photos');
+        }
 
-        $this->pic1->store('photos');
-        $this->pic2->store('photos');
+        // $this->pic1->store('photos');
+        // $this->pic2->store('photos');
     }
 }

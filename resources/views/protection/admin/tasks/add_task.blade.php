@@ -144,7 +144,7 @@
     <div class="col-lg-12 col-md-12">
         <div class="card border border-primary">
             <div class="card-body">
-                <form action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data">
+                {{-- <form action="{{ route('protection.store') }}" method="post" enctype="multipart/form-data"> --}}
                     <div>
                         {{ csrf_field() }}
                         {{-- 1 --}}
@@ -157,32 +157,12 @@
                                 @livewire('add-station')
                             </div>
 
-                            <div id="attachment">
-                                <div class="col-sm-12 col-md-12">
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-                                </div><br>
-
-                                <div class="col-sm-12 col-md-12">
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-
-                                </div><br>
-                                <div class="col-sm-12 col-md-12">
-                                    <input type="file" name="pic[]" class="dropify"
-                                        accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70" />
-
-                                </div><br>
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal">ارسال البيانات</button>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
 
-                </form>
+                    {{--
+                </form> --}}
 
             </div>
 

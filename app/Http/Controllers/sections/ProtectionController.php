@@ -224,7 +224,6 @@ class ProtectionController extends Controller
             'pic.*' => 'max:1024', // 1MB Max
 
         ]);
-        $title = $request->old('station_code');
 
 
         // // chekc if ref Num in database or not
@@ -288,7 +287,7 @@ class ProtectionController extends Controller
         //     //         ->notify(new AddTask($task_id, $request->station_code, $fromSection));
         // }
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
-        return redirect()->back()->withInput();
+        return redirect()->back()->withInput()->withInput();
 
 
         // return back();
