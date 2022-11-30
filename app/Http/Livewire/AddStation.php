@@ -9,10 +9,15 @@ use App\Models\Engineer;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\TaskAttachment;
+use App\Models\TaskDetails;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use DateTime;
+use  App\Notifications\AddTask;
+use Illuminate\Support\Facades\Notification;
+
+use  App\Notifications\AddTaskWithAttachments;
 use Illuminate\Support\Facades\Storage;
 
 class AddStation extends Component
@@ -182,20 +187,6 @@ class AddStation extends Component
 
 
         $this->date =  Carbon::now();
-        // Task::create([
-        //     'section_id' => 2,
-        //     'fromSection' => 2,
-        //     'station_id' => $this->station_id,
-        //     'main_alarm' => $this->main_alarm,
-        //     'voltage_level' => $this->selectedVoltage,
-        //     'work_type' => $this->work_type,
-        //     'task_date' => $this->date,
-        //     'equip_number' => $this->selectedEquip,
-        //     'eng_id' => $this->selectedEngineer,
-        //     'problem' => $this->problem,
-        //     'status' => 'pending',
-        //     'user' => (Auth::user()->name),
-        // ]);
         $year = (new DateTime)->format("Y");
         $month = (new DateTime)->format("m");
         $day = (new DateTime)->format("d");
@@ -220,6 +211,15 @@ class AddStation extends Component
             'status' => 'pending',
             'user' => (Auth::user()->name),
         ]);
+        $task_id = Task::latest()->first()->id;
+        TaskDetails::create([
+            'task_id' => $task_id,
+            'station_id' => $station_id,
+            'task_date' => $year . '-' . $month . '-' . $day,
+            'eng_id' => $this->selectedEngineer,
+            'fromSection' => 2,
+            'status' => 'pending',
+        ]);
 
         // $this->validate([
         //     'selectedStation' => 'required ',
@@ -227,23 +227,30 @@ class AddStation extends Component
         //     // 'pic1' => 'image|max:1024', // 1MB Max
         //     // 'pic2' => 'image|max:1024', // 1MB Max
         // ]);
+        $fromSection = auth()->user()->section_id;
+        $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
 
-        foreach ($this->photos as $photo) {
-            // $photo->store('photos');
-            $name = $photo->getClientOriginalName();
-            // $photo->storeAs('public', $name);
-            $task_id = Task::latest()->first()->id;
-
-            $photo->storeAs('protection/' . $task_id, $name, 'public');
-
-
-            $attachments = new TaskAttachment();
-            $attachments->file_name = $name;
-            $attachments->created_by = Auth::user()->name;
-            $attachments->id_task = $task_id;
-            $attachments->save();
+        if ($this->photos) {
+            foreach ($this->photos as $photo) {
+                // $photo->store('photos');
+                $name = $photo->getClientOriginalName();
+                // $photo->storeAs('public', $name);
+                $photo->storeAs('protection/' . $task_id, $name, 'public');
+                $data[] = $name;
+                $attachments = new TaskAttachment();
+                $attachments->file_name = $name;
+                $attachments->created_by = Auth::user()->name;
+                $attachments->id_task = $task_id;
+                $attachments->save();
+            }
+            // Notification::route('mail', $this->engineerEmail)
+            //     ->notify(new AddTaskWithAttachments($task_id, $data, $this->selectedStation, $fromSection));
+        } else {
+            // Notification::route('mail', $this->engineerEmail)
+            //     ->notify(new AddTask($task_id, $this->selectedStation, $fromSection));
         }
         session()->flash('message', 'تم اضافة المهمة بنجاح.');
+        return   redirect()->to('/dashboard/admin/query_section_id=2/add_task');
 
 
         // $this->pic1->store('photos');

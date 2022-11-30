@@ -223,6 +223,7 @@
                 <label for="exampleTextarea" class="mt-3">ملاحظات</label>
                 <textarea class="form-control" id="exampleTextarea" wire:model="notes" name="notes" rows="3"></textarea>
                 @error('photos.*') <span class="error">{{ $message }}</span> @enderror
+                {{-- <input type='button' class="btn btn-warning mt-2" value='With timer' id='but4'> --}}
 
                 <div id="attachment">
                     {{-- <div class="col-sm-12 col-md-12">
@@ -240,13 +241,39 @@
                             data-height="70" />
 
                     </div><br> --}}
-                    <input class="form-control form-control-lg" id="formFileLg" type="file" wire:model="photos"
-                        multiple>
+                    <input class="form-control form-control-lg" name="photos" id="formFileLg" type="file"
+                        wire:model="photos" multiple>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal">ارسال
+                        <button type="submit" class="btn btn-primary" id="but4">ارسال
                             البيانات</button>
                     </div>
+                    <script>
+                        const btnid = document.getElementById('but4');
+                        btnid.addEventListener('click',()=>{
+                            let timerInterval
+                            Swal.fire({
+                            title: 'جاري ارسال البيانات',
+                            html: 'يرجى الانتظار وعدم اغلاق الصفحة',
+                            timer: 10000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                const b = Swal.getHtmlContainer().querySelector('b')
+                                timerInterval = setInterval(() => {
+                                b.textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                            }
+                            }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log('I was closed by the timer')
+                            }
+                            })
+                        })
+                    </script>
                 </div>
 
 

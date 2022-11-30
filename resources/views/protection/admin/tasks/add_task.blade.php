@@ -168,7 +168,7 @@
 
         </div>
     </div>
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -187,7 +187,7 @@
 
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- row closed -->
 </div>
 <!-- Container closed -->
@@ -225,4 +225,20 @@
     <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
     <!-- Internal form-elements js -->
     <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+
+    @endsection
+
+    @section('scripts')
+
+    <!-- Internal Select2 js-->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+
+    <!--Internal  Sweet-Alert js-->
+    <script src="{{asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweet-alert/jquery.sweet-alert.js')}}"></script>
+
+    <!-- Sweet-alert js  -->
+    <script src="{{asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/js/sweet-alert.js')}}"></script>
+
     @endsection

@@ -23,29 +23,29 @@
 @section('content')
 <!-- row -->
 <style>
-.HORIZONTAL_SCROLL_NAV {
+    .HORIZONTAL_SCROLL_NAV {
 
-    -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch;
 
-    overflow-x: auto;
-    overflow-y: hidden;
-}
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 
-.HORIZONTAL_SCROLL_NAV>ul {
+    .HORIZONTAL_SCROLL_NAV>ul {
 
-    margin: 0 auto;
-}
+        margin: 0 auto;
+    }
 </style>
 @if (session()->has('Add'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        @endif
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ session()->get('Add') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 <div class="row row-sm">
-    
+
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
         <div class="card overflow-hidden sales-card bg-primary-gradient">
             <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -61,7 +61,7 @@
                         <div class="">
                             <h4 class="tx-20 font-weight-bold mb-1 text-white">
                                 {{--\App\Models\Task::where('eng_id',Auth::user()->id)->count()--}}
-                                {{Auth::user()->name}} 
+                                {{Auth::user()->name}}
                             </h4>
                             <p class="mb-0 tx-14 text-white op-7">مهمات</p>
                         </div>
@@ -91,7 +91,7 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-down text-white"></i>
-      
+
                         </span>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         </div>
                         <span class="float-right my-auto mr-auto">
                             <i class="fas fa-arrow-circle-up text-white"></i>
-              
+
                         </span>
                     </div>
                 </div>
@@ -213,9 +213,8 @@
                                         {{-- <a class="text-left btn btn-dark " href=""
                                             class=" m-2 btn btn-primary btn-sm">Resend Task</a>--}}
                                         @endif
-                                        {{--  <a class="text-left btn btn-danger "
-                                            href=""
-                                        class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
+                                        {{-- <a class="text-left btn btn-danger " href=""
+                                            class=" m-2 btn btn-primary btn-sm">Action Take</a>--}}
                                         <a class="text-left btn btn-success "
                                             href="{{route('protection.engineerReportForm',['id'=>$task->id])}}"
                                             class=" m-2 btn btn-primary btn-sm">Action Take</a>
@@ -283,7 +282,7 @@
             <nav aria-label="Page navigation pagination-sm   pagination-lg justify-content-center ">
                 <ul class="pagination">
                     <li class="page-item">
-                        {{--  {{$task_details->links()}}--}}
+                        {{$task_details->links()}}
 
                     </li>
 

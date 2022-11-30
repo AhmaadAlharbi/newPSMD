@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 24, 2022 at 12:11 PM
--- Server version: 10.4.25-MariaDB
+-- Host: localhost:3306
+-- Generation Time: Nov 30, 2022 at 11:26 AM
+-- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -45,11 +45,11 @@ CREATE TABLE `admins` (
 --
 
 CREATE TABLE `engineers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `local_department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'no',
-  `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `section_id` bigint UNSIGNED DEFAULT NULL,
+  `local_department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'no',
+  `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `shift` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -124,11 +124,11 @@ INSERT INTO `engineers` (`id`, `user_id`, `section_id`, `local_department`, `are
 --
 
 CREATE TABLE `equip` (
-  `id` int(11) NOT NULL,
-  `station_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `voltage_level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equip_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equip_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `id` int NOT NULL,
+  `station_id` bigint UNSIGNED DEFAULT NULL,
+  `voltage_level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19475,13 +19475,13 @@ INSERT INTO `equip` (`id`, `station_id`, `voltage_level`, `equip_number`, `equip
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -19491,20 +19491,20 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `gc_tasks` (
-  `id` int(11) NOT NULL,
-  `refNum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `station_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `control` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `make` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contract_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contractor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `ref_book` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int NOT NULL,
+  `refNum` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` bigint UNSIGNED DEFAULT NULL,
+  `station_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `control` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `make` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contract_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contractor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `eng_id` bigint UNSIGNED DEFAULT NULL,
+  `ref_book` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19526,11 +19526,11 @@ INSERT INTO `gc_tasks` (`id`, `refNum`, `section_id`, `station_name`, `control`,
 --
 
 CREATE TABLE `gc_task_attachments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `file_name` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `refNum` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Created_by` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_task` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `file_name` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Created_by` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_task` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19561,15 +19561,15 @@ INSERT INTO `gc_task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `i
 --
 
 CREATE TABLE `gc_task_details` (
-  `id` int(11) NOT NULL,
-  `task_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` int NOT NULL,
+  `task_id` bigint UNSIGNED DEFAULT NULL,
+  `section_id` bigint UNSIGNED DEFAULT NULL,
+  `action_take` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `notes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint UNSIGNED DEFAULT NULL,
   `report_date` date DEFAULT NULL,
-  `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19590,9 +19590,9 @@ INSERT INTO `gc_task_details` (`id`, `task_id`, `section_id`, `action_take`, `no
 --
 
 CREATE TABLE `main_alarms` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `section_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `main_alarm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19604,9 +19604,9 @@ CREATE TABLE `main_alarms` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19636,8 +19636,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -19648,12 +19648,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19666,19 +19666,19 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `rs_tasks` (
-  `id` int(11) NOT NULL,
-  `refNum` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `station_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `station_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id` int NOT NULL,
+  `refNum` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `station_id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `station_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
   `deadline` date DEFAULT NULL,
-  `notes` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `eng_id` bigint(20) DEFAULT NULL,
-  `user` bigint(20) DEFAULT NULL,
+  `notes` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `status` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `eng_id` bigint DEFAULT NULL,
+  `user` bigint DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -19687,8 +19687,8 @@ CREATE TABLE `rs_tasks` (
 --
 
 CREATE TABLE `sections` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `section_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `section_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19711,12 +19711,12 @@ INSERT INTO `sections` (`id`, `section_name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int(11) NOT NULL
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19724,7 +19724,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('VTj5xJAPjsQQH3JiiBMwHw1Jezv253wugIqjDY9n', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoid2tVbUtkQmxMcnJBMUJnZmNaaWVHWEV6Uk1UR0p5MXFOMkpCTGRaTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYWRtaW4vcXVlcnlfc2VjdGlvbl9pZD0yL2FkZF90YXNrIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1669287789);
+('MUx4zW7h4tGxsexdLJVN2ErfOfEjZS4zrasw7Sl7', 29, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYlNyZWJUWFlvczVYdUlpQUpjbVo1ZmhZc0RyQkZGeUI0M2pRWjBlbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvdXNlci9xdWVyeV9zZWN0aW9uX2lkPTI/cGFnZT0xIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjk7fQ==', 1669807084),
+('nXlLPX0hl8eiMwETyKDQ3so3ES26iWVMaTvTZ9wv', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOHhHQVVUQW5aQVpDcnpLendTaVNma3RNZ0pBam5TZ2VNaGtoMElkRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYWRtaW4vcXVlcnlfc2VjdGlvbl9pZD0yL2FkZF90YXNrIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1669807149),
+('TUsHTTWbo1m2CRlByIQ1bDCuygHc8A7omoRamZSI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.62', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaWNTYVZ3dkVHcEpZNWdrSHhrVTVBQjdwUUl6SFdZWmFHSGhkRU5CYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1669801784);
 
 -- --------------------------------------------------------
 
@@ -19733,14 +19735,14 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 --
 
 CREATE TABLE `stations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `SSNAME` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `COMPANY_MAKE` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Voltage_Level_KV` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Contract_No` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `COMMISIONING_DATE` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `control` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fullName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `SSNAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `COMPANY_MAKE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Voltage_Level_KV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Contract_No` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `COMMISIONING_DATE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `control` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pm` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -20490,26 +20492,26 @@ INSERT INTO `stations` (`id`, `SSNAME`, `COMPANY_MAKE`, `Voltage_Level_KV`, `Con
 --
 
 CREATE TABLE `tasks` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `refNum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `fromSection` bigint(20) UNSIGNED DEFAULT NULL,
-  `toSection` bigint(20) UNSIGNED DEFAULT NULL,
-  `station_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `voltage_level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `refNum` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` bigint UNSIGNED DEFAULT NULL,
+  `fromSection` bigint UNSIGNED DEFAULT NULL,
+  `toSection` bigint UNSIGNED DEFAULT NULL,
+  `station_id` bigint UNSIGNED DEFAULT NULL,
+  `main_alarm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voltage_level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
-  `equip_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equip_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `report_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
-  `alarm_count` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint UNSIGNED DEFAULT NULL,
+  `problem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `report_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `alarm_count` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20519,13 +20521,26 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip_number`, `equip_name`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
-(14, '22-11/1', 2, 2, NULL, 129, 'Auto reclosure', '132 KV', NULL, NULL, '2022-11-18', 'E(10) - MHBL A 1', NULL, 86, 'Prot. clearance is required for  the mentioned feeder. Power cable work is completed by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-18 20:34:27', '2022-11-18 20:37:28'),
-(15, '22-11/15', 2, 2, NULL, 630, 'Protection Clearance feeder', '132KV', NULL, NULL, '2022-11-18', 'E(2) - SALW D 1', NULL, 55, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber (99471194) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-18 20:40:04', '2022-11-18 20:41:27'),
-(16, '22-11/16', 2, 2, NULL, 492, 'Protection Clearance feeder', '132KV', NULL, NULL, '2022-11-18', 'E(2) - SSUR AW 1', NULL, 29, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber (99471194) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-18 20:43:47', '2022-11-18 20:44:47'),
-(17, '22-11/17', 2, 2, NULL, 129, 'Auto reclosure', '-', NULL, NULL, '2022-11-18', 'Mahboula \"A\" 132kV Feeder ', NULL, 29, NULL, 'Protection clearance is required for A/M Tr . Requested by CME Abdulla \r\n(99474195) . PME has to follow', 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-18 20:48:12', '2022-11-18 20:48:54'),
-(18, '22-11/18', 2, 2, NULL, 400, 'Auto reclosure', '-', NULL, NULL, '2022-11-18', 'DC', NULL, 69, 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and \r\nreported that is from load side . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-18 20:51:55', '2022-11-18 20:52:16'),
-(19, '22-11/19', 2, 2, NULL, 451, 'Auto reclosure', '400KV', NULL, NULL, '2022-11-18', 'i) 4x 45MVAR S. Reactor, ii) 1 x 250MVAR Shunt Reactors', NULL, 80, 'Protection clearance is required for the mentioned Shunt Reactors for closing. \r\nRequested by NCC', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-18 20:59:11', '2022-11-18 21:01:11'),
-(22, '22-11/20', 2, 2, NULL, 49, 'Auto reclosure', '-', NULL, NULL, '2022-11-19', 'Bay #2 Feeder.', NULL, 86, 'Protection clearance is required for the mentioned feeder.Requested by Construction Dept.PME has to follow.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-19 10:45:49', '2022-11-19 10:47:56');
+(50, '2022/11/30-9574', 2, 2, NULL, 469, 'Protection Clearance feeder', '11KV', NULL, 'Clearance', '2022-11-30', 'K (6) - SPARE6', NULL, 76, 'Protection clearance is required for A/M Panel . Requested by Planinig and \nFolowing up Dept . Please check the attached letter ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 09:52:01', '2022-11-30 09:55:04'),
+(51, '2022/11/30-2825', 2, 2, NULL, 576, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - STLFA2', NULL, 76, 'An arrangment to check the DC Circuit of COPA/COPT is required.Requested by \nU.G Cable&OHL Maint Dept.Please check the attached letter.PME has to follow.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:04:12', '2022-11-30 10:05:05'),
+(52, '2022/11/30-8725', 2, 2, NULL, 393, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-11-30', '', NULL, 84, '132kV G/Alarm is appeared at 08.45 Hr. and Still existing. PME has to follow', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:06:47', '2022-11-30 10:08:25'),
+(53, '2022/11/30-9693', 2, 2, NULL, 98, 'Transformer Clearance', '30TR1', NULL, 'Clearance', '2022-11-30', '', NULL, 62, 'The AVR for A/M Trs has a problem Reported by TME Ali Qabazard . PME has to \nfollow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:14:32', '2022-11-30 10:16:12'),
+(54, '2022/11/30-2067', 2, 2, NULL, 192, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(4) - QASRM1', NULL, 81, 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:20:35', '2022-11-30 10:21:38'),
+(55, '2022/11/30-9100', 2, 2, NULL, 404, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(3) - JAHRB1', NULL, 81, 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:22:38', '2022-11-30 10:23:30'),
+(56, '2022/11/30-9140', 2, 2, NULL, 188, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(1) - JAHRA1', NULL, 67, 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa \n(60694759) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:26:22', '2022-11-30 10:28:21'),
+(57, '2022/11/30-5699', 2, 2, NULL, 191, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(4) - JAHRM1', NULL, 67, 'Protection clear for the mentioned feeder DCC informed.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:29:37', '2022-11-30 10:29:59'),
+(58, '2022/11/30-2500', 2, 2, NULL, 400, 'General Alarm 11KV', '11KV', NULL, 'Clearance', '2022-11-30', 'K(01) - SPARE01', NULL, 84, 'A/M F CB is showing undefined indication during close it by Distribution \nConstruction Eng Nada (66681894) . SME Omer Alkhayat reported it is from \nprotection side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:32:14', '2022-11-30 10:35:39'),
+(59, '2022/11/30-576', 2, 2, NULL, 177, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(4) - QADSA1', NULL, 86, 'Protection clearance is required for A/M F . Requested by CME Shahin (99993494) \n. PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:37:59', '2022-11-30 10:40:22'),
+(60, '2022/11/30-5835', 2, 2, NULL, 388, 'other', '132KV', NULL, NULL, '2022-11-30', 'E(8) - FINTA1', NULL, 33, 'Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:45:58', '2022-11-30 10:46:43'),
+(61, '2022/11/30-2927', 2, 2, NULL, 389, 'other', '132KV', NULL, NULL, '2022-11-30', 'E(4) - FINTAE1', NULL, 33, ' Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:48:12', '2022-11-30 10:48:39'),
+(62, '2022/11/30-204', 2, 2, NULL, 581, 'DC Supply 1 & 2 Fail Alarm', '132KV', NULL, NULL, '2022-11-30', '', NULL, 74, 'DC supply fail alarm is appeared at 1:37 Hr . Batt/F Saad Almutairi checked and \nReported that is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:50:54', '2022-11-30 10:51:57'),
+(63, '2022/11/30-442', 2, 2, NULL, 705, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-11-30', 'E(8) - WJLBD1', NULL, 55, '132 KV G/A is appeared on 18/11/2022 . PME Mishari Ali Cleared temporary by \nisolating device for O/C and earth fault relay for A/M F due to faulty and need to \nreplace . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:54:12', '2022-11-30 10:54:51'),
+(64, '2022/11/30-7857', 2, 2, NULL, 621, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-11-30', '', NULL, 86, 'DC supply fail alarm is appeared on 18/11/20222 . Batt/F checked and reported \nthat is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:57:05', '2022-11-30 10:57:40'),
+(65, '2022/11/30-432', 2, 2, NULL, 43, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-11-30', '', NULL, 81, 'DC supply fail alarm is appeared on 19/11/2022 and still existing (need entrance \npermission) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:00:45', '2022-11-30 11:01:11'),
+(66, '2022/11/30-2265', 2, 2, NULL, 726, 'other', '132KV', NULL, 'Clearance', '2022-11-30', 'E(01) - SPARE01', NULL, 84, 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:07:37', '2022-11-30 11:08:18'),
+(67, '2022/11/30-655', 2, 2, NULL, 129, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(10) - MHBLA1', NULL, 86, 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:10:26', '2022-11-30 11:11:04'),
+(68, '2022/11/30-6682', 2, 2, NULL, 630, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SALWD1', NULL, 55, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:12:50', '2022-11-30 11:13:26'),
+(69, '2022/11/30-1724', 2, 2, NULL, 492, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SSURAW1', NULL, 29, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:15:06', '2022-11-30 11:15:47');
 
 -- --------------------------------------------------------
 
@@ -20534,14 +20549,44 @@ INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `
 --
 
 CREATE TABLE `task_attachments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `file_name` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `refNum` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Created_by` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_task` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `file_name` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Created_by` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_task` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `task_attachments`
+--
+
+INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_task`, `created_at`, `updated_at`) VALUES
+(15, 'SALM-M 2.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 50, '2022-11-30 09:52:01', '2022-11-30 09:52:01'),
+(16, 'SALM-M   (P) 3.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 50, '2022-11-30 09:52:01', '2022-11-30 09:52:01'),
+(17, 'SHUB-AX(P) 1 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 51, '2022-11-30 10:04:12', '2022-11-30 10:04:12'),
+(18, 'OMAR-AE-PME-28-11 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 52, '2022-11-30 10:06:47', '2022-11-30 10:06:47'),
+(19, 'EMBS-B     (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 53, '2022-11-30 10:14:32', '2022-11-30 10:14:32'),
+(20, 'MicrosoftTeams-image.png', NULL, 'Ibrahim Waleed Ibrahim Almufarrej', 53, '2022-11-30 10:16:12', '2022-11-30 10:16:12'),
+(21, 'JAHR-B    (P) 3 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 54, '2022-11-30 10:20:35', '2022-11-30 10:20:35'),
+(22, 'QASR-M    (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 55, '2022-11-30 10:22:38', '2022-11-30 10:22:38'),
+(23, 'JAHR-M   (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 56, '2022-11-30 10:26:22', '2022-11-30 10:26:22'),
+(24, 'JAHR-A    (P) 2.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 57, '2022-11-30 10:29:37', '2022-11-30 10:29:37'),
+(25, 'PLJT-M   (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 58, '2022-11-30 10:32:14', '2022-11-30 10:32:14'),
+(26, 'MicrosoftTeams-image (2).png', NULL, 'Salem R Al Enzi', 58, '2022-11-30 10:35:39', '2022-11-30 10:35:39'),
+(27, 'MicrosoftTeams-image (1).png', NULL, 'Salem R Al Enzi', 58, '2022-11-30 10:35:39', '2022-11-30 10:35:39'),
+(28, 'JABR-B  (DONE).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 59, '2022-11-30 10:37:59', '2022-11-30 10:37:59'),
+(29, 'OGAL-A   (P) 2.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 60, '2022-11-30 10:45:58', '2022-11-30 10:45:58'),
+(30, 'OGAL-B    (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 61, '2022-11-30 10:48:12', '2022-11-30 10:48:12'),
+(31, 'SJAH-B    (P) 1.PDF', NULL, 'Ahmad Zaid Ali Alharbi', 62, '2022-11-30 10:50:54', '2022-11-30 10:50:54'),
+(32, 'WJLB-A    (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 63, '2022-11-30 10:54:12', '2022-11-30 10:54:12'),
+(33, 'SSSM-E  (P)(DONE).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 64, '2022-11-30 10:57:05', '2022-11-30 10:57:05'),
+(34, 'AMIR-M    (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 65, '2022-11-30 11:00:45', '2022-11-30 11:00:45'),
+(35, 'SHSW-A   (P) 2 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 66, '2022-11-30 11:07:37', '2022-11-30 11:07:37'),
+(36, 'FINT-B (DONE).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 67, '2022-11-30 11:10:26', '2022-11-30 11:10:26'),
+(37, 'SSUR-AW    (P) 5 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 68, '2022-11-30 11:12:50', '2022-11-30 11:12:50'),
+(38, 'SALW-D   (P) 1 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 69, '2022-11-30 11:15:06', '2022-11-30 11:15:06');
 
 -- --------------------------------------------------------
 
@@ -20550,22 +20595,22 @@ CREATE TABLE `task_attachments` (
 --
 
 CREATE TABLE `task_details` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `task_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `task_id` bigint UNSIGNED DEFAULT NULL,
   `task_date` date DEFAULT NULL,
   `report_date` date DEFAULT NULL,
-  `reasonOfUncompleted` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `station_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `fromSection` bigint(20) UNSIGNED DEFAULT NULL,
-  `toSection` bigint(20) UNSIGNED DEFAULT NULL,
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `engineer_notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `report_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `reasonOfUncompleted` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint UNSIGNED DEFAULT NULL,
+  `station_id` bigint UNSIGNED DEFAULT NULL,
+  `fromSection` bigint UNSIGNED DEFAULT NULL,
+  `toSection` bigint UNSIGNED DEFAULT NULL,
+  `section_id` bigint UNSIGNED DEFAULT NULL,
+  `main_alarm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `engineer_notes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_take` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `report_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20575,20 +20620,46 @@ CREATE TABLE `task_details` (
 --
 
 INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reasonOfUncompleted`, `eng_id`, `station_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(10, 14, '2022-11-18', NULL, NULL, 86, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-18 20:34:27', '2022-11-18 20:34:27'),
-(11, 14, '2022-11-18', '2022-11-18', NULL, 86, 129, 2, NULL, 2, 'Auto reclosure', 'Prot. clearance is required for  the mentioned feeder. Power cable work is completed by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'Protection is clear for the mentioned feeder.DCC informed', 'completed', '1', '2022-11-18 20:37:28', '2022-11-18 20:37:28'),
-(12, 15, '2022-11-18', NULL, NULL, 55, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-18 20:40:04', '2022-11-18 20:40:04'),
-(13, 15, '2022-11-18', '2022-11-18', NULL, 55, 630, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber (99471194) . PME has to follow .', NULL, '.All protection tests are done with the feeder ... feeder is clear', 'completed', '1', '2022-11-18 20:41:27', '2022-11-18 20:41:27'),
-(14, 16, '2022-11-18', NULL, NULL, 29, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-18 20:43:47', '2022-11-18 20:43:47'),
-(15, 16, '2022-11-18', '2022-11-18', NULL, 29, 492, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber (99471194) . PME has to follow .', NULL, 'visited the s/s and protection is clear', 'completed', '1', '2022-11-18 20:44:47', '2022-11-18 20:44:47'),
-(16, 17, '2022-11-18', NULL, NULL, 29, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-18 20:48:12', '2022-11-18 20:48:12'),
-(17, 17, '2022-11-18', '2022-11-18', NULL, 29, 129, 2, NULL, 2, 'Auto reclosure', NULL, NULL, 'visited s/stn and protection is clear \r\ndcc informed', 'completed', '1', '2022-11-18 20:48:54', '2022-11-18 20:48:54'),
-(18, 18, '2022-11-18', NULL, NULL, 69, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-18 20:51:55', '2022-11-18 20:51:55'),
-(19, 18, '2022-11-18', '2022-11-18', NULL, 69, 400, 2, NULL, 2, 'Auto reclosure', 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and \r\nreported that is from load side . PME has to follow .', NULL, 'Visted the substation there was Dc earth fault. while measuring the fault the MCB of panel 18 in 11KV tripped so,I normalize it and then normalize another mcb in the disturbtion board and the alarm has been cleared.', 'completed', '1', '2022-11-18 20:52:15', '2022-11-18 20:52:15'),
-(20, 19, '2022-11-18', NULL, NULL, 80, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-18 20:59:11', '2022-11-18 20:59:11'),
-(21, 19, '2022-11-18', '2022-11-19', NULL, 80, 451, 2, NULL, 2, 'Auto reclosure', 'Protection clearance is required for the mentioned Shunt Reactors for closing. \r\nRequested by NCC', NULL, 'Visited the s/s for above mention shunt reactors relays.Checked o/c,E/F and over voltage relaysand sitting found ok.\r\nprotection are clear and informed to NCC', 'completed', '1', '2022-11-18 21:01:11', '2022-11-18 21:01:11'),
-(24, 22, '2022-11-19', NULL, NULL, 86, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-19 10:45:49', '2022-11-19 10:45:49'),
-(25, 22, '2022-11-19', '2022-11-19', NULL, 86, 49, 2, NULL, 2, 'Auto reclosure', 'Protection clearance is required for the mentioned feeder.Requested by Construction Dept.PME has to follow.', NULL, 'Sokor stability and intertrip test are done for the mentioned feeder in 132kv.protection is clear.DCC informed', 'completed', '1', '2022-11-19 10:47:56', '2022-11-19 10:47:56');
+(46, 50, '2022-11-30', NULL, NULL, 76, 469, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 09:52:01', '2022-11-30 09:52:01'),
+(47, 50, '2022-11-30', '2022-11-30', NULL, 76, 469, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M Panel . Requested by Planinig and \nFolowing up Dept . Please check the attached letter ', NULL, 'Protection clearance is done to bay 4 and bay 6 11KV.\r\nDcc informed', 'completed', '1', '2022-11-30 09:55:04', '2022-11-30 09:55:04'),
+(48, 51, '2022-11-30', NULL, NULL, 76, 576, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:04:12', '2022-11-30 10:04:12'),
+(49, 51, '2022-11-30', '2022-11-30', NULL, 76, 576, 2, NULL, 2, 'General Alarm 132KV', 'An arrangment to check the DC Circuit of COPA/COPT is required.Requested by \nU.G Cable&OHL Maint Dept.Please check the attached letter.PME has to follow.', NULL, 'Regarding to the subject above, pin 44 at terminal X2 was open.\r\nLink was normalised, protection clear and dcc was informed.', 'completed', '1', '2022-11-30 10:05:05', '2022-11-30 10:05:05'),
+(50, 52, '2022-11-30', NULL, NULL, 84, 393, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:06:47', '2022-11-30 10:06:47'),
+(51, 52, NULL, '2022-11-30', 'مسؤولية جهة آخرى', 84, NULL, 2, NULL, 2, NULL, NULL, 'Alarm came from firefighter \r\nProtection side clear\r\n\r\nDCC informed', NULL, 'completed', '0', '2022-11-30 10:08:25', '2022-11-30 10:08:25'),
+(52, 53, '2022-11-30', NULL, NULL, 62, 98, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:14:32', '2022-11-30 10:14:32'),
+(53, 53, '2022-11-30', '2022-11-30', NULL, 62, 98, 2, NULL, 2, 'Transformer Clearance', 'The AVR for A/M Trs has a problem Reported by TME Ali Qabazard . PME has to \nfollow .', NULL, 'viaited s/s and checked with transformer engineer the tap changers , the issue was that the tap changer for tr#2 was lagging between raising and lowering , the tap changer position was blinking between the 2 positions\r\n\r\nafter checking in control pannels we note the following:\r\n\r\nWR contact from the common regulation pannel was isolated and faulty , we replace this timer ( Wr ) and replace contactor 74×2 for tr #3 ( related to dcc and control tap changer operation )\r\n\r\nthe substation was clear from protection side and tr engineer confirm that the tap #6 for tr#2 was defected and they need to follow \r\n\r\ndcc informed', 'completed', '1', '2022-11-30 10:16:12', '2022-11-30 10:16:12'),
+(54, 54, '2022-11-30', NULL, NULL, 81, 192, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:20:35', '2022-11-30 10:20:35'),
+(55, 54, '2022-11-30', '2022-11-30', NULL, 81, 192, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'Protection clear dcc informed', 'completed', '1', '2022-11-30 10:21:38', '2022-11-30 10:21:38'),
+(56, 55, '2022-11-30', NULL, NULL, 81, 404, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:22:38', '2022-11-30 10:22:38'),
+(57, 55, '2022-11-30', '2022-11-30', NULL, 81, 404, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'Protection clear dcc informed', 'completed', '1', '2022-11-30 10:23:30', '2022-11-30 10:23:30'),
+(58, 56, '2022-11-30', NULL, NULL, 67, 188, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:26:22', '2022-11-30 10:26:22'),
+(59, 56, '2022-11-30', '2022-11-30', NULL, 67, 188, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa \n(60694759) . PME has to follow .', NULL, 'Protection clear for the mentioned feeder DCC informed.', 'completed', '1', '2022-11-30 10:28:21', '2022-11-30 10:28:21'),
+(60, 57, '2022-11-30', NULL, NULL, 67, 191, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:29:37', '2022-11-30 10:29:37'),
+(61, 57, '2022-11-30', '2022-11-30', NULL, 67, 191, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clear for the mentioned feeder DCC informed.', NULL, 'Protection clear for the mentioned feeder DCC informed.', 'completed', '1', '2022-11-30 10:29:59', '2022-11-30 10:29:59'),
+(62, 58, '2022-11-30', NULL, NULL, 84, 400, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:32:14', '2022-11-30 10:32:14'),
+(63, 58, '2022-11-30', '2022-11-30', NULL, 84, 400, 2, NULL, 2, 'General Alarm 11KV', 'A/M F CB is showing undefined indication during close it by Distribution \nConstruction Eng Nada (66681894) . SME Omer Alkhayat reported it is from \nprotection side . PME has to follow ', NULL, '.Contact D1 for CB open position in control panel was faulty\r\nChanged the contact with spear panel \r\nAlarm now clear', 'completed', '1', '2022-11-30 10:35:39', '2022-11-30 10:35:39'),
+(64, 59, '2022-11-30', NULL, NULL, 86, 177, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:37:59', '2022-11-30 10:37:59'),
+(65, 59, '2022-11-30', '2022-11-30', NULL, 86, 177, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Shahin (99993494) \n. PME has to follow ', NULL, 'Protection is clear for the mentioned feeder.\r\nDCC informed.', 'completed', '1', '2022-11-30 10:40:22', '2022-11-30 10:40:22'),
+(66, 60, '2022-11-30', NULL, NULL, 33, 388, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:45:58', '2022-11-30 10:45:58'),
+(67, 60, '2022-11-30', '2022-11-30', NULL, 33, 388, 2, NULL, 2, 'other', 'Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'Dc isolated (COPA and COPT) for the mentioned feeder\r\nSHCC informed all clear', 'completed', '1', '2022-11-30 10:46:43', '2022-11-30 10:46:43'),
+(68, 61, '2022-11-30', NULL, NULL, 33, 389, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:48:12', '2022-11-30 10:48:12'),
+(69, 61, '2022-11-30', '2022-11-30', NULL, 33, 389, 2, NULL, 2, 'other', ' Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'Dc isolated (COPA and COPT) for the mentioned feeder\r\nSHCC informed all clear', 'completed', '1', '2022-11-30 10:48:39', '2022-11-30 10:48:39'),
+(70, 62, '2022-11-30', NULL, NULL, 74, 581, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:50:54', '2022-11-30 10:50:54'),
+(71, 62, '2022-11-30', '2022-11-30', NULL, 74, 581, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared at 1:37 Hr . Batt/F Saad Almutairi checked and \nReported that is from load side . PME has to follow ', NULL, 'DCC called for dc supply fail.\r\nvisit s/s found parallel circuit alarm and transformers\r\nare individual.\r\nfailed to clear alarm.\r\ns/s is under guarantee \r\ninformed DCC', 'completed', '1', '2022-11-30 10:51:57', '2022-11-30 10:51:57'),
+(72, 63, '2022-11-30', NULL, NULL, 55, 705, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:54:12', '2022-11-30 10:54:12'),
+(73, 63, '2022-11-30', '2022-11-30', NULL, 55, 705, 2, NULL, 2, 'General Alarm 132KV', '132 KV G/A is appeared on 18/11/2022 . PME Mishari Ali Cleared temporary by \nisolating device for O/C and earth fault relay for A/M F due to faulty and need to \nreplace . PME has to follow ', NULL, 'OC/EF relay was faulty and has been replaced by new one.\r\n\r\nProtection is clear\r\n\r\nDcc informed', 'completed', '1', '2022-11-30 10:54:51', '2022-11-30 10:54:51'),
+(74, 64, '2022-11-30', NULL, NULL, 86, 621, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:57:05', '2022-11-30 10:57:05'),
+(75, 64, '2022-11-30', '2022-11-30', NULL, 86, 621, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared on 18/11/20222 . Batt/F checked and reported \nthat is from load side . PME has to follow ', NULL, 'Found ‘ Tripping 220V battery charger faulty’ alarm. \r\nReset the alarm. S/s clear.\r\nDCC informed.', 'completed', '1', '2022-11-30 10:57:40', '2022-11-30 10:57:40'),
+(76, 65, '2022-11-30', NULL, NULL, 81, 43, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:00:45', '2022-11-30 11:00:45'),
+(77, 65, '2022-11-30', '2022-11-30', NULL, 81, 43, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared on 19/11/2022 and still existing (need entrance \npermission) . PME has to follow .', NULL, 'Alarm reset from charger side. Protection clear dcc informed', 'completed', '1', '2022-11-30 11:01:11', '2022-11-30 11:01:11'),
+(78, 66, '2022-11-30', NULL, NULL, 84, 726, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:07:37', '2022-11-30 11:07:37'),
+(79, 66, '2022-11-30', '2022-11-30', NULL, 84, 726, 2, NULL, 2, 'other', 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'I/T Alspa Card # 613 was sticky \r\nS/S now clear\r\n\r\nDCC informed', 'completed', '1', '2022-11-30 11:08:18', '2022-11-30 11:08:18'),
+(80, 67, '2022-11-30', NULL, NULL, 86, 129, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:10:26', '2022-11-30 11:10:26'),
+(81, 67, '2022-11-30', '2022-11-30', NULL, 86, 129, 2, NULL, 2, 'Protection Clearance feeder', 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'Protection is clear for the mentioned feeder.\r\nDCC informed.', 'completed', '1', '2022-11-30 11:11:04', '2022-11-30 11:11:04'),
+(82, 68, '2022-11-30', NULL, NULL, 55, 630, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:12:50', '2022-11-30 11:12:50'),
+(83, 68, '2022-11-30', '2022-11-30', NULL, 55, 630, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'All protection tests are done with the feeder… feeder is clear\r\n\r\nDcc informed', 'completed', '1', '2022-11-30 11:13:26', '2022-11-30 11:13:26'),
+(84, 69, '2022-11-30', NULL, NULL, 29, 492, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:15:06', '2022-11-30 11:15:06'),
+(85, 69, '2022-11-30', '2022-11-30', NULL, 29, 492, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'visited the s/stn and protection is clear', 'completed', '1', '2022-11-30 11:15:47', '2022-11-30 11:15:47');
 
 -- --------------------------------------------------------
 
@@ -20597,12 +20668,12 @@ INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reason
 --
 
 CREATE TABLE `tr` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint(4) NOT NULL DEFAULT 0,
-  `shift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin` tinyint NOT NULL DEFAULT '0',
+  `shift` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20614,15 +20685,15 @@ CREATE TABLE `tr` (
 --
 
 CREATE TABLE `tr_tasks` (
-  `id` int(11) NOT NULL,
-  `task_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` int NOT NULL,
+  `task_id` bigint UNSIGNED DEFAULT NULL,
   `work_type` varchar(255) DEFAULT NULL,
   `work_type_description` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -20631,15 +20702,15 @@ CREATE TABLE `tr_tasks` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT 1,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` bigint UNSIGNED DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_admin` tinyint(1) DEFAULT '1',
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20885,115 +20956,115 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `engineers`
 --
 ALTER TABLE `engineers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `equip`
 --
 ALTER TABLE `equip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19382;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19382;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `gc_tasks`
 --
 ALTER TABLE `gc_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `gc_task_attachments`
 --
 ALTER TABLE `gc_task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `gc_task_details`
 --
 ALTER TABLE `gc_task_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `main_alarms`
 --
 ALTER TABLE `main_alarms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rs_tasks`
 --
 ALTER TABLE `rs_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stations`
 --
 ALTER TABLE `stations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=736;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=736;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `tr`
 --
 ALTER TABLE `tr`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- Constraints for dumped tables

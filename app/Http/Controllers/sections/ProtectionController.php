@@ -278,14 +278,14 @@ class ProtectionController extends Controller
                 $attachments->id_task = $task_id;
                 $attachments->save();
             }
+
+            //     // //to send email
+            Notification::route('mail', $engineer_email)
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
+        } else {
+            Notification::route('mail', $engineer_email)
+                ->notify(new AddTask($task_id, $request->station_code, $fromSection));
         }
-        //     // //to send email
-        //     // Notification::route('mail', $engineer_email)
-        //     //     ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
-        // } else {
-        //     //     Notification::route('mail', $engineer_email)
-        //     //         ->notify(new AddTask($task_id, $request->station_code, $fromSection));
-        // }
         session()->flash('Add', 'تم اضافةالمهمة بنجاح');
         return redirect()->back()->withInput()->withInput();
 
@@ -809,7 +809,7 @@ class ProtectionController extends Controller
         $task_details = TaskDetails::where('section_id', 2)
             ->where('status', 'completed')
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate(8);
         $date = Carbon::now();
         $monthName = $date->format('F');
         return view('protection.user.dashboard', compact('tasks', 'task_details', 'date', 'monthName'));
