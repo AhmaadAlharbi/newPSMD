@@ -173,7 +173,7 @@ class UserSeeder extends Seeder
             array(
                 0 => 'Amer H M Alansari',
                 1 => '298102300121',
-                2 => 'Amer Alan',
+                2 => 'amhmalansari@mew.gov.kw',
                 3 => '2',
                 4 => '0',
             ),
@@ -349,7 +349,7 @@ class UserSeeder extends Seeder
             array(
                 0 => 'Meshari Mohammad Ali ASAD Abdulraheem',
                 1 => '297090201294',
-                2 => 'mesharimohammed@mew.gov.kw',
+                2 => 'mmaabdulraheem@mew.gov.kw',
                 3 => '2',
                 4 => '0',
             ),

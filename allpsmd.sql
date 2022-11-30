@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 30, 2022 at 11:26 AM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Host: localhost
+-- Generation Time: Nov 30, 2022 at 09:52 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `allpsmd`
+-- Database: `allPSMD`
 --
 
 -- --------------------------------------------------------
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -45,11 +45,11 @@ CREATE TABLE `admins` (
 --
 
 CREATE TABLE `engineers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `section_id` bigint UNSIGNED DEFAULT NULL,
-  `local_department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'no',
-  `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `local_department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'no',
+  `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shift` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -124,11 +124,11 @@ INSERT INTO `engineers` (`id`, `user_id`, `section_id`, `local_department`, `are
 --
 
 CREATE TABLE `equip` (
-  `id` int NOT NULL,
-  `station_id` bigint UNSIGNED DEFAULT NULL,
-  `voltage_level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equip_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equip_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `station_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `voltage_level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19475,13 +19475,13 @@ INSERT INTO `equip` (`id`, `station_id`, `voltage_level`, `equip_number`, `equip
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -19491,20 +19491,20 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `gc_tasks` (
-  `id` int NOT NULL,
-  `refNum` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `section_id` bigint UNSIGNED DEFAULT NULL,
-  `station_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `control` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `make` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contract_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contractor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `eng_id` bigint UNSIGNED DEFAULT NULL,
-  `ref_book` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `refNum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `station_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `control` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `make` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contract_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contractor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ref_book` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19526,11 +19526,11 @@ INSERT INTO `gc_tasks` (`id`, `refNum`, `section_id`, `station_name`, `control`,
 --
 
 CREATE TABLE `gc_task_attachments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `file_name` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `refNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Created_by` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_task` bigint UNSIGNED DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refNum` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Created_by` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_task` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19561,15 +19561,15 @@ INSERT INTO `gc_task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `i
 --
 
 CREATE TABLE `gc_task_details` (
-  `id` int NOT NULL,
-  `task_id` bigint UNSIGNED DEFAULT NULL,
-  `section_id` bigint UNSIGNED DEFAULT NULL,
-  `action_take` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `notes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint UNSIGNED DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `task_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
   `report_date` date DEFAULT NULL,
-  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19590,9 +19590,9 @@ INSERT INTO `gc_task_details` (`id`, `task_id`, `section_id`, `action_take`, `no
 --
 
 CREATE TABLE `main_alarms` (
-  `id` bigint UNSIGNED NOT NULL,
-  `main_alarm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `section_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19604,9 +19604,9 @@ CREATE TABLE `main_alarms` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19636,8 +19636,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -19648,12 +19648,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -19666,19 +19666,19 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `rs_tasks` (
-  `id` int NOT NULL,
-  `refNum` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `station_id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `station_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `refNum` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `station_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `station_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
   `deadline` date DEFAULT NULL,
-  `notes` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
-  `status` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `eng_id` bigint DEFAULT NULL,
-  `user` bigint DEFAULT NULL,
+  `notes` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `eng_id` bigint(20) DEFAULT NULL,
+  `user` bigint(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -19687,8 +19687,8 @@ CREATE TABLE `rs_tasks` (
 --
 
 CREATE TABLE `sections` (
-  `id` bigint UNSIGNED NOT NULL,
-  `section_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `section_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -19711,12 +19711,12 @@ INSERT INTO `sections` (`id`, `section_name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `payload` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19735,14 +19735,14 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 --
 
 CREATE TABLE `stations` (
-  `id` bigint UNSIGNED NOT NULL,
-  `SSNAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `COMPANY_MAKE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Voltage_Level_KV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Contract_No` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `COMMISIONING_DATE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `control` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fullName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `SSNAME` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `COMPANY_MAKE` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Voltage_Level_KV` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Contract_No` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `COMMISIONING_DATE` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `control` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pm` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -20492,26 +20492,26 @@ INSERT INTO `stations` (`id`, `SSNAME`, `COMPANY_MAKE`, `Voltage_Level_KV`, `Con
 --
 
 CREATE TABLE `tasks` (
-  `id` bigint UNSIGNED NOT NULL,
-  `refNum` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `section_id` bigint UNSIGNED DEFAULT NULL,
-  `fromSection` bigint UNSIGNED DEFAULT NULL,
-  `toSection` bigint UNSIGNED DEFAULT NULL,
-  `station_id` bigint UNSIGNED DEFAULT NULL,
-  `main_alarm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `voltage_level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `refNum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `fromSection` bigint(20) UNSIGNED DEFAULT NULL,
+  `toSection` bigint(20) UNSIGNED DEFAULT NULL,
+  `station_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voltage_level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `task_date` date DEFAULT NULL,
-  `equip_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equip_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint UNSIGNED DEFAULT NULL,
-  `problem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `report_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0',
-  `alarm_count` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equip_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `report_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `alarm_count` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20540,7 +20540,10 @@ INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `
 (66, '2022/11/30-2265', 2, 2, NULL, 726, 'other', '132KV', NULL, 'Clearance', '2022-11-30', 'E(01) - SPARE01', NULL, 84, 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:07:37', '2022-11-30 11:08:18'),
 (67, '2022/11/30-655', 2, 2, NULL, 129, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(10) - MHBLA1', NULL, 86, 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:10:26', '2022-11-30 11:11:04'),
 (68, '2022/11/30-6682', 2, 2, NULL, 630, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SALWD1', NULL, 55, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:12:50', '2022-11-30 11:13:26'),
-(69, '2022/11/30-1724', 2, 2, NULL, 492, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SSURAW1', NULL, 29, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:15:06', '2022-11-30 11:15:47');
+(69, '2022/11/30-1724', 2, 2, NULL, 492, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SSURAW1', NULL, 29, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:15:06', '2022-11-30 11:15:47'),
+(70, '2022/11/30-6658', 2, 2, NULL, 400, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-11-30', '', NULL, 69, 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and\nreported that is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 16:49:35', '2022-11-30 16:54:06'),
+(71, '2022/11/30-9606', 2, 2, NULL, 269, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(3) - SHKHA1', NULL, 47, NULL, 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa\n(69005536) . PME has to follow .', 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 17:07:32', '2022-11-30 17:10:40'),
+(72, '2022/11/30-6685', 2, 2, NULL, 1, 'Flag Relay Replacement', '11KV', NULL, 'Clearance', '2022-11-30', 'K (2) - FEED2', NULL, 1, 'ew', NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 20:04:14', '2022-11-30 20:04:14');
 
 -- --------------------------------------------------------
 
@@ -20549,11 +20552,11 @@ INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `
 --
 
 CREATE TABLE `task_attachments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `file_name` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `refNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Created_by` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_task` bigint UNSIGNED DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refNum` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Created_by` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_task` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20586,7 +20589,9 @@ INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_t
 (35, 'SHSW-A   (P) 2 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 66, '2022-11-30 11:07:37', '2022-11-30 11:07:37'),
 (36, 'FINT-B (DONE).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 67, '2022-11-30 11:10:26', '2022-11-30 11:10:26'),
 (37, 'SSUR-AW    (P) 5 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 68, '2022-11-30 11:12:50', '2022-11-30 11:12:50'),
-(38, 'SALW-D   (P) 1 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 69, '2022-11-30 11:15:06', '2022-11-30 11:15:06');
+(38, 'SALW-D   (P) 1 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 69, '2022-11-30 11:15:06', '2022-11-30 11:15:06'),
+(39, 'PLJT-M (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 70, '2022-11-30 16:49:35', '2022-11-30 16:49:35'),
+(40, 'KIFN-M (P) 3.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 71, '2022-11-30 17:07:32', '2022-11-30 17:07:32');
 
 -- --------------------------------------------------------
 
@@ -20595,22 +20600,22 @@ INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_t
 --
 
 CREATE TABLE `task_details` (
-  `id` bigint UNSIGNED NOT NULL,
-  `task_id` bigint UNSIGNED DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `task_id` bigint(20) UNSIGNED DEFAULT NULL,
   `task_date` date DEFAULT NULL,
   `report_date` date DEFAULT NULL,
-  `reasonOfUncompleted` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `eng_id` bigint UNSIGNED DEFAULT NULL,
-  `station_id` bigint UNSIGNED DEFAULT NULL,
-  `fromSection` bigint UNSIGNED DEFAULT NULL,
-  `toSection` bigint UNSIGNED DEFAULT NULL,
-  `section_id` bigint UNSIGNED DEFAULT NULL,
-  `main_alarm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `engineer_notes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_take` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `report_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `reasonOfUncompleted` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eng_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `station_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `fromSection` bigint(20) UNSIGNED DEFAULT NULL,
+  `toSection` bigint(20) UNSIGNED DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `main_alarm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `engineer_notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_take` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `report_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20659,7 +20664,12 @@ INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reason
 (82, 68, '2022-11-30', NULL, NULL, 55, 630, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:12:50', '2022-11-30 11:12:50'),
 (83, 68, '2022-11-30', '2022-11-30', NULL, 55, 630, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'All protection tests are done with the feeder… feeder is clear\r\n\r\nDcc informed', 'completed', '1', '2022-11-30 11:13:26', '2022-11-30 11:13:26'),
 (84, 69, '2022-11-30', NULL, NULL, 29, 492, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:15:06', '2022-11-30 11:15:06'),
-(85, 69, '2022-11-30', '2022-11-30', NULL, 29, 492, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'visited the s/stn and protection is clear', 'completed', '1', '2022-11-30 11:15:47', '2022-11-30 11:15:47');
+(85, 69, '2022-11-30', '2022-11-30', NULL, 29, 492, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'visited the s/stn and protection is clear', 'completed', '1', '2022-11-30 11:15:47', '2022-11-30 11:15:47'),
+(86, 70, '2022-11-30', NULL, NULL, 69, 400, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 16:49:35', '2022-11-30 16:49:35'),
+(87, 70, '2022-11-30', '2022-11-30', NULL, 69, 400, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and\nreported that is from load side . PME has to follow ', NULL, 'Visited the substation there was Dc earth fault.while measuring  the fault the MCB of panel 18 in 11KV tripped so , I normalize it and then normlize another MCB in the disturbtion board and the alarm has been cleared', 'completed', '1', '2022-11-30 16:54:06', '2022-11-30 16:54:06'),
+(88, 71, '2022-11-30', NULL, NULL, 47, 269, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 17:07:32', '2022-11-30 17:07:32'),
+(89, 71, '2022-11-30', '2022-11-30', NULL, 47, 269, 2, NULL, 2, 'Protection Clearance feeder', NULL, NULL, 'Protection relays solker,OC and EF for bay4 33kv have been tested and clear.', 'completed', '1', '2022-11-30 17:10:40', '2022-11-30 17:10:40'),
+(90, 72, '2022-11-30', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 20:04:14', '2022-11-30 20:04:14');
 
 -- --------------------------------------------------------
 
@@ -20668,12 +20678,12 @@ INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reason
 --
 
 CREATE TABLE `tr` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint NOT NULL DEFAULT '0',
-  `shift` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin` tinyint(4) NOT NULL DEFAULT 0,
+  `shift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20685,15 +20695,15 @@ CREATE TABLE `tr` (
 --
 
 CREATE TABLE `tr_tasks` (
-  `id` int NOT NULL,
-  `task_id` bigint UNSIGNED DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `task_id` bigint(20) UNSIGNED DEFAULT NULL,
   `work_type` varchar(255) DEFAULT NULL,
   `work_type_description` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -20702,15 +20712,15 @@ CREATE TABLE `tr_tasks` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `section_id` bigint UNSIGNED DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) DEFAULT '1',
-  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_admin` tinyint(1) DEFAULT 1,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -20740,7 +20750,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `
 (44, 'Ali Mahdi Boualiyan', 'amboolyan@mew.gov.kw', NULL, 2, '$2y$10$2t7W1Np7LGFAU74Fqfj0gOf2KYERfommzy5EX/TZlGsxqKbvOhB.6', 0, 'TS', NULL, NULL, NULL),
 (45, 'Ali Mohammad Abdullah Al Sahhaf', 'alialsahhaf@mew.gov.kw', NULL, 2, '$2y$10$t4yd2e3LsdEhSaB5kPXKKeIyoNCRbCvNo0VE1WO3ouwbnhXYOokfm', 0, 'TS', NULL, NULL, NULL),
 (46, 'Ali Saleh Alqattan', 'asaalqatan@mew.gov.kw', NULL, 2, '$2y$10$LRKojAvmQuchCNBpAhdx6eX5t8w5guf8H9aeqPqeiAZUOr8kx6Vay', 0, 'TS', NULL, NULL, NULL),
-(47, 'Amer H M Alansari', 'Amer@mew.gov.kw', NULL, 2, '$2y$10$02HMLXzNI043TYkNhg.WnOMDuLcWuhZlwjFhLsQdMgXZMs4B6KBca', 0, 'TS', NULL, NULL, '2022-09-07 06:15:05'),
+(47, 'Amer H M Alansari', 'amhmalansari@mew.gov.kw', NULL, 2, '$2y$10$02HMLXzNI043TYkNhg.WnOMDuLcWuhZlwjFhLsQdMgXZMs4B6KBca', 0, 'TS', NULL, NULL, '2022-09-07 06:15:05'),
 (48, 'Ammar Khalid Al-Ammary', 'akalamari@mew.gov.kw', NULL, 2, '$2y$10$KnWjVu2SvSEWq8eUHPMQI.0jbqvGxmT.hqJWNYlZmV05CQmM385w2', 0, 'TS', NULL, NULL, NULL),
 (49, 'BADER ABDEL SALAM KHEDER MILAD', 'bameelad@mew.gov.kw', NULL, 2, '$2y$10$tStzRO9LAgXoI0ZjY.Ywde/SvgIYOneNCbIZ21H20o9I5Uo7c7Tvy', 0, 'TS', NULL, NULL, NULL),
 (50, 'Eid  MUTHEEB MOHAMMAD AL OTAIBI', 'eid@mew.gov.kw', NULL, 2, '$2y$10$TaQQ/n21LeS9GGoUo6sf4OfBXT7CIb78KfaLaWtqjVFeMYTyTQ8im', 0, 'TS', NULL, NULL, NULL),
@@ -20762,7 +20772,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `
 (66, 'Khaleel M KH Al Qallaf', 'kmkalqallaf@mew.gov.kw', NULL, 2, '$2y$10$d0ebaIirhqxH.4pQPwF6lu4jmxW0lVGDOmpG6F8smENGxtKnkKz6.', 0, 'TS', NULL, NULL, NULL),
 (67, 'KHALIL SAYED E KH ALQALLAF', 'ksealqallafufhhj@mew.gov.kw', NULL, 2, '$2y$10$D6.2L2QHT3QbdSCBN6APo.jOvVGzJ6T6UAtxuoyTTVlM2lVhMWvYq', 0, 'TS', NULL, NULL, NULL),
 (68, 'Mahdi F A Bushehri', 'mahdi1@mew.gov.kw', NULL, 2, '$2y$10$ZXRcT8jEVDOPeKaOscdp4uU.FZqXGJVJJtmmEIj1yB4PZdX70CGbS', 0, 'TS', NULL, NULL, NULL),
-(69, 'Meshari Mohammad Ali ASAD Abdulraheem', 'mesharimohammed@mew.gov.kw', NULL, 2, '$2y$10$FidPpK8EKeMYNLudPIP6EOxZPTZ7zRjQA1SbZr5n/tF3/tXVudlA2', 0, 'TS', NULL, NULL, NULL),
+(69, 'Meshari Mohammad Ali ASAD Abdulraheem', 'mmaabdulraheem@mew.gov.kw', NULL, 2, '$2y$10$FidPpK8EKeMYNLudPIP6EOxZPTZ7zRjQA1SbZr5n/tF3/tXVudlA2', 0, 'TS', NULL, NULL, NULL),
 (70, 'Mishal Al-Saeed', 'mishal@mew.gov.kw', NULL, 2, '$2y$10$wq7OmdK.n4UlU0E/DqzZfuSThR0yhWloMI/u4yfLopQuU7U1pSbtO', 0, 'TS', NULL, NULL, NULL),
 (71, 'Mishari Khaled Al-Tawari', 'mkaltuwari@mew.gov.kw', NULL, 2, '$2y$10$z7.offmkuJ2mmqgs6u/AV.wQLR7rU3ANmtxV6T3Ed9CxUxYoLO0ka', 0, 'TS', NULL, NULL, NULL),
 (72, 'Mohammed Behbehani', 'mubehbehani@mew.gov.kw', NULL, 2, '$2y$10$4nA5Fugukyg5bm96Rc.s3epvHWMPtv71u68mxhFn1csFjsj3WiIea', 0, 'TS', NULL, NULL, '2022-09-07 06:29:55'),
@@ -20956,115 +20966,115 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `engineers`
 --
 ALTER TABLE `engineers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `equip`
 --
 ALTER TABLE `equip`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19382;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19382;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `gc_tasks`
 --
 ALTER TABLE `gc_tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `gc_task_attachments`
 --
 ALTER TABLE `gc_task_attachments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `gc_task_details`
 --
 ALTER TABLE `gc_task_details`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `main_alarms`
 --
 ALTER TABLE `main_alarms`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rs_tasks`
 --
 ALTER TABLE `rs_tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stations`
 --
 ALTER TABLE `stations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=736;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=736;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `tr`
 --
 ALTER TABLE `tr`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tr_tasks`
 --
 ALTER TABLE `tr_tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- Constraints for dumped tables

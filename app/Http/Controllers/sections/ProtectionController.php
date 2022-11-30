@@ -695,7 +695,12 @@ class ProtectionController extends Controller
     }
     public function open_file($id, $file_name)
     {
-        return $url = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix('protection/' . $id . '/' . $file_name);
+        return Storage::download('protection/' . $id . '/' . $file_name);
+
+
+
+
+        // return $url = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix('protection/' . $id . '/' . $file_name);
     }
     public function get_file($id, $file_name)
     {

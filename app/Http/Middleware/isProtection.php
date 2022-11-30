@@ -20,6 +20,6 @@ class isProtection
         if (Auth::check() && auth()->user()->section_id == 2) {
             return $next($request);
         }
-       abort(403);
+        abort(403);
     }
 }
