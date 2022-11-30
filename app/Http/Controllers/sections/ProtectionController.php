@@ -688,20 +688,19 @@ class ProtectionController extends Controller
         if ($tasks->fromSection == 2 && is_null($tasks->toSection)) {
             $tasks->delete();
             session()->flash('edit', 'تم   التعديل  بنجاح');
-
+            Storage::deleteDirectory('Attachments/protection/' . $id);
             return back();
             return "deleted";
         }
     }
     public function open_file($id, $file_name)
     {
-        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('protection/' . $id . '/' . $file_name);
-        return response()->file($files);
+        return $url = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix('protection/' . $id . '/' . $file_name);
     }
     public function get_file($id, $file_name)
     {
-        $contents = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix('protection/' . $id . '/' . $file_name);
-        return response()->download($contents);
+        // $file = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix('protection/' . $id . '/' . $file_name);
+        return $url = Storage::disk('public')->download('protection/' . $id . '/' . $file_name);
     }
     public function destroyAttachment(Request $request)
     {

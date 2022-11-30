@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use DateTime;
+use Illuminate\Support\Facades\Storage;
 
 class AddStation extends Component
 {
@@ -231,9 +232,11 @@ class AddStation extends Component
             // $photo->store('photos');
             $name = $photo->getClientOriginalName();
             // $photo->storeAs('public', $name);
-            $photo->storeAs('documents', $name, 'public');
-
             $task_id = Task::latest()->first()->id;
+
+            $photo->storeAs('protection/' . $task_id, $name, 'public');
+
+
             $attachments = new TaskAttachment();
             $attachments->file_name = $name;
             $attachments->created_by = Auth::user()->name;

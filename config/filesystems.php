@@ -39,13 +39,18 @@ return [
             'root'   => public_path() . '/Attachments',
 
         ],
+        'public_uploads' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/Attachments',
+
+        ],
         'public_uploads_protection' => [
             'driver' => 'local',
             'root'   => public_path() . '/general-check',
         ],
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => public_path('Attachments'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
