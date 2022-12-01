@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SignaturePadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('signaturepad', [SignaturePadController::class, 'index']);
+Route::post('signaturepad', [SignaturePadController::class, 'upload'])->name('signaturepad.upload');
 
 // Route::get('/dashboard/user', function () {
 //     return view('protection.user.dashboard');
