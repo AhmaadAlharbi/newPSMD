@@ -358,10 +358,9 @@
 
                             </h4>
                             <p class="ml-4 lead">{{ $task_details->users->email }}</p>
-                            @php
-                            $user = auth()->user()->signature
-                            @endphp
-                            <img src="{{asset('signatures/').'/'.$task_details->users->signature}}" style="width:40%;" alt="Sign">
+                            @if($task_details->users->signature != null)
+                            <img src="{{asset('signatures/').'/'.$task_details->users->signature}}" style="width:30%;" alt="Sign">
+                            @endif
                         </div>
                     </div>
 

@@ -36,9 +36,22 @@
                             <input class="btn btn-outline-primary" type="submit" value="ابحث">
 
                         </div>
+                        @if(auth()->user()->signature == null)
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <p class="h3">يرجى اضافة توقيع الالكتروني</p>
+                            <a href="/signaturepad" class="btn btn-lg mt-4  btn-dark">اضافة توقيعك</a>
+
+                        </div>
+                        @endif
+
                     </div>
                 </form>
-
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success  alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+                @endif
             </div>
         </div>
     </div>
