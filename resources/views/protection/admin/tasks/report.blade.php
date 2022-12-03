@@ -323,24 +323,17 @@
                                     {{ $task_details->tasks->equip_name }}
                                 </h4>
                             </div>
-
-
-
                             <div class="d-block border border-dark  mb-4   text-dark">
                                 <h3 class=" bg-warning-gradient py-2 text-white pl-4">Alarm Date
                                     {{ $task_details->tasks->created_at }}
-
                                 </h3>
-
                                 <h2 class="ml-4">Nature of Fault</h2>
                                 <h4 class="ml-4 text-left ">{{ $task_details->problem }}</h4>
                             </div>
-
                             <div class="  border border-dark      mb-2  text-dark">
                                 <h3 class="bg-success-gradient py-3 text-white pl-4 ">Report Date
                                     {{ $task_details->created_at }}
                                 </h3>
-
                                 <h2 class="ml-4">Action Take</h2>
                                 @if (isset($task_details->action_take))
                                 <h4 class=" ml-4 w-auto h-25 text-left">{{ $task_details->action_take }}</h4>
@@ -349,8 +342,6 @@
                                 <h5 class=" ml-4 w-auto h-25 ">{{ $task_details->engineer_notes }}</h5>
                                 @endif
                             </div>
-
-
                             <div class="d-block p-3 mb-2 bg-white text-dark">
                                 <h2>Engineer</h2>
                             </div>
@@ -359,7 +350,7 @@
                             </h4>
                             <p class="ml-4 lead">{{ $task_details->users->email }}</p>
                             @if($task_details->users->signature != null)
-                            <img src="{{asset('signatures/').'/'.$task_details->users->signature}}" style="width:30%;" alt="Sign">
+                            <img src="{{asset('signatures/').'/'.$task_details->users->signature}}" style="width:50%;" alt="Sign">
                             @endif
                         </div>
                     </div>

@@ -25,21 +25,18 @@ class SignaturePadController extends Controller
     public function upload(Request $request)
     {
         $folderPath = public_path('signatures/');
-
-        $image_parts = explode(";base64,", $request->signed);
-
-        $image_type_aux = explode("image/", $image_parts[0]);
-
-        $image_type = $image_type_aux[1];
-
-        $image_base64 = base64_decode($image_parts[1]);
         $user_id = auth()->user()->id;
-        $file = $folderPath . $user_id . '.' . $image_type;
-        file_put_contents($file, $image_base64);
+
+        $data_uri = $request->signed;
+        $encoded_image = explode(",", $data_uri)[1];
+        $decoded_image = base64_decode($encoded_image);
+        $user_id = auth()->user()->id;
+        $file = $folderPath . $user_id . '.' . '.png';
+        file_put_contents($file, $decoded_image);
         $user = User::where('id', $user_id)->first();
-        $user->signature = $user_id . '.' . $image_type;
+        $user->signature = $user_id . '.' . '.png';
         $user->update([
-            'signature' => $user_id . '.' . $image_type,
+            'signature' => $user_id . '.' . '.png',
         ]);
         if (auth()->user()->is_admin == 1) {
             return redirect('dashboard/admin/query_section_id=' . auth()->user()->section_id)->with('success', 'تم اضافة توقيعك بنجاح');
