@@ -38,6 +38,7 @@ class SignaturePadController extends Controller
         $user->update([
             'signature' => $user_id  . '.png',
         ]);
+
         if (auth()->user()->is_admin == 1) {
             return redirect('dashboard/admin/query_section_id=' . auth()->user()->section_id)->with('success', 'تم اضافة توقيعك بنجاح');
         } else {

@@ -350,10 +350,11 @@
                             </h4>
                             <p class="ml-4 lead">{{ $task_details->users->email }}</p>
                             @if($task_details->users->signature != null)
-                            <img src="{{asset('signatures/').'/'.$task_details->users->signature}}" style="width:50%;" alt="Sign">
+                            <img id="signature" src="{{asset('signatures/').'/'.$task_details->users->signature}}?<?= rand(1, 32000) ?>" style="width:50%;" alt="Sign">
                             @endif
                         </div>
                     </div>
+
 
                     <hr class=" mg-b-40">
                     <div class="btn-group mb-3 d-print-none" role="group" aria-label="Basic example">
