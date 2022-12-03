@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Signature Pad demo</title>
+    <title>Signature Pad</title>
     <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;800&display=swap" rel="stylesheet">
@@ -154,6 +154,7 @@
 
 
     <div id="signature-pad" class="signature-pad">
+        <h1 class="text-4xl py-3 text-center">يرجى التوقيع بالاسفل</h1>
         <div class="signature-pad--body">
             <canvas></canvas>
         </div>

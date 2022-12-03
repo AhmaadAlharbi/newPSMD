@@ -34,9 +34,9 @@ class SignaturePadController extends Controller
         $file = $folderPath . $user_id . '.' . '.png';
         file_put_contents($file, $decoded_image);
         $user = User::where('id', $user_id)->first();
-        $user->signature = $user_id . '.' . '.png';
+        $user->signature = $user_id  . '.png';
         $user->update([
-            'signature' => $user_id . '.' . '.png',
+            'signature' => $user_id  . '.png',
         ]);
         if (auth()->user()->is_admin == 1) {
             return redirect('dashboard/admin/query_section_id=' . auth()->user()->section_id)->with('success', 'تم اضافة توقيعك بنجاح');
