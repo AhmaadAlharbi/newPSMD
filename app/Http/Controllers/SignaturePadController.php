@@ -31,7 +31,7 @@ class SignaturePadController extends Controller
         $encoded_image = explode(",", $data_uri)[1];
         $decoded_image = base64_decode($encoded_image);
         $user_id = auth()->user()->id;
-        $file = $folderPath . $user_id . '.' . '.png';
+        $file = $folderPath . $user_id . '.png';
         file_put_contents($file, $decoded_image);
         $user = User::where('id', $user_id)->first();
         $user->signature = $user_id  . '.png';
