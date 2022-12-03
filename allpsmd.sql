@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 30, 2022 at 09:52 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.1.2
+-- Host: localhost:3306
+-- Generation Time: Dec 03, 2022 at 01:55 PM
+-- Server version: 10.5.17-MariaDB-cll-lve
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `allPSMD`
+-- Database: `psmdkwco_allPSMD`
 --
 
 -- --------------------------------------------------------
@@ -20521,29 +20522,41 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `station_id`, `main_alarm`, `voltage_level`, `pm`, `work_type`, `task_date`, `equip_number`, `equip_name`, `eng_id`, `problem`, `notes`, `status`, `report_status`, `alarm_count`, `user`, `created_at`, `updated_at`) VALUES
-(50, '2022/11/30-9574', 2, 2, NULL, 469, 'Protection Clearance feeder', '11KV', NULL, 'Clearance', '2022-11-30', 'K (6) - SPARE6', NULL, 76, 'Protection clearance is required for A/M Panel . Requested by Planinig and \nFolowing up Dept . Please check the attached letter ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 09:52:01', '2022-11-30 09:55:04'),
-(51, '2022/11/30-2825', 2, 2, NULL, 576, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - STLFA2', NULL, 76, 'An arrangment to check the DC Circuit of COPA/COPT is required.Requested by \nU.G Cable&OHL Maint Dept.Please check the attached letter.PME has to follow.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:04:12', '2022-11-30 10:05:05'),
-(52, '2022/11/30-8725', 2, 2, NULL, 393, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-11-30', '', NULL, 84, '132kV G/Alarm is appeared at 08.45 Hr. and Still existing. PME has to follow', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:06:47', '2022-11-30 10:08:25'),
-(53, '2022/11/30-9693', 2, 2, NULL, 98, 'Transformer Clearance', '30TR1', NULL, 'Clearance', '2022-11-30', '', NULL, 62, 'The AVR for A/M Trs has a problem Reported by TME Ali Qabazard . PME has to \nfollow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:14:32', '2022-11-30 10:16:12'),
-(54, '2022/11/30-2067', 2, 2, NULL, 192, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(4) - QASRM1', NULL, 81, 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:20:35', '2022-11-30 10:21:38'),
-(55, '2022/11/30-9100', 2, 2, NULL, 404, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(3) - JAHRB1', NULL, 81, 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:22:38', '2022-11-30 10:23:30'),
-(56, '2022/11/30-9140', 2, 2, NULL, 188, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(1) - JAHRA1', NULL, 67, 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa \n(60694759) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:26:22', '2022-11-30 10:28:21'),
-(57, '2022/11/30-5699', 2, 2, NULL, 191, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(4) - JAHRM1', NULL, 67, 'Protection clear for the mentioned feeder DCC informed.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:29:37', '2022-11-30 10:29:59'),
-(58, '2022/11/30-2500', 2, 2, NULL, 400, 'General Alarm 11KV', '11KV', NULL, 'Clearance', '2022-11-30', 'K(01) - SPARE01', NULL, 84, 'A/M F CB is showing undefined indication during close it by Distribution \nConstruction Eng Nada (66681894) . SME Omer Alkhayat reported it is from \nprotection side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:32:14', '2022-11-30 10:35:39'),
-(59, '2022/11/30-576', 2, 2, NULL, 177, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(4) - QADSA1', NULL, 86, 'Protection clearance is required for A/M F . Requested by CME Shahin (99993494) \n. PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:37:59', '2022-11-30 10:40:22'),
-(60, '2022/11/30-5835', 2, 2, NULL, 388, 'other', '132KV', NULL, NULL, '2022-11-30', 'E(8) - FINTA1', NULL, 33, 'Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:45:58', '2022-11-30 10:46:43'),
-(61, '2022/11/30-2927', 2, 2, NULL, 389, 'other', '132KV', NULL, NULL, '2022-11-30', 'E(4) - FINTAE1', NULL, 33, ' Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:48:12', '2022-11-30 10:48:39'),
-(62, '2022/11/30-204', 2, 2, NULL, 581, 'DC Supply 1 & 2 Fail Alarm', '132KV', NULL, NULL, '2022-11-30', '', NULL, 74, 'DC supply fail alarm is appeared at 1:37 Hr . Batt/F Saad Almutairi checked and \nReported that is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:50:54', '2022-11-30 10:51:57'),
-(63, '2022/11/30-442', 2, 2, NULL, 705, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-11-30', 'E(8) - WJLBD1', NULL, 55, '132 KV G/A is appeared on 18/11/2022 . PME Mishari Ali Cleared temporary by \nisolating device for O/C and earth fault relay for A/M F due to faulty and need to \nreplace . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:54:12', '2022-11-30 10:54:51'),
-(64, '2022/11/30-7857', 2, 2, NULL, 621, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-11-30', '', NULL, 86, 'DC supply fail alarm is appeared on 18/11/20222 . Batt/F checked and reported \nthat is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 10:57:05', '2022-11-30 10:57:40'),
-(65, '2022/11/30-432', 2, 2, NULL, 43, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-11-30', '', NULL, 81, 'DC supply fail alarm is appeared on 19/11/2022 and still existing (need entrance \npermission) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:00:45', '2022-11-30 11:01:11'),
-(66, '2022/11/30-2265', 2, 2, NULL, 726, 'other', '132KV', NULL, 'Clearance', '2022-11-30', 'E(01) - SPARE01', NULL, 84, 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:07:37', '2022-11-30 11:08:18'),
-(67, '2022/11/30-655', 2, 2, NULL, 129, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(10) - MHBLA1', NULL, 86, 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:10:26', '2022-11-30 11:11:04'),
-(68, '2022/11/30-6682', 2, 2, NULL, 630, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SALWD1', NULL, 55, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:12:50', '2022-11-30 11:13:26'),
-(69, '2022/11/30-1724', 2, 2, NULL, 492, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-11-30', 'E(2) - SSURAW1', NULL, 29, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 11:15:06', '2022-11-30 11:15:47'),
-(70, '2022/11/30-6658', 2, 2, NULL, 400, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-11-30', '', NULL, 69, 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and\nreported that is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 16:49:35', '2022-11-30 16:54:06'),
-(71, '2022/11/30-9606', 2, 2, NULL, 269, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-11-30', 'H(3) - SHKHA1', NULL, 47, NULL, 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa\n(69005536) . PME has to follow .', 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 17:07:32', '2022-11-30 17:10:40'),
-(72, '2022/11/30-6685', 2, 2, NULL, 1, 'Flag Relay Replacement', '11KV', NULL, 'Clearance', '2022-11-30', 'K (2) - FEED2', NULL, 1, 'ew', NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-11-30 20:04:14', '2022-11-30 20:04:14');
+(50, '2022/11/30-9574', 2, 2, NULL, 469, 'Protection Clearance feeder', '11KV', NULL, 'Clearance', '2022-12-01', 'K (6) - SPARE6', NULL, 76, 'Protection clearance is required for A/M Panel . Requested by Planinig and \nFolowing up Dept . Please check the attached letter ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 09:55:04'),
+(51, '2022/11/30-2825', 2, 2, NULL, 576, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-12-01', 'E(2) - STLFA2', NULL, 76, 'An arrangment to check the DC Circuit of COPA/COPT is required.Requested by \nU.G Cable&OHL Maint Dept.Please check the attached letter.PME has to follow.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:05:05'),
+(52, '2022/11/30-8725', 2, 2, NULL, 393, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-12-01', '', NULL, 84, '132kV G/Alarm is appeared at 08.45 Hr. and Still existing. PME has to follow', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:08:25'),
+(53, '2022/11/30-9693', 2, 2, NULL, 98, 'Transformer Clearance', '30TR1', NULL, 'Clearance', '2022-12-01', '', NULL, 62, 'The AVR for A/M Trs has a problem Reported by TME Ali Qabazard . PME has to \nfollow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:16:12'),
+(54, '2022/11/30-2067', 2, 2, NULL, 192, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-12-01', 'H(4) - QASRM1', NULL, 81, 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:21:38'),
+(55, '2022/11/30-9100', 2, 2, NULL, 404, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-12-01', 'H(3) - JAHRB1', NULL, 81, 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:23:30'),
+(56, '2022/11/30-9140', 2, 2, NULL, 188, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-12-01', 'H(1) - JAHRA1', NULL, 67, 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa \n(60694759) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:28:21'),
+(57, '2022/11/30-5699', 2, 2, NULL, 191, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-12-01', 'H(4) - JAHRM1', NULL, 67, 'Protection clear for the mentioned feeder DCC informed.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:29:59'),
+(58, '2022/11/30-2500', 2, 2, NULL, 400, 'General Alarm 11KV', '11KV', NULL, 'Clearance', '2022-12-01', 'K(01) - SPARE01', NULL, 84, 'A/M F CB is showing undefined indication during close it by Distribution \nConstruction Eng Nada (66681894) . SME Omer Alkhayat reported it is from \nprotection side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:35:39'),
+(59, '2022/11/30-576', 2, 2, NULL, 177, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-12-01', 'E(4) - QADSA1', NULL, 86, 'Protection clearance is required for A/M F . Requested by CME Shahin (99993494) \n. PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:40:22'),
+(60, '2022/11/30-5835', 2, 2, NULL, 388, 'other', '132KV', NULL, NULL, '2022-12-01', 'E(8) - FINTA1', NULL, 33, 'Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:46:43'),
+(61, '2022/11/30-2927', 2, 2, NULL, 389, 'other', '132KV', NULL, NULL, '2022-12-01', 'E(4) - FINTAE1', NULL, 33, ' Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:48:39'),
+(62, '2022/11/30-204', 2, 2, NULL, 581, 'DC Supply 1 & 2 Fail Alarm', '132KV', NULL, NULL, '2022-12-01', '', NULL, 74, 'DC supply fail alarm is appeared at 1:37 Hr . Batt/F Saad Almutairi checked and \nReported that is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:51:57'),
+(63, '2022/11/30-442', 2, 2, NULL, 705, 'General Alarm 132KV', '132KV', NULL, 'Clearance', '2022-12-01', 'E(8) - WJLBD1', NULL, 55, '132 KV G/A is appeared on 18/11/2022 . PME Mishari Ali Cleared temporary by \nisolating device for O/C and earth fault relay for A/M F due to faulty and need to \nreplace . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:54:51'),
+(64, '2022/11/30-7857', 2, 2, NULL, 621, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-12-01', '', NULL, 86, 'DC supply fail alarm is appeared on 18/11/20222 . Batt/F checked and reported \nthat is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 10:57:40'),
+(65, '2022/11/30-432', 2, 2, NULL, 43, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-12-01', '', NULL, 81, 'DC supply fail alarm is appeared on 19/11/2022 and still existing (need entrance \npermission) . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 11:01:11'),
+(66, '2022/11/30-2265', 2, 2, NULL, 726, 'other', '132KV', NULL, 'Clearance', '2022-12-01', 'E(01) - SPARE01', NULL, 84, 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 11:08:18'),
+(67, '2022/11/30-655', 2, 2, NULL, 129, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-12-01', 'E(10) - MHBLA1', NULL, 86, 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 11:11:04'),
+(68, '2022/11/30-6682', 2, 2, NULL, 630, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-12-01', 'E(2) - SALWD1', NULL, 55, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 11:13:26'),
+(69, '2022/11/30-1724', 2, 2, NULL, 492, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-12-01', 'E(2) - SSURAW1', NULL, 29, 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 11:15:47'),
+(70, '2022/11/30-6658', 2, 2, NULL, 400, 'DC Supply 1 & 2 Fail Alarm', '', NULL, 'Clearance', '2022-12-01', '', NULL, 69, 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and\nreported that is from load side . PME has to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 16:54:06'),
+(71, '2022/11/30-9606', 2, 2, NULL, 269, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-12-01', 'H(3) - SHKHA1', NULL, 47, 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa\r\n(69005536) . PME has to follow .', 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa\n(69005536) . PME has to follow .', 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:52:01', '2022-11-30 17:10:40'),
+(74, '2022/12/01-2546', 2, 2, NULL, 328, 'other', '11KV', NULL, 'Inspection', '2022-12-01', 'K(20) - MNGF101', NULL, 33, 'Dist. Eng failed to colse A/M F . SME Abdulla Alajmi (55406868) checked and \nreported that is from protection side . (Note the feeder is closed from the ring main \nS/stn side . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 08:52:49', '2022-12-01 08:53:48'),
+(75, '2022/12/01-8123', 2, NULL, NULL, 2, '', '', NULL, NULL, '2022-12-01', '', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 08:58:23', '2022-12-01 08:58:42'),
+(76, '2022/12/01-2381', 2, NULL, NULL, 3, '', '', NULL, NULL, '2022-12-01', '', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:15:00', '2022-12-01 09:15:16'),
+(77, '2022/12/01-3569', 2, NULL, NULL, 2, '', '', NULL, NULL, '2022-12-01', '', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:54:17', '2022-12-01 09:59:01'),
+(78, '2022/12/01-7026', 2, NULL, NULL, 1, '', '', NULL, NULL, '2022-12-01', '', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:57:27', '2022-12-01 09:58:58'),
+(79, '2022/12/01-5398', 2, NULL, NULL, 2, '', '', NULL, NULL, '2022-12-01', '', NULL, 1, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 09:58:38', '2022-12-01 09:58:54'),
+(80, '2022/12/01-3654', 2, 2, NULL, 473, 'other', '132KV', NULL, 'Clearance', '2022-12-01', 'E(2) - JABRA2', NULL, 33, 'COPA & COPT checking.CME M.Jamal reported that there is no DC in the cable \ngauge.PME has to follow', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:01:16', '2022-12-01 10:01:34'),
+(81, '2022/12/01-1865', 2, NULL, NULL, 2, '', '', NULL, NULL, '2022-12-01', '', NULL, 47, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:05:07', '2022-12-01 10:05:19'),
+(82, '2022/12/01-4802', 2, 2, NULL, 489, 'other', '33KV', NULL, 'Clearance', '2022-12-01', 'H(12) - SALWN2', NULL, 33, 'No DC is available for COPA Circuit for the mentioned feeder. Reported by CME \nAbdullah Qattan ( Mobile # 99674878 ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:06:34', '2022-12-01 10:06:52'),
+(83, '2022/12/01-2214', 2, 2, NULL, 552, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-12-01', 'E(1) - SSURAW1', NULL, 76, 'PC fault alarms is appeared at 4:36 Hr for A/M F . PME has to follow', NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:41:35', '2022-12-01 10:41:35'),
+(84, '2022/12/01-9197', 2, 2, NULL, 630, 'other', '132KV', NULL, 'Clearance', '2022-12-01', 'E(9) - SHDAA1', NULL, 76, 'PC Intertrip fail & PC fault alarms are appeared at 4:36 Hr for A/M F . PME has \nto follow .', NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:42:30', '2022-12-01 10:42:30'),
+(85, '2022/12/03-2005', 2, 2, NULL, 1, '', '', NULL, NULL, '2022-12-03', '', NULL, 1, NULL, NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-03 01:49:07', '2022-12-03 01:50:03'),
+(86, '2022/12/03-4232', 2, 2, NULL, 303, 'Protection Clearance feeder', '11KV', NULL, 'Clearance', '2022-12-03', 'K(8) - SPARE8', NULL, 46, NULL, NULL, 'pending', '0', NULL, 'Eissa Almatar - -', '2022-12-03 10:34:55', '2022-12-03 10:34:55');
 
 -- --------------------------------------------------------
 
@@ -20591,7 +20604,13 @@ INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_t
 (37, 'SSUR-AW    (P) 5 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 68, '2022-11-30 11:12:50', '2022-11-30 11:12:50'),
 (38, 'SALW-D   (P) 1 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 69, '2022-11-30 11:15:06', '2022-11-30 11:15:06'),
 (39, 'PLJT-M (P) 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 70, '2022-11-30 16:49:35', '2022-11-30 16:49:35'),
-(40, 'KIFN-M (P) 3.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 71, '2022-11-30 17:07:32', '2022-11-30 17:07:32');
+(40, 'KIFN-M (P) 3.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 71, '2022-11-30 17:07:32', '2022-11-30 17:07:32'),
+(41, 'MNGF-C    (P)(1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 50, '2022-12-01 08:52:49', '2022-12-01 08:52:49'),
+(42, 'MNGF-C.pdf', '2022/12/01-2546', 'Ahmad Alharbi', 74, '2022-12-01 08:55:12', NULL),
+(43, 'MNGF-C.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 50, '2022-12-01 08:58:23', '2022-12-01 08:58:23'),
+(46, 'SALM-A(P)(1) (1).pdf', ' 2022/12/01-3654', 'Ahmad ALharbi', 80, '2022-12-01 10:03:31', NULL),
+(47, 'SALM-A(P)(1) (1) (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 81, '2022-12-01 10:05:07', '2022-12-01 10:05:07'),
+(48, 'SALW-A-PME-28-11 (1)(1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 82, '2022-12-01 10:06:34', '2022-12-01 10:06:34');
 
 -- --------------------------------------------------------
 
@@ -20625,51 +20644,67 @@ CREATE TABLE `task_details` (
 --
 
 INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reasonOfUncompleted`, `eng_id`, `station_id`, `fromSection`, `toSection`, `section_id`, `main_alarm`, `problem`, `engineer_notes`, `action_take`, `status`, `report_status`, `created_at`, `updated_at`) VALUES
-(46, 50, '2022-11-30', NULL, NULL, 76, 469, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 09:52:01', '2022-11-30 09:52:01'),
-(47, 50, '2022-11-30', '2022-11-30', NULL, 76, 469, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M Panel . Requested by Planinig and \nFolowing up Dept . Please check the attached letter ', NULL, 'Protection clearance is done to bay 4 and bay 6 11KV.\r\nDcc informed', 'completed', '1', '2022-11-30 09:55:04', '2022-11-30 09:55:04'),
-(48, 51, '2022-11-30', NULL, NULL, 76, 576, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:04:12', '2022-11-30 10:04:12'),
-(49, 51, '2022-11-30', '2022-11-30', NULL, 76, 576, 2, NULL, 2, 'General Alarm 132KV', 'An arrangment to check the DC Circuit of COPA/COPT is required.Requested by \nU.G Cable&OHL Maint Dept.Please check the attached letter.PME has to follow.', NULL, 'Regarding to the subject above, pin 44 at terminal X2 was open.\r\nLink was normalised, protection clear and dcc was informed.', 'completed', '1', '2022-11-30 10:05:05', '2022-11-30 10:05:05'),
-(50, 52, '2022-11-30', NULL, NULL, 84, 393, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:06:47', '2022-11-30 10:06:47'),
-(51, 52, NULL, '2022-11-30', 'مسؤولية جهة آخرى', 84, NULL, 2, NULL, 2, NULL, NULL, 'Alarm came from firefighter \r\nProtection side clear\r\n\r\nDCC informed', NULL, 'completed', '0', '2022-11-30 10:08:25', '2022-11-30 10:08:25'),
-(52, 53, '2022-11-30', NULL, NULL, 62, 98, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:14:32', '2022-11-30 10:14:32'),
-(53, 53, '2022-11-30', '2022-11-30', NULL, 62, 98, 2, NULL, 2, 'Transformer Clearance', 'The AVR for A/M Trs has a problem Reported by TME Ali Qabazard . PME has to \nfollow .', NULL, 'viaited s/s and checked with transformer engineer the tap changers , the issue was that the tap changer for tr#2 was lagging between raising and lowering , the tap changer position was blinking between the 2 positions\r\n\r\nafter checking in control pannels we note the following:\r\n\r\nWR contact from the common regulation pannel was isolated and faulty , we replace this timer ( Wr ) and replace contactor 74×2 for tr #3 ( related to dcc and control tap changer operation )\r\n\r\nthe substation was clear from protection side and tr engineer confirm that the tap #6 for tr#2 was defected and they need to follow \r\n\r\ndcc informed', 'completed', '1', '2022-11-30 10:16:12', '2022-11-30 10:16:12'),
-(54, 54, '2022-11-30', NULL, NULL, 81, 192, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:20:35', '2022-11-30 10:20:35'),
-(55, 54, '2022-11-30', '2022-11-30', NULL, 81, 192, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'Protection clear dcc informed', 'completed', '1', '2022-11-30 10:21:38', '2022-11-30 10:21:38'),
-(56, 55, '2022-11-30', NULL, NULL, 81, 404, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:22:38', '2022-11-30 10:22:38'),
-(57, 55, '2022-11-30', '2022-11-30', NULL, 81, 404, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'Protection clear dcc informed', 'completed', '1', '2022-11-30 10:23:30', '2022-11-30 10:23:30'),
-(58, 56, '2022-11-30', NULL, NULL, 67, 188, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:26:22', '2022-11-30 10:26:22'),
-(59, 56, '2022-11-30', '2022-11-30', NULL, 67, 188, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa \n(60694759) . PME has to follow .', NULL, 'Protection clear for the mentioned feeder DCC informed.', 'completed', '1', '2022-11-30 10:28:21', '2022-11-30 10:28:21'),
-(60, 57, '2022-11-30', NULL, NULL, 67, 191, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:29:37', '2022-11-30 10:29:37'),
-(61, 57, '2022-11-30', '2022-11-30', NULL, 67, 191, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clear for the mentioned feeder DCC informed.', NULL, 'Protection clear for the mentioned feeder DCC informed.', 'completed', '1', '2022-11-30 10:29:59', '2022-11-30 10:29:59'),
-(62, 58, '2022-11-30', NULL, NULL, 84, 400, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:32:14', '2022-11-30 10:32:14'),
-(63, 58, '2022-11-30', '2022-11-30', NULL, 84, 400, 2, NULL, 2, 'General Alarm 11KV', 'A/M F CB is showing undefined indication during close it by Distribution \nConstruction Eng Nada (66681894) . SME Omer Alkhayat reported it is from \nprotection side . PME has to follow ', NULL, '.Contact D1 for CB open position in control panel was faulty\r\nChanged the contact with spear panel \r\nAlarm now clear', 'completed', '1', '2022-11-30 10:35:39', '2022-11-30 10:35:39'),
-(64, 59, '2022-11-30', NULL, NULL, 86, 177, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:37:59', '2022-11-30 10:37:59'),
-(65, 59, '2022-11-30', '2022-11-30', NULL, 86, 177, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Shahin (99993494) \n. PME has to follow ', NULL, 'Protection is clear for the mentioned feeder.\r\nDCC informed.', 'completed', '1', '2022-11-30 10:40:22', '2022-11-30 10:40:22'),
-(66, 60, '2022-11-30', NULL, NULL, 33, 388, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:45:58', '2022-11-30 10:45:58'),
-(67, 60, '2022-11-30', '2022-11-30', NULL, 33, 388, 2, NULL, 2, 'other', 'Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'Dc isolated (COPA and COPT) for the mentioned feeder\r\nSHCC informed all clear', 'completed', '1', '2022-11-30 10:46:43', '2022-11-30 10:46:43'),
-(68, 61, '2022-11-30', NULL, NULL, 33, 389, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:48:12', '2022-11-30 10:48:12'),
-(69, 61, '2022-11-30', '2022-11-30', NULL, 33, 389, 2, NULL, 2, 'other', ' Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'Dc isolated (COPA and COPT) for the mentioned feeder\r\nSHCC informed all clear', 'completed', '1', '2022-11-30 10:48:39', '2022-11-30 10:48:39'),
-(70, 62, '2022-11-30', NULL, NULL, 74, 581, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:50:54', '2022-11-30 10:50:54'),
-(71, 62, '2022-11-30', '2022-11-30', NULL, 74, 581, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared at 1:37 Hr . Batt/F Saad Almutairi checked and \nReported that is from load side . PME has to follow ', NULL, 'DCC called for dc supply fail.\r\nvisit s/s found parallel circuit alarm and transformers\r\nare individual.\r\nfailed to clear alarm.\r\ns/s is under guarantee \r\ninformed DCC', 'completed', '1', '2022-11-30 10:51:57', '2022-11-30 10:51:57'),
-(72, 63, '2022-11-30', NULL, NULL, 55, 705, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:54:12', '2022-11-30 10:54:12'),
-(73, 63, '2022-11-30', '2022-11-30', NULL, 55, 705, 2, NULL, 2, 'General Alarm 132KV', '132 KV G/A is appeared on 18/11/2022 . PME Mishari Ali Cleared temporary by \nisolating device for O/C and earth fault relay for A/M F due to faulty and need to \nreplace . PME has to follow ', NULL, 'OC/EF relay was faulty and has been replaced by new one.\r\n\r\nProtection is clear\r\n\r\nDcc informed', 'completed', '1', '2022-11-30 10:54:51', '2022-11-30 10:54:51'),
-(74, 64, '2022-11-30', NULL, NULL, 86, 621, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 10:57:05', '2022-11-30 10:57:05'),
-(75, 64, '2022-11-30', '2022-11-30', NULL, 86, 621, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared on 18/11/20222 . Batt/F checked and reported \nthat is from load side . PME has to follow ', NULL, 'Found ‘ Tripping 220V battery charger faulty’ alarm. \r\nReset the alarm. S/s clear.\r\nDCC informed.', 'completed', '1', '2022-11-30 10:57:40', '2022-11-30 10:57:40'),
-(76, 65, '2022-11-30', NULL, NULL, 81, 43, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:00:45', '2022-11-30 11:00:45'),
-(77, 65, '2022-11-30', '2022-11-30', NULL, 81, 43, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared on 19/11/2022 and still existing (need entrance \npermission) . PME has to follow .', NULL, 'Alarm reset from charger side. Protection clear dcc informed', 'completed', '1', '2022-11-30 11:01:11', '2022-11-30 11:01:11'),
-(78, 66, '2022-11-30', NULL, NULL, 84, 726, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:07:37', '2022-11-30 11:07:37'),
-(79, 66, '2022-11-30', '2022-11-30', NULL, 84, 726, 2, NULL, 2, 'other', 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'I/T Alspa Card # 613 was sticky \r\nS/S now clear\r\n\r\nDCC informed', 'completed', '1', '2022-11-30 11:08:18', '2022-11-30 11:08:18'),
-(80, 67, '2022-11-30', NULL, NULL, 86, 129, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:10:26', '2022-11-30 11:10:26'),
-(81, 67, '2022-11-30', '2022-11-30', NULL, 86, 129, 2, NULL, 2, 'Protection Clearance feeder', 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'Protection is clear for the mentioned feeder.\r\nDCC informed.', 'completed', '1', '2022-11-30 11:11:04', '2022-11-30 11:11:04'),
-(82, 68, '2022-11-30', NULL, NULL, 55, 630, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:12:50', '2022-11-30 11:12:50'),
-(83, 68, '2022-11-30', '2022-11-30', NULL, 55, 630, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'All protection tests are done with the feeder… feeder is clear\r\n\r\nDcc informed', 'completed', '1', '2022-11-30 11:13:26', '2022-11-30 11:13:26'),
-(84, 69, '2022-11-30', NULL, NULL, 29, 492, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 11:15:06', '2022-11-30 11:15:06'),
-(85, 69, '2022-11-30', '2022-11-30', NULL, 29, 492, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'visited the s/stn and protection is clear', 'completed', '1', '2022-11-30 11:15:47', '2022-11-30 11:15:47'),
-(86, 70, '2022-11-30', NULL, NULL, 69, 400, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 16:49:35', '2022-11-30 16:49:35'),
-(87, 70, '2022-11-30', '2022-11-30', NULL, 69, 400, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and\nreported that is from load side . PME has to follow ', NULL, 'Visited the substation there was Dc earth fault.while measuring  the fault the MCB of panel 18 in 11KV tripped so , I normalize it and then normlize another MCB in the disturbtion board and the alarm has been cleared', 'completed', '1', '2022-11-30 16:54:06', '2022-11-30 16:54:06'),
-(88, 71, '2022-11-30', NULL, NULL, 47, 269, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 17:07:32', '2022-11-30 17:07:32'),
-(89, 71, '2022-11-30', '2022-11-30', NULL, 47, 269, 2, NULL, 2, 'Protection Clearance feeder', NULL, NULL, 'Protection relays solker,OC and EF for bay4 33kv have been tested and clear.', 'completed', '1', '2022-11-30 17:10:40', '2022-11-30 17:10:40'),
-(90, 72, '2022-11-30', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-11-30 20:04:14', '2022-11-30 20:04:14');
+(46, 50, '0000-00-00', NULL, NULL, 76, 469, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 09:52:01'),
+(47, 50, '0000-00-00', '2022-11-30', NULL, 76, 469, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M Panel . Requested by Planinig and \nFolowing up Dept . Please check the attached letter ', NULL, 'Protection clearance is done to bay 4 and bay 6 11KV.\r\nDcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 09:55:04'),
+(48, 51, '0000-00-00', NULL, NULL, 76, 576, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:04:12'),
+(49, 51, '0000-00-00', '2022-11-30', NULL, 76, 576, 2, NULL, 2, 'General Alarm 132KV', 'An arrangment to check the DC Circuit of COPA/COPT is required.Requested by \nU.G Cable&OHL Maint Dept.Please check the attached letter.PME has to follow.', NULL, 'Regarding to the subject above, pin 44 at terminal X2 was open.\r\nLink was normalised, protection clear and dcc was informed.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:05:05'),
+(50, 52, '0000-00-00', NULL, NULL, 84, 393, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:06:47'),
+(51, 52, '0000-00-00', '2022-11-30', 'مسؤولية جهة آخرى', 84, NULL, 2, NULL, 2, NULL, NULL, 'Alarm came from firefighter \r\nProtection side clear\r\n\r\nDCC informed', NULL, 'completed', '0', '2022-12-01 09:52:01', '2022-11-30 10:08:25'),
+(52, 53, '0000-00-00', NULL, NULL, 62, 98, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:14:32'),
+(53, 53, '0000-00-00', '2022-11-30', NULL, 62, 98, 2, NULL, 2, 'Transformer Clearance', 'The AVR for A/M Trs has a problem Reported by TME Ali Qabazard . PME has to \nfollow .', NULL, 'viaited s/s and checked with transformer engineer the tap changers , the issue was that the tap changer for tr#2 was lagging between raising and lowering , the tap changer position was blinking between the 2 positions\r\n\r\nafter checking in control pannels we note the following:\r\n\r\nWR contact from the common regulation pannel was isolated and faulty , we replace this timer ( Wr ) and replace contactor 74×2 for tr #3 ( related to dcc and control tap changer operation )\r\n\r\nthe substation was clear from protection side and tr engineer confirm that the tap #6 for tr#2 was defected and they need to follow \r\n\r\ndcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:16:12'),
+(54, 54, '0000-00-00', NULL, NULL, 81, 192, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:20:35'),
+(55, 54, '0000-00-00', '2022-11-30', NULL, 81, 192, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'Protection clear dcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:21:38'),
+(56, 55, '0000-00-00', NULL, NULL, 81, 404, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:22:38'),
+(57, 55, '0000-00-00', '2022-11-30', NULL, 81, 404, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance and make the necessary adjustments to the protective devices \nto match the fiber-optic cablesis are required for A/M F . Please check the attached \nletter from CMD ', NULL, 'Protection clear dcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:23:30'),
+(58, 56, '0000-00-00', NULL, NULL, 67, 188, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:26:22'),
+(59, 56, '0000-00-00', '2022-11-30', NULL, 67, 188, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa \n(60694759) . PME has to follow .', NULL, 'Protection clear for the mentioned feeder DCC informed.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:28:21'),
+(60, 57, '0000-00-00', NULL, NULL, 67, 191, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:29:37'),
+(61, 57, '0000-00-00', '2022-11-30', NULL, 67, 191, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clear for the mentioned feeder DCC informed.', NULL, 'Protection clear for the mentioned feeder DCC informed.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:29:59'),
+(62, 58, '0000-00-00', NULL, NULL, 84, 400, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:32:14'),
+(63, 58, '0000-00-00', '2022-11-30', NULL, 84, 400, 2, NULL, 2, 'General Alarm 11KV', 'A/M F CB is showing undefined indication during close it by Distribution \nConstruction Eng Nada (66681894) . SME Omer Alkhayat reported it is from \nprotection side . PME has to follow ', NULL, '.Contact D1 for CB open position in control panel was faulty\r\nChanged the contact with spear panel \r\nAlarm now clear', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:35:39'),
+(64, 59, '0000-00-00', NULL, NULL, 86, 177, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:37:59'),
+(65, 59, '0000-00-00', '2022-11-30', NULL, 86, 177, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Shahin (99993494) \n. PME has to follow ', NULL, 'Protection is clear for the mentioned feeder.\r\nDCC informed.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:40:22'),
+(66, 60, '0000-00-00', NULL, NULL, 33, 388, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:45:58'),
+(67, 60, '0000-00-00', '2022-11-30', NULL, 33, 388, 2, NULL, 2, 'other', 'Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'Dc isolated (COPA and COPT) for the mentioned feeder\r\nSHCC informed all clear', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:46:43'),
+(68, 61, '0000-00-00', NULL, NULL, 33, 389, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:48:12'),
+(69, 61, '0000-00-00', '2022-11-30', NULL, 33, 389, 2, NULL, 2, 'other', ' Required to isolate the DC for A/M Panel . Please check the attached letter from \nConstruction Dept .', NULL, 'Dc isolated (COPA and COPT) for the mentioned feeder\r\nSHCC informed all clear', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:48:39'),
+(70, 62, '0000-00-00', NULL, NULL, 74, 581, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:50:54'),
+(71, 62, '0000-00-00', '2022-11-30', NULL, 74, 581, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared at 1:37 Hr . Batt/F Saad Almutairi checked and \nReported that is from load side . PME has to follow ', NULL, 'DCC called for dc supply fail.\r\nvisit s/s found parallel circuit alarm and transformers\r\nare individual.\r\nfailed to clear alarm.\r\ns/s is under guarantee \r\ninformed DCC', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:51:57'),
+(72, 63, '0000-00-00', NULL, NULL, 55, 705, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:54:12'),
+(73, 63, '0000-00-00', '2022-11-30', NULL, 55, 705, 2, NULL, 2, 'General Alarm 132KV', '132 KV G/A is appeared on 18/11/2022 . PME Mishari Ali Cleared temporary by \nisolating device for O/C and earth fault relay for A/M F due to faulty and need to \nreplace . PME has to follow ', NULL, 'OC/EF relay was faulty and has been replaced by new one.\r\n\r\nProtection is clear\r\n\r\nDcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:54:51'),
+(74, 64, '0000-00-00', NULL, NULL, 86, 621, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 10:57:05'),
+(75, 64, '0000-00-00', '2022-11-30', NULL, 86, 621, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared on 18/11/20222 . Batt/F checked and reported \nthat is from load side . PME has to follow ', NULL, 'Found ‘ Tripping 220V battery charger faulty’ alarm. \r\nReset the alarm. S/s clear.\r\nDCC informed.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 10:57:40'),
+(76, 65, '0000-00-00', NULL, NULL, 81, 43, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 11:00:45'),
+(77, 65, '0000-00-00', '2022-11-30', NULL, 81, 43, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared on 19/11/2022 and still existing (need entrance \npermission) . PME has to follow .', NULL, 'Alarm reset from charger side. Protection clear dcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 11:01:11'),
+(78, 66, '0000-00-00', NULL, NULL, 84, 726, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 11:07:37'),
+(79, 66, '0000-00-00', '2022-11-30', NULL, 84, 726, 2, NULL, 2, 'other', 'PC fault alarm is appeared at 2:53 Hr for A/M F . PME Abdulla Aljwesri checked \nand reported that threr is Intertrip problem . PME has to follow ', NULL, 'I/T Alspa Card # 613 was sticky \r\nS/S now clear\r\n\r\nDCC informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 11:08:18'),
+(80, 67, '0000-00-00', NULL, NULL, 86, 129, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 11:10:26'),
+(81, 67, '0000-00-00', '2022-11-30', NULL, 86, 129, 2, NULL, 2, 'Protection Clearance feeder', 'Prot. clearance is required for the mentioned feeder. Power cable work is \ncompleted by CME Ahmed Alla ( Mobile # 69005536 )', NULL, 'Protection is clear for the mentioned feeder.\r\nDCC informed.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 11:11:04'),
+(82, 68, '0000-00-00', NULL, NULL, 55, 630, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 11:12:50'),
+(83, 68, '0000-00-00', '2022-11-30', NULL, 55, 630, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'All protection tests are done with the feeder… feeder is clear\r\n\r\nDcc informed', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 11:13:26'),
+(84, 69, '0000-00-00', NULL, NULL, 29, 492, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 11:15:06'),
+(85, 69, '0000-00-00', '2022-11-30', NULL, 29, 492, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Mohamed Akber \n(99471194) . PME has to follow ', NULL, 'visited the s/stn and protection is clear', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 11:15:47'),
+(86, 70, '0000-00-00', NULL, NULL, 69, 400, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 16:49:35'),
+(87, 70, '0000-00-00', '2022-11-30', NULL, 69, 400, 2, NULL, 2, 'DC Supply 1 & 2 Fail Alarm', 'DC supply fail alarm is appeared at10:03 Hr . Bat/F Waleed Alrashedi checked and\nreported that is from load side . PME has to follow ', NULL, 'Visited the substation there was Dc earth fault.while measuring  the fault the MCB of panel 18 in 11KV tripped so , I normalize it and then normlize another MCB in the disturbtion board and the alarm has been cleared', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 16:54:06'),
+(88, 71, '0000-00-00', NULL, NULL, 47, 269, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:52:01', '2022-11-30 17:07:32'),
+(89, 71, '0000-00-00', '2022-11-30', NULL, 47, 269, 2, NULL, 2, 'Protection Clearance feeder', 'Protection clearance is required for A/M F . Requested by CME Ahmed Alaa\r\n(69005536) . PME has to follow .', NULL, 'Protection relays solker,OC and EF for bay4 33kv have been tested and clear.', 'completed', '1', '2022-12-01 09:52:01', '2022-11-30 17:10:40'),
+(92, 50, '2022-12-01', NULL, NULL, 33, 328, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 08:52:49', '2022-12-01 08:52:49'),
+(93, 74, '2022-12-01', '2022-12-01', NULL, 33, 328, 2, NULL, 2, 'other', 'Dist. Eng failed to colse A/M F . SME Abdulla Alajmi (55406868) checked and \nreported that is from protection side . (Note the feeder is closed from the ring main \nS/stn side . PME has to follow .', NULL, 'There was CB trip alarm and dist. Eng didn\'t close breaker because of that alarm \r\nReset alarm all clear \r\nSHCC informed', 'completed', '1', '2022-12-01 08:53:48', '2022-12-01 08:53:48'),
+(94, 50, '2022-12-01', NULL, NULL, 1, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 08:58:23', '2022-12-01 08:58:23'),
+(95, 50, '2022-12-01', NULL, NULL, 1, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:15:00', '2022-12-01 09:15:00'),
+(96, 77, '2022-12-01', NULL, NULL, 1, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:54:17', '2022-12-01 09:54:17'),
+(97, 78, '2022-12-01', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:57:27', '2022-12-01 09:57:27'),
+(98, 79, '2022-12-01', NULL, NULL, 1, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 09:58:38', '2022-12-01 09:58:38'),
+(99, 80, '2022-12-01', NULL, NULL, 33, 473, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 10:01:16', '2022-12-01 10:01:16'),
+(100, 80, '2022-12-01', '2022-12-01', NULL, 33, 473, 2, NULL, 2, 'other', 'COPA & COPT checking.CME M.Jamal reported that there is no DC in the cable \ngauge.PME has to follow', NULL, '-ve not available in gage side checked found COPA flag faulty replaced it with spare from 33kv bay#14\r\nJCC informed all clear', 'completed', '1', '2022-12-01 10:01:34', '2022-12-01 10:01:34'),
+(101, 81, '2022-12-01', NULL, NULL, 47, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 10:05:07', '2022-12-01 10:05:07'),
+(102, 82, '2022-12-01', NULL, NULL, 33, 489, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 10:06:34', '2022-12-01 10:06:34'),
+(103, 82, '2022-12-01', '2022-12-01', NULL, 33, 489, 2, NULL, 2, 'other', 'No DC is available for COPA Circuit for the mentioned feeder. Reported by CME \nAbdullah Qattan ( Mobile # 99674878 ', NULL, 'Dc available in gage but they connected wrong wire to gage\r\nReconnect wires\r\nJCC informed all clear', 'completed', '1', '2022-12-01 10:06:52', '2022-12-01 10:06:52'),
+(104, 83, '2022-12-01', NULL, NULL, 76, 552, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 10:41:35', '2022-12-01 10:41:35'),
+(105, 84, '2022-12-01', NULL, NULL, 76, 630, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 10:42:30', '2022-12-01 10:42:30'),
+(106, 85, '2022-12-03', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-03 01:49:07', '2022-12-03 01:49:07'),
+(107, 85, '2022-12-03', '2022-12-03', NULL, 1, 1, 2, NULL, 2, '', NULL, NULL, 'sefsf', 'completed', '1', '2022-12-03 01:50:03', '2022-12-03 01:50:03'),
+(108, 86, '2022-12-03', NULL, NULL, 46, 303, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-03 10:34:55', '2022-12-03 10:34:55');
 
 -- --------------------------------------------------------
 
@@ -20720,6 +20755,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_admin` tinyint(1) DEFAULT 1,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -20729,75 +20765,75 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `password`, `is_admin`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'admin', NULL, '2022-09-07 05:52:55', '2022-09-07 05:52:55'),
-(28, 'Abdllah Suleiman Haddad', 'analhaddad@mew.gov.kw', NULL, 2, '$2y$10$6L5fYI59mxKMYKVXB18a7OtjE7VnSzu2Ge2YpGJUCfA0DME7cJUV.', 0, 'admin', NULL, NULL, NULL),
-(29, 'Abdul Rahman A A Al Kandari', 'aadalkanderi@mew.gov.kw', NULL, 2, '$2y$10$H.yfbb5iUxkGJ5Xx7NhSkOfoafcaUZt2WTt7Geh9MZqzhAKcVCgY2', 0, 'TS', NULL, NULL, NULL),
-(30, 'Abdullah Esam Yaqoub Al Shatti', 'aeyalshatti@mew.gov.kw', NULL, 2, '$2y$10$GDUNk.47Cjckj.EHIx17bOa6r1w4Z4KurErikOJdMFIEtmUS2fyvG', 0, 'TS', NULL, NULL, NULL),
-(31, 'Abdullah Hassan Al-Huamidi', 'aaalhumaidi@mew.gov.kw', NULL, 2, '$2y$10$Ugt1kZigs6mCITda/Lk98uOROikh1qWOFTXq0BScLT9sa1Dt10tTS', 0, 'TS', NULL, NULL, NULL),
-(32, 'ABDULLAH M S AL JAWISSRI', 'amaljuwaisri@mew.gov.kw', NULL, 2, '$2y$10$Px8CFMKPn9fEUX2PRD6jOepUSaGtyosHsVBLui64m3IZr3eQutoiu', 0, 'TS', NULL, NULL, NULL),
-(33, 'Abdullah Mahammad Almazdi', 'amalmzdi@mew.gov.kw', NULL, 2, '$2y$10$LkmJkECjRbvG5hQAZY38.eqIOgkTCPlreyh/9fEknqvV/6Gr0hKVG', 0, 'TS', NULL, NULL, NULL),
-(34, 'Ahmad AbdulRahim Yousef', 'auyousef@mew.gov.kw', NULL, 2, '$2y$10$CFmKUEMxcIaVIPQRCWWe4e7UYNECUyprP5e76jCRUYj1rVP/.aPx.', 0, 'TS', NULL, NULL, NULL),
-(35, 'Ahmad Ibrahim Khaled Alqabandi', 'ahmadalaqabandi@mew.gov.kw', NULL, 2, '$2y$10$Y1j5nmoeaaORO19SrsCjqe4fuSvzV/iWQAOroeBbp4Fna1Il6WbLq', 0, 'TS', NULL, NULL, NULL),
-(36, 'Ahmad Mahmoud Baqer', 'ambaqer@mew.gov.kw', NULL, 2, '$2y$10$IOrJ9t24vyxNRTB0eQTFkugJr5em.5.0fdaETl8K6FntCb7wSyzFC', 0, 'TS', NULL, NULL, NULL),
-(37, 'Ahmad Mutheeb mohammad AlOtaibi', 'atalotaibi@mew.gov.kw', NULL, 2, '$2y$10$YBsM/hmcaIKxnwsyRtPH.eNWImPLajdMGlnQHQND4p0hlPdLX.Nri', 0, 'TS', NULL, NULL, NULL),
-(38, 'Ahmed Awad Al Azmi', 'aawsalazmi@mew.gov.kw', NULL, 2, '$2y$10$H.sGWi53n/exDeRdgaL5sOSUddMclcpUwtF7W3GLlrKFGmLEIKFbG', 0, 'TS', NULL, NULL, NULL),
-(39, 'Ahmed Bader Ali Al Maayouf', 'ahmadMaayouf@mew.gov.kw', NULL, 2, '$2y$10$q1rstlfqu6G0ghZsTtloLud67AiR/73iCJGjBCbMcC2P9ijGCXMLe', 0, 'TS', NULL, NULL, NULL),
-(40, 'Ali Hamoud Al-Mutairi', 'ahoalmutairi@mew.gov.kw', NULL, 2, '$2y$10$ekCsCqKrFOCgqd0.QP6kHuhFEcbN4oLzflERkx8yF50NTdqyIN7yW', 0, 'TS', NULL, NULL, NULL),
-(41, 'Ali Hussain Mohammad Ali Haidar', 'ahsali@mew.gov.kw', NULL, 2, '$2y$10$gt3evQz3c4FQcn2E3.bRAu6uHUpTYf77acBvOuAnPiv5jdQfzq.xW', 0, 'TS', NULL, NULL, NULL),
-(42, 'Ali Ismail AL-Feli', 'aialfaili@mew.gov.kw', NULL, 2, '$2y$10$RNsSNb3jjc3hJb54Fm41PuNDCZOgo515kLS.popRgYG0Yat5gX69K', 0, 'TS', NULL, NULL, NULL),
-(43, 'Ali Jassim Al-Baghli', 'ajalbaghli@mew.gov.kw', NULL, 2, '$2y$10$KXSqM9uhK9NKX4g.NiA18OOjMeYRHMBwqXKKoXZSDKWg5kl1EeEJe', 0, 'TS', NULL, NULL, NULL),
-(44, 'Ali Mahdi Boualiyan', 'amboolyan@mew.gov.kw', NULL, 2, '$2y$10$2t7W1Np7LGFAU74Fqfj0gOf2KYERfommzy5EX/TZlGsxqKbvOhB.6', 0, 'TS', NULL, NULL, NULL),
-(45, 'Ali Mohammad Abdullah Al Sahhaf', 'alialsahhaf@mew.gov.kw', NULL, 2, '$2y$10$t4yd2e3LsdEhSaB5kPXKKeIyoNCRbCvNo0VE1WO3ouwbnhXYOokfm', 0, 'TS', NULL, NULL, NULL),
-(46, 'Ali Saleh Alqattan', 'asaalqatan@mew.gov.kw', NULL, 2, '$2y$10$LRKojAvmQuchCNBpAhdx6eX5t8w5guf8H9aeqPqeiAZUOr8kx6Vay', 0, 'TS', NULL, NULL, NULL),
-(47, 'Amer H M Alansari', 'amhmalansari@mew.gov.kw', NULL, 2, '$2y$10$02HMLXzNI043TYkNhg.WnOMDuLcWuhZlwjFhLsQdMgXZMs4B6KBca', 0, 'TS', NULL, NULL, '2022-09-07 06:15:05'),
-(48, 'Ammar Khalid Al-Ammary', 'akalamari@mew.gov.kw', NULL, 2, '$2y$10$KnWjVu2SvSEWq8eUHPMQI.0jbqvGxmT.hqJWNYlZmV05CQmM385w2', 0, 'TS', NULL, NULL, NULL),
-(49, 'BADER ABDEL SALAM KHEDER MILAD', 'bameelad@mew.gov.kw', NULL, 2, '$2y$10$tStzRO9LAgXoI0ZjY.Ywde/SvgIYOneNCbIZ21H20o9I5Uo7c7Tvy', 0, 'TS', NULL, NULL, NULL),
-(50, 'Eid  MUTHEEB MOHAMMAD AL OTAIBI', 'eid@mew.gov.kw', NULL, 2, '$2y$10$TaQQ/n21LeS9GGoUo6sf4OfBXT7CIb78KfaLaWtqjVFeMYTyTQ8im', 0, 'TS', NULL, NULL, NULL),
-(51, 'Essa Abdul Wahab Mater', 'eaalmatar@mew.gov.kw', NULL, 2, '$2y$10$AHHHMBvcmc41nmTQX7z0uOfvDePkblOT1Chigws3KOk2rF5VERKLm', 0, 'TS', NULL, NULL, NULL),
-(52, 'FAHAd A J ALKOUT', 'fmalkhout@mew.gov.kw', NULL, 2, '$2y$10$QhZdeTzV/yvYL3eZsfhQi.M0SeDG8Uz9aq0wbl9/6.qG8j5OBjwza', 0, 'TS', NULL, NULL, NULL),
-(53, 'FAHAD MUTHEEB MOHAMMAD AL OTAIBI', 'fmalotaybi@mew.gov.kw', NULL, 2, '$2y$10$RkagWY0X0T1Qa4vq4XxAFuj/vdU346bFMGemVmt2qzSyC82m6/LkW', 0, 'TS', NULL, NULL, NULL),
-(54, 'Fahad S A Al Rashidi', 'fgalrheshedi@mew.gov.kw', NULL, 2, '$2y$10$auQtpQiDGPaxTNX2PjTX.e2eND/Lr8s3NbnHBSPRDZJmqDijDeudm', 0, 'TS', NULL, NULL, NULL),
-(55, 'Fahd A R Shateel', 'fashatil@mew.gov.kw', NULL, 2, '$2y$10$0WPIyL6UB8KUYni3q7WnkO1N1NWuJsdS.zolCQlHlwip2mrG2t9q6', 0, 'TS', NULL, NULL, NULL),
-(56, 'FAISAL METLEA AZZAB AL OTAIBI', 'fmazalotaibi@mew.gov.kw', NULL, 2, '$2y$10$sVPIRir0z0t9JQp7AvBaWenfR65uTRgpzVS1CIzl5.yaZFzytoXXi', 0, 'TS', NULL, NULL, NULL),
-(57, 'FAWAZ SUHAIL ASWAD', 'fuaswad@mew.gov.kw', NULL, 2, '$2y$10$TXqCjwOJhE8VcWJf3lNL2.672KAAWx0rF1IFlcyp7/EcYR4tBU53K', 0, 'TS', NULL, NULL, NULL),
-(58, 'Hamad Salah Abdullah Abdulmalek', 'hamadabdulmaleck@mew.gov.kw', NULL, 2, '$2y$10$yrUkcQTEqk7bix5WbPbDwegVu3xCFsr0HjI52m/8.R8YhInNE85G2', 0, 'TS', NULL, NULL, NULL),
-(59, 'Hussain Khaled Ahmad Dehrab', 'hamaddehrab@mew.gov.kw', NULL, 2, '$2y$10$porFUAhLf9mxfIHYRIWT5uyM4vQ.rgJdSA8GhtAizKwCcQbBSOj5C', 0, 'TS', NULL, NULL, NULL),
-(60, 'Ibrahem M H Alqallaf', 'imhalqalaf@mew.gov.kw', NULL, 2, '$2y$10$79mGSZL5taCOahlLfoaKbu/ZrrJlwUo3sVsy9O2ocm8S/Q2b2.uvm', 0, 'TS', NULL, NULL, NULL),
-(61, 'Ibrahim Khalil Alrabiah', 'ikalrabiah@mew.gov.kw', NULL, 2, '$2y$10$WNwDAGW2KCMPhBmtiLd26uLWX1q4n5DvzZgYPczZmgSsrG916mA7O', 0, 'TS', NULL, NULL, NULL),
-(62, 'Ibrahim Waleed Ibrahim Almufarrej', 'iwalmufarrej@mew.gov.kw', NULL, 2, '$2y$10$/H7LVNkU/KTWWk8MJuFKFewntl1ul/wmabGvq9TYmM8stbfr.WMrS', 0, 'TS', NULL, NULL, NULL),
-(63, 'JASSIM SALEM JASSIM HADDAD AL KANDARI', 'jsalkandari@mew.gov.kw', NULL, 2, '$2y$10$J2Qxfa0QWgDzQJooeiOxeOeQJEL/lOWUSrw8WL7tSx.6sM6iyO1QK', 0, 'TS', NULL, NULL, NULL),
-(64, 'KHALED MEJBEL AL AZMI', 'kmjalazmi@mew.gov.kw', NULL, 2, '$2y$10$fb1uxSRKIe8M3QnBlgMqbuF4MX5RZyUwdG6ywcQySjgPeR88Aq0ie', 0, 'TS', NULL, NULL, NULL),
-(65, 'Khaled Mohammad Abbas Alkandari', 'khaled@mew.gov.kw', NULL, 2, '$2y$10$thT1ph0bzp8pY/sPOdhzPOnDenzHgsSo.ytHVr2KcOZGAqKFaT3Fq', 0, 'TS', NULL, NULL, NULL),
-(66, 'Khaleel M KH Al Qallaf', 'kmkalqallaf@mew.gov.kw', NULL, 2, '$2y$10$d0ebaIirhqxH.4pQPwF6lu4jmxW0lVGDOmpG6F8smENGxtKnkKz6.', 0, 'TS', NULL, NULL, NULL),
-(67, 'KHALIL SAYED E KH ALQALLAF', 'ksealqallafufhhj@mew.gov.kw', NULL, 2, '$2y$10$D6.2L2QHT3QbdSCBN6APo.jOvVGzJ6T6UAtxuoyTTVlM2lVhMWvYq', 0, 'TS', NULL, NULL, NULL),
-(68, 'Mahdi F A Bushehri', 'mahdi1@mew.gov.kw', NULL, 2, '$2y$10$ZXRcT8jEVDOPeKaOscdp4uU.FZqXGJVJJtmmEIj1yB4PZdX70CGbS', 0, 'TS', NULL, NULL, NULL),
-(69, 'Meshari Mohammad Ali ASAD Abdulraheem', 'mmaabdulraheem@mew.gov.kw', NULL, 2, '$2y$10$FidPpK8EKeMYNLudPIP6EOxZPTZ7zRjQA1SbZr5n/tF3/tXVudlA2', 0, 'TS', NULL, NULL, NULL),
-(70, 'Mishal Al-Saeed', 'mishal@mew.gov.kw', NULL, 2, '$2y$10$wq7OmdK.n4UlU0E/DqzZfuSThR0yhWloMI/u4yfLopQuU7U1pSbtO', 0, 'TS', NULL, NULL, NULL),
-(71, 'Mishari Khaled Al-Tawari', 'mkaltuwari@mew.gov.kw', NULL, 2, '$2y$10$z7.offmkuJ2mmqgs6u/AV.wQLR7rU3ANmtxV6T3Ed9CxUxYoLO0ka', 0, 'TS', NULL, NULL, NULL),
-(72, 'Mohammed Behbehani', 'mubehbehani@mew.gov.kw', NULL, 2, '$2y$10$4nA5Fugukyg5bm96Rc.s3epvHWMPtv71u68mxhFn1csFjsj3WiIea', 0, 'TS', NULL, NULL, '2022-09-07 06:29:55'),
-(73, 'Mohamed Awad Anzi', 'mwalenizi@mew.gov.kw', NULL, 2, '$2y$10$4wJosLS11U3XKv4mErfNMewfeDhyq2zVt34yaZhnFXP4YN8pU2v7a', 0, 'TS', NULL, NULL, NULL),
-(74, 'Mohammad Ahmad Ghuloum Mohammad', 'mahamohammad@mew.gov.kw', NULL, 2, '$2y$10$eAJiUZ6tGKpV2aH.qNMrquDG2Oy4Hfc6X43.FkAJ2XUG2vUmuMVZ2', 0, 'TS', NULL, NULL, NULL),
-(75, 'MOHAMMAD HASHEM MOUSA AL MOUSAWI', 'MHMALMOUSAWII@mew.gov.kw', NULL, 2, '$2y$10$fQx2ajnVGYtB7Yf1W/4RQep8QgNHcYQzQLnTv7lx8l7L/Q/Tg7HXy', 0, 'TS', NULL, NULL, NULL),
-(76, 'Mohammad Mubarak Mohammad Al Mutairi', 'mommalmutairi@mew.gov.kw', NULL, 2, '$2y$10$eI85t7goF7TC6RKUz752se1CawTkSH3PcaLlYmwz.xSOhEndTN2dO', 0, 'TS', NULL, NULL, NULL),
-(77, 'Mohammad Yousef Ali Abdullah Ali Dashti', 'mydashti@mew.gov.kw', NULL, 2, '$2y$10$1YNE0fL0kB/UQIixpkunqOEFiowgUtrbzGiSDKypmYwL6Fs1rvG9O', 0, 'TS', NULL, NULL, NULL),
-(78, 'Mohammed Abdullah Shihab', 'mbshehab@mew.gov.kw', NULL, 2, '$2y$10$LcUsC5zzIbjcnULxofG3QuKM40aanE5Yv4t99ttEj6esmpJvAgpAq', 0, 'TS', NULL, NULL, NULL),
-(79, 'Naser Salem Saket Alenezi', 'naser@mew.gov.kw', NULL, 2, '$2y$10$abf7/PAy0ORYGqv6/K8Fx.2Q7IiYhbfq1oJ1iELG5r4COLUYRWKIa', 0, 'TS', NULL, NULL, NULL),
-(80, 'Nasser Shafi Mohammed Al-Ajmi', 'nsoalajmi@mew.gov.kw', NULL, 2, '$2y$10$dYN7JbiQSPe4DJHPAmTO9ebNqGlnn1UyRH7eI0GIrL.W9wJ0ufIxS', 0, 'TS', NULL, NULL, NULL),
-(81, 'OTHMAN SAAD AL LOGHANI', 'osalloughani@mew.gov.kw', NULL, 2, '$2y$10$H.WVTwOoOLOPlvrvi.P28ejlB6jpzBdDziMOBcScQCu0GWb9YRGIa', 0, 'TS', NULL, NULL, NULL),
-(82, 'Rassam Taqi Mohammad Al Harbi', 'Rassam@mew.gov.kw', NULL, 2, '$2y$10$kTrpGya2/Fjac31180Zq9eZ6Gl/8btJ92JY5WdYPwbMxMx/JhBUMm', 0, 'TS', NULL, NULL, NULL),
-(83, 'Saleh Abdullmuhsin Al-Bader', 'sbalbader@mew.gov.kw', NULL, 2, '$2y$10$wN1lOo2Z/115xyoYqyEPr.EdnbAetfqL31kCVMrc0y7Nh9Yb0CirS', 0, 'TS', NULL, NULL, NULL),
-(84, 'Salem R Al Enzi', 'sraalenizi@mew.gov.kw', NULL, 2, '$2y$10$S/Jkis/EKH8qy00A1bj92OfqHkvwC8.kW.OfBkh/5wsBXx7hJIjyW', 0, 'TS', NULL, NULL, NULL),
-(85, 'SAUD FAYEZ HASAN ALKANDARI', 'sfalkanderi@mew.gov.kw', NULL, 2, '$2y$10$81Zm8kqKqaBPXNBzZBJ0pu0HmQwICQ..Hdxza8viShxPOcrsHRVPi', 0, 'TS', NULL, NULL, NULL),
-(86, 'Yousef A S Rashed', 'yarashed@mew.gov.kw', NULL, 2, '$2y$10$i5w//zlw8jjX2tC6iF2NjOUzImSxBwYKGVDJULYa70K8foDzsXr/u', 0, 'TS', NULL, NULL, NULL),
-(87, 'Yousef Abdulkareem abd al sayed', 'yaabdalsayed@mew.gov.kw', NULL, 2, '$2y$10$.6kmwdYbsF2Bopyfcot0s.i4hrPIobUiyz4lVHc1bXJRsTUvEP7Dq', 0, 'TS', NULL, NULL, NULL),
-(88, 'Yousef Habeb alhamad', 'yaalhamad@mew.gov.kw', NULL, 2, '$2y$10$13LDzGWxvz8deM9.I/pn9.A0kHHtr3LMU5PVMbiRkNTZy/w5CNLhu', 0, 'TS', NULL, NULL, NULL),
-(89, 'Yousef Marzouk Al Otaibi', 'yralotaibi@mew.gov.kw', NULL, 2, '$2y$10$icWWLwRnUu3I7KumY8TRRuK0XOz5uuksrABwXy4PArY1KKlt0yKoG', 0, 'TS', NULL, NULL, NULL),
-(90, 'Elaf Raji Al-Mutairi', 'elaf@mew.gov.kw', NULL, 2, '$2y$10$nGh0216II6hILMMshJ7EK.9C1ET94C5nQEbmWeMBCy5Aia6a2jsiS', 0, 'TS', NULL, NULL, NULL),
-(91, 'Lulwah Waleed Alibrahim', 'lwaalibrahim@mew.gov.kw', NULL, 2, '$2y$10$xrT9cjvFuvPstlhyo1CIMuXJtKfQ1oIhUsG1EtP/V3wto98/h5e9a', 0, 'TS', NULL, NULL, NULL),
-(92, 'REEM TALAL JEAIDAN AL ENEZI', 'rtjalenizi@mew.gov.kw', NULL, 2, '$2y$10$kZTy.Gb1dldb2pViao0xye6QLtSVJPAP3WUc1RYAuJt.TWjV53VU6', 0, 'TS', NULL, NULL, NULL),
-(93, 'SHADAN WALEED ABDULLAH AL SANOUSI', 'swaalsanoosi@mew.gov.kw', NULL, 2, '$2y$10$A8vbRm/IMtCoByAlrvVDiezhG57ELX7J1ZbrmTaCVVmQDP9s.vxP.', 0, 'TS', NULL, NULL, NULL),
-(94, 'Zahraa N F Rustom', 'znrestom@mew.gov.kw', NULL, 2, '$2y$10$Y/IxIzBjcPSRew4t/MN0WeQ2rVqpoKVSMvi0XUKjeSLIoJ4o81hby', 0, 'TS', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `password`, `is_admin`, `role`, `signature`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'admin', '1..png', NULL, '2022-09-07 05:52:55', '2022-12-03 16:48:14'),
+(28, 'Abdllah Suleiman Haddad', 'analhaddad@mew.gov.kw', NULL, 2, '$2y$10$6L5fYI59mxKMYKVXB18a7OtjE7VnSzu2Ge2YpGJUCfA0DME7cJUV.', 0, 'admin', NULL, NULL, NULL, NULL),
+(29, 'Abdul Rahman A A Al Kandari', 'aadalkanderi@mew.gov.kw', NULL, 2, '$2y$10$H.yfbb5iUxkGJ5Xx7NhSkOfoafcaUZt2WTt7Geh9MZqzhAKcVCgY2', 0, 'TS', NULL, NULL, NULL, NULL),
+(30, 'Abdullah Esam Yaqoub Al Shatti', 'aeyalshatti@mew.gov.kw', NULL, 2, '$2y$10$GDUNk.47Cjckj.EHIx17bOa6r1w4Z4KurErikOJdMFIEtmUS2fyvG', 0, 'TS', NULL, NULL, NULL, NULL),
+(31, 'Abdullah Hassan Al-Huamidi', 'aaalhumaidi@mew.gov.kw', NULL, 2, '$2y$10$Ugt1kZigs6mCITda/Lk98uOROikh1qWOFTXq0BScLT9sa1Dt10tTS', 0, 'TS', NULL, NULL, NULL, NULL),
+(32, 'ABDULLAH M S AL JAWISSRI', 'amaljuwaisri@mew.gov.kw', NULL, 2, '$2y$10$Px8CFMKPn9fEUX2PRD6jOepUSaGtyosHsVBLui64m3IZr3eQutoiu', 0, 'TS', NULL, NULL, NULL, NULL),
+(33, 'Abdullah Mahammad Almazdi', 'amalmzdi@mew.gov.kw', NULL, 2, '$2y$10$LkmJkECjRbvG5hQAZY38.eqIOgkTCPlreyh/9fEknqvV/6Gr0hKVG', 0, 'TS', NULL, NULL, NULL, NULL),
+(34, 'Ahmad AbdulRahim Yousef', 'auyousef@mew.gov.kw', NULL, 2, '$2y$10$CFmKUEMxcIaVIPQRCWWe4e7UYNECUyprP5e76jCRUYj1rVP/.aPx.', 0, 'TS', NULL, NULL, NULL, NULL),
+(35, 'Ahmad Ibrahim Khaled Alqabandi', 'ahmadalaqabandi@mew.gov.kw', NULL, 2, '$2y$10$Y1j5nmoeaaORO19SrsCjqe4fuSvzV/iWQAOroeBbp4Fna1Il6WbLq', 0, 'TS', NULL, NULL, NULL, NULL),
+(36, 'Ahmad Mahmoud Baqer', 'ambaqer@mew.gov.kw', NULL, 2, '$2y$10$IOrJ9t24vyxNRTB0eQTFkugJr5em.5.0fdaETl8K6FntCb7wSyzFC', 0, 'TS', NULL, NULL, NULL, NULL),
+(37, 'Ahmad Mutheeb mohammad AlOtaibi', 'atalotaibi@mew.gov.kw', NULL, 2, '$2y$10$YBsM/hmcaIKxnwsyRtPH.eNWImPLajdMGlnQHQND4p0hlPdLX.Nri', 0, 'TS', NULL, NULL, NULL, NULL),
+(38, 'Ahmed Awad Al Azmi', 'aawsalazmi@mew.gov.kw', NULL, 2, '$2y$10$H.sGWi53n/exDeRdgaL5sOSUddMclcpUwtF7W3GLlrKFGmLEIKFbG', 0, 'TS', NULL, NULL, NULL, NULL),
+(39, 'Ahmed Bader Ali Al Maayouf', 'ahmadMaayouf@mew.gov.kw', NULL, 2, '$2y$10$q1rstlfqu6G0ghZsTtloLud67AiR/73iCJGjBCbMcC2P9ijGCXMLe', 0, 'TS', NULL, NULL, NULL, NULL),
+(40, 'Ali Hamoud Al-Mutairi', 'ahoalmutairi@mew.gov.kw', NULL, 2, '$2y$10$ekCsCqKrFOCgqd0.QP6kHuhFEcbN4oLzflERkx8yF50NTdqyIN7yW', 0, 'TS', NULL, NULL, NULL, NULL),
+(41, 'Ali Hussain Mohammad Ali Haidar', 'ahsali@mew.gov.kw', NULL, 2, '$2y$10$gt3evQz3c4FQcn2E3.bRAu6uHUpTYf77acBvOuAnPiv5jdQfzq.xW', 0, 'TS', NULL, NULL, NULL, NULL),
+(42, 'Ali Ismail AL-Feli', 'aialfaili@mew.gov.kw', NULL, 2, '$2y$10$RNsSNb3jjc3hJb54Fm41PuNDCZOgo515kLS.popRgYG0Yat5gX69K', 0, 'TS', NULL, NULL, NULL, NULL),
+(43, 'Ali Jassim Al-Baghli', 'ajalbaghli@mew.gov.kw', NULL, 2, '$2y$10$KXSqM9uhK9NKX4g.NiA18OOjMeYRHMBwqXKKoXZSDKWg5kl1EeEJe', 0, 'TS', NULL, NULL, NULL, NULL),
+(44, 'Ali Mahdi Boualiyan', 'amboolyan@mew.gov.kw', NULL, 2, '$2y$10$2t7W1Np7LGFAU74Fqfj0gOf2KYERfommzy5EX/TZlGsxqKbvOhB.6', 0, 'TS', NULL, NULL, NULL, NULL),
+(45, 'Ali Mohammad Abdullah Al Sahhaf', 'alialsahhaf@mew.gov.kw', NULL, 2, '$2y$10$t4yd2e3LsdEhSaB5kPXKKeIyoNCRbCvNo0VE1WO3ouwbnhXYOokfm', 0, 'TS', NULL, NULL, NULL, NULL),
+(46, 'Ali Saleh Alqattan', 'asaalqatan@mew.gov.kw', NULL, 2, '$2y$10$LRKojAvmQuchCNBpAhdx6eX5t8w5guf8H9aeqPqeiAZUOr8kx6Vay', 0, 'TS', NULL, NULL, NULL, NULL),
+(47, 'Amer H M Alansari', 'amhmalansari@mew.gov.kw', NULL, 2, '$2y$10$02HMLXzNI043TYkNhg.WnOMDuLcWuhZlwjFhLsQdMgXZMs4B6KBca', 0, 'TS', NULL, NULL, NULL, '2022-09-07 06:15:05'),
+(48, 'Ammar Khalid Al-Ammary', 'akalamari@mew.gov.kw', NULL, 2, '$2y$10$KnWjVu2SvSEWq8eUHPMQI.0jbqvGxmT.hqJWNYlZmV05CQmM385w2', 0, 'TS', NULL, NULL, NULL, NULL),
+(49, 'BADER ABDEL SALAM KHEDER MILAD', 'bameelad@mew.gov.kw', NULL, 2, '$2y$10$tStzRO9LAgXoI0ZjY.Ywde/SvgIYOneNCbIZ21H20o9I5Uo7c7Tvy', 0, 'TS', NULL, NULL, NULL, NULL),
+(50, 'Eid  MUTHEEB MOHAMMAD AL OTAIBI', 'eid@mew.gov.kw', NULL, 2, '$2y$10$TaQQ/n21LeS9GGoUo6sf4OfBXT7CIb78KfaLaWtqjVFeMYTyTQ8im', 0, 'TS', NULL, NULL, NULL, NULL),
+(52, 'FAHAd A J ALKOUT', 'fmalkhout@mew.gov.kw', NULL, 2, '$2y$10$QhZdeTzV/yvYL3eZsfhQi.M0SeDG8Uz9aq0wbl9/6.qG8j5OBjwza', 0, 'TS', NULL, NULL, NULL, NULL),
+(53, 'FAHAD MUTHEEB MOHAMMAD AL OTAIBI', 'fmalotaybi@mew.gov.kw', NULL, 2, '$2y$10$RkagWY0X0T1Qa4vq4XxAFuj/vdU346bFMGemVmt2qzSyC82m6/LkW', 0, 'TS', NULL, NULL, NULL, NULL),
+(54, 'Fahad S A Al Rashidi', 'fgalrheshedi@mew.gov.kw', NULL, 2, '$2y$10$auQtpQiDGPaxTNX2PjTX.e2eND/Lr8s3NbnHBSPRDZJmqDijDeudm', 0, 'TS', NULL, NULL, NULL, NULL),
+(55, 'Fahd A R Shateel', 'fashatil@mew.gov.kw', NULL, 2, '$2y$10$0WPIyL6UB8KUYni3q7WnkO1N1NWuJsdS.zolCQlHlwip2mrG2t9q6', 0, 'TS', NULL, NULL, NULL, NULL),
+(56, 'FAISAL METLEA AZZAB AL OTAIBI', 'fmazalotaibi@mew.gov.kw', NULL, 2, '$2y$10$sVPIRir0z0t9JQp7AvBaWenfR65uTRgpzVS1CIzl5.yaZFzytoXXi', 0, 'TS', NULL, NULL, NULL, NULL),
+(57, 'FAWAZ SUHAIL ASWAD', 'fuaswad@mew.gov.kw', NULL, 2, '$2y$10$TXqCjwOJhE8VcWJf3lNL2.672KAAWx0rF1IFlcyp7/EcYR4tBU53K', 0, 'TS', NULL, NULL, NULL, NULL),
+(58, 'Hamad Salah Abdullah Abdulmalek', 'hamadabdulmaleck@mew.gov.kw', NULL, 2, '$2y$10$yrUkcQTEqk7bix5WbPbDwegVu3xCFsr0HjI52m/8.R8YhInNE85G2', 0, 'TS', NULL, NULL, NULL, NULL),
+(59, 'Hussain Khaled Ahmad Dehrab', 'hamaddehrab@mew.gov.kw', NULL, 2, '$2y$10$porFUAhLf9mxfIHYRIWT5uyM4vQ.rgJdSA8GhtAizKwCcQbBSOj5C', 0, 'TS', NULL, NULL, NULL, NULL),
+(60, 'Ibrahem M H Alqallaf', 'imhalqalaf@mew.gov.kw', NULL, 2, '$2y$10$79mGSZL5taCOahlLfoaKbu/ZrrJlwUo3sVsy9O2ocm8S/Q2b2.uvm', 0, 'TS', NULL, NULL, NULL, NULL),
+(61, 'Ibrahim Khalil Alrabiah', 'ikalrabiah@mew.gov.kw', NULL, 2, '$2y$10$WNwDAGW2KCMPhBmtiLd26uLWX1q4n5DvzZgYPczZmgSsrG916mA7O', 0, 'TS', NULL, NULL, NULL, NULL),
+(62, 'Ibrahim Waleed Ibrahim Almufarrej', 'iwalmufarrej@mew.gov.kw', NULL, 2, '$2y$10$/H7LVNkU/KTWWk8MJuFKFewntl1ul/wmabGvq9TYmM8stbfr.WMrS', 0, 'TS', NULL, NULL, NULL, NULL),
+(63, 'JASSIM SALEM JASSIM HADDAD AL KANDARI', 'jsalkandari@mew.gov.kw', NULL, 2, '$2y$10$J2Qxfa0QWgDzQJooeiOxeOeQJEL/lOWUSrw8WL7tSx.6sM6iyO1QK', 0, 'TS', NULL, NULL, NULL, NULL),
+(64, 'KHALED MEJBEL AL AZMI', 'kmjalazmi@mew.gov.kw', NULL, 2, '$2y$10$fb1uxSRKIe8M3QnBlgMqbuF4MX5RZyUwdG6ywcQySjgPeR88Aq0ie', 0, 'TS', NULL, NULL, NULL, NULL),
+(65, 'Khaled Mohammad Abbas Alkandari', 'khaled@mew.gov.kw', NULL, 2, '$2y$10$thT1ph0bzp8pY/sPOdhzPOnDenzHgsSo.ytHVr2KcOZGAqKFaT3Fq', 0, 'TS', NULL, NULL, NULL, NULL),
+(66, 'Khaleel M KH Al Qallaf', 'kmkalqallaf@mew.gov.kw', NULL, 2, '$2y$10$d0ebaIirhqxH.4pQPwF6lu4jmxW0lVGDOmpG6F8smENGxtKnkKz6.', 0, 'TS', NULL, NULL, NULL, NULL),
+(67, 'KHALIL SAYED E KH ALQALLAF', 'ksealqallafufhhj@mew.gov.kw', NULL, 2, '$2y$10$D6.2L2QHT3QbdSCBN6APo.jOvVGzJ6T6UAtxuoyTTVlM2lVhMWvYq', 0, 'TS', NULL, NULL, NULL, NULL),
+(68, 'Mahdi F A Bushehri', 'mahdi1@mew.gov.kw', NULL, 2, '$2y$10$ZXRcT8jEVDOPeKaOscdp4uU.FZqXGJVJJtmmEIj1yB4PZdX70CGbS', 0, 'TS', NULL, NULL, NULL, NULL),
+(69, 'Meshari Mohammad Ali ASAD Abdulraheem', 'mmaabdulraheem@mew.gov.kw', NULL, 2, '$2y$10$FidPpK8EKeMYNLudPIP6EOxZPTZ7zRjQA1SbZr5n/tF3/tXVudlA2', 0, 'TS', NULL, NULL, NULL, NULL),
+(70, 'Mishal Al-Saeed', 'mishal@mew.gov.kw', NULL, 2, '$2y$10$wq7OmdK.n4UlU0E/DqzZfuSThR0yhWloMI/u4yfLopQuU7U1pSbtO', 0, 'TS', NULL, NULL, NULL, NULL),
+(71, 'Mishari Khaled Al-Tawari', 'mkaltuwari@mew.gov.kw', NULL, 2, '$2y$10$z7.offmkuJ2mmqgs6u/AV.wQLR7rU3ANmtxV6T3Ed9CxUxYoLO0ka', 0, 'TS', NULL, NULL, NULL, NULL),
+(72, 'Mohammed Behbehani', 'mubehbehani@mew.gov.kw', NULL, 2, '$2y$10$4nA5Fugukyg5bm96Rc.s3epvHWMPtv71u68mxhFn1csFjsj3WiIea', 0, 'TS', NULL, NULL, NULL, '2022-09-07 06:29:55'),
+(73, 'Mohamed Awad Anzi', 'mwalenizi@mew.gov.kw', NULL, 2, '$2y$10$4wJosLS11U3XKv4mErfNMewfeDhyq2zVt34yaZhnFXP4YN8pU2v7a', 0, 'TS', NULL, NULL, NULL, NULL),
+(74, 'Mohammad Ahmad Ghuloum Mohammad', 'mahamohammad@mew.gov.kw', NULL, 2, '$2y$10$eAJiUZ6tGKpV2aH.qNMrquDG2Oy4Hfc6X43.FkAJ2XUG2vUmuMVZ2', 0, 'TS', NULL, NULL, NULL, NULL),
+(75, 'MOHAMMAD HASHEM MOUSA AL MOUSAWI', 'MHMALMOUSAWII@mew.gov.kw', NULL, 2, '$2y$10$fQx2ajnVGYtB7Yf1W/4RQep8QgNHcYQzQLnTv7lx8l7L/Q/Tg7HXy', 0, 'TS', NULL, NULL, NULL, NULL),
+(76, 'Mohammad Mubarak Mohammad Al Mutairi', 'mommalmutairi@mew.gov.kw', NULL, 2, '$2y$10$eI85t7goF7TC6RKUz752se1CawTkSH3PcaLlYmwz.xSOhEndTN2dO', 0, 'TS', NULL, NULL, NULL, NULL),
+(77, 'Mohammad Yousef Ali Abdullah Ali Dashti', 'mydashti@mew.gov.kw', NULL, 2, '$2y$10$1YNE0fL0kB/UQIixpkunqOEFiowgUtrbzGiSDKypmYwL6Fs1rvG9O', 0, 'TS', NULL, NULL, NULL, NULL),
+(78, 'Mohammed Abdullah Shihab', 'mbshehab@mew.gov.kw', NULL, 2, '$2y$10$LcUsC5zzIbjcnULxofG3QuKM40aanE5Yv4t99ttEj6esmpJvAgpAq', 0, 'TS', NULL, NULL, NULL, NULL),
+(79, 'Naser Salem Saket Alenezi', 'naser@mew.gov.kw', NULL, 2, '$2y$10$abf7/PAy0ORYGqv6/K8Fx.2Q7IiYhbfq1oJ1iELG5r4COLUYRWKIa', 0, 'TS', NULL, NULL, NULL, NULL),
+(80, 'Nasser Shafi Mohammed Al-Ajmi', 'nsoalajmi@mew.gov.kw', NULL, 2, '$2y$10$dYN7JbiQSPe4DJHPAmTO9ebNqGlnn1UyRH7eI0GIrL.W9wJ0ufIxS', 0, 'TS', NULL, NULL, NULL, NULL),
+(81, 'OTHMAN SAAD AL LOGHANI', 'osalloughani@mew.gov.kw', NULL, 2, '$2y$10$H.WVTwOoOLOPlvrvi.P28ejlB6jpzBdDziMOBcScQCu0GWb9YRGIa', 0, 'TS', NULL, NULL, NULL, NULL),
+(82, 'Rassam Taqi Mohammad Al Harbi', 'Rassam@mew.gov.kw', NULL, 2, '$2y$10$kTrpGya2/Fjac31180Zq9eZ6Gl/8btJ92JY5WdYPwbMxMx/JhBUMm', 0, 'TS', NULL, NULL, NULL, NULL),
+(83, 'Saleh Abdullmuhsin Al-Bader', 'sbalbader@mew.gov.kw', NULL, 2, '$2y$10$wN1lOo2Z/115xyoYqyEPr.EdnbAetfqL31kCVMrc0y7Nh9Yb0CirS', 0, 'TS', NULL, NULL, NULL, NULL),
+(84, 'Salem R Al Enzi', 'sraalenizi@mew.gov.kw', NULL, 2, '$2y$10$S/Jkis/EKH8qy00A1bj92OfqHkvwC8.kW.OfBkh/5wsBXx7hJIjyW', 0, 'TS', NULL, NULL, NULL, NULL),
+(85, 'SAUD FAYEZ HASAN ALKANDARI', 'sfalkanderi@mew.gov.kw', NULL, 2, '$2y$10$81Zm8kqKqaBPXNBzZBJ0pu0HmQwICQ..Hdxza8viShxPOcrsHRVPi', 0, 'TS', NULL, NULL, NULL, NULL),
+(86, 'Yousef A S Rashed', 'yarashed@mew.gov.kw', NULL, 2, '$2y$10$i5w//zlw8jjX2tC6iF2NjOUzImSxBwYKGVDJULYa70K8foDzsXr/u', 0, 'TS', NULL, NULL, NULL, NULL),
+(87, 'Yousef Abdulkareem abd al sayed', 'yaabdalsayed@mew.gov.kw', NULL, 2, '$2y$10$.6kmwdYbsF2Bopyfcot0s.i4hrPIobUiyz4lVHc1bXJRsTUvEP7Dq', 0, 'TS', NULL, NULL, NULL, NULL),
+(88, 'Yousef Habeb alhamad', 'yaalhamad@mew.gov.kw', NULL, 2, '$2y$10$13LDzGWxvz8deM9.I/pn9.A0kHHtr3LMU5PVMbiRkNTZy/w5CNLhu', 0, 'TS', NULL, NULL, NULL, NULL),
+(89, 'Yousef Marzouk Al Otaibi', 'yralotaibi@mew.gov.kw', NULL, 2, '$2y$10$icWWLwRnUu3I7KumY8TRRuK0XOz5uuksrABwXy4PArY1KKlt0yKoG', 0, 'TS', NULL, NULL, NULL, NULL),
+(90, 'Elaf Raji Al-Mutairi', 'elaf@mew.gov.kw', NULL, 2, '$2y$10$nGh0216II6hILMMshJ7EK.9C1ET94C5nQEbmWeMBCy5Aia6a2jsiS', 0, 'TS', NULL, NULL, NULL, NULL),
+(91, 'Lulwah Waleed Alibrahim', 'lwaalibrahim@mew.gov.kw', NULL, 2, '$2y$10$xrT9cjvFuvPstlhyo1CIMuXJtKfQ1oIhUsG1EtP/V3wto98/h5e9a', 0, 'TS', NULL, NULL, NULL, NULL),
+(92, 'REEM TALAL JEAIDAN AL ENEZI', 'rtjalenizi@mew.gov.kw', NULL, 2, '$2y$10$kZTy.Gb1dldb2pViao0xye6QLtSVJPAP3WUc1RYAuJt.TWjV53VU6', 0, 'TS', NULL, NULL, NULL, NULL),
+(93, 'SHADAN WALEED ABDULLAH AL SANOUSI', 'swaalsanoosi@mew.gov.kw', NULL, 2, '$2y$10$A8vbRm/IMtCoByAlrvVDiezhG57ELX7J1ZbrmTaCVVmQDP9s.vxP.', 0, 'TS', NULL, NULL, NULL, NULL),
+(94, 'Zahraa N F Rustom', 'znrestom@mew.gov.kw', NULL, 2, '$2y$10$Y/IxIzBjcPSRew4t/MN0WeQ2rVqpoKVSMvi0XUKjeSLIoJ4o81hby', 0, 'TS', NULL, NULL, NULL, NULL),
+(95, 'Eissa Almatar - -', 'eaalmatar@mew.gov.kw', NULL, 2, '$2y$10$PLX.4yn2RTzlnrWCa2j8GuyBa.GGZU.U0165pjNOXEhqHsQ2r5en.', 1, 'admin', NULL, NULL, '2022-12-01 13:35:45', '2022-12-01 13:35:45');
 
 --
 -- Indexes for dumped tables
@@ -21044,19 +21080,19 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `tr`
@@ -21074,7 +21110,7 @@ ALTER TABLE `tr_tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- Constraints for dumped tables
