@@ -12,7 +12,8 @@
     @isset($selectedStation)
     <div class="col-12">
         <label for="">Voltage</label>
-        <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3" name="equip_name" id="">
+        <select name="voltage" wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3"
+            name="equip_name" id="">
             <option value="-1">Please select Voltage</option>
             @foreach($voltage as $v)
             <option value="{{$v}}">{{$v}}</option>

@@ -764,6 +764,7 @@ class ProtectionController extends Controller
     //search between dates
     public function stationsByDates(Request $request)
     {
+        return $voltage = $request->voltage;
         $stations = Station::all();
         $engineers = DB::table('engineers')
             ->join('users', 'users.id', '=', 'engineers.user_id')

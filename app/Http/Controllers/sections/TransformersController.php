@@ -379,7 +379,7 @@ class TransformersController extends Controller
             }
             //to send email
             Notification::route('mail', $engineer_email)
-                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code));
+                ->notify(new AddTaskWithAttachments($task_id, $data, $request->station_code, $fromSection));
         } else {
             Notification::route('mail', $engineer_email)
                 ->notify(new AddTask($task_id, $request->station_code, $fromSection));
@@ -737,6 +737,7 @@ class TransformersController extends Controller
     //search between dates
     public function stationsByDates(Request $request)
     {
+        dd('d');
         $stations = Station::all();
         $engineers = DB::table('engineers')
             ->join('users', 'users.id', '=', 'engineers.user_id')
@@ -747,7 +748,6 @@ class TransformersController extends Controller
         $engineer = User::where('name', $request->engineer_name)->pluck('id')->first();
         $start_date = $request->task_Date;
         $end_date = $request->task_Date2;
-
         //search if the user deos not add dates
         if (is_null($start_date) || is_null($end_date)) {
             $tasks = TaskDetails::where('section_id', '5')

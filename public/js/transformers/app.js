@@ -339,11 +339,13 @@ const getStation = async () => {
     engineerSelect.innerText = null;
     //calling function
     controlColor(controlName.value);
+
     return areaSelect.value;
 };
 //get Admins
 const getAdmins = async () => {
     let area = await getStation();
+    alert(area);
     let department = await checkDepartment();
     const response = await fetch("/Transformers/" + area + "/" + department);
     if (response.status !== 200) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 03, 2022 at 01:55 PM
+-- Generation Time: Dec 25, 2022 at 04:59 AM
 -- Server version: 10.5.17-MariaDB-cll-lve
 -- PHP Version: 7.4.30
 
@@ -20554,9 +20554,13 @@ INSERT INTO `tasks` (`id`, `refNum`, `section_id`, `fromSection`, `toSection`, `
 (81, '2022/12/01-1865', 2, NULL, NULL, 2, '', '', NULL, NULL, '2022-12-01', '', NULL, 47, NULL, NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:05:07', '2022-12-01 10:05:19'),
 (82, '2022/12/01-4802', 2, 2, NULL, 489, 'other', '33KV', NULL, 'Clearance', '2022-12-01', 'H(12) - SALWN2', NULL, 33, 'No DC is available for COPA Circuit for the mentioned feeder. Reported by CME \nAbdullah Qattan ( Mobile # 99674878 ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:06:34', '2022-12-01 10:06:52'),
 (83, '2022/12/01-2214', 2, 2, NULL, 552, 'Protection Clearance feeder', '132KV', NULL, 'Clearance', '2022-12-01', 'E(1) - SSURAW1', NULL, 76, 'PC fault alarms is appeared at 4:36 Hr for A/M F . PME has to follow', NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:41:35', '2022-12-01 10:41:35'),
-(84, '2022/12/01-9197', 2, 2, NULL, 630, 'other', '132KV', NULL, 'Clearance', '2022-12-01', 'E(9) - SHDAA1', NULL, 76, 'PC Intertrip fail & PC fault alarms are appeared at 4:36 Hr for A/M F . PME has \nto follow .', NULL, 'pending', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:42:30', '2022-12-01 10:42:30'),
+(84, '2022/12/01-9197', 2, 2, NULL, 630, 'other', '132KV', NULL, 'Clearance', '2022-12-01', 'E(9) - SHDAA1', NULL, 76, 'PC Intertrip fail & PC fault alarms are appeared at 4:36 Hr for A/M F . PME has \nto follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-01 10:42:30', '2022-12-05 07:33:58'),
 (85, '2022/12/03-2005', 2, 2, NULL, 1, '', '', NULL, NULL, '2022-12-03', '', NULL, 1, NULL, NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-03 01:49:07', '2022-12-03 01:50:03'),
-(86, '2022/12/03-4232', 2, 2, NULL, 303, 'Protection Clearance feeder', '11KV', NULL, 'Clearance', '2022-12-03', 'K(8) - SPARE8', NULL, 46, NULL, NULL, 'pending', '0', NULL, 'Eissa Almatar - -', '2022-12-03 10:34:55', '2022-12-03 10:34:55');
+(86, '2022/12/03-4232', 2, 2, NULL, 303, 'Protection Clearance feeder', '11KV', NULL, 'Clearance', '2022-12-03', 'K(8) - SPARE8', NULL, 46, NULL, NULL, 'pending', '0', NULL, 'Eissa Almatar - -', '2022-12-03 10:34:55', '2022-12-03 10:34:55'),
+(87, '2022/12/05-6330', 2, 2, NULL, 693, 'other', '11KV', NULL, 'Clearance', '2022-12-05', 'K(16) - F33OHL', NULL, 80, 'One OHL conductor was found cut and touched ground, but CB was not tripped. \nReported by Jabriya Emergency Eng. Mohd. Nazzar ( Mobile # 69629908). PME \nhas to check', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-05 07:37:56', '2022-12-05 07:38:43'),
+(88, '2022/12/05-4217', 2, 2, NULL, 590, 'Transformer Clearance', '30TR2', NULL, 'Clearance', '2022-12-05', '', NULL, 80, 'TME Abdulla Algharieb (66238826) found one faulty control coil (Q # 11) in LT \nPanel of A/M Tr and it was replaced from 11 KV Panel # 1 in control room . PME \nhas to follow ', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-05 07:41:47', '2022-12-05 07:42:08'),
+(89, '2022/12/06-259', 2, 2, NULL, 289, 'other', '11KV', NULL, 'Clearance', '2022-12-06', 'K(9) - LOCTR1', NULL, 84, '11 KV G/Alarm is appeared at 2:38 Hr and still existing . SME Ali Alotaibi \n(90997789) checked and reported that is from protection side . PME has to follow .', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-06 12:37:52', '2022-12-06 12:39:42'),
+(90, '2022/12/06-8520', 2, 2, NULL, 548, 'Protection Clearance feeder', '33KV', NULL, 'Clearance', '2022-12-06', 'H(2) - LINEC', NULL, 74, 'Protection Clearance is required for the mentioned OHL The mentioned feeder was \ntripped on last night due to Lighting Arrestor and insulator damged for mentioned \nOHL. All clearances are received. PME has to follow.', NULL, 'completed', '0', NULL, 'Ahmad Zaid Ali Alharbi', '2022-12-06 12:42:33', '2022-12-06 12:43:33');
 
 -- --------------------------------------------------------
 
@@ -20610,7 +20614,12 @@ INSERT INTO `task_attachments` (`id`, `file_name`, `refNum`, `Created_by`, `id_t
 (43, 'MNGF-C.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 50, '2022-12-01 08:58:23', '2022-12-01 08:58:23'),
 (46, 'SALM-A(P)(1) (1).pdf', ' 2022/12/01-3654', 'Ahmad ALharbi', 80, '2022-12-01 10:03:31', NULL),
 (47, 'SALM-A(P)(1) (1) (1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 81, '2022-12-01 10:05:07', '2022-12-01 10:05:07'),
-(48, 'SALW-A-PME-28-11 (1)(1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 82, '2022-12-01 10:06:34', '2022-12-01 10:06:34');
+(48, 'SALW-A-PME-28-11 (1)(1).pdf', NULL, 'Ahmad Zaid Ali Alharbi', 82, '2022-12-01 10:06:34', '2022-12-01 10:06:34'),
+(49, 'SSUR-AW    (P) 6.pdf', NULL, 'Mohammad Mubarak Mohammad Al Mutairi', 84, '2022-12-05 07:33:58', '2022-12-05 07:33:58'),
+(50, 'WAFR-A-PME-28-11 1.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 87, '2022-12-05 07:37:56', '2022-12-05 07:37:56'),
+(51, 'SLAM-C     (P) 2.pdf', NULL, 'Ahmad Zaid Ali Alharbi', 88, '2022-12-05 07:41:47', '2022-12-05 07:41:47'),
+(52, 'MASL-D    (P) 1.pdf', NULL, 'Salem R Al Enzi', 89, '2022-12-06 12:39:42', '2022-12-06 12:39:42'),
+(53, 'SHAG-A-PME-6-12 1.PDF', NULL, 'Ahmad Zaid Ali Alharbi', 90, '2022-12-06 12:42:33', '2022-12-06 12:42:33');
 
 -- --------------------------------------------------------
 
@@ -20704,7 +20713,16 @@ INSERT INTO `task_details` (`id`, `task_id`, `task_date`, `report_date`, `reason
 (105, 84, '2022-12-01', NULL, NULL, 76, 630, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-01 10:42:30', '2022-12-01 10:42:30'),
 (106, 85, '2022-12-03', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-03 01:49:07', '2022-12-03 01:49:07'),
 (107, 85, '2022-12-03', '2022-12-03', NULL, 1, 1, 2, NULL, 2, '', NULL, NULL, 'sefsf', 'completed', '1', '2022-12-03 01:50:03', '2022-12-03 01:50:03'),
-(108, 86, '2022-12-03', NULL, NULL, 46, 303, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-03 10:34:55', '2022-12-03 10:34:55');
+(108, 86, '2022-12-03', NULL, NULL, 46, 303, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-03 10:34:55', '2022-12-03 10:34:55'),
+(109, 84, '2022-12-01', '2022-12-05', NULL, 76, 630, 2, NULL, 2, 'other', 'PC Intertrip fail & PC fault alarms are appeared at 4:36 Hr for A/M F . PME has \nto follow .', NULL, 'Inter-trip power supply in south surra was faulty. Power supply has been changed, alarm is clear in both sides', 'completed', '1', '2022-12-05 07:33:58', '2022-12-05 07:33:58'),
+(110, 87, '2022-12-05', NULL, NULL, 80, 693, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-05 07:37:56', '2022-12-05 07:37:56'),
+(111, 87, '2022-12-05', '2022-12-05', NULL, 80, 693, 2, NULL, 2, 'other', 'One OHL conductor was found cut and touched ground, but CB was not tripped. \nReported by Jabriya Emergency Eng. Mohd. Nazzar ( Mobile # 69629908). PME \nhas to check', NULL, 'O/C AND E/F are clear .DCC informed .', 'completed', '1', '2022-12-05 07:38:43', '2022-12-05 07:38:43'),
+(112, 88, '2022-12-05', NULL, NULL, 80, 590, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-05 07:41:47', '2022-12-05 07:41:47'),
+(113, 88, '2022-12-05', '2022-12-05', NULL, 80, 590, 2, NULL, 2, 'Transformer Clearance', 'TME Abdulla Algharieb (66238826) found one faulty control coil (Q # 11) in LT \nPanel of A/M Tr and it was replaced from 11 KV Panel # 1 in control room . PME \nhas to follow ', NULL, 'The auxiliary relay has been replaced.\r\nDCC informed.', 'completed', '1', '2022-12-05 07:42:08', '2022-12-05 07:42:08'),
+(114, 89, '2022-12-06', NULL, NULL, 84, 289, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-06 12:37:52', '2022-12-06 12:37:52'),
+(115, 89, '2022-12-06', '2022-12-06', NULL, 84, 289, 2, NULL, 2, 'other', '11 KV G/Alarm is appeared at 2:38 Hr and still existing . SME Ali Alotaibi \n(90997789) checked and reported that is from protection side . PME has to follow .', NULL, 'Local TR # 1 Relay o/c & e/f was faulty \r\nI changed with spear feeder #4 \r\nAll sitting for now relay local Tr ok \r\nNote: after I change relay still alarm 11 kv G/M  apear because there was no relay  so I removed wire from spear  back side relay o/c & e/f terminal # 1\r\nS/S now clear \r\nDcc informed', 'completed', '1', '2022-12-06 12:39:42', '2022-12-06 12:39:42'),
+(116, 90, '2022-12-06', NULL, NULL, 74, 548, 2, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '0', '2022-12-06 12:42:33', '2022-12-06 12:42:33'),
+(117, 90, '2022-12-06', '2022-12-06', NULL, 74, 548, 2, NULL, 2, 'Protection Clearance feeder', 'Protection Clearance is required for the mentioned OHL The mentioned feeder was \ntripped on last night due to Lighting Arrestor and insulator damged for mentioned \nOHL. All clearances are received. PME has to follow.', NULL, 'Protection clear for the mentioned feeder\r\nfault current in red , yellow and earth\r\nresert relay\r\nclosed CB and feeder energised as DCC request', 'completed', '1', '2022-12-06 12:43:33', '2022-12-06 12:43:33');
 
 -- --------------------------------------------------------
 
@@ -20766,7 +20784,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `password`, `is_admin`, `role`, `signature`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'admin', '1..png', NULL, '2022-09-07 05:52:55', '2022-12-03 16:48:14'),
+(1, 'Ahmad Zaid Ali Alharbi', 'ahmaadzaid7@gmail.com', NULL, 2, '$2y$10$/UiqFGxs.rv6sRwO7Y2Ef.3a/vICGlexgyz5t8FyY0e/3n/iyOjoq', 1, 'admin', '1.png', NULL, '2022-09-07 05:52:55', '2022-12-03 18:09:41'),
 (28, 'Abdllah Suleiman Haddad', 'analhaddad@mew.gov.kw', NULL, 2, '$2y$10$6L5fYI59mxKMYKVXB18a7OtjE7VnSzu2Ge2YpGJUCfA0DME7cJUV.', 0, 'admin', NULL, NULL, NULL, NULL),
 (29, 'Abdul Rahman A A Al Kandari', 'aadalkanderi@mew.gov.kw', NULL, 2, '$2y$10$H.yfbb5iUxkGJ5Xx7NhSkOfoafcaUZt2WTt7Geh9MZqzhAKcVCgY2', 0, 'TS', NULL, NULL, NULL, NULL),
 (30, 'Abdullah Esam Yaqoub Al Shatti', 'aeyalshatti@mew.gov.kw', NULL, 2, '$2y$10$GDUNk.47Cjckj.EHIx17bOa6r1w4Z4KurErikOJdMFIEtmUS2fyvG', 0, 'TS', NULL, NULL, NULL, NULL),
@@ -20833,7 +20851,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `section_id`, `
 (92, 'REEM TALAL JEAIDAN AL ENEZI', 'rtjalenizi@mew.gov.kw', NULL, 2, '$2y$10$kZTy.Gb1dldb2pViao0xye6QLtSVJPAP3WUc1RYAuJt.TWjV53VU6', 0, 'TS', NULL, NULL, NULL, NULL),
 (93, 'SHADAN WALEED ABDULLAH AL SANOUSI', 'swaalsanoosi@mew.gov.kw', NULL, 2, '$2y$10$A8vbRm/IMtCoByAlrvVDiezhG57ELX7J1ZbrmTaCVVmQDP9s.vxP.', 0, 'TS', NULL, NULL, NULL, NULL),
 (94, 'Zahraa N F Rustom', 'znrestom@mew.gov.kw', NULL, 2, '$2y$10$Y/IxIzBjcPSRew4t/MN0WeQ2rVqpoKVSMvi0XUKjeSLIoJ4o81hby', 0, 'TS', NULL, NULL, NULL, NULL),
-(95, 'Eissa Almatar - -', 'eaalmatar@mew.gov.kw', NULL, 2, '$2y$10$PLX.4yn2RTzlnrWCa2j8GuyBa.GGZU.U0165pjNOXEhqHsQ2r5en.', 1, 'admin', NULL, NULL, '2022-12-01 13:35:45', '2022-12-01 13:35:45');
+(95, 'Eissa Almatar - -', 'eaalmatar@mew.gov.kw', NULL, 2, '$2y$10$PLX.4yn2RTzlnrWCa2j8GuyBa.GGZU.U0165pjNOXEhqHsQ2r5en.', 1, 'admin', NULL, NULL, '2022-12-01 13:35:45', '2022-12-01 13:35:45'),
+(96, 'ahmad mew - -', 'azaalharbi@mew.gov.kw', NULL, 2, '$2y$10$XyWC7eW50b4HN7U3Xd4OdOW2ArVv/j7Cy8s0.EarVy704Y8A/hcZC', 0, NULL, '96.png', NULL, '2022-12-03 18:13:33', '2022-12-03 18:14:49');
 
 --
 -- Indexes for dumped tables
@@ -21080,19 +21099,19 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `task_attachments`
 --
 ALTER TABLE `task_attachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `task_details`
 --
 ALTER TABLE `task_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `tr`
@@ -21110,7 +21129,7 @@ ALTER TABLE `tr_tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Constraints for dumped tables
