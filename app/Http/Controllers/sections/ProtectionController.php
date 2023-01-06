@@ -764,42 +764,46 @@ class ProtectionController extends Controller
     //search between dates
     public function stationsByDates(Request $request)
     {
-        return $voltage = $request->voltage;
+        $query = TaskDetails::query();
+        $station = Station::where('SSNAME', $request->station_code)->pluck('id')->first();
+        $engineer = User::where('name', $request->engineer_name)->pluck('id')->first();
         $stations = Station::all();
         $engineers = DB::table('engineers')
             ->join('users', 'users.id', '=', 'engineers.user_id')
             ->select('users.name', 'users.id', 'users.email', 'users.section_id', 'engineers.area', 'engineers.shift')
             ->where('users.section_id', 2)
             ->get();
-        $station = Station::where('SSNAME', $request->ssnameID)->pluck('id')->first();
-        $engineer = User::where('name', $request->engineer_name)->pluck('id')->first();
-        $start_date = $request->task_Date;
-        $end_date = $request->task_Date2;
-
-        //search if the user deos not add dates
-        if (is_null($start_date) || is_null($end_date)) {
-            $tasks = TaskDetails::where('section_id', '2')
-                ->where('station_id', $station)
-                ->orwhere('eng_id', $engineer)
-                ->where('section_id', '2')
-                ->get();
-            return view('protection.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
-        } else {
-            $tasks = TaskDetails::where('section_id', '2')
-                //search by stations
-                ->where('station_id', $station)
-                ->whereBetween('task_date', [$start_date, $end_date])
-                ->where()
-                //search by engineers
-                ->orwhere('eng_id', $engineer)
-                ->whereBetween('task_date', [$start_date, $end_date])
-                ->where('section_id', '2')
-                //search by only dates
-                ->orwhereBetween('task_date', [$start_date, $end_date])
-                ->where('section_id', '2')
-                ->get();
-            return view('protection.admin.tasks.archive', compact('tasks', 'start_date', 'end_date', 'station', 'stations', 'engineers'));
+        if ($request->has('station_code')) {
+            $query->where('station_id', 'like', "%{$station}%")->where('section_id', 2)->where('status', 'completed');
         }
+        if ($request->has('equip')) {
+            // $query->TaskDeatils::with('tasks')->where('equip_number', 'like', "%{$request->equip}%");
+
+            // return TaskDetails::where('equip_number', $request->equip)->task;
+            // return  $taskDetails = TaskDetails::whereHas('tasks', function ($query) use ($request) {
+            //     $query->where('equip_number', 'like', "%{$request->equip}%");
+            // })->where('status', 'completed')
+            //     ->get();
+            $taskQuery = Task::where('equip_number', 'like', "%{$request->equip}%")
+                ->select('id');
+
+            $taskDetails = TaskDetails::whereIn('task_id', $taskQuery)
+                ->where('status', 'completed')
+                ->where('section_id', 2)
+                ->get();
+        }
+        if ($request->has('engineer')) {
+            $query->where('eng_id', 'like', "%{$engineer}%")->where('section_id', 2)->where('status', 'completed');;
+        }
+
+        if ($request->has('task_Date')) {
+            $query->whereBetween('task_date', [$request->task_Date, $request->task_Date2])->where('section_id', 2)->where('status', 'completed');
+        }
+
+        $tasks = $query->get();
+        $tasks = $tasks->union($taskDetails);
+
+        return view('protection.admin.tasks.archive', compact('tasks', 'station', 'stations', 'engineers'));
     }
     ///##### end backend functions
 
