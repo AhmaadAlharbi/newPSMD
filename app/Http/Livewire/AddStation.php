@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Notification;
 
 use  App\Notifications\AddTaskWithAttachments;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class AddStation extends Component
 {
     use WithFileUploads;
+    public $task;
     public $stations = [];
     public $selectedStation;
     public $stationDetails;
@@ -47,33 +49,88 @@ class AddStation extends Component
     public $pic1;
     public $pic2;
     public $selectedEquipTr;
-
+    public $route_id;
     protected $listeners = ['callEngineer' => 'getEngineer'];
     // protected $rules = [
     //     'selectedStation' => 'required ',
     //     'photos.*' => 'max:1024', // 1MB Max
 
     // ];
-    public function mount()
+    public function mount(Request $request)
     {
+
+        if (isset($this->route_id)) {
+            // Retrieve the id parameter from the route
+            $id = $request->route('id');
+            // Query the table using the id parameter
+            $this->task = Task::find($id);
+        }
+
         $this->stations = Station::all();
     }
-    public function render()
+    public function render(Request $request)
     {
+        $this->route_id = $request->route('id');
+
+        if (isset($this->route_id)) {
+
+            $task = Task::where('id', $this->route_id)->first();
+            $this->selectedStation = Station::where('id', $task->station_id)->pluck('SSNAME')->first();
+            $this->stationDetails = Station::where('SSNAME', $this->selectedStation)->first();
+            if ($this->stationDetails !== null) {
+                $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
+                // $this->voltage = Equip::where('station_id', $this->station_id)->distinct()->pluck('voltage_level');
+
+                if (
+                    $this->stationDetails->control === 'JAHRA CONTROL CENTER'
+                    || $this->stationDetails->control === 'TOWN CONTROL CENTER'
+                ) {
+                    $this->area = 1;
+                } elseif (
+                    $this->stationDetails->control === 'SHUAIBA CONTROL CENTER'
+                    || $this->stationDetails->control === 'JABRIYA CONTROL CENTER'
+                ) {
+                    $this->area = 2;
+                } else {
+                    $this->area = 3;
+                }
+                $this->emit('callEngineer', $this->area);
+            }
+            $this->main_alarm = $task->main_alarm;
+            $this->selectedVoltage = $task->voltage_level;
+            $this->selectedEquip = $task->equip_number;
+            //check if engineer in duty or not to show the list
+            $this->engineers = Engineer::where('user_id', $task->eng_id)->first();
+            if ($this->engineers->shift == 1) {
+                $this->duty = true;
+            }
+            $this->work_type = $task->work_type;
+            $this->problem = $task->problem;
+            $this->selectedEngineer = $task->eng_id;
+            $this->notes = $task->notes;
+            $this->getStationInfo();
+            $this->getEquip();
+            $this->getEngineer();
+        }
+
         return view('livewire.add-station');
     }
     public function getStationInfo()
     {
-        $this->engineers = [];
-        $this->voltage = [];
-        $this->transformers = [];
-        $this->equip = [];
-        $this->area = 0;
-        $this->main_alarm = '';
-        $this->engineerEmail = '';
-        $this->selectedVoltage = '';
-        $this->selectedEquip = '';
-        $this->selectedEngineer = '';
+
+        if (!isset($this->route_id)) {
+            $this->engineers = [];
+            $this->voltage = [];
+            $this->transformers = [];
+            $this->equip = [];
+            $this->area = 0;
+            $this->main_alarm = '';
+            $this->engineerEmail = '';
+            $this->selectedVoltage = '';
+            $this->selectedEquip = '';
+            $this->selectedEngineer = '';
+        }
+
         $this->stationDetails = Station::where('SSNAME', $this->selectedStation)->first();
         if ($this->stationDetails !== null) {
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
@@ -99,7 +156,9 @@ class AddStation extends Component
     {
         $this->equip = [];
         if ($this->selectedVoltage !== '-1') {
-            $this->voltage = [];
+            if (!isset($this->route_id)) {
+                $this->voltage = [];
+            }
             $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
             switch ($this->main_alarm) {
                 case ('General Alarm 11KV'):
@@ -182,26 +241,16 @@ class AddStation extends Component
         $this->engineerEmail = User::where('id', $this->selectedEngineer)->pluck('email')->first();
     }
 
-    public function submit()
+    public function submit(Request $request)
     {
-
-
-        $this->date =  Carbon::now();
-        $year = (new DateTime)->format("Y");
-        $month = (new DateTime)->format("m");
-        $day = (new DateTime)->format("d");
-        $refNum = $year . "/" . $month . "/" . $day . '-' . rand(1, 10000);
-        $station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
-
-        Task::create([
-            'refNum' => $refNum,
+        $tasks = $this->task;
+        $tasks->update([
             'section_id' => 2,
             'fromSection' => 2,
-            'station_id' => $station_id,
+            'station_id' => 2,
             'main_alarm' => $this->main_alarm,
             'voltage_level' => $this->selectedVoltage,
             'work_type' => $this->work_type,
-            'task_date' =>  $year . '-' . $month . '-' . $day,
             'equip_number' => $this->selectedEquip,
             // 'equip_name' => $request->equip_name,
             // 'pm' => $request->pm,
@@ -211,36 +260,24 @@ class AddStation extends Component
             'status' => 'pending',
             'user' => (Auth::user()->name),
         ]);
-        $task_id = Task::latest()->first()->id;
         TaskDetails::create([
-            'task_id' => $task_id,
-            'station_id' => $station_id,
-            'task_date' => $year . '-' . $month . '-' . $day,
+            'task_id' => $this->task->id,
+            'station_id' => 2,
             'eng_id' => $this->selectedEngineer,
             'fromSection' => 2,
             'status' => 'pending',
         ]);
-
-        // $this->validate([
-        //     'selectedStation' => 'required ',
-        //     // 'photos.*' => 'image|max:1024', // 1MB Max
-        //     // 'pic1' => 'image|max:1024', // 1MB Max
-        //     // 'pic2' => 'image|max:1024', // 1MB Max
-        // ]);
-        $fromSection = auth()->user()->section_id;
-        $this->station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
-
         if ($this->photos) {
             foreach ($this->photos as $photo) {
                 // $photo->store('photos');
                 $name = $photo->getClientOriginalName();
                 // $photo->storeAs('public', $name);
-                $photo->storeAs('protection/' . $task_id, $name, 'public');
+                $photo->storeAs('protection/' . $this->task->id, $name, 'public');
                 $data[] = $name;
                 $attachments = new TaskAttachment();
                 $attachments->file_name = $name;
                 $attachments->created_by = Auth::user()->name;
-                $attachments->id_task = $task_id;
+                $attachments->id_task = $this->task->id;
                 $attachments->save();
             }
             // Notification::route('mail', $this->engineerEmail)
@@ -249,11 +286,7 @@ class AddStation extends Component
             // Notification::route('mail', $this->engineerEmail)
             //     ->notify(new AddTask($task_id, $this->selectedStation, $fromSection));
         }
-        session()->flash('message', 'تم اضافة المهمة بنجاح.');
-        return   redirect()->to('/dashboard/admin/query_section_id=2/add_task');
-
-
-        // $this->pic1->store('photos');
-        // $this->pic2->store('photos');
+        session()->flash('message', 'تم تعديل المهمة بنجاح.');
+        return   back();
     }
 }

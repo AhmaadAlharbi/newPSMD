@@ -13,12 +13,10 @@
             <label for=" ssname">يرجى اختيار اسم المحطة</label>
             @if($selectedStation == null)
 
-            <input list="ssnames" wire:change="getStationInfo" class="form-control " wire:model="selectedStation"
-                name="station_code" id="ssname" type="search">
+            <input list="ssnames" wire:change="getStationInfo" class="form-control " wire:model="selectedStation" name="station_code" id="ssname" type="search">
             @else
             <input list="ssnames" wire:change="getStationInfo" class="form-control  {{$stationDetails  ? " is-valid"
-                : " is-invalid" }}" value="{{ old('station_code') }}" wire:model="selectedStation" name="station_code"
-                id="ssname" type="search">
+                : " is-invalid" }}" value="{{ old('station_code') }}" wire:model="selectedStation" name="station_code" id="ssname" type="search">
 
             @endif
 
@@ -63,15 +61,15 @@
                         @default
                         <li class="{{$selectedStation ? " list-group-item list-group-item-dark font-italic"
                             : " bg-white" }} ">
-                        {{$stationDetails->control}}
-                    </li>
-                    @endswitch
-                </ul>
+                            {{$stationDetails->control}}
+                        </li>
+                        @endswitch
+                    </ul>
 
-                <ul class=" list-group ">
+                    <ul class=" list-group ">
 
 
-                    <li class=" list-group-item disabled font-italic list-group-item-secondary">Make :
+                        <li class=" list-group-item disabled font-italic list-group-item-secondary">Make :
                             {{$stationDetails->COMPANY_MAKE}}
                         </li>
                         <li class="list-group-item font-italic disabled  list-group-item-secondary">Contract.No :
@@ -86,8 +84,7 @@
                 </div>
                 <div class="col-12">
                     <label for="main_alarm" class="control-label m-3">Main Alarm</label>
-                    <select wire:model="main_alarm" wire:change="getEquip" name="mainAlarm" id="main_alarm"
-                        class="form-control">
+                    <select wire:model="main_alarm" wire:change="getEquip" name="mainAlarm" id="main_alarm" class="form-control">
                         <!--placeholder-->
                         <option value="-">-</option>
                         <option value="Auto reclosure">Auto reclosure</option>
@@ -133,8 +130,7 @@
                     @case('Transformer Clearance')
                     @case('Transformer out of step Alarm')
                     <label class="my-2">Transformer</label>
-                    <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3"
-                        name="equip_name" id="">
+                    <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3" name="equip_name" id="">
                         <option value="-1">Please select Voltage</option>
                         {{-- <option value="{{$selectedVoltage}}">{{$selectedVoltage}}</option> --}}
                         @foreach($transformers as $transformer)
@@ -146,7 +142,7 @@
 
                         {{-- <select wire:model="equip" class="form-control mb-3" name="equip_name">
                             <option value="{{$equip}}">{{$equip}}
-                            </option>
+                        </option>
 
                         </select> --}}
                         <input type="text" class="form-control" wire:model="equip" />
@@ -156,8 +152,7 @@
                     @default
                     <label class="my-2">Voltage</label>
 
-                    <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3"
-                        name="voltage_level" id="">
+                    <select wire:model="selectedVoltage" wire:change="getEquip" class="form-control mb-3" name="voltage_level" id="">
                         <option value="-1">Please select Voltage</option>
                         {{-- <option value="{{$selectedVoltage}}">{{$selectedVoltage}}</option> --}}
                         @foreach($voltage as $v)
@@ -185,17 +180,18 @@
 
                 <div class="">
                     <label for="inputName" class="control-label">اسم المهندس</label>
-                    <select wire:model="selectedEngineer" id="eng_name" wire:change="getEmail" name="eng_name"
-                        class="form-control engineerSelect my-4">
-                        <option value="">-</option>
+                    <select wire:model="selectedEngineer" id="eng_name" wire:change="getEmail" name="eng_name" class="form-control engineerSelect my-4">
+
                         @foreach($engineers as $engineer)
+
                         <option value="{{$engineer->users->id}}">{{$engineer->users->name}}</option>
                         {{-- <option value="{{$engineer->id}}">{{$engineer->id}}</option> --}}
                         @endforeach
+
                     </select>
+
                     <div class="form-check mb-4">
-                        <input wire:model="duty" wire:change="getEngineer" class="form-check-input" type="checkbox"
-                            value="" id="defaultCheck1">
+                        <input wire:model="duty" wire:change="getEngineer" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                         <label class="form-check-label mx-3" for="defaultCheck1">
                             Duty Engineers
                         </label>
@@ -204,8 +200,7 @@
                 <div class="  email">
                     {{-- <label for="inputName" class="control-label"> Email</label> --}}
 
-                    <input wire:model="engineerEmail" type="text" class="form-control" name="eng_email"
-                        id="eng_name_email" readonly>
+                    <input wire:model="engineerEmail" type="text" class="form-control" name="eng_email" id="eng_name_email" readonly>
                 </div>
                 <label for="" class="mt-2">نوع المهمة</label>
                 <select name="" wire:model="work_type" name="work_type" class="form-control">
@@ -218,8 +213,7 @@
                     <option value="other">other</option>
                 </select>
                 <label for="problem" class="control-label mt-4"> Nature of Fault</label>
-                <textarea list="problems" wire:model="problem" class="form-control " rows="3" name="problem"
-                    id="problem"></textarea>
+                <textarea list="problems" wire:model="problem" class="form-control " rows="3" name="problem" id="problem"></textarea>
                 <label for="exampleTextarea" class="mt-3">ملاحظات</label>
                 <textarea class="form-control" id="exampleTextarea" wire:model="notes" name="notes" rows="3"></textarea>
                 @error('photos.*') <span class="error">{{ $message }}</span> @enderror
@@ -241,36 +235,35 @@
                             data-height="70" />
 
                     </div><br> --}}
-                    <input class="form-control form-control-lg" name="photos" id="formFileLg" type="file"
-                        wire:model="photos" multiple>
+                    <input class="form-control form-control-lg" name="photos" id="formFileLg" type="file" wire:model="photos" multiple>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary" id="but4">ارسال
                             البيانات</button>
                     </div>
                     <script>
                         const btnid = document.getElementById('but4');
-                        btnid.addEventListener('click',()=>{
+                        btnid.addEventListener('click', () => {
                             let timerInterval
                             Swal.fire({
-                            title: 'جاري ارسال البيانات',
-                            html: 'يرجى الانتظار وعدم اغلاق الصفحة',
-                            timer: 10000,
-                            timerProgressBar: true,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                const b = Swal.getHtmlContainer().querySelector('b')
-                                timerInterval = setInterval(() => {
-                                b.textContent = Swal.getTimerLeft()
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                            }
+                                title: 'جاري ارسال البيانات',
+                                html: 'يرجى الانتظار وعدم اغلاق الصفحة',
+                                timer: 10000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                    const b = Swal.getHtmlContainer().querySelector('b')
+                                    timerInterval = setInterval(() => {
+                                        b.textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
                             }).then((result) => {
-                            /* Read more about handling dismissals below */
-                            if (result.dismiss === Swal.DismissReason.timer) {
-                                console.log('I was closed by the timer')
-                            }
+                                /* Read more about handling dismissals below */
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    console.log('I was closed by the timer')
+                                }
                             })
                         })
                     </script>
