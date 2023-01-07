@@ -777,13 +777,6 @@ class ProtectionController extends Controller
             $query->where('station_id', 'like', "%{$station}%")->where('section_id', 2)->where('status', 'completed');
         }
         if ($request->has('equip')) {
-            // $query->TaskDeatils::with('tasks')->where('equip_number', 'like', "%{$request->equip}%");
-
-            // return TaskDetails::where('equip_number', $request->equip)->task;
-            // return  $taskDetails = TaskDetails::whereHas('tasks', function ($query) use ($request) {
-            //     $query->where('equip_number', 'like', "%{$request->equip}%");
-            // })->where('status', 'completed')
-            //     ->get();
             $taskQuery = Task::where('equip_number', 'like', "%{$request->equip}%")
                 ->select('id');
 
@@ -801,7 +794,9 @@ class ProtectionController extends Controller
         }
 
         $tasks = $query->get();
-        $tasks = $tasks->union($taskDetails);
+        if (isset($taskDetails)) {
+            $tasks = $tasks->union($taskDetails);
+        }
 
         return view('protection.admin.tasks.archive', compact('tasks', 'station', 'stations', 'engineers'));
     }
