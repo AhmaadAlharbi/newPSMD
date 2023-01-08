@@ -61,9 +61,9 @@ class AddStation extends Component
 
         if (isset($this->route_id)) {
             // Retrieve the id parameter from the route
-            $id = $request->route('id');
+            $this->route_id = $request->route('id');
             // Query the table using the id parameter
-            $this->task = Task::find($id);
+            $this->task = Task::find($this->route_id);
         }
 
         $this->stations = Station::all();
@@ -243,49 +243,47 @@ class AddStation extends Component
 
     public function submit(Request $request)
     {
-        $tasks = $this->task;
-        $tasks->update([
-            'section_id' => 2,
-            'fromSection' => 2,
-            'station_id' => 2,
-            'main_alarm' => $this->main_alarm,
-            'voltage_level' => $this->selectedVoltage,
-            'work_type' => $this->work_type,
-            'equip_number' => $this->selectedEquip,
-            // 'equip_name' => $request->equip_name,
-            // 'pm' => $request->pm,
-            'eng_id' => $this->selectedEngineer,
-            'problem' => $this->problem,
-            'notes' => $this->notes,
-            'status' => 'pending',
-            'user' => (Auth::user()->name),
-        ]);
-        TaskDetails::create([
-            'task_id' => $this->task->id,
-            'station_id' => 2,
-            'eng_id' => $this->selectedEngineer,
-            'fromSection' => 2,
-            'status' => 'pending',
-        ]);
+        $this->date =  Carbon::now();
+        $year = (new DateTime)->format("Y");
+        $month = (new DateTime)->format("m");
+        $day = (new DateTime)->format("d");
+        $refNum = $year . "/" . $month . "/" . $day . '-' . rand(1, 10000);
+        $station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
+        // Find the task or create a new instance
+        $task = Task::findOrNew($this->route_id);
+        $task->section_id = 2;
+        $task->fromSection = 2;
+        $task->station_id = $station_id;
+        $task->main_alarm = $this->main_alarm;
+        $task->work_type = $this->work_type;
+        $task->equip_number =  $this->selectedEquip;
+        $task->eng_id = $this->selectedEngineer;
+        $task->problem = $this->problem;
+        $task->notes = $this->notes;
+        $task->status = 'pending';
+        $task->user = (Auth::user()->name);
+        // Set the created_at field to the current date if it's a new task
+        if (!$task->exists) {
+            $task->refNum = $refNum;
+            $task->task_date =  $year . '-' . $month . '-' . $day;
+            $task->created_at = Carbon::now();
+        }
+        $task->save();
         if ($this->photos) {
             foreach ($this->photos as $photo) {
                 // $photo->store('photos');
                 $name = $photo->getClientOriginalName();
                 // $photo->storeAs('public', $name);
-                $photo->storeAs('protection/' . $this->task->id, $name, 'public');
+                $photo->storeAs('protection/' . $task->id, $name, 'public');
                 $data[] = $name;
                 $attachments = new TaskAttachment();
                 $attachments->file_name = $name;
                 $attachments->created_by = Auth::user()->name;
-                $attachments->id_task = $this->task->id;
+                $attachments->id_task =  $task->id;
                 $attachments->save();
             }
-            // Notification::route('mail', $this->engineerEmail)
-            //     ->notify(new AddTaskWithAttachments($task_id, $data, $this->selectedStation, $fromSection));
-        } else {
-            // Notification::route('mail', $this->engineerEmail)
-            //     ->notify(new AddTask($task_id, $this->selectedStation, $fromSection));
         }
+
         session()->flash('message', 'تم تعديل المهمة بنجاح.');
         return   back();
     }
