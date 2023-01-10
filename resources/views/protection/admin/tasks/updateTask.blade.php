@@ -60,7 +60,7 @@
 
                         </div>
                         <div class="col-lg-6">
-                            @livewire('add-station')
+                            @livewire('update-task',['taskId'=>$tasks->id ])
                         </div>
 
 
@@ -124,12 +124,6 @@
 <!-- Internal form-elements js -->
 <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
-<script>
-    var date = $('.fc-datepicker').datepicker({
-        dateFormat: 'yy-mm-dd'
-    }).val();
-</script>
 
-<script type="text/javascript" src="{{ URL::asset('js/protection/updateTask.js') }}"></script>
 
 @endsection

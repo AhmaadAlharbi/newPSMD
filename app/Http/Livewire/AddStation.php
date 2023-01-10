@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use DateTime;
+use Illuminate\Support\Facades\Route;
+
 use  App\Notifications\AddTask;
 use Illuminate\Support\Facades\Notification;
 
@@ -59,13 +61,10 @@ class AddStation extends Component
     public function mount(Request $request)
     {
 
-        if (isset($this->route_id)) {
-            // Retrieve the id parameter from the route
-            $this->route_id = $request->route('id');
-            // Query the table using the id parameter
-            $this->task = Task::find($this->route_id);
-        }
-
+        // Retrieve the id parameter from the route
+        $this->route_id = $request->route('id');
+        // Query the table using the id parameter
+        $this->task = Task::find($this->route_id);
         $this->stations = Station::all();
     }
     public function render(Request $request)
@@ -241,7 +240,7 @@ class AddStation extends Component
         $this->engineerEmail = User::where('id', $this->selectedEngineer)->pluck('email')->first();
     }
 
-    public function submit(Request $request)
+    public function submit()
     {
         $this->date =  Carbon::now();
         $year = (new DateTime)->format("Y");
@@ -249,40 +248,52 @@ class AddStation extends Component
         $day = (new DateTime)->format("d");
         $refNum = $year . "/" . $month . "/" . $day . '-' . rand(1, 10000);
         $station_id = Station::where('SSNAME', $this->selectedStation)->pluck('id')->first();
-        // Find the task or create a new instance
-        $task = Task::findOrNew($this->route_id);
-        $task->section_id = 2;
-        $task->fromSection = 2;
-        $task->station_id = $station_id;
-        $task->main_alarm = $this->main_alarm;
-        $task->work_type = $this->work_type;
-        $task->equip_number =  $this->selectedEquip;
-        $task->eng_id = $this->selectedEngineer;
-        $task->problem = $this->problem;
-        $task->notes = $this->notes;
-        $task->status = 'pending';
-        $task->user = (Auth::user()->name);
-        // Set the created_at field to the current date if it's a new task
-        if (!$task->exists) {
-            $task->refNum = $refNum;
-            $task->task_date =  $year . '-' . $month . '-' . $day;
-            $task->created_at = Carbon::now();
+
+
+        $taskId = app('router')->current()->parameter('id');
+
+        if ($taskId) {
+            // Update the task
+            $task = Task::findOrFail($taskId);
+            $task->update([
+                'section_id' => 2,
+                'fromSection' => 2,
+                'station_id' => 2,
+                'main_alarm' => $this->main_alarm,
+                'voltage_level' => $this->selectedVoltage,
+                'work_type' => $this->work_type,
+                'equip_number' => $this->selectedEquip,
+                // 'equip_name' => $request->equip_name,
+                // 'pm' => $request->pm,
+                'eng_id' => $this->selectedEngineer,
+                'problem' => $this->problem,
+                'notes' => $this->notes,
+                'status' => 'pending',
+                'user' => (Auth::user()->name),
+            ]);
+        } else {
+            // Create a new task
+            $task = Task::create([
+                'refNum' => $refNum,
+                'section_id' => 2,
+                'fromSection' => 2,
+                'station_id' => $station_id,
+                'main_alarm' => $this->main_alarm,
+                'voltage_level' => $this->selectedVoltage,
+                'work_type' => $this->work_type,
+                'task_date' =>  $year . '-' . $month . '-' . $day,
+                'equip_number' => $this->selectedEquip,
+                // 'equip_name' => $request->equip_name,
+                // 'pm' => $request->pm,
+                'eng_id' => $this->selectedEngineer,
+                'problem' => $this->problem,
+                'notes' => $this->notes,
+                'status' => 'pending',
+                'user' => (Auth::user()->name),
+            ]);
         }
-        $task->save();
-        if ($this->photos) {
-            foreach ($this->photos as $photo) {
-                // $photo->store('photos');
-                $name = $photo->getClientOriginalName();
-                // $photo->storeAs('public', $name);
-                $photo->storeAs('protection/' . $task->id, $name, 'public');
-                $data[] = $name;
-                $attachments = new TaskAttachment();
-                $attachments->file_name = $name;
-                $attachments->created_by = Auth::user()->name;
-                $attachments->id_task =  $task->id;
-                $attachments->save();
-            }
-        }
+
+
 
         session()->flash('message', 'تم تعديل المهمة بنجاح.');
         return   back();
